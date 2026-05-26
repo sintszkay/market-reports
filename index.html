@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美股監控報告</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --green: #047857;
+      --amber: #b45309;
+      --red: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, "Microsoft JhengHei", "PingFang TC", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 14px;
+    }
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .stamp {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+    .summary {
+      color: var(--muted);
+      margin: 0;
+    }
+    .report {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+    .report h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+    .report p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .badges {
+      margin-top: 10px;
+    }
+    .badge {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 5px;
+    }
+    .green { color: var(--green); background: #ecfdf5; }
+    .amber { color: var(--amber); background: #fff7ed; }
+    .red { color: var(--red); background: #fef2f2; }
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    a.button {
+      display: inline-block;
+      color: #ffffff;
+      background: #111827;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    a.secondary {
+      color: #111827;
+      background: #f3f4f6;
+      border: 1px solid var(--border);
+    }
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 18px;
+    }
+    @media (max-width: 640px) {
+      .report {
+        grid-template-columns: 1fr;
+      }
+      .actions {
+        justify-content: flex-start;
+      }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="stamp">GitHub Pages report index</div>
+      <h1>美股監控報告</h1>
+      <p class="summary">每日盤前、盤後與週末復盤報告入口。手機與桌面都可直接打開。</p>
+    </section>
+
+    <article class="report">
+      <div>
+        <h2>2026-05-26｜盤前監控</h2>
+        <p>偏多但不追高；廣度改善；科技與主題 ETF 偏熱；Stockbee breadth 中性偏多。</p>
+        <div class="badges">
+          <span class="badge green">廣度改善</span>
+          <span class="badge amber">科技偏熱</span>
+          <span class="badge red">+6 ATR 延伸</span>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="button" href="reports/2026-05-26.html">打開 HTML</a>
+        <a class="button secondary" href="assets/2026-05-26.png">查看圖片</a>
+      </div>
+    </article>
+
+    <p class="note">部署後網址通常會是 <code>https://你的帳號.github.io/market-reports/</code>。新增每日報告時，把 HTML 放到 <code>reports/YYYY-MM-DD.html</code>，圖片放到 <code>assets/YYYY-MM-DD.png</code>，再更新此首頁。</p>
+  </main>
+</body>
+</html>

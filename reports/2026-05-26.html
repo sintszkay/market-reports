@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美股盤前監控｜2026-05-26</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --head: #f3f4f6;
+      --green: #047857;
+      --green-bg: #ecfdf5;
+      --amber: #b45309;
+      --amber-bg: #fff7ed;
+      --red: #b91c1c;
+      --red-bg: #fef2f2;
+      --blue: #2563eb;
+      --blue-bg: #eff6ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, "Microsoft JhengHei", "PingFang TC", sans-serif;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 18px 12px 28px; }
+    .shell {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .hero { padding: 24px 26px 18px; border-bottom: 1px solid var(--border); }
+    .stamp { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    h1 { font-size: 26px; line-height: 1.25; margin: 0 0 10px; }
+    h2 { font-size: 18px; margin: 20px 0 10px; }
+    .conclusion { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 0 6px 6px 0;
+    }
+    .green { color: var(--green); background: var(--green-bg); }
+    .amber { color: var(--amber); background: var(--amber-bg); }
+    .red { color: var(--red); background: var(--red-bg); }
+    .blue { color: var(--blue); background: var(--blue-bg); }
+    .content { padding: 18px 26px 26px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .info-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #f9fafb;
+      padding: 14px 14px 12px;
+      min-height: 150px;
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .card-title { font-size: 13px; color: var(--muted); font-weight: 700; }
+    .signal {
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 3px 8px;
+      white-space: nowrap;
+    }
+    .metric { font-size: 21px; font-weight: 800; margin-bottom: 4px; }
+    .desc { color: #374151; margin-bottom: 8px; }
+    .watch {
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+    }
+    ol { padding-left: 20px; margin-top: 0; }
+    li { margin-bottom: 6px; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 8px; border: 1px solid var(--border); vertical-align: top; }
+    th { background: var(--head); color: var(--muted); font-weight: 700; }
+    .num { text-align: right; white-space: nowrap; }
+    .plan {
+      padding: 11px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      border-left: 4px solid;
+    }
+    .plan.green { border-left-color: var(--green); }
+    .plan.amber { border-left-color: var(--amber); }
+    .plan.red { border-left-color: var(--red); }
+    .foot {
+      padding: 14px 26px;
+      background: #f9fafb;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    @media (max-width: 720px) {
+      .cards { grid-template-columns: 1fr; }
+      .hero, .content, .foot { padding-left: 16px; padding-right: 16px; }
+      h1 { font-size: 23px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="shell">
+      <header class="hero">
+        <div class="stamp">08:55 ET / 20:55 上海｜Premarket</div>
+        <h1>美股盤前監控｜2026-05-26</h1>
+        <div class="conclusion">交易結論：偏多，但不追高</div>
+        <span class="badge green">廣度改善</span>
+        <span class="badge amber">科技偏熱</span>
+        <span class="badge red">+6 ATR 延伸</span>
+        <span class="badge blue">等待開盤確認</span>
+      </header>
+
+      <main class="content">
+        <h2>核心判斷</h2>
+        <ol>
+          <li><b>趨勢偏多：</b>RSP / IWM / QQQE 補漲，漲勢正在擴散，不再只是 mega-cap 單線推動。</li>
+          <li><b>技術過熱：</b>SPY 距 50MA 約 +6.48 ATR，QQQ 約 +6.59 ATR，盤前高開追價的盈虧比差。</li>
+          <li><b>寬度轉好：</b>S&P 500 與 Nasdaq 100 的 20MA / 50MA 寬度回到 57%-59%，比上週明顯改善。</li>
+          <li><b>風險窗口：</b>週四 PCE / GDP / 初請是本週主事件；Kashkari 講話與油價高位是日內風險。</li>
+        </ol>
+
+        <h2>狀態卡片</h2>
+        <section class="cards">
+          <article class="info-card">
+            <div class="card-top">
+              <div class="card-title">市場狀態</div>
+              <span class="signal amber">高位震盪</span>
+            </div>
+            <div class="metric">趨勢偏多，位置偏高</div>
+            <div class="desc">長週末後第一個交易日，盤前不宜只看期貨方向。指數仍在多頭結構，但 SPY / QQQ 已明顯遠離 50MA。</div>
+            <div class="watch"><b>觀察：</b>開盤後 30-60 分鐘能否守住高位；若高開低走，先視為獲利了結。</div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-top">
+              <div class="card-title">市場寬度</div>
+              <span class="signal green">改善</span>
+            </div>
+            <div class="metric">57%-59% 回到健康區</div>
+            <div class="desc">S&P 500 &gt;20MA 58%、&gt;50MA 57%；Nasdaq 100 &gt;20MA 58%、&gt;50MA 59%。寬度不再拖累指數。</div>
+            <div class="watch"><b>觀察：</b>RSP / IWM / KRE 若同步走強，代表多頭擴散更可靠。</div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-top">
+              <div class="card-title">利率 / 美元</div>
+              <span class="signal amber">估值壓力</span>
+            </div>
+            <div class="metric">10Y 約 4.49%</div>
+            <div class="desc">利率日內可回落，但 1 個月趨勢仍偏升。這會限制 QQQ、SMH、ARKK 類高估值資產的追價空間。</div>
+            <div class="watch"><b>轉弱線：</b>10Y 回到 4.55% 上方，科技股回撤風險提高。</div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-top">
+              <div class="card-title">主線板塊</div>
+              <span class="signal green">動能仍強</span>
+            </div>
+            <div class="metric">AI / 半導體 / 網安</div>
+            <div class="desc">XLK、SMH、AIQ、CIBR 仍是核心主線；QQQE 也強，代表 Nasdaq 內部擴散比早前更好。</div>
+            <div class="watch"><b>風險：</b>CIBR RSI 90.03，XLK RSI 74.85，強勢但已不便宜。</div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-top">
+              <div class="card-title">過熱風險</div>
+              <span class="signal red">不追高</span>
+            </div>
+            <div class="metric">SPY / QQQ 均超 +6 ATR</div>
+            <div class="desc">這不是看空訊號，而是風險報酬提示：趨勢可延續，但新倉追高容易被日內均值回歸打到。</div>
+            <div class="watch"><b>策略：</b>等回踩、等 5 分鐘/15 分鐘結構確認，再找相對強勢股。</div>
+          </article>
+
+          <article class="info-card">
+            <div class="card-top">
+              <div class="card-title">事件風險</div>
+              <span class="signal red">本週集中</span>
+            </div>
+            <div class="metric">PCE / GDP / Fed 講話</div>
+            <div class="desc">今日有房價、消費者信心與 Kashkari 講話；週四 PCE、GDP、初請才是本週真正的大風險窗口。</div>
+            <div class="watch"><b>觀察：</b>若強數據推升利率，成長股可能先承壓；若數據降溫且利率回落，回踩可買性提高。</div>
+          </article>
+        </section>
+
+        <h2>Sector ETF</h2>
+        <div class="table-wrap">
+          <table>
+            <tr><th>ETF</th><th class="num">RSI</th><th>狀態</th></tr>
+            <tr><td>XLK</td><td class="num" style="color:#b91c1c;font-weight:700;">74.85</td><td>科技偏熱，仍是主線但追高風險高</td></tr>
+            <tr><td>XLV</td><td class="num" style="color:#b45309;font-weight:700;">69.14</td><td>醫療偏強，防禦與成長兼具</td></tr>
+            <tr><td>XLP / XLRE / XLY / XLF</td><td class="num">54-59</td><td>中性偏強，可觀察輪動擴散</td></tr>
+            <tr><td>XLI / XLE / XLB / XLC / XLU</td><td class="num">40-52</td><td>落後或震盪，暫非主攻方向</td></tr>
+          </table>
+        </div>
+
+        <h2>Thematic ETF</h2>
+        <div class="table-wrap">
+          <table>
+            <tr><th>ETF</th><th class="num">RSI</th><th>狀態</th></tr>
+            <tr><td>CIBR</td><td class="num" style="color:#b91c1c;font-weight:700;">90.03</td><td>極度超買，最強也最容易均值回歸</td></tr>
+            <tr><td>UFO / AIQ</td><td class="num" style="color:#b91c1c;font-weight:700;">70-75</td><td>偏熱，適合等回踩確認</td></tr>
+            <tr><td>QTUM / SMH / TAN / IGV / WGMI</td><td class="num" style="color:#b45309;font-weight:700;">67-70</td><td>強勢，接近過熱</td></tr>
+            <tr><td>IYZ / ITA / MAGS / JETS / COPX</td><td class="num">59-66</td><td>健康強勢，可作為輪動觀察名單</td></tr>
+            <tr><td>ARKK / XBI / LIT / IBIT / URA</td><td class="num">36-51</td><td>中性偏弱或落後，暫不作主線</td></tr>
+          </table>
+        </div>
+
+        <h2>市場寬度</h2>
+        <div class="table-wrap">
+          <table>
+            <tr><th>指標</th><th class="num">最新</th><th>判斷</th></tr>
+            <tr><td>S&P 500 &gt;20MA</td><td class="num" style="color:#047857;font-weight:700;">58%</td><td>短線廣度轉強</td></tr>
+            <tr><td>S&P 500 &gt;50MA</td><td class="num" style="color:#047857;font-weight:700;">57%</td><td>中期廣度回到 50% 以上</td></tr>
+            <tr><td>Nasdaq 100 &gt;20MA</td><td class="num" style="color:#047857;font-weight:700;">58%</td><td>科技內部改善</td></tr>
+            <tr><td>Nasdaq 100 &gt;50MA</td><td class="num" style="color:#047857;font-weight:700;">59%</td><td>中期科技廣度健康</td></tr>
+          </table>
+        </div>
+
+        <h2>Stockbee Breadth</h2>
+        <div class="table-wrap">
+          <table>
+            <tr><th>指標</th><th class="num">最新</th><th>5日判斷</th><th>1個月判斷</th><th>交易解讀</th></tr>
+            <tr>
+              <td>4% plus Daily</td>
+              <td class="num" style="color:#047857;font-weight:700;">339</td>
+              <td>買盤維持，屬正常偏強</td>
+              <td>約持平略升</td>
+              <td>正常偏強，未到極端追高</td>
+            </tr>
+            <tr>
+              <td>4% Down Daily</td>
+              <td class="num" style="color:#047857;font-weight:700;">119</td>
+              <td>賣壓明顯下降</td>
+              <td>仍在低位</td>
+              <td>短線賣壓緩和</td>
+            </tr>
+            <tr>
+              <td>5 Day Ratio</td>
+              <td class="num" style="color:#047857;font-weight:700;">1.68</td>
+              <td>快速修復，短線買盤轉強</td>
+              <td>低於一個月前，但仍 &gt;1</td>
+              <td>短線偏多</td>
+            </tr>
+            <tr>
+              <td>10 Day Ratio</td>
+              <td class="num" style="color:#b45309;font-weight:700;">1.12</td>
+              <td>小幅改善</td>
+              <td>明顯降溫</td>
+              <td>中性偏多，不是強 thrust</td>
+            </tr>
+            <tr>
+              <td>25% plus Quarter</td>
+              <td class="num" style="color:#047857;font-weight:700;">1431</td>
+              <td>連續修復</td>
+              <td>仍低於一個月前</td>
+              <td>中期多頭廣度佔優</td>
+            </tr>
+            <tr>
+              <td>25% down Quarter</td>
+              <td class="num">957</td>
+              <td>空方下降</td>
+              <td>略高於一個月前</td>
+              <td>中期賣壓下降，但未完全回到最佳狀態</td>
+            </tr>
+            <tr>
+              <td>25% plus Month</td>
+              <td class="num" style="color:#047857;font-weight:700;">213</td>
+              <td>短線轉強</td>
+              <td>較一個月前降溫</td>
+              <td>月度強勢股回升，但不算過熱</td>
+            </tr>
+            <tr>
+              <td>25% down Month</td>
+              <td class="num">112</td>
+              <td>快速下降</td>
+              <td>仍高於一個月前</td>
+              <td>短線空方撤退，但仍有殘餘壓力</td>
+            </tr>
+            <tr>
+              <td>50% plus Month</td>
+              <td class="num" style="color:#b91c1c;font-weight:700;">58</td>
+              <td>回升後維持高位</td>
+              <td>低於一個月前</td>
+              <td>仍偏熱，需防高位回落</td>
+            </tr>
+            <tr>
+              <td>50% down Month</td>
+              <td class="num">31</td>
+              <td>下降</td>
+              <td>高於一個月前</td>
+              <td>悲觀解除中，但弱股仍多於4月下旬</td>
+            </tr>
+            <tr>
+              <td>34/13 Bull</td>
+              <td class="num" style="color:#047857;font-weight:700;">1710</td>
+              <td>二級多頭確認改善</td>
+              <td>仍低於一個月前</td>
+              <td>二級確認改善</td>
+            </tr>
+            <tr>
+              <td>34/13 Bear</td>
+              <td class="num">1458</td>
+              <td>空方數下降</td>
+              <td>仍高於一個月前</td>
+              <td>空方數下降，但中期仍未完全修復</td>
+            </tr>
+            <tr>
+              <td>Worden Common Stock Universe</td>
+              <td class="num">6456</td>
+              <td>樣本小幅增加</td>
+              <td>樣本池小幅增加</td>
+              <td>樣本變動小，不影響方向判斷</td>
+            </tr>
+            <tr>
+              <td>T2108</td>
+              <td class="num">47.71</td>
+              <td>從低位修復</td>
+              <td>仍低於一個月前</td>
+              <td>從低位修復，但未到強廣度</td>
+            </tr>
+            <tr>
+              <td>S&amp;P</td>
+              <td class="num">7473.47</td>
+              <td>短線回升</td>
+              <td>指數高於一個月前</td>
+              <td>指數強於部分中期廣度，仍需防高位分化</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="plan green" style="margin-top:10px;"><b>Stockbee 結論：</b>Primary Breadth 偏多，5 日 ratio 快速修復，10 日 ratio 只是中性偏多；因此環境適合偏多觀察，但仍不支持在 +6 ATR 延伸後追高。</div>
+
+        <h2>Polymarket / 事件風險</h2>
+        <div class="table-wrap">
+          <table>
+            <tr><th>市場</th><th class="num">最新概率</th><th>近期趨勢</th><th>交易含義</th></tr>
+            <tr>
+              <td>2026 年 Fed 零降息</td>
+              <td class="num" style="color:#b91c1c;font-weight:700;">約 65.7%</td>
+              <td>高位，市場仍定價高利率尾部風險</td>
+              <td>利率壓力未解除，QQQ / SMH / ARKK 追價容錯低</td>
+            </tr>
+            <tr>
+              <td>BTC 2026 觸及 100k</td>
+              <td class="num">約 50%</td>
+              <td>高 beta 風險偏好中性</td>
+              <td>IBIT 偏弱但 WGMI 強，crypto 相關股分化</td>
+            </tr>
+            <tr>
+              <td>Hormuz 交通正常化</td>
+              <td class="num" style="color:#047857;font-weight:700;">約 62%</td>
+              <td>能源尾部風險有緩和預期</td>
+              <td>若油價回落，有利消費與成長股估值修復</td>
+            </tr>
+            <tr>
+              <td>US-Iran 核協議 2027 前</td>
+              <td class="num">約 63%</td>
+              <td>地緣緩和定價存在</td>
+              <td>若落空，油價與通膨預期可能重新上升</td>
+            </tr>
+          </table>
+        </div>
+        <div class="plan amber" style="margin-top:10px;"><b>提示：</b>Polymarket 賠率不是事實，只是事件風險定價。若賠率變動但股市未反應，代表事件風險可能尚未被充分定價。</div>
+
+        <h2>交易計劃</h2>
+        <div class="plan green"><b>可觀察：</b>RSP / IWM / KRE 若跟上，偏多勝率提高。</div>
+        <div class="plan amber"><b>不追高：</b>SPY / QQQ 已距 50MA 超過 +6 ATR。</div>
+        <div class="plan red"><b>轉弱條件：</b>10Y 回到 4.55% 上方，或 QQQ / SMH 高開低走。</div>
+      </main>
+
+      <footer class="foot">
+        來源：Stooq、Trading Economics、Kiplinger、Federal Reserve、Polymarket、Yahoo Finance、Google Sheet Market Watch、market_breadth_history.csv。資料為盤前快照，盤中需再確認。
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

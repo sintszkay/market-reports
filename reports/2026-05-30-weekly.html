@@ -217,6 +217,55 @@
       }
       .toc a { flex:0 0 auto; white-space:nowrap; }
     }
+    @media (max-width:700px) {
+      .table-wrap {
+        overflow:visible;
+        border:0;
+        border-radius:0;
+      }
+      table,
+      tbody,
+      tr,
+      td {
+        display:block;
+        width:100%;
+        max-width:100%;
+        min-width:0;
+      }
+      table {
+        border-collapse:separate;
+        border-spacing:0;
+      }
+      tr:first-child {
+        display:none;
+      }
+      tr {
+        border:1px solid var(--line);
+        border-radius:8px;
+        background:#fff;
+        margin:0 0 10px;
+        overflow:hidden;
+      }
+      td {
+        display:grid;
+        grid-template-columns:minmax(82px,34%) minmax(0,1fr);
+        gap:10px;
+        align-items:start;
+        border-bottom:1px solid #edf1f5;
+        padding:8px 10px;
+        font-size:13px;
+      }
+      td:last-child {
+        border-bottom:0;
+      }
+      td::before {
+        content:attr(data-label);
+        color:var(--muted);
+        font-weight:700;
+        font-size:12px;
+        line-height:1.45;
+      }
+    }
     @media (max-width:520px) {
       body { font-size:14px; }
       .wrap { width:100%; padding:12px 8px 28px; }
@@ -252,9 +301,7 @@
         color:var(--strong);
       }
       ul { margin-left:1.15em; }
-      .table-wrap { overscroll-behavior-x:contain; }
-      table { min-width:620px; }
-      th, td { padding:8px 9px; font-size:13px; }
+      td { grid-template-columns:minmax(76px,32%) minmax(0,1fr); }
     }
   </style>
 </head>
@@ -421,5 +468,15 @@
       </div>
     </div>
   </main>
+  <script>
+    document.querySelectorAll('table').forEach((table) => {
+      const headers = Array.from(table.querySelectorAll('tr:first-child th')).map((th) => th.textContent.trim());
+      table.querySelectorAll('tr:not(:first-child)').forEach((row) => {
+        Array.from(row.children).forEach((cell, index) => {
+          cell.setAttribute('data-label', headers[index] || '');
+        });
+      });
+    });
+  </script>
 </body>
 </html>

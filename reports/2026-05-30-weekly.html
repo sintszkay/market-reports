@@ -72,8 +72,8 @@
     section.block { background:var(--panel); border:1px solid var(--line); padding:18px; margin-bottom:14px; max-width:100%; }
     .table-wrap { width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:8px; margin:10px 0 4px; }
     table { width:100%; min-width:760px; max-width:none; border-collapse:collapse; }
-    th, td { padding:9px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
-    th { background:var(--head); color:var(--strong); font-size:13px; font-weight:700; white-space:nowrap; }
+    th, td { padding:9px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle; }
+    th { background:var(--head); color:var(--strong); font-size:13px; font-weight:800; white-space:nowrap; }
     td { font-size:14px; }
     tr:last-child td { border-bottom:0; }
     .callout { border-left:4px solid var(--amber); background:#fffbeb; padding:12px 14px; border-radius:6px; margin-top:12px; }
@@ -82,66 +82,74 @@
       .hero { grid-template-columns:1fr; }
       .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
       .layout { grid-template-columns:1fr; }
-      .toc { position:static; display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; gap:6px; }
+      .toc { position:static; display:flex; flex-wrap:wrap; overflow:visible; gap:6px; }
       .toc a { flex:0 0 auto; white-space:nowrap; }
     }
     @media (max-width:700px) {
-      .table-wrap { overflow:visible; border:0; border-radius:0; }
-      table, tbody { display:block; width:100%; min-width:0; max-width:100%; }
-      tr:first-child { display:none; }
-      tr {
-        display:grid;
-        grid-template-columns:minmax(74px,1fr) repeat(2,minmax(0,1.25fr));
-        gap:6px 9px;
-        width:100%;
-        min-width:0;
+      .wrap { padding-left:8px; padding-right:8px; }
+      section.block { padding:12px; }
+      .table-wrap {
+        overflow:visible;
         border:1px solid var(--line);
         border-radius:8px;
-        background:#fff;
-        margin:0 0 8px;
-        padding:9px 10px;
       }
-      td {
-        display:block;
+      table {
+        width:100%;
         min-width:0;
-        border:0;
-        padding:0;
-        font-size:13px;
-        line-height:1.35;
+        max-width:100%;
+        table-layout:fixed;
       }
-      td:first-child {
-        grid-column:1;
-        grid-row:1 / span 4;
-        align-self:start;
-        color:var(--strong);
-        font-size:15px;
-        font-weight:800;
-        line-height:1.25;
-        padding-top:1px;
-      }
-      td:not(:first-child)::before {
-        content:attr(data-label);
-        display:block;
-        color:var(--muted);
+      th, td {
+        padding:7px 4px;
         font-size:11px;
-        font-weight:700;
-        line-height:1.2;
-        margin-bottom:1px;
+        line-height:1.25;
+        white-space:normal;
+        word-break:normal;
+        overflow-wrap:anywhere;
       }
-      td[data-label="判斷"],
-      td[data-label="Above MA"],
-      td[data-label="25% Q 上/下"],
-      td[data-label="50% M 上/下"] {
-        grid-column:2 / -1;
-      }
+      th { font-size:11px; }
+      #indices th:nth-child(1), #indices td:nth-child(1) { width:12%; }
+      #indices th:nth-child(2), #indices td:nth-child(2) { width:15%; }
+      #indices th:nth-child(3), #indices td:nth-child(3) { width:12%; }
+      #indices th:nth-child(4), #indices td:nth-child(4) { width:13%; }
+      #indices th:nth-child(5), #indices td:nth-child(5) { width:21%; }
+      #indices th:nth-child(6), #indices td:nth-child(6) { width:8%; }
+      #indices th:nth-child(7), #indices td:nth-child(7) { width:19%; }
+      #sector th:nth-child(1), #sector td:nth-child(1) { width:16%; }
+      #sector th:nth-child(2), #sector td:nth-child(2) { width:16%; }
+      #sector th:nth-child(3), #sector td:nth-child(3) { width:15%; }
+      #sector th:nth-child(4), #sector td:nth-child(4) { width:16%; }
+      #sector th:nth-child(5), #sector td:nth-child(5) { width:12%; }
+      #sector th:nth-child(6), #sector td:nth-child(6) { width:25%; }
+      #extension th:nth-child(1), #extension td:nth-child(1) { width:14%; }
+      #extension th:nth-child(2), #extension td:nth-child(2) { width:16%; }
+      #extension th:nth-child(3), #extension td:nth-child(3) { width:16%; }
+      #extension th:nth-child(4), #extension td:nth-child(4) { width:16%; }
+      #extension th:nth-child(5), #extension td:nth-child(5) { width:18%; }
+      #extension th:nth-child(6), #extension td:nth-child(6) { width:20%; }
+      #fx th:nth-child(1), #fx td:nth-child(1) { width:18%; }
+      #fx th:nth-child(2), #fx td:nth-child(2) { width:18%; }
+      #fx th:nth-child(3), #fx td:nth-child(3) { width:14%; }
+      #fx th:nth-child(4), #fx td:nth-child(4) { width:14%; }
+      #fx th:nth-child(5), #fx td:nth-child(5) { width:36%; }
+      #breadth th, #breadth td { font-size:9px; padding:5px 2px; line-height:1.18; }
+      #breadth th:nth-child(1), #breadth td:nth-child(1) { width:11%; }
+      #breadth th:nth-child(2), #breadth td:nth-child(2) { width:10%; }
+      #breadth th:nth-child(3), #breadth td:nth-child(3) { width:10%; }
+      #breadth th:nth-child(4), #breadth td:nth-child(4) { width:11%; }
+      #breadth th:nth-child(5), #breadth td:nth-child(5) { width:11%; }
+      #breadth th:nth-child(6), #breadth td:nth-child(6) { width:14%; }
+      #breadth th:nth-child(7), #breadth td:nth-child(7) { width:14%; }
+      #breadth th:nth-child(8), #breadth td:nth-child(8) { width:9%; }
+      #breadth th:nth-child(9), #breadth td:nth-child(9) { width:10%; }
     }
     @media (max-width:520px) {
       body { font-size:14px; }
-      .wrap { width:100%; padding:12px 8px 28px; }
+      .wrap { width:100%; padding:12px 6px 28px; }
       .topbar { align-items:flex-start; flex-direction:column; }
       .stamp { font-size:12px; }
       .hero { gap:12px; padding-bottom:14px; margin-bottom:14px; }
-      .hero-main, .summary-panel, section.block, .metric { padding:14px; }
+      .hero-main, .summary-panel, .metric { padding:14px; }
       h1 { font-size:23px; line-height:1.25; }
       h2 { font-size:19px; }
       .summary-panel strong { font-size:21px; }
@@ -155,7 +163,9 @@
       }
       section.block > ol > li::before { counter-increment:item; content:counter(item) "."; font-weight:700; color:var(--strong); }
       ul { margin-left:1.15em; }
-      tr { grid-template-columns:minmax(68px,.9fr) repeat(2,minmax(0,1.25fr)); }
+      th, td { font-size:10.5px; padding:6px 3px; }
+      th { font-size:10.5px; }
+      #breadth th, #breadth td { font-size:8px; padding:4px 1px; }
     }
   </style>
 </head>
@@ -175,15 +185,5 @@
       <section id="plan" class="block"><h2>下週交易計畫</h2><ol><li>基調：<code>多頭續航，但只等回踩，不追高</code>。</li><li>加倉條件：QQQ/SMH/XLK 回踩後能守住 5日線或盤中 VWAP，且 RSP/IWM 沒有同步轉弱。</li><li>減倉條件：VIX 重回 17-18、10Y 上行、T2108 繼續下滑，而 QQQ 仍創高，這是廣度背離。</li><li>板塊偏好：AI/軟體/網安/半導體仍是主線，但 CIBR、TAN、QQQ、VOO 過熱；能源、防守與房建暫時不是優先。</li><li>風控：本週最容易犯的錯不是看空，而是在 +8 ATR 的位置追多。</li></ol></section>
     </div></div>
   </main>
-  <script>
-    document.querySelectorAll('table').forEach((table) => {
-      const headers = Array.from(table.querySelectorAll('tr:first-child th')).map((th) => th.textContent.trim());
-      table.querySelectorAll('tr:not(:first-child)').forEach((row) => {
-        Array.from(row.children).forEach((cell, index) => {
-          cell.setAttribute('data-label', headers[index] || '');
-        });
-      });
-    });
-  </script>
 </body>
 </html>

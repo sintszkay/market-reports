@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NVDA GTC 產業鏈深度分析｜2026-06-01</title>
+  <style>
+    :root {
+      --bg:#f4f6f8; --panel:#ffffff; --text:#101828; --muted:#667085; --line:#d9e0e8;
+      --head:#eef2f6; --strong:#0f172a; --green:#057a55; --green-bg:#e9f8f1;
+      --amber:#a15c07; --amber-bg:#fff5df; --red:#b42318; --red-bg:#fff0ed;
+      --blue:#175cd3; --blue-bg:#eaf2ff;
+    }
+    * { box-sizing:border-box; }
+    html { width:100%; max-width:100%; -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+    body {
+      width:100%; max-width:100%; margin:0; background:var(--bg); color:var(--text);
+      font-family:Arial,"Microsoft JhengHei","PingFang TC",sans-serif;
+      font-size:15px; line-height:1.65; letter-spacing:0;
+    }
+    .wrap { width:100%; max-width:1120px; margin:0 auto; padding:24px 16px 42px; }
+    .topbar { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:16px; min-width:0; }
+    a.back {
+      display:inline-flex; align-items:center; min-height:36px; color:var(--strong); text-decoration:none;
+      border:1px solid var(--line); background:var(--panel); border-radius:8px; padding:7px 11px;
+      font-weight:700; font-size:14px; flex:0 0 auto;
+    }
+    .stamp { color:var(--muted); font-size:13px; font-weight:700; min-width:0; }
+    .hero {
+      display:grid; grid-template-columns:minmax(0,1fr) minmax(260px,320px); gap:22px; align-items:stretch;
+      border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:18px; min-width:0;
+    }
+    .hero-main, .summary-panel, .metric, .toc, section.block { border-radius:8px; min-width:0; }
+    .hero-main { background:var(--panel); border:1px solid var(--line); padding:22px; }
+    h1, h2, h3, p, li, td, th, span, strong, a, code { max-width:100%; overflow-wrap:anywhere; word-break:normal; }
+    h1 { margin:0; font-size:32px; line-height:1.22; letter-spacing:0; }
+    h2 { font-size:20px; line-height:1.3; margin:0 0 12px; }
+    h3 { font-size:16px; line-height:1.35; margin:18px 0 8px; }
+    p { margin:0 0 12px; }
+    ul, ol { margin:0 0 0 22px; padding:0; }
+    li { margin:6px 0; }
+    .subtitle { color:var(--muted); margin:10px 0 0; max-width:760px; }
+    .badge-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:16px; }
+    .badge { display:inline-flex; align-items:center; min-height:24px; border-radius:999px; padding:4px 9px; font-size:12px; font-weight:700; white-space:nowrap; }
+    .green { color:var(--green); background:var(--green-bg); }
+    .amber { color:var(--amber); background:var(--amber-bg); }
+    .red { color:var(--red); background:var(--red-bg); }
+    .blue { color:var(--blue); background:var(--blue-bg); }
+    .summary-panel { background:var(--strong); color:#fff; padding:18px; display:flex; flex-direction:column; justify-content:space-between; }
+    .summary-panel span { display:block; color:#cbd5e1; font-size:12px; font-weight:700; margin-bottom:5px; }
+    .summary-panel strong { display:block; font-size:24px; line-height:1.2; }
+    .summary-panel p { color:#dbe4ef; margin:14px 0 0; font-size:14px; }
+    .metrics { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0; min-width:0; }
+    .metric { background:var(--panel); border:1px solid var(--line); padding:13px 14px; }
+    .metric span { display:block; color:var(--muted); font-size:12px; font-weight:700; margin-bottom:4px; }
+    .metric strong { display:block; font-size:18px; line-height:1.25; }
+    .layout { display:grid; grid-template-columns:220px minmax(0,1fr); gap:18px; align-items:start; min-width:0; }
+    .toc { position:sticky; top:14px; background:var(--panel); border:1px solid var(--line); padding:12px; max-width:100%; }
+    .toc a { display:block; color:var(--muted); text-decoration:none; font-size:14px; font-weight:700; padding:7px 8px; border-radius:6px; }
+    .toc a:hover { background:#f1f5f9; color:var(--strong); }
+    section.block { background:var(--panel); border:1px solid var(--line); padding:18px; margin-bottom:14px; max-width:100%; }
+    .table-wrap { width:100%; max-width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:8px; margin:10px 0 4px; }
+    table { width:100%; min-width:760px; max-width:none; border-collapse:collapse; }
+    th, td { padding:9px 10px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:var(--head); color:var(--strong); font-size:13px; font-weight:800; white-space:nowrap; }
+    td { font-size:14px; }
+    tr:last-child td { border-bottom:0; }
+    .callout { border-left:4px solid var(--amber); background:#fffbeb; padding:12px 14px; border-radius:6px; margin-top:12px; }
+    .risk { border-left-color:var(--red); background:#fff5f5; color:#7f1d1d; }
+    code { background:#eef2f6; padding:2px 5px; border-radius:5px; font-family:Consolas,monospace; font-size:.92em; }
+    @media (max-width:900px) {
+      .hero { grid-template-columns:1fr; }
+      .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .layout { grid-template-columns:1fr; }
+      .toc { position:static; display:flex; overflow-x:auto; }
+      .toc a { white-space:nowrap; }
+    }
+    @media (max-width:520px) {
+      .wrap { padding:16px 10px 32px; }
+      .topbar { align-items:flex-start; flex-direction:column; }
+      .hero-main, section.block { padding:15px; }
+      h1 { font-size:25px; }
+      .metrics { grid-template-columns:1fr; }
+      table { min-width:680px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar">
+      <a class="back" href="../index.html">返回首頁</a>
+      <div class="stamp">US Market Monitor · GTC Supply Chain · 2026-06-01</div>
+    </div>
+
+    <header class="hero">
+      <div class="hero-main">
+        <h1>NVDA GTC 產業鏈深度分析：AI Factory 是主線，AI PC 與 Robotics 是擴散</h1>
+        <p class="subtitle">本補充聚焦 GTC Taipei 事件與可交易產業鏈，不重算週末已完成的廣度、ETF 技術與 50MA ATR。核心結論是 Vera Rubin / NVL72 把投資焦點從單顆 GPU 推向整櫃級 AI infrastructure。</p>
+        <div class="badge-row">
+          <span class="badge green">AI Factory 主線</span>
+          <span class="badge blue">Vera Rubin / NVL72</span>
+          <span class="badge amber">AI PC 二級擴散</span>
+          <span class="badge red">高位不追</span>
+        </div>
+      </div>
+      <aside class="summary-panel">
+        <div><span>操作基調</span><strong>主線偏多，不追高</strong></div>
+        <p>若 NVDA/SMH 高開後 AVGO、MRVL、ANET、VRT、DELL、SMCI、MU 同步放量，代表 GTC 題材擴散；若只有 NVDA 單點強，先視為事件兌現。</p>
+      </aside>
+    </header>
+
+    <section class="metrics" aria-label="headline metrics">
+      <div class="metric"><span>核心鏈條</span><strong>AI Factory</strong></div>
+      <div class="metric"><span>一級 Watchlist</span><strong>NVDA / AVGO / VRT</strong></div>
+      <div class="metric"><span>二級擴散</span><strong>AI PC / N1X</strong></div>
+      <div class="metric"><span>主要風險</span><strong>估值 + 利率</strong></div>
+    </section>
+
+    <div class="layout">
+      <nav class="toc" aria-label="report sections">
+        <a href="#read">核心解讀</a>
+        <a href="#chain">產業鏈地圖</a>
+        <a href="#watchlist">Watchlist</a>
+        <a href="#scenarios">盤前情境</a>
+        <a href="#risks">風險</a>
+        <a href="#sources">來源</a>
+      </nav>
+
+      <div>
+        <section id="read" class="block">
+          <h2>GTC 核心解讀</h2>
+          <ol>
+            <li><strong>Vera Rubin 進入量產/爬坡：</strong>NVIDIA 表示 Vera Rubin 平台進入 full production ramp，台灣供應鏈有約 150 家夥伴、350+ 工廠、30 個國家參與。投資敘事從 GPU 出貨升級為 AI factory 成套系統出貨。</li>
+            <li><strong>Rubin NVL72 是五機櫃級 AI factory 單元：</strong>核心包括 Rubin GPU、Vera CPU、NVLink 6、ConnectX-9、BlueField-4、Spectrum-X Ethernet Photonics。Networking、power、cooling、storage、rack integration 的價值量上升。</li>
+            <li><strong>AI PC / N1X 是新增擴散題材：</strong>RTX Spark / N1X 進入 Windows AI PC，與 Microsoft、MediaTek 及 PC OEM 合作。這是 TAM 擴張，但短期營收權重仍低於資料中心。</li>
+            <li><strong>Robotics 是長線 optionality：</strong>Isaac GR00T Reference Humanoid 與 Jetson Thor 強化 edge AI/robotics 平台敘事，但 2026 可交易彈性仍主要在資料中心供應鏈。</li>
+            <li><strong>交易先看擴散確認：</strong>若二線受益股不跟漲，GTC 利多可能只是 NVDA 事件兌現；若 power/cooling、AI networking、server OEM 同步放量，主線更健康。</li>
+          </ol>
+        </section>
+
+        <section id="chain" class="block">
+          <h2>產業鏈地圖與美股 Ticker</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>鏈條</th><th>關鍵邏輯</th><th>美股 / ADR Ticker</th><th>交易判斷</th></tr></thead>
+              <tbody>
+                <tr><td>核心算力平台</td><td>Rubin GPU、Vera CPU、NVLink 6 成為下一代 AI factory 標準</td><td>NVDA, ARM</td><td>NVDA 是主線核心；高位只做回踩/突破確認</td></tr>
+                <tr><td>晶圓 / 先進製程 / 設備</td><td>Rubin/N1X 依賴先進節點與先進封裝產能</td><td>TSM, ASML, AMAT, LRCX, KLAC</td><td>台積電與設備是中期受益；短線彈性通常低於 NVDA beta</td></tr>
+                <tr><td>HBM / 記憶體</td><td>Rubin NVL72 對 HBM4/高頻寬記憶體需求更高</td><td>MU, WDC, STX</td><td>MU 最直接；看記憶體價格與 capex 指引</td></tr>
+                <tr><td>AI 網路 / 光互連</td><td>Spectrum-X Ethernet Photonics、CPO、ConnectX-9、BlueField-4 拉升網路價值量</td><td>AVGO, MRVL, ANET, CIEN, COHR, LITE</td><td>AVGO/MRVL 看 ASIC/互連；ANET 受益 AI Ethernet，但也要評估 Spectrum-X 競爭壓力</td></tr>
+                <tr><td>伺服器 / OEM / 整櫃集成</td><td>NVL72 從板卡走向 rack-scale，OEM/ODM 裝配、測試、交付複雜度上升</td><td>DELL, HPE, SMCI, IBM, LNVGY</td><td>DELL/HPE 更偏大型客戶；SMCI 彈性大但波動與治理折價較高</td></tr>
+                <tr><td>電力 / 散熱 / 機房工程</td><td>AI factory 投資上升，液冷、UPS、配電、熱管理成為瓶頸</td><td>VRT, ETN, PWR, GEV, TT, JCI, FIX</td><td>最值得補入 watchlist；若 NVDA 高位，這條常有更好的風險報酬</td></tr>
+                <tr><td>資料 / 儲存 / 安全</td><td>Agentic AI 需要 KV cache、context memory、storage/security integration</td><td>NTAP, PSTG, WDC, STX, DDOG, CRWD, PANW</td><td>短線跟隨度不如硬體；財報確認後更可靠</td></tr>
+                <tr><td>AI PC</td><td>N1X / RTX Spark 進入 Windows PC，帶動本地 agentic AI</td><td>NVDA, MSFT, DELL, HPQ, INTC, AMD, QCOM</td><td>NVDA/MSFT 受益；INTC/AMD/QCOM 需看競爭壓力，不宜單純當利多</td></tr>
+                <tr><td>Robotics / Edge AI</td><td>Jetson Thor + Isaac GR00T reference design 建立開發平台</td><td>NVDA, SYM, TER, ISRG, TSLA</td><td>偏長線敘事；短線不要用 GTC 直接追機器人小票</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="watchlist" class="block">
+          <h2>最優先 Watchlist</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>優先級</th><th>Ticker</th><th>為什麼看</th><th>觸發條件</th></tr></thead>
+              <tbody>
+                <tr><td>A 核心</td><td>NVDA</td><td>Vera Rubin + N1X + Robotics 三線敘事集中</td><td>高開後能守住 VWAP 且 SMH 跟隨</td></tr>
+                <tr><td>A 核心</td><td>AVGO</td><td>AI ASIC/網路，且週三財報是主線驗證</td><td>財報前不重倉；若上修 AI backlog，帶動 MRVL/ANET</td></tr>
+                <tr><td>A 延伸</td><td>VRT, ETN, PWR</td><td>AI factory 成本從晶片外溢到電力、液冷、工程</td><td>若 NVDA 高位震盪但這條補漲，是健康擴散</td></tr>
+                <tr><td>B 彈性</td><td>DELL, HPE, SMCI</td><td>整櫃交付與 AI server demand</td><td>只做放量突破；SMCI 控風險</td></tr>
+                <tr><td>B 彈性</td><td>MRVL, ANET, CIEN, COHR</td><td>AI Ethernet、光互連、CPO 擴散</td><td>若 Spectrum-X 被市場解讀為需求擴張而非競爭壓力</td></tr>
+                <tr><td>B 供應鏈</td><td>TSM, MU, ASML, AMAT</td><td>先進製程、封裝、HBM 與設備週期</td><td>適合中線，不一定盤中最大彈性</td></tr>
+                <tr><td>C 題材</td><td>MSFT, DELL, HPQ, AMD, INTC, QCOM</td><td>AI PC / N1X 競爭格局重估</td><td>先看市場是否買單 AI PC TAM，不急於追 PC 鏈</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="scenarios" class="block">
+          <h2>盤前交易情境</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>情境</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>NVDA + SMH 強，VRT/ETN/DELL/AVGO/MRVL 同步強</td><td>小倉跟隨主線；優先做 A 級 watchlist，避免追題材小票</td></tr>
+                <tr><td>NVDA 單點強，二線不跟</td><td>視為事件兌現；不追高，等回踩或盤中承接確認</td></tr>
+                <tr><td>10Y/DXY 上行，QQQ/ARKK/crypto beta 轉弱</td><td>降低高 beta，保留 VRT/ETN/TSM/MU 等更偏供應鏈確認股</td></tr>
+                <tr><td>AVGO 財報前資金提前拉升</td><td>不重倉賭財報；用 MRVL/ANET/VRT 等外溢鏈條分散事件風險</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="risks" class="block">
+          <h2>風險提示</h2>
+          <div class="callout risk"><strong>事件兌現風險：</strong>NVDA/SMH 已高位時，GTC 利多可能先被用來獲利了結；需要看二線受益股是否跟漲確認。</div>
+          <div class="callout risk"><strong>供應瓶頸：</strong>HBM、CoWoS/先進封裝、液冷、電力併網、CPO 良率都可能限制交付速度。</div>
+          <div class="callout risk"><strong>競爭與替代：</strong>Spectrum-X/CPO 對部分傳統光模組和第三方 switch 供應商可能是雙刃劍；ANET/COHR/LITE 不可只看需求擴張。</div>
+          <div class="callout risk"><strong>宏觀壓力：</strong>本週非農/ISM 若推升 10Y 和美元，AI 高估值股仍可能短線承壓。</div>
+        </section>
+
+        <section id="sources" class="block">
+          <h2>資料來源與限制</h2>
+          <ul>
+            <li><a href="https://nvidianews.nvidia.com/news/vera-rubin-full-production-agentic-ai-factory">NVIDIA Newsroom：Vera Rubin full production and agentic AI factory</a></li>
+            <li><a href="https://apnews.com/article/c807f7333b93b9927b62b1240dcf65a1">AP：NVIDIA GTC Taipei / AI PC coverage</a></li>
+            <li>NVIDIA Rubin platform、Isaac GR00T / Jetson Thor 相關公告與產業鏈公開資料。</li>
+          </ul>
+          <p class="callout">本頁是事件與產業鏈 watchlist，不是買賣建議；本次未重算技術面與市場廣度，因週末復盤已覆蓋數據面且週末無新美股現貨收盤。</p>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

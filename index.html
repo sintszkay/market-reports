@@ -12,7 +12,7 @@
     .masthead { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:end; border-bottom:1px solid var(--line); padding-bottom:22px; margin-bottom:18px; }
     .eyebrow { color:var(--blue); font-size:13px; font-weight:700; margin-bottom:8px; }
     h1 { margin:0; font-size:34px; line-height:1.18; letter-spacing:0; }
-    .summary { color:var(--muted); margin:10px 0 0; max-width:680px; }
+    .summary { color:var(--muted); margin:10px 0 0; max-width:720px; }
     .status-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; margin:18px 0; }
     .stat { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:13px 14px; }
     .stat span { display:block; color:var(--muted); font-size:12px; font-weight:700; margin-bottom:4px; }
@@ -35,14 +35,76 @@
 </head>
 <body>
   <main class="wrap">
-    <header class="masthead"><div><div class="eyebrow">US Market Monitor</div><h1>美股監控報告</h1><p class="summary">每日盤前、盤後與週末復盤報告入口。重點覆蓋指數技術、廣度、板塊輪動、FX/商品、Fed 路徑與事件風險。</p></div><a class="button" href="reports/2026-05-30-weekly.html">最新報告</a></header>
-    <section class="status-strip" aria-label="latest report highlights"><div class="stat"><span>市場基調</span><strong>多頭續航</strong></div><div class="stat"><span>主要風險</span><strong>+8 ATR 延伸</strong></div><div class="stat"><span>廣度狀態</span><strong>改善但降溫</strong></div><div class="stat"><span>資料源</span><strong>Google Sheet Macro</strong></div></section>
+    <header class="masthead">
+      <div>
+        <div class="eyebrow">US Market Monitor</div>
+        <h1>美股監控報告</h1>
+        <p class="summary">每日盤前、盤後與週末復盤入口。週一盤前以週末重大事件、產業鏈催化、板塊與 ticker watchlist 為主；數據復盤以週末報告為準。</p>
+      </div>
+      <a class="button" href="reports/2026-06-01-nvda-gtc.html">最新報告</a>
+    </header>
+
+    <section class="status-strip" aria-label="latest report highlights">
+      <div class="stat"><span>最新主題</span><strong>NVDA GTC</strong></div>
+      <div class="stat"><span>核心主線</span><strong>AI Factory</strong></div>
+      <div class="stat"><span>優先鏈條</span><strong>Power / Cooling</strong></div>
+      <div class="stat"><span>操作基調</span><strong>主線偏多，不追高</strong></div>
+    </section>
+
     <section class="report-list" aria-label="reports">
-      <article class="report"><div><h2>2026-05-30｜一週總結</h2><p>美股完成第 9 週連漲；廣度維持 bullish phase，但 VOO/QQQ 已接近 +8 ATR。下週基調是多頭續航、等回踩、不追高。</p><div class="badges"><span class="badge green">第9週連漲</span><span class="badge red">+8 ATR 延伸</span><span class="badge amber">通膨仍黏</span><span class="badge blue">廣度改善</span></div></div><div class="actions"><a class="button" href="reports/2026-05-30-weekly.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-29｜盤前日報（更新版）</h2><p>多頭延續但不追高；5日 breadth ratio 2.48、10日 ratio 1.58；VOO/QQQ 超過 +7 ATR；FX/商品與 Treasury 使用 Google Sheet Macro。</p><div class="badges"><span class="badge green">廣度改善</span><span class="badge red">+7 ATR 延伸</span><span class="badge amber">PCE / Fed 壓力</span><span class="badge blue">FX/商品 Google Sheet</span></div></div><div class="actions"><a class="button" href="reports/2026-05-29.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-28｜盤前日報（更新版）</h2><p>GDP 二修下修至 1.6%；headline PCE 年增 3.8%、core PCE 年增 3.3%；AI/半導體仍領先，但 VOO/QQQ 已超過 +7 ATR。</p><div class="badges"><span class="badge green">多頭趨勢</span><span class="badge amber">GDP 下修</span><span class="badge red">PCE 偏熱</span><span class="badge blue">FX/商品 Google Sheet</span></div></div><div class="actions"><a class="button" href="reports/2026-05-28.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-27｜盤前日報（更新版）</h2><p>偏多但不追高；主要 ETF 高位 ATR 延伸；FX/商品改用 Google Sheet Macro；5/28 GDP + PCE 是本週真正方向確認。</p><div class="badges"><span class="badge green">廣度改善</span><span class="badge amber">油價回落</span><span class="badge blue">FX/商品表格</span><span class="badge red">GDP/PCE 風險</span></div></div><div class="actions"><a class="button" href="reports/2026-05-27.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-26｜盤前監控</h2><p>偏多但不追高；廣度改善；科技與主題 ETF 偏熱；Stockbee breadth 中性偏多。</p><div class="badges"><span class="badge green">廣度改善</span><span class="badge amber">科技偏熱</span><span class="badge red">+6 ATR 延伸</span></div></div><div class="actions"><a class="button" href="reports/2026-05-26.html">打開報告</a><a class="button secondary" href="assets/2026-05-26.png">查看圖片</a></div></article>
+      <article class="report">
+        <div>
+          <h2>2026-06-01｜NVDA GTC 產業鏈深度分析</h2>
+          <p>Vera Rubin / NVL72 把焦點從 GPU 單點推向整櫃級 AI factory。優先觀察 NVDA、AVGO、VRT、ETN、PWR、DELL、HPE、SMCI、MRVL、ANET、TSM、MU。</p>
+          <div class="badges"><span class="badge green">AI Factory</span><span class="badge blue">Vera Rubin</span><span class="badge amber">AI PC / N1X</span><span class="badge red">事件兌現風險</span></div>
+        </div>
+        <div class="actions"><a class="button" href="reports/2026-06-01-nvda-gtc.html">打開報告</a></div>
+      </article>
+
+      <article class="report">
+        <div>
+          <h2>2026-05-30｜一週總結</h2>
+          <p>美股完成第 9 週連漲；廣度維持 bullish phase，但 VOO/QQQ 已接近 +8 ATR。下週基調是多頭續航、等回踩、不追高。</p>
+          <div class="badges"><span class="badge green">連漲延續</span><span class="badge red">+8 ATR 延伸</span><span class="badge amber">通膨仍黏</span><span class="badge blue">廣度改善</span></div>
+        </div>
+        <div class="actions"><a class="button" href="reports/2026-05-30-weekly.html">打開報告</a></div>
+      </article>
+
+      <article class="report">
+        <div>
+          <h2>2026-05-29｜盤前日報</h2>
+          <p>多頭延續但不追高，5 日 breadth ratio 2.48，10 日 ratio 1.58；VOO/QQQ 超過 +7 ATR。</p>
+          <div class="badges"><span class="badge green">廣度改善</span><span class="badge red">+7 ATR 延伸</span><span class="badge amber">PCE / Fed 壓力</span><span class="badge blue">FX/商品監控</span></div>
+        </div>
+        <div class="actions"><a class="button" href="reports/2026-05-29.html">打開報告</a></div>
+      </article>
+
+      <article class="report">
+        <div>
+          <h2>2026-05-28｜盤前日報</h2>
+          <p>GDP 二修下修，PCE 仍偏黏；AI/半導體仍領先，但 VOO/QQQ 已明顯高位延伸。</p>
+          <div class="badges"><span class="badge green">多頭趨勢</span><span class="badge amber">GDP 下修</span><span class="badge red">PCE 偏熱</span><span class="badge blue">FX/商品表格</span></div>
+        </div>
+        <div class="actions"><a class="button" href="reports/2026-05-28.html">打開報告</a></div>
+      </article>
+
+      <article class="report">
+        <div>
+          <h2>2026-05-27｜盤前日報</h2>
+          <p>偏多但不追高；主要 ETF 高位 ATR 延伸，5/28 GDP + PCE 是本週方向確認。</p>
+          <div class="badges"><span class="badge green">廣度改善</span><span class="badge amber">油價回落</span><span class="badge blue">FX/商品表格</span><span class="badge red">GDP/PCE 風險</span></div>
+        </div>
+        <div class="actions"><a class="button" href="reports/2026-05-27.html">打開報告</a></div>
+      </article>
+
+      <article class="report">
+        <div>
+          <h2>2026-05-26｜盤前監控</h2>
+          <p>偏多但不追高；廣度改善，科技與主題 ETF 偏熱，Stockbee breadth 中性偏多。</p>
+          <div class="badges"><span class="badge green">廣度改善</span><span class="badge amber">科技偏熱</span><span class="badge red">+6 ATR 延伸</span></div>
+        </div>
+        <div class="actions"><a class="button" href="reports/2026-05-26.html">打開報告</a></div>
+      </article>
     </section>
     <p class="note">部署網址：<code>https://sintszkay.github.io/market-reports/</code></p>
   </main>

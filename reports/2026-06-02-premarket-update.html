@@ -83,19 +83,47 @@
     </section>
 
     <section>
-      <h2>Sector / Thematic ETF</h2>
+      <h2>S&P 500 Sub Sector ETF</h2>
+      <p class="note">比較基準：SPY 5日 +1.21%，1月 +5.78%。只有同時跑贏 SPY 的板塊才列為真正領先。</p>
       <table>
-        <thead><tr><th>指標</th><th class="num">最新</th><th class="num">5日</th><th class="num">1月</th><th class="num">RSI</th><th>判斷</th></tr></thead>
+        <thead><tr><th>指標</th><th class="num">最新</th><th class="num">5日</th><th class="num">1月</th><th class="num">相對SPY(5日)</th><th class="num">相對SPY(1月)</th><th class="num">RSI</th><th>判斷</th></tr></thead>
         <tbody>
-          <tr><td>XLK</td><td class="num">195.76</td><td class="num">+5.74%</td><td class="num">+20.94%</td><td class="num">74.05</td><td>最強板塊，但短線偏熱</td></tr>
-          <tr><td>XLY</td><td class="num">118.19</td><td class="num">-1.05%</td><td class="num">-0.37%</td><td class="num">46.34</td><td>消費非主線</td></tr>
-          <tr><td>XLF</td><td class="num">51.43</td><td class="num">-0.81%</td><td class="num">-0.94%</td><td class="num">52.64</td><td>金融落後</td></tr>
-          <tr><td>XLE</td><td class="num">57.30</td><td class="num">-0.95%</td><td class="num">-2.63%</td><td class="num">50.60</td><td>油價風險對沖，不是主動領漲</td></tr>
-          <tr><td>XLU</td><td class="num">43.10</td><td class="num">-4.92%</td><td class="num">-7.41%</td><td class="num">31.65</td><td>防守弱，市場未切 risk-off</td></tr>
-          <tr><td>SMH / AIQ / CIBR</td><td class="num">607.81 / 69.44 / 94.15</td><td class="num">不可得</td><td class="num">接近高位</td><td class="num">不可得</td><td>半導體、AI、網安仍是強勢主題</td></tr>
-          <tr><td>IBIT / WGMI</td><td class="num">40.49 / 70.76</td><td class="num">不可得</td><td class="num">BTC 1月 -15.69%</td><td class="num">BTC RSI 25.14</td><td>高 beta crypto 偏弱，不作追多確認</td></tr>
+          <tr><td>SPY 基準</td><td class="num">759.52</td><td class="num">+1.21%</td><td class="num">+5.78%</td><td class="num">0.00</td><td class="num">0.00</td><td class="num">69.00</td><td>大盤基準</td></tr>
+          <tr><td>XLK 科技</td><td class="num">197.64</td><td class="num">+7.16%</td><td class="num">+21.96%</td><td class="num">+5.95</td><td class="num">+16.18</td><td class="num">74.05</td><td>唯一明確領先 SPY 的 S&P sector，但短線過熱</td></tr>
+          <tr><td>XLE 能源</td><td class="num">57.90</td><td class="num">+1.60%</td><td class="num">-2.51%</td><td class="num">+0.39</td><td class="num">-8.29</td><td class="num">50.60</td><td>短線略強，1月落後；偏油價對沖，不是主線領漲</td></tr>
+          <tr><td>XLB 原材料</td><td class="num">51.41</td><td class="num">+0.45%</td><td class="num">+1.50%</td><td class="num">-0.76</td><td class="num">-4.28</td><td class="num">38.80</td><td>落後 SPY，非領先</td></tr>
+          <tr><td>XLI 工業</td><td class="num">173.74</td><td class="num">-0.32%</td><td class="num">+1.61%</td><td class="num">-1.53</td><td class="num">-4.17</td><td class="num">41.72</td><td>落後，AI 電力鏈強但未擴散到整體工業</td></tr>
+          <tr><td>XLF 金融</td><td class="num">51.39</td><td class="num">-0.06%</td><td class="num">-0.37%</td><td class="num">-1.27</td><td class="num">-6.15</td><td class="num">52.64</td><td>落後，非風險偏好主線</td></tr>
+          <tr><td>XLY 可選消費</td><td class="num">117.83</td><td class="num">-3.06%</td><td class="num">+0.09%</td><td class="num">-4.27</td><td class="num">-5.69</td><td class="num">46.34</td><td>明顯落後，消費非主線</td></tr>
+          <tr><td>XLC 通訊服務</td><td class="num">114.05</td><td class="num">-1.90%</td><td class="num">-1.77%</td><td class="num">-3.11</td><td class="num">-7.55</td><td class="num">50.19</td><td>落後，mega-cap 分化</td></tr>
+          <tr><td>XLV 醫療</td><td class="num">146.28</td><td class="num">-1.69%</td><td class="num">+1.07%</td><td class="num">-2.90</td><td class="num">-4.71</td><td class="num">63.92</td><td>防守落後</td></tr>
+          <tr><td>XLP 必需消費</td><td class="num">81.67</td><td class="num">-3.44%</td><td class="num">-2.24%</td><td class="num">-4.65</td><td class="num">-8.02</td><td class="num">43.05</td><td>防守落後，市場未切 risk-off</td></tr>
+          <tr><td>XLU 公用事業</td><td class="num">43.74</td><td class="num">-3.10%</td><td class="num">-5.67%</td><td class="num">-4.31</td><td class="num">-11.45</td><td class="num">31.65</td><td>最弱防守板塊之一</td></tr>
+          <tr><td>XLRE 房地產</td><td class="num">43.32</td><td class="num">-2.94%</td><td class="num">-1.72%</td><td class="num">-4.15</td><td class="num">-7.50</td><td class="num">34.81</td><td>利率敏感板塊落後</td></tr>
         </tbody>
       </table>
+      <p><strong>Sector 結論：</strong>真正跑贏 SPY 的只有 XLK。這代表行情仍集中在科技/AI，不是所有 S&P sector 的健康輪動；若 RSP 和非科技 sector 不跟上，廣度背離風險仍在。</p>
+
+      <h2>Thematic Sector</h2>
+      <p class="note">同樣以 SPY 5日 +1.21%、1月 +5.78% 比較。以下列出相對 SPY 明顯領先或具交易意義的主題。</p>
+      <table>
+        <thead><tr><th>指標</th><th class="num">最新</th><th class="num">5日</th><th class="num">1月</th><th class="num">相對SPY(5日)</th><th class="num">相對SPY(1月)</th><th class="num">RSI</th><th>判斷</th></tr></thead>
+        <tbody>
+          <tr><td>CIBR 網安</td><td class="num">93.52</td><td class="num">+13.99%</td><td class="num">+34.08%</td><td class="num">+12.78</td><td class="num">+28.30</td><td class="num">86.25</td><td>最強主題之一，但嚴重過熱</td></tr>
+          <tr><td>IGV 軟體</td><td class="num">104.01</td><td class="num">+11.78%</td><td class="num">+17.61%</td><td class="num">+10.57</td><td class="num">+11.83</td><td class="num">81.84</td><td>跑贏 SPY，但 RSI 過熱，等回踩</td></tr>
+          <tr><td>XSW 軟體服務</td><td class="num">181.43</td><td class="num">+9.85%</td><td class="num">+13.24%</td><td class="num">+8.64</td><td class="num">+7.46</td><td class="num">83.48</td><td>跑贏 SPY，過熱</td></tr>
+          <tr><td>COPX 銅礦</td><td class="num">93.33</td><td class="num">+8.41%</td><td class="num">+21.76%</td><td class="num">+7.20</td><td class="num">+15.98</td><td class="num">53.99</td><td>跑贏且 RSI 不熱，AI 電力/工業需求受益</td></tr>
+          <tr><td>QTUM 量子</td><td class="num">168.59</td><td class="num">+7.72%</td><td class="num">+24.25%</td><td class="num">+6.51</td><td class="num">+18.47</td><td class="num">68.15</td><td>跑贏 SPY，接近偏熱</td></tr>
+          <tr><td>AIQ AI</td><td class="num">69.93</td><td class="num">+7.42%</td><td class="num">+22.45%</td><td class="num">+6.21</td><td class="num">+16.67</td><td class="num">72.71</td><td>AI 主線領先，但短線偏熱</td></tr>
+          <tr><td>SMH 半導體</td><td class="num">630.42</td><td class="num">+5.86%</td><td class="num">+24.39%</td><td class="num">+4.65</td><td class="num">+18.61</td><td class="num">60.83</td><td>半導體仍領先，尚未到 RSI 極端</td></tr>
+          <tr><td>TAN 太陽能</td><td class="num">71.13</td><td class="num">+0.88%</td><td class="num">+21.84%</td><td class="num">-0.33</td><td class="num">+16.06</td><td class="num">70.18</td><td>1月強但5日落後，短線不追</td></tr>
+          <tr><td>SLX 鋼鐵</td><td class="num">112.98</td><td class="num">+2.36%</td><td class="num">+10.39%</td><td class="num">+1.15</td><td class="num">+4.61</td><td class="num">58.25</td><td>週期材料中相對較強</td></tr>
+          <tr><td>WGMI 比特幣礦工</td><td class="num">72.17</td><td class="num">+4.90%</td><td class="num">+42.91%</td><td class="num">+3.69</td><td class="num">+37.13</td><td class="num">70.82</td><td>相對強但高 beta，需看 BTC 是否企穩</td></tr>
+          <tr><td>IBIT 比特幣</td><td class="num">38.01</td><td class="num">-10.46%</td><td class="num">-16.28%</td><td class="num">-11.67</td><td class="num">-22.06</td><td class="num">17.78</td><td>明顯落後，crypto beta 不確認風險偏好</td></tr>
+          <tr><td>XBI 生技</td><td class="num">128.28</td><td class="num">-4.59%</td><td class="num">-3.91%</td><td class="num">-5.80</td><td class="num">-9.69</td><td class="num">47.77</td><td>落後，非主線</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Thematic 結論：</strong>領先 SPY 的主題集中在網安、軟體、AI、半導體、銅礦/工業金屬與部分高 beta crypto miners；但 CIBR/IGV/XSW/AIQ/WGMI 已過熱或接近過熱。相對較乾淨的是 SMH、COPX、SLX，因為相對強且 RSI 沒有極端。</p>
     </section>
 
     <section>

@@ -60,6 +60,7 @@
         <li>Stockbee 中期廣度偏多：25% plus Quarter 1649 大於 25% down Quarter 872；5日 ratio 2.28 友善，10日 ratio 1.97 接近但未穩站 2。</li>
         <li>短線廣度背離未解：Barchart 顯示 S&P 500 >20MA 只有 47%、>50MA 51%。指數創高但短線參與度不足。</li>
         <li>利率與美元暫不是最大壓力：US10Y 4.43%、日內 -4.1bp；DXY 99.08、日內 -0.12%。真正觸發點是 10:00 ET JOLTS 與 Fed 官員發言。</li>
+        <li>補充反指框架：+8 ATR、九週連漲、NAAIM >90、CNN Fear & Greed >75、AAII bull-bear spread >30、0DTE call chase、COT 極端淨多，這些都不是追多理由，而是倉位擁擠與均值回歸風險。</li>
       </ol>
     </section>
 
@@ -127,6 +128,23 @@
           <tr><td>IWM</td><td class="num">288.98</td><td class="num">269.18</td><td class="num">不可得</td><td class="num">不可得</td><td>震盪改善</td><td>非領導</td></tr>
         </tbody>
       </table>
+      <p><strong>研判規則：</strong>50MA ATR 延伸要和連漲週數、情緒、倉位一起看。+2 ATR 以上是延伸，+3 ATR 以上是明顯過熱；若同時出現 +8 ATR、九週連漲、NAAIM >90 或 0DTE call chase，這是 contrarian 反指，不是加碼追多訊號。</p>
+    </section>
+
+    <section>
+      <h2>反指 / 擁擠風險</h2>
+      <table>
+        <thead><tr><th>指標</th><th>最新 / 門檻</th><th>趨勢</th><th>判斷</th></tr></thead>
+        <tbody>
+          <tr><td>50MA ATR + 連漲週數</td><td>前週監控已標註 VOO/QQQ 接近 +8 ATR；S&P 500 完成第 9 週連漲</td><td>高位延伸</td><td>反指。代表勝率仍可延續，但風險報酬不適合追高，應等回踩或等待日內承接確認。</td></tr>
+          <tr><td>AAII Bull-Bear Spread</td><td>最新 AAII：Bullish 35.6%、Bearish 41.9%，spread -6.3；>30 才是 extreme bullish</td><td>悲觀降溫但仍未亢奮</td><td>不是反指頂部。散戶調查仍偏謹慎，沒有 extreme bullish。</td></tr>
+          <tr><td>CNN Fear & Greed</td><td>59，Greed；>75 進入 Extreme Greed</td><td>正面但未極端</td><td>不是 extreme greed。只支持「市場情緒偏正」，不能單獨作為減倉訊號。</td></tr>
+          <tr><td>NAAIM Exposure Index</td><td>98.39；>90 代表 active/systematic exposure 接近 max long</td><td>04/22 以來多次 >90</td><td>最重要反指之一。主動管理人已高度滿倉，若價格跌破短線支撐，去槓桿空間大於加倉空間。</td></tr>
+          <tr><td>CFTC COT：E-mini S&P 500</td><td>2026-05-26 TFF：Leveraged Funds long 149,287、short 607,067，淨空約 -457,780；Asset Managers 淨多約 +1,003,607</td><td>槓桿基金不是淨多，資產管理人結構性淨多</td><td>不能說 large spec 已極端淨多。風險在 asset manager 高淨多與價格延伸，不在 hedge fund 追多。</td></tr>
+          <tr><td>0DTE call/put ratio</td><td>0DTE-specific call/put 公開資料不可得；SPX 全期限 P/C：Jun 1 約 1.07、May 29 約 0.87</td><td>0DTE 佔比結構性高，但方向資料不足</td><td>暫不能判斷 retail 正在 chase。若 0DTE call/put 明顯 >1.5 或 P/C <0.67 並伴隨指數急拉，才標註 call chase 反指。</td></tr>
+        </tbody>
+      </table>
+      <p><strong>合成結論：</strong>目前反指不是「全市場散戶亢奮」，而是「價格/週線延伸 + NAAIM 高曝險」。所以策略不是直接做空，而是避免追高；若開盤 AI 硬體鏈高開低走，或 NQ 轉弱且 breadth 未改善，才把這組反指升級為防守訊號。</p>
     </section>
 
     <section>
@@ -176,7 +194,7 @@
       </table>
     </section>
 
-    <p class="note">資料來源：Google Sheets（Market / Macro / 2026）、Barchart Market Performance、Reuters/MarketScreener 盤前報導、Polymarket 相關市場。資料限制：50MA ATR 的 ATR(14) 欄位不可得；部分 thematic ETF 在表格中只有價格與離高點資料，5日/1月/RSI 不完整。</p>
+    <p class="note">資料來源：Google Sheets（Market / Macro / 2026）、Barchart Market Performance、Reuters/MarketScreener 盤前報導、AAII Sentiment Survey、CNN Fear & Greed via Benzinga、NAAIM Exposure Index、CFTC Traders in Financial Futures、SIFMA / Cboe 0DTE 結構資料、Polymarket 相關市場。資料限制：50MA ATR 的 ATR(14) 欄位不可得；部分 thematic ETF 在表格中只有價格與離高點資料，5日/1月/RSI 不完整；0DTE call/put ratio 需要即時或專業期權流資料，本次只能用 SPX 全期限 put/call 代理。</p>
     <p><a href="../index.html">返回報告列表</a></p>
   </main>
 </body>

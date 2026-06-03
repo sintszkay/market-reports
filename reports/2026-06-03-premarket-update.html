@@ -190,7 +190,7 @@
 
     <section>
       <h2>主要外匯與商品期貨</h2>
-      <p class="note">本段使用 Macro 表格與公開盤前報導；Brent 來自 AP 盤前報導，天然氣與 USD/CNH 本次不可得。</p>
+      <p class="note">本段只讀取 Google Sheet「Macro」表中已有的外匯與商品品種，不額外補表外資產。</p>
       <table>
         <thead><tr><th>資產</th><th class="num">最新</th><th class="num">日變化</th><th>5日/短線</th><th>1個月趨勢</th><th>關鍵位置/驅動</th><th>對美股含義</th></tr></thead>
         <tbody>
@@ -198,11 +198,7 @@
           <tr><td>EUR/USD</td><td class="num">1.1608</td><td class="num">-0.26%</td><td>-0.27%</td><td>-1.04%</td><td>歐元偏弱</td><td>美元強勢延續，對跨國盈利與估值中性偏負。</td></tr>
           <tr><td>USD/JPY</td><td class="num">159.88</td><td class="num">+0.15%</td><td>+0.40%</td><td>+1.93%</td><td>套息交易高位</td><td>尚未見 JPY carry 去槓桿，但高位急轉需防。</td></tr>
           <tr><td>GBP/USD</td><td class="num">1.3436</td><td class="num">-0.18%</td><td>-0.14%</td><td>-1.07%</td><td>英鎊偏弱</td><td>對美股直接影響有限。</td></tr>
-          <tr><td>AUD/USD</td><td class="num">不可得</td><td class="num">不可得</td><td>不可得</td><td>不可得</td><td>資料不足</td><td>不判斷。</td></tr>
-          <tr><td>USD/CNH</td><td class="num">不可得</td><td class="num">不可得</td><td>不可得</td><td>不可得</td><td>資料不足</td><td>不判斷。</td></tr>
           <tr><td>WTI / CL</td><td class="num">96.29</td><td class="num">+2.70%</td><td>+8.58%</td><td>-5.54%</td><td>Iran ceasefire 承壓，油價短線急升</td><td>能源股短線受益，但對消費、航空與通膨預期偏負。</td></tr>
-          <tr><td>Brent</td><td class="num">98.22</td><td class="num">約 +2.22 美元</td><td>短線上升</td><td>資料不足</td><td>中東風險溢價回升</td><td>若上破100，利率與通膨壓力重新定價。</td></tr>
-          <tr><td>Natural Gas</td><td class="num">不可得</td><td class="num">不可得</td><td>不可得</td><td>不可得</td><td>資料不足</td><td>不判斷。</td></tr>
           <tr><td>Gold / XAU</td><td class="num">4487.20</td><td class="num">-0.04%</td><td>+0.89%</td><td>-3.10%</td><td>短線小反彈，月線仍弱</td><td>避險需求未失控，尚非全面 risk-off。</td></tr>
           <tr><td>Silver / XAG</td><td class="num">74.76</td><td class="num">-0.73%</td><td>+0.22%</td><td>-1.57%</td><td>貴金屬與工業屬性分化</td><td>未確認全球成長風險惡化。</td></tr>
           <tr><td>Copper</td><td class="num">6.61</td><td class="num">-0.66%</td><td>+4.77%</td><td>+11.35%</td><td>1月趨勢強</td><td>支持 AI 電力/工業需求敘事，利多 COPX 但需防短線回落。</td></tr>
@@ -238,7 +234,7 @@
       </table>
     </section>
 
-    <p class="note">資料來源：Google Sheets（Sector/Theme ETF、Stockbee Breadth、Maket breath、Major ETF/Macro）、Barchart Market Performance、ADP National Employment Report 2026-06-03、BLS JOLTS 2026-06-02、AP 盤前報導、ISM Services PMI 官方日曆與4月報告、Federal Reserve 2026年6月日曆、Polymarket/第三方 prediction market odds。資料限制：本次未取得 USD/CNH、AUD/USD、Natural Gas 與完整 0DTE call/put ratio，因此相關欄位標為不可得。</p>
+    <p class="note">資料來源：Google Sheets（Sector/Theme ETF、Stockbee Breadth、Maket breath、Major ETF/Macro）、Barchart Market Performance、ADP National Employment Report 2026-06-03、BLS JOLTS 2026-06-02、AP 盤前報導、ISM Services PMI 官方日曆與4月報告、Federal Reserve 2026年6月日曆、Polymarket/第三方 prediction market odds。資料限制：主要外匯與商品期貨段落只列 Google Sheet「Macro」表已有品種；本次未取得完整 0DTE call/put ratio。</p>
     <p class="note">核心來源連結：
       <a href="https://adpemploymentreport.com/ner_production.json">ADP JSON</a>｜
       <a href="https://adpemploymentreport.com/artifacts/us_ner/20260603/ADP_NATIONAL_EMPLOYMENT_REPORT_Press_Release_2026_05%20FINAL.pdf">ADP PDF</a>｜

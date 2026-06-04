@@ -60,7 +60,7 @@
         <li>市場廣度短線惡化：Stockbee 6/3 最新 5日 ratio 降至 1.29、10日 ratio 降至 1.90，4% 下跌股 441 明顯高於 4% 上漲股 154，T2108 降至 39.31；MA breadth 顯示 S&amp;P 500 20/50MA 廣度跌至 48.70%/49.00%，短線已不支持激進追多。</li>
         <li>8:30 ET 數據公布後，初請失業金升至 225K，高於 211K 預期，顯示勞動邊際降溫；但續請降至 1.777M、單位勞工成本降至 1.8% 低於預期，組合更像「通膨薪資壓力緩和 + 成長風險小升」，不是單純利空或單純降息利多。</li>
         <li>結合價格調整期框架，目前大盤尚未確認進入調整期，因 VOO/QQQ 仍在 20/50/200MA 上方且 RSI 未跌破 50；但 Nasdaq/AI/半導體已進入「調整期觀察」：若低開後不能收回、或 QQQ 跌破 20DMA 收盤，判斷將升級。</li>
-        <li>每週預期波動幅度提醒：本次已加入 1SD/2SD 觸達板塊；目前重疊品種中，XLK、SMH、XLE、XOP 觸及上方 1SD，XBI 觸及下方 1SD，尚未出現 2SD 極端觸達。</li>
+        <li>每週預期波動幅度提醒：Google Sheet「SD」最新判斷顯示 SPY/QQQ/XLK/SMH/XBI 回到區間內；MSTR、ARKK 跌破 -2SD，金融、能源、工業多檔突破 +1SD，成長/消費部分品種跌破 -1SD，分化比指數本身更明顯。</li>
       </ol>
     </section>
 
@@ -111,18 +111,37 @@
 
     <section>
       <h2>每週預期波動幅度觸達提醒</h2>
-      <p class="note">使用 2026-06-01 至 2026-06-05 週度 expected move 表；判斷規則為昨收價高於上方 1SD/2SD 或低於下方 1SD/2SD 即提醒。1SD 是第一層超出常態波動提醒，2SD 是極端波動提醒。</p>
+      <p class="note">使用 Google Sheet「SD」表的 2026-06-01 至 2026-06-05 週度 expected move；以表內 `PRICE` 對照 `JUGE` 判斷。1SD 是第一層超出常態波動提醒，2SD 是極端波動提醒；接近 1SD 的品種列入文字觀察，不放入主觸發表。</p>
       <table>
-        <thead><tr><th>指標</th><th class="num">昨收/表內價</th><th class="num">1SD 區間</th><th class="num">2SD 區間</th><th>觸達狀態</th><th>提醒</th></tr></thead>
+        <thead><tr><th>指標</th><th class="num">PRICE</th><th class="num">1SD 區間</th><th class="num">2SD 區間</th><th>觸達狀態</th><th>提醒</th></tr></thead>
         <tbody>
-          <tr><td>XLK 科技</td><td class="num">196.23</td><td class="num">186.06 - 195.98</td><td class="num">181.10 - 200.94</td><td>上方 1SD</td><td>科技已超出本週常態上沿，盤前 Broadcom 壓力下不宜追高，需看能否守住 1SD 上沿。</td></tr>
-          <tr><td>SMH 半導體</td><td class="num">637.90</td><td class="num">560.67 - 637.19</td><td class="num">522.40 - 675.46</td><td>上方 1SD</td><td>半導體已越過 1SD 上沿但未到 2SD，屬強勢延伸後的回吐風險區。</td></tr>
-          <tr><td>XLE 能源</td><td class="num">58.71</td><td class="num">54.66 - 57.92</td><td class="num">53.03 - 59.55</td><td>上方 1SD</td><td>能源短線受油價與地緣風險推動，接近 2SD 前仍是事件交易，不代表全面風險偏好擴散。</td></tr>
-          <tr><td>XOP 油氣勘探</td><td class="num">171.13</td><td class="num">158.91 - 169.07</td><td class="num">153.83 - 174.15</td><td>上方 1SD</td><td>油氣 beta 已突破常態上沿；若油價回落，容易出現獲利了結。</td></tr>
-          <tr><td>XBI 生技</td><td class="num">129.83</td><td class="num">132.38 - 141.00</td><td class="num">128.08 - 145.30</td><td>下方 1SD</td><td>生技已跌出 1SD 下沿但未跌破 2SD，下跌屬明顯弱勢，暫不作風險偏好確認。</td></tr>
+          <tr><td>MSTR</td><td class="num">128.42</td><td class="num">146.33 - 171.85</td><td class="num">133.57 - 184.61</td><td>跌破 -2SD</td><td>事件級弱勢，若價格確認無誤，不適合逆勢抄底。</td></tr>
+          <tr><td>ARKK</td><td class="num">8.87</td><td class="num">78.78 - 85.12</td><td class="num">75.60 - 88.30</td><td>跌破 -2SD</td><td>表內價格與區間尺度差異很大，需先確認價格欄是否更新正確；若確認，代表極端弱勢。</td></tr>
+          <tr><td>BAC</td><td class="num">54.00</td><td class="num">50.05 - 53.15</td><td class="num">48.50 - 54.70</td><td>突破 +1SD</td><td>金融上沿突破，偏相對強勢但已進入獲利了結敏感區。</td></tr>
+          <tr><td>COP</td><td class="num">119.07</td><td class="num">109.82 - 118.14</td><td class="num">105.66 - 122.30</td><td>突破 +1SD</td><td>能源受事件與油價支撐，未到 +2SD 前仍以強勢延伸看待。</td></tr>
+          <tr><td>TSM</td><td class="num">444.51</td><td class="num">395.50 - 441.40</td><td class="num">372.56 - 464.34</td><td>突破 +1SD</td><td>半導體內部仍有相對強勢，但已高於本週常態上沿。</td></tr>
+          <tr><td>XOM</td><td class="num">153.10</td><td class="num">140.48 - 150.04</td><td class="num">135.71 - 154.81</td><td>突破 +1SD</td><td>接近 +2SD，油價回落時容易放大回吐。</td></tr>
+          <tr><td>CAT</td><td class="num">934.32</td><td class="num">839.15 - 912.60</td><td class="num">802.42 - 949.32</td><td>突破 +1SD</td><td>工業大型股強勢延伸，接近 +2SD 前不宜追高。</td></tr>
+          <tr><td>CSCO</td><td class="num">128.55</td><td class="num">114.92 - 125.92</td><td class="num">109.42 - 131.42</td><td>突破 +1SD</td><td>防守型科技強於高 beta 成長，已進入上沿區。</td></tr>
+          <tr><td>CVX</td><td class="num">189.83</td><td class="num">176.49 - 188.43</td><td class="num">170.53 - 194.39</td><td>突破 +1SD</td><td>能源權重股延伸，與 XOM/COP 同向確認。</td></tr>
+          <tr><td>GS</td><td class="num">1084.99</td><td class="num">993.05 - 1058.07</td><td class="num">960.55 - 1090.57</td><td>突破 +1SD</td><td>接近 +2SD，金融強勢但短線風險報酬下降。</td></tr>
+          <tr><td>JPM</td><td class="num">310.28</td><td class="num">290.83 - 307.79</td><td class="num">282.34 - 316.28</td><td>突破 +1SD</td><td>銀行股強勢，配合 BAC/GS 顯示資金偏向金融。</td></tr>
+          <tr><td>UNH</td><td class="num">397.00</td><td class="num">368.38 - 392.24</td><td class="num">356.45 - 404.17</td><td>突破 +1SD</td><td>醫療權重反彈到上沿區，屬防守修復而非全面 risk-on。</td></tr>
+          <tr><td>XLE</td><td class="num">58.88</td><td class="num">54.66 - 57.92</td><td class="num">53.03 - 59.55</td><td>突破 +1SD</td><td>能源 ETF 明確突破常態上沿，事件風險仍是主要驅動。</td></tr>
+          <tr><td>XOP</td><td class="num">171.28</td><td class="num">158.91 - 169.07</td><td class="num">153.83 - 174.15</td><td>突破 +1SD</td><td>油氣勘探 beta 強於大盤，接近 +2SD 前警惕回吐。</td></tr>
+          <tr><td>AMZN</td><td class="num">254.05</td><td class="num">261.50 - 279.78</td><td class="num">252.37 - 288.91</td><td>跌破 -1SD</td><td>大型成長消費跌出常態下沿，對 Nasdaq 廣度不利。</td></tr>
+          <tr><td>COIN</td><td class="num">163.25</td><td class="num">174.77 - 203.29</td><td class="num">160.51 - 217.55</td><td>跌破 -1SD</td><td>Crypto beta 偏弱，尚未確認風險偏好修復。</td></tr>
+          <tr><td>HOOD</td><td class="num">85.45</td><td class="num">86.19 - 102.41</td><td class="num">78.08 - 110.52</td><td>跌破 -1SD</td><td>高 beta 金融科技轉弱，與傳統金融強勢形成分化。</td></tr>
+          <tr><td>NFLX</td><td class="num">82.17</td><td class="num">82.92 - 89.12</td><td class="num">79.82 - 92.22</td><td>跌破 -1SD</td><td>通訊/成長權重承壓，需看是否守住 -2SD 前支撐。</td></tr>
+          <tr><td>PLTR</td><td class="num">143.01</td><td class="num">145.97 - 167.11</td><td class="num">135.40 - 177.68</td><td>跌破 -1SD</td><td>AI 高 beta 跌出常態下沿，追高風險仍高。</td></tr>
+          <tr><td>BA</td><td class="num">216.13</td><td class="num">222.29 - 240.01</td><td class="num">213.43 - 248.87</td><td>跌破 -1SD</td><td>工業內部分化，弱勢未到 -2SD 但已需防守。</td></tr>
+          <tr><td>HON</td><td class="num">221.01</td><td class="num">226.37 - 249.36</td><td class="num">214.87 - 260.85</td><td>跌破 -1SD</td><td>工業並非全面擴散，個股分化明顯。</td></tr>
+          <tr><td>MSFT</td><td class="num">429.38</td><td class="num">432.53 - 467.96</td><td class="num">414.81 - 485.67</td><td>跌破 -1SD</td><td>大型科技權重跌破常態下沿，是 QQQ 能否修復的關鍵觀察。</td></tr>
+          <tr><td>NKE</td><td class="num">43.45</td><td class="num">44.37 - 48.09</td><td class="num">42.51 - 49.95</td><td>跌破 -1SD</td><td>消費弱勢延續，未到 -2SD 但仍不支持可選消費反彈。</td></tr>
+          <tr><td>VZ</td><td class="num">45.61</td><td class="num">46.54 - 49.08</td><td class="num">45.27 - 50.35</td><td>跌破 -1SD</td><td>防守通信也偏弱，說明不是單純成長股輪動。</td></tr>
         </tbody>
       </table>
-      <p><strong>判讀：</strong>1SD 觸達不是反轉訊號，而是提醒價格已經走到本週選擇權定價的常態邊界；2SD 才是更極端的異常區。今天觸發集中在科技/半導體上沿、能源上沿與生技下沿，說明市場不是單一方向崩盤，而是主線過熱回吐與事件受益板塊同時存在。</p>
+      <p><strong>判讀：</strong>1SD 觸達不是反轉訊號，而是提醒價格已經走到本週選擇權定價的常態邊界；2SD 才是更極端的異常區。本次上沿觸發集中在金融、能源、部分工業與少數防守權重；下沿觸發集中在 AMZN/MSFT/PLTR/COIN 等成長與高 beta，代表指數表面仍穩，但內部輪動與分化加劇。接近 1SD 但未觸發者包括 ARM、COST、FCX、AMGN、WMT、DIA、USO、GOOGL、MA、TSLA、PG、XLY、XLU。</p>
     </section>
 
     <section>

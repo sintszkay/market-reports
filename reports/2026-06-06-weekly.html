@@ -212,6 +212,29 @@
     </section>
 
     <section>
+      <h2>Global Market Performance</h2>
+      <p class="note">主要全球股指以 Yahoo Finance 日線資料估算 5日與約1個月變化；用作美股風險背景，不作非美股交易主軸。</p>
+      <table>
+        <thead><tr><th>區域 / 指數</th><th class="num">最新</th><th class="num">5日</th><th class="num">1個月</th><th>本週表現</th><th>對美股含義</th></tr></thead>
+        <tbody>
+          <tr><td>美國 S&amp;P 500</td><td class="num">7,383.74</td><td class="num">-2.59%</td><td class="num">+0.25%</td><td>結束9週連漲，轉為利率壓力下的回吐。</td><td>大盤未全面轉空，但估值需要重新消化。</td></tr>
+          <tr><td>美國 Nasdaq Composite</td><td class="num">25,709.43</td><td class="num">-4.68%</td><td class="num">-0.50%</td><td>全球主要股指中最弱之一，高 beta / AI / 半導體主跌。</td><td>QQQ/XLK 未修復前，美股進攻倉位不宜加速。</td></tr>
+          <tr><td>美國 Dow Jones</td><td class="num">50,866.78</td><td class="num">-0.32%</td><td class="num">+1.92%</td><td>明顯抗跌，價值與防禦相對占優。</td><td>支持「不是全面 risk-off，而是成長股降槓桿」的判斷。</td></tr>
+          <tr><td>Euro Stoxx 50</td><td class="num">6,062.07</td><td class="num">+0.19%</td><td class="num">+3.28%</td><td>歐洲大型股週內近乎橫盤，月線仍強。</td><td>全球資金未全面撤離股票，非美大型價值仍有承接。</td></tr>
+          <tr><td>德國 DAX</td><td class="num">24,759.05</td><td class="num">-1.38%</td><td class="num">+1.46%</td><td>週內回落，但未破壞月線上升。</td><td>歐洲週期股有壓力，但幅度小於 Nasdaq。</td></tr>
+          <tr><td>法國 CAC 40</td><td class="num">8,218.24</td><td class="num">+0.43%</td><td class="num">+1.93%</td><td>歐洲核心市場中較穩。</td><td>分散了全球股市壓力，風險偏好未完全失控。</td></tr>
+          <tr><td>日本 Nikkei 225</td><td class="num">66,588.12</td><td class="num">+0.39%</td><td class="num">+5.97%</td><td>月線仍強，但週五受科技與 BoJ 升息預期干擾。</td><td>日本科技與半導體若續弱，會加重 Nasdaq 情緒壓力。</td></tr>
+          <tr><td>香港 Hang Seng</td><td class="num">24,961.95</td><td class="num">-0.88%</td><td class="num">-3.62%</td><td>短線和月線均偏弱，中資科技承壓。</td><td>中國風險偏好未配合美股反彈，對全球 beta 是拖累。</td></tr>
+          <tr><td>中國 Shanghai Composite</td><td class="num">4,027.74</td><td class="num">-1.00%</td><td class="num">-3.18%</td><td>A股延續月線下行，內需與政策預期不足。</td><td>不支持全球週期 risk-on，銅與中國相關 beta 要保守。</td></tr>
+          <tr><td>韓國 KOSPI</td><td class="num">8,160.59</td><td class="num">-0.30%</td><td class="num">+10.51%</td><td>月線仍極強，但週五科技波動明顯。</td><td>AI/記憶體鏈條仍有中期動能，但短線波動會傳導至 SMH。</td></tr>
+          <tr><td>台灣 TAIEX</td><td class="num">45,070.94</td><td class="num">+0.76%</td><td class="num">+10.55%</td><td>全球科技鏈中最強之一，仍維持月線領先。</td><td>半導體長線敘事未死，但美股半導體短線需要先降溫。</td></tr>
+          <tr><td>澳洲 ASX 200</td><td class="num">8,625.10</td><td class="num">-1.22%</td><td class="num">-0.64%</td><td>商品與金融權重回落。</td><td>不支持全面商品/週期股追多。</td></tr>
+        </tbody>
+      </table>
+      <p><strong>全球市場判讀：</strong>本週全球股市不是同步崩跌，而是「美國成長股最弱、歐洲相對穩、亞洲科技鏈分化、中港偏弱」。台股與韓股月線仍強，說明 AI / 半導體中期敘事沒有完全失效；但 Nasdaq、港股、A股與澳洲的週內走弱，代表高 beta 與中國相關風險偏好都在降溫。對美股交易來說，全球背景支持防守與輪動，不支持立即追 QQQ/SMH 的 V 型反彈。</p>
+    </section>
+
+    <section>
       <h2>主要外匯與商品期貨</h2>
       <table>
         <thead><tr><th>資產</th><th class="num">最新</th><th class="num">日變化</th><th>5日 / 短線</th><th>1個月趨勢</th><th>對美股含義</th></tr></thead>
@@ -254,13 +277,14 @@
       </table>
     </section>
 
-    <p class="note">資料來源：Google Sheets（Sector/Theme、Macro/Major ETF、Market Breath、Stockbee Breadth、Weekly Expected Move）、BLS Employment Situation、AP / Reuters / Investing.com 市場回顧、Polymarket Gamma API。資料限制：Market Breath 與 Stockbee Breadth 最新均為 2026-06-05；盤後若 sheet 再更新，廣度段落需再同步。</p>
+    <p class="note">資料來源：Google Sheets（Sector/Theme、Macro/Major ETF、Market Breath、Stockbee Breadth、Weekly Expected Move）、Yahoo Finance 全球股指日線資料、BLS Employment Situation、AP / Reuters / Investing.com 市場回顧、Polymarket Gamma API。資料限制：Market Breath 與 Stockbee Breadth 最新均為 2026-06-05；盤後若 sheet 再更新，廣度段落需再同步。</p>
     <p class="note">核心來源連結：
       <a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit?gid=0#gid=0">Google Sheet Market</a>｜
       <a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit?gid=239594757#gid=239594757">Google Sheet Macro</a>｜
       <a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit?gid=1082103394#gid=1082103394">Stockbee Breadth</a>｜
       <a href="https://www.bls.gov/news.release/archives/empsit_06052026.htm">BLS Employment Situation</a>｜
       <a href="https://apnews.com/article/wall-street-stocks-dow-nasdaq-b9d2661cbba6cc326c618c06769d8291">AP index close</a>｜
+      <a href="https://finance.yahoo.com/markets/world-indices/">Yahoo Finance World Indices</a>｜
       <a href="https://polymarket.com/event/fed-rate-hike-in-2026">Polymarket Fed rate hike</a>
     </p>
     <p><a href="../index.html">返回報告列表</a></p>

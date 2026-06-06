@@ -26,6 +26,11 @@
     .amber { color:var(--amber); background:#fff4d9; }
     .red { color:var(--red); background:#fff0ef; }
     .blue { color:var(--blue); background:#eaf4ff; }
+    .risk-dot { display:inline-block; width:13px; height:13px; border-radius:50%; vertical-align:-1px; margin-right:6px; box-shadow:inset 0 1px 2px rgba(255,255,255,.45), 0 1px 2px rgba(15,23,42,.18); }
+    .risk-low { background:#28b336; }
+    .risk-mid { background:#ffcc32; }
+    .risk-high { background:#d92f22; }
+    .legend { display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 12px; }
     section { margin-top:8px; }
     table { width:100%; border-collapse:separate; border-spacing:0; background:var(--panel-strong); border:1px solid var(--line); border-radius:14px; overflow:hidden; margin:10px 0 20px; font-size:14px; box-shadow:var(--soft-shadow); }
     th, td { border:0; border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top; }
@@ -262,6 +267,29 @@
           <tr><td>VIX</td><td class="num">21.51</td><td>週五單日 +39.68%，波動重新被定價。</td><td>倉位管理優先於追價。</td></tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <h2>General Market Correction Checklist / 大盤修正檢查表（5-Jun-2026）</h2>
+      <div class="legend">
+        <span class="badge green"><span class="risk-dot risk-low"></span>Low Risk / 低風險</span>
+        <span class="badge amber"><span class="risk-dot risk-mid"></span>Intermediate / 中等風險</span>
+        <span class="badge red"><span class="risk-dot risk-high"></span>High Risk / 高風險</span>
+      </div>
+      <table>
+        <thead><tr><th>Checklist / 檢查項</th><th>Current Signal / 目前訊號</th><th>Read-through / 判讀</th></tr></thead>
+        <tbody>
+          <tr><td>S&amp;P 500 overextension / S&amp;P 500 過度延伸</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>主要 ETF 回撤後仍普遍高於 50MA 約 +3 ATR 以上，估值與技術延伸仍需消化。</td></tr>
+          <tr><td>Increasing downward momentum / 下跌動能增加</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>Nasdaq、QQQ、XLK、AI / software / semis 週線轉弱，賣壓集中但速度加快。</td></tr>
+          <tr><td>Top range formation &amp; breakdown from range / 高位區間成形並跌破</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>QQQ 跌破 20MA 並觸及週度 -2SD，下週若不能收回短均線，高位箱體會轉為壓力。</td></tr>
+          <tr><td>Technical indicators deteriorating / 技術指標惡化</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>QQQ、VOO、IWM 跌破 20MA，VIX 站上 20/50/200MA，短線技術風險上升。</td></tr>
+          <tr><td>Market breadth worsening / 市場廣度轉弱</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>Stockbee 5日 ratio 跌至 0.66，4% 下跌股升至 954；Nasdaq 100 &gt;50MA 降至 50.49%。</td></tr>
+          <tr><td>VIX &gt; 20 / VIX spike / VIX 高於20或急升</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>VIX 收 21.51，週五單日急升，代表避險需求重新定價。</td></tr>
+          <tr><td>Individual stocks breakout win rate decreased or breakdown rate increased / 個股突破勝率下降或跌破率上升</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>Big losers 集中在 AMZN、MSFT、META、TSLA、AMD、PLTR、COIN，權重與高 beta 同步承壓。</td></tr>
+          <tr><td>Theme stocks momentum weakening / 主題股動能轉弱</td><td><span class="risk-dot risk-high"></span>High Risk / 高風險</td><td>AIQ、SMH、IGV、CIBR、URA、IBIT 等主題 ETF 週線回撤，AI / crypto beta 先降槓桿。</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Checklist conclusion / 檢查表總結：</strong>8項風控條件全部亮紅燈，代表短線修正風險已經從「估值延伸」擴散到「動能、波動、廣度、主題股」四個層面。這不等於中期牛市結束，但代表下週操作應以防守、減少追價、等待 QQQ/XLK 收回 20MA 與 breadth ratio 回到 1 以上為主。</p>
     </section>
 
     <section>

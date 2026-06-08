@@ -5,34 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>美股監控報告</title>
   <style>
-    :root { --bg:#f5f5f7; --panel:rgba(255,255,255,.92); --text:#111827; --muted:#6e7480; --line:#e6e8ee; --strong:#111827; --green:#18864b; --green-bg:#eaf8ef; --amber:#a86600; --amber-bg:#fff4d9; --red:#c9342f; --red-bg:#fff0ef; --blue:#007aff; --blue-bg:#eaf4ff; --shadow:0 18px 48px rgba(15,23,42,.08); --soft-shadow:0 8px 24px rgba(15,23,42,.06); }
-    * { box-sizing:border-box; }
-    html { background:var(--bg); }
-    body { margin:0; background:linear-gradient(180deg,#fbfbfd 0%,var(--bg) 280px); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif; font-size:16px; line-height:1.56; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
-    .wrap { max-width:1040px; margin:0 auto; padding:34px 18px 48px; }
-    .masthead { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:end; background:var(--panel); border:1px solid rgba(255,255,255,.76); border-radius:18px; box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px; backdrop-filter:saturate(180%) blur(18px); }
-    .eyebrow { color:var(--blue); font-size:13px; font-weight:700; margin-bottom:8px; }
-    h1 { margin:0; font-size:34px; line-height:1.18; font-weight:760; letter-spacing:0; }
-    .summary { color:var(--muted); margin:10px 0 0; max-width:720px; }
-    .status-strip { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin:18px 0; }
-    .stat { background:var(--panel); border:1px solid rgba(255,255,255,.78); border-radius:16px; padding:14px 15px; box-shadow:var(--soft-shadow); backdrop-filter:saturate(180%) blur(14px); }
-    .stat span { display:block; color:var(--muted); font-size:12px; font-weight:700; margin-bottom:4px; }
-    .stat strong { display:block; font-size:18px; line-height:1.25; }
-    .report-list { display:grid; gap:12px; }
-    .report { display:grid; grid-template-columns:1fr auto; gap:18px; align-items:center; background:var(--panel); border:1px solid rgba(255,255,255,.78); border-radius:16px; padding:18px; box-shadow:var(--soft-shadow); backdrop-filter:saturate(180%) blur(14px); transition:transform .18s ease, box-shadow .18s ease; }
-    .report:hover { transform:translateY(-1px); box-shadow:0 14px 34px rgba(15,23,42,.09); }
-    .report h2 { margin:0 0 7px; font-size:20px; line-height:1.3; }
-    .report p { margin:0; color:var(--muted); font-size:14px; }
-    .badges { display:flex; flex-wrap:wrap; gap:6px; margin-top:11px; }
-    .badge { display:inline-flex; align-items:center; min-height:24px; border-radius:999px; padding:4px 9px; font-size:12px; font-weight:700; white-space:nowrap; }
-    .green { color:var(--green); background:var(--green-bg); } .amber { color:var(--amber); background:var(--amber-bg); } .red { color:var(--red); background:var(--red-bg); } .blue { color:var(--blue); background:var(--blue-bg); }
-    .actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
-    a.button { display:inline-flex; align-items:center; justify-content:center; min-height:40px; color:#ffffff; background:var(--blue); text-decoration:none; border-radius:999px; padding:9px 15px; font-size:14px; font-weight:700; white-space:nowrap; box-shadow:0 10px 24px rgba(0,122,255,.22); }
-    a.button:hover { background:#006ee6; }
-    .note { color:var(--muted); font-size:13px; margin-top:18px; }
-    code { background:#eef2f6; padding:2px 5px; border-radius:5px; font-family:Consolas,monospace; font-size:.92em; }
-    @media (max-width:760px) { .wrap { padding:20px 12px 36px; } .masthead { grid-template-columns:1fr; border-radius:16px; padding:18px; } h1 { font-size:28px; } .status-strip { grid-template-columns:repeat(2,minmax(0,1fr)); } .report { grid-template-columns:1fr; } .actions { justify-content:flex-start; } }
-    @media (max-width:440px) { .status-strip { grid-template-columns:1fr; } }
+    :root{--bg:#f5f5f7;--panel:#fff;--text:#111827;--muted:#6e7480;--line:#e6e8ee;--blue:#007aff;--green:#18864b;--amber:#a86600;--red:#c9342f;--shadow:0 18px 48px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fbfbfd 0,var(--bg) 280px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.56}.wrap{max-width:1040px;margin:0 auto;padding:34px 18px 48px}.masthead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.76);border-radius:18px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:18px}.eyebrow{color:var(--blue);font-size:13px;font-weight:700;margin-bottom:8px}h1{margin:0;font-size:34px;line-height:1.18}.summary{color:var(--muted);margin:10px 0 0}.status-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.stat,.report{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.78);border-radius:16px;box-shadow:0 8px 24px rgba(15,23,42,.06)}.stat{padding:14px 15px}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:4px}.stat strong{font-size:18px}.report-list{display:grid;gap:12px}.report{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:18px}.report h2{margin:0 0 7px;font-size:20px;line-height:1.3}.report p{margin:0;color:var(--muted);font-size:14px}.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}.badge{display:inline-flex;align-items:center;min-height:24px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;white-space:nowrap}.green{color:var(--green);background:#eaf8ef}.amber{color:var(--amber);background:#fff4d9}.red{color:var(--red);background:#fff0ef}.blue{color:var(--blue);background:#eaf4ff}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}a.button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;color:#fff;background:var(--blue);text-decoration:none;border-radius:999px;padding:9px 15px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 10px 24px rgba(0,122,255,.22)}a.button:hover{background:#006ee6}.note{color:var(--muted);font-size:13px;margin-top:18px}code{background:#eef2f6;padding:2px 5px;border-radius:5px;font-family:Consolas,monospace;font-size:.92em}@media(max-width:760px){.wrap{padding:20px 12px 36px}.masthead{grid-template-columns:1fr;border-radius:16px;padding:18px}h1{font-size:28px}.status-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.report{grid-template-columns:1fr}.actions{justify-content:flex-start}}@media(max-width:440px){.status-strip{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -43,44 +17,33 @@
         <h1>美股監控報告</h1>
         <p class="summary">每日盤前、盤後與週末復盤入口。</p>
       </div>
-      <a class="button" href="reports/2026-06-06-weekly.html">最新報告</a>
+      <a class="button" href="reports/2026-06-09-weekly-expected-move.html">最新報告</a>
     </header>
 
     <section class="status-strip" aria-label="latest report highlights">
-      <div class="stat"><span>最新主題</span><strong>週末總結</strong></div>
-      <div class="stat"><span>市場主線</span><strong>高 beta 降槓桿</strong></div>
-      <div class="stat"><span>廣度狀態</span><strong>短線降溫 / 中期未壞</strong></div>
-      <div class="stat"><span>操作基調</span><strong>防守、等回踩</strong></div>
+      <div class="stat"><span>最新主題</span><strong>Weekly Expected Move 對比</strong></div>
+      <div class="stat"><span>核心變化</span><strong>波動區間重定價</strong></div>
+      <div class="stat"><span>有效訊號</span><strong>Move 擴縮 / 邊界位移</strong></div>
+      <div class="stat"><span>操作基調</span><strong>看壓力線與風控線</strong></div>
     </section>
 
     <section class="report-list" aria-label="reports">
       <article class="report">
         <div>
-          <h2>2026-06-06｜一週總結｜NFP 重新定價利率，高 beta 集中降槓桿</h2>
-          <p>S&P 500 結束 9 週連漲，Nasdaq 跌幅最深；5月非農 +172K 壓低降息想像。週報移除 Pre-market movers，新增 Big Winners & Losers，聚焦 JPM、JNJ、UNH、AMGN、BAC，以及 AMZN、MSFT、META、TSLA、AMD、PLTR、COIN 等高市值/指數影響股。</p>
-          <div class="badges"><span class="badge amber">Weekly Review</span><span class="badge red">QQQ 跌破 -2SD</span><span class="badge blue">Big Winners & Losers</span><span class="badge green">XLV / XLF 相對強</span></div>
+          <h2>2026-06-09｜Weekly Expected Move 新舊週對比｜波動與邊界重定價</h2>
+          <p>新版週資料自然會重建區間，因此不把「是否區間內」當訊號；重點改為比較 SPY、QQQ、XLK、SMH、NVDA、MSFT、TSLA、AMZN 等標的的 Move 擴縮與 1SD/2SD 邊界位移。</p>
+          <div class="badges"><span class="badge amber">Expected Move</span><span class="badge blue">Move 擴縮</span><span class="badge red">QQQ 風控線</span><span class="badge green">不套 market monitor</span></div>
         </div>
-        <div class="actions"><a class="button" href="reports/2026-06-06-weekly.html">打開報告</a></div>
+        <div class="actions"><a class="button" href="reports/2026-06-09-weekly-expected-move.html">打開報告</a></div>
       </article>
 
-      <article class="report">
-        <div>
-          <h2>2026-06-05｜盤前更新｜NFP 高於預期，消費與半導體盤前承壓</h2>
-          <p>BLS 公布 5月非農新增 172K，失業率 4.3%，平均時薪月增 0.3%；前兩月合計上修 93K。盤前高成交量異動集中在 LULU、DOCU、STM、RMBS，指向消費、軟體與半導體承壓。</p>
-          <div class="badges"><span class="badge amber">NFP +172K</span><span class="badge blue">Pre-market movers</span><span class="badge red">消費承壓</span><span class="badge red">半導體承壓</span></div>
-        </div>
-        <div class="actions"><a class="button" href="reports/2026-06-05-premarket-update.html">打開報告</a></div>
-      </article>
-
-      <article class="report"><div><h2>2026-06-04｜盤前更新｜Broadcom 壓科技，進入調整期觀察</h2><p>初請失業金升至 225K，高於預期；但續請下降、單位勞工成本降至 1.8%。Nasdaq / AI / 半導體進入調整期觀察，不追科技高 beta。</p><div class="badges"><span class="badge amber">調整期觀察</span><span class="badge green">AI 仍強</span><span class="badge red">不追高</span><span class="badge blue">初請 225K</span></div></div><div class="actions"><a class="button" href="reports/2026-06-04-premarket-update.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-06-03｜盤前更新｜ADP偏強，油價再成壓力測試</h2><p>ADP 5月民間就業 +122k、JOLTS 職缺升至 7.618M；AI/網安/半導體主線延續，但 QQQ/VOO 已極端 ATR 延伸。</p><div class="badges"><span class="badge green">AI 主線</span><span class="badge amber">ADP / ISM</span><span class="badge red">不追高</span><span class="badge blue">油價 / Beige Book</span></div></div><div class="actions"><a class="button" href="reports/2026-06-03-premarket-update.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-06-02｜盤前更新｜AI延伸，廣度背離未解</h2><p>Stockbee 中期偏多，但 S&P 500 20MA breadth 只有 47%、50MA breadth 51%；AI 硬體鏈仍強，QQQ/XLK 已延伸。</p><div class="badges"><span class="badge green">AI 硬體鏈</span><span class="badge amber">廣度背離</span><span class="badge red">不追高</span><span class="badge blue">JOLTS / Fed</span></div></div><div class="actions"><a class="button" href="reports/2026-06-02-premarket-update.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-06-01｜NVDA GTC 產業鏈深度分析</h2><p>Vera Rubin / NVL72 把焦點從單一 GPU 推向整套 AI factory。觀察 NVDA、AVGO、VRT、ETN、PWR、DELL、HPE、SMCI、MRVL、ANET、TSM、MU。</p><div class="badges"><span class="badge green">AI Factory</span><span class="badge blue">Vera Rubin</span><span class="badge amber">AI PC / N1X</span><span class="badge red">事件兌現風險</span></div></div><div class="actions"><a class="button" href="reports/2026-06-01-nvda-gtc.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-30｜一週總結</h2><p>美股完成第 9 週連漲；廣度轉入 bullish phase，但 VOO/QQQ 已接近 +8 ATR。下週基調是多頭續航、等回踩、不追高。</p><div class="badges"><span class="badge green">連漲延續</span><span class="badge red">+8 ATR 延伸</span><span class="badge amber">通膨仍黏</span><span class="badge blue">廣度改善</span></div></div><div class="actions"><a class="button" href="reports/2026-05-30-weekly.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-29｜盤前日報</h2><p>多頭延續但不追高；5日 breadth ratio 2.48，10日 ratio 1.58；VOO/QQQ 超過 +7 ATR。</p><div class="badges"><span class="badge green">廣度改善</span><span class="badge red">+7 ATR 延伸</span><span class="badge amber">PCE / Fed 壓力</span><span class="badge blue">FX/商品監控</span></div></div><div class="actions"><a class="button" href="reports/2026-05-29.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-28｜盤前日報</h2><p>GDP 二修下修，PCE 仍偏黏；AI/半導體仍領先，但 VOO/QQQ 已明顯高位延伸。</p><div class="badges"><span class="badge green">多頭趨勢</span><span class="badge amber">GDP 下修</span><span class="badge red">PCE 偏熱</span><span class="badge blue">FX/商品表格</span></div></div><div class="actions"><a class="button" href="reports/2026-05-28.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-27｜盤前日報</h2><p>偏多但不追高；主要 ETF 高位 ATR 延伸，5/28 GDP + PCE 是本週方向確認。</p><div class="badges"><span class="badge green">廣度改善</span><span class="badge amber">油價回落</span><span class="badge blue">FX/商品表格</span><span class="badge red">GDP/PCE 風險</span></div></div><div class="actions"><a class="button" href="reports/2026-05-27.html">打開報告</a></div></article>
-      <article class="report"><div><h2>2026-05-26｜盤前監控</h2><p>偏多但不追高；廣度改善，科技與主要 ETF 偏熱，Stockbee breadth 中性偏多。</p><div class="badges"><span class="badge green">廣度改善</span><span class="badge amber">科技偏熱</span><span class="badge red">+6 ATR 延伸</span></div></div><div class="actions"><a class="button" href="reports/2026-05-26.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-06-06｜一週總結｜NFP 重新定價利率，高 beta 集中降槓桿</h2><p>S&P 500 結束 9 週連漲，Nasdaq 跌幅最深；5月非農 +172K 壓低降息想像。</p><div class="badges"><span class="badge amber">Weekly Review</span><span class="badge red">QQQ 跌破 -2SD</span><span class="badge blue">Big Winners & Losers</span></div></div><div class="actions"><a class="button" href="reports/2026-06-06-weekly.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-06-05｜盤前更新｜NFP 高於預期，消費與半導體盤前承壓</h2><p>BLS 公布 5月非農新增 172K，失業率 4.3%；盤前異動集中在消費、軟體與半導體。</p><div class="badges"><span class="badge amber">NFP +172K</span><span class="badge blue">Pre-market movers</span><span class="badge red">半導體承壓</span></div></div><div class="actions"><a class="button" href="reports/2026-06-05-premarket-update.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-06-04｜盤前更新｜Broadcom 壓科技，進入調整期觀察</h2><p>Nasdaq / AI / 半導體進入調整期觀察，不追科技高 beta。</p><div class="badges"><span class="badge amber">調整期觀察</span><span class="badge red">不追高</span></div></div><div class="actions"><a class="button" href="reports/2026-06-04-premarket-update.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-06-03｜盤前更新｜ADP偏強，油價再成壓力測試</h2><p>AI/網安/半導體主線延續，但 QQQ/VOO 已極端 ATR 延伸。</p><div class="badges"><span class="badge green">AI 主線</span><span class="badge red">不追高</span></div></div><div class="actions"><a class="button" href="reports/2026-06-03-premarket-update.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-06-02｜盤前更新｜AI延伸，廣度背離未解</h2><p>Stockbee 中期偏多，但 S&P 500 20MA breadth 只有 47%、50MA breadth 51%。</p><div class="badges"><span class="badge green">AI 硬體鏈</span><span class="badge amber">廣度背離</span></div></div><div class="actions"><a class="button" href="reports/2026-06-02-premarket-update.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-06-01｜NVDA GTC 產業鏈深度分析</h2><p>Vera Rubin / NVL72 把焦點從單一 GPU 推向整套 AI factory。</p><div class="badges"><span class="badge green">AI Factory</span><span class="badge blue">Vera Rubin</span></div></div><div class="actions"><a class="button" href="reports/2026-06-01-nvda-gtc.html">打開報告</a></div></article>
+      <article class="report"><div><h2>2026-05-30｜一週總結</h2><p>美股完成第 9 週連漲；廣度轉入 bullish phase，但 VOO/QQQ 已接近 +8 ATR。</p><div class="badges"><span class="badge green">連漲延續</span><span class="badge red">+8 ATR 延伸</span></div></div><div class="actions"><a class="button" href="reports/2026-05-30-weekly.html">打開報告</a></div></article>
     </section>
     <p class="note">部署網址：<code>https://sintszkay.github.io/market-reports/</code></p>
   </main>

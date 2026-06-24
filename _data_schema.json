@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Market report template data schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "section_pre_market_movers_primary_action": {
+      "type": "string",
+      "description": "Pre-market movers: positive instruction, what to do today."
+    },
+    "section_pre_market_movers_condition_action": {
+      "type": "string",
+      "description": "Pre-market movers: conditional instruction in the form if X happens, then Y."
+    },
+    "section_pre_market_movers_avoid_action": {
+      "type": "string",
+      "description": "Pre-market movers: negative instruction, what to avoid today."
+    },
+    "section_correction_checklist_primary_action": {
+      "type": "string",
+      "description": "General Market Correction Checklist: positive instruction, what to do today."
+    },
+    "section_correction_checklist_condition_action": {
+      "type": "string",
+      "description": "General Market Correction Checklist: conditional instruction in the form if X happens, then Y."
+    },
+    "section_correction_checklist_avoid_action": {
+      "type": "string",
+      "description": "General Market Correction Checklist: negative instruction, what to avoid today."
+    },
+    "section_macro_premarket_background_primary_action": {
+      "type": "string",
+      "description": "Macro events and premarket background: positive instruction, what to do today."
+    },
+    "section_macro_premarket_background_condition_action": {
+      "type": "string",
+      "description": "Macro events and premarket background: conditional instruction in the form if X happens, then Y."
+    },
+    "section_macro_premarket_background_avoid_action": {
+      "type": "string",
+      "description": "Macro events and premarket background: negative instruction, what to avoid today."
+    },
+    "section_sector_thematic_etf_primary_action": {
+      "type": "string",
+      "description": "Sector / Thematic ETF: positive instruction, what to do today."
+    },
+    "section_sector_thematic_etf_condition_action": {
+      "type": "string",
+      "description": "Sector / Thematic ETF: conditional instruction in the form if X happens, then Y."
+    },
+    "section_sector_thematic_etf_avoid_action": {
+      "type": "string",
+      "description": "Sector / Thematic ETF: negative instruction, what to avoid today."
+    },
+    "section_major_etf_technical_primary_action": {
+      "type": "string",
+      "description": "Major ETF technicals: positive instruction, what to do today."
+    },
+    "section_major_etf_technical_condition_action": {
+      "type": "string",
+      "description": "Major ETF technicals: conditional instruction in the form if X happens, then Y."
+    },
+    "section_major_etf_technical_avoid_action": {
+      "type": "string",
+      "description": "Major ETF technicals: negative instruction, what to avoid today."
+    },
+    "section_50ma_atr_extension_primary_action": {
+      "type": "string",
+      "description": "50MA ATR extension: positive instruction, what to do today."
+    },
+    "section_50ma_atr_extension_condition_action": {
+      "type": "string",
+      "description": "50MA ATR extension: conditional instruction in the form if X happens, then Y."
+    },
+    "section_50ma_atr_extension_avoid_action": {
+      "type": "string",
+      "description": "50MA ATR extension: negative instruction, what to avoid today."
+    },
+    "section_market_breadth_primary_action": {
+      "type": "string",
+      "description": "Market breadth: positive instruction, what to do today."
+    },
+    "section_market_breadth_condition_action": {
+      "type": "string",
+      "description": "Market breadth: conditional instruction in the form if X happens, then Y."
+    },
+    "section_market_breadth_avoid_action": {
+      "type": "string",
+      "description": "Market breadth: negative instruction, what to avoid today."
+    },
+    "section_fx_commodities_primary_action": {
+      "type": "string",
+      "description": "FX and commodities: positive instruction, what to do today."
+    },
+    "section_fx_commodities_condition_action": {
+      "type": "string",
+      "description": "FX and commodities: conditional instruction in the form if X happens, then Y."
+    },
+    "section_fx_commodities_avoid_action": {
+      "type": "string",
+      "description": "FX and commodities: negative instruction, what to avoid today."
+    }
+  },
+  "required": [
+    "section_pre_market_movers_primary_action",
+    "section_pre_market_movers_condition_action",
+    "section_pre_market_movers_avoid_action",
+    "section_correction_checklist_primary_action",
+    "section_correction_checklist_condition_action",
+    "section_correction_checklist_avoid_action",
+    "section_macro_premarket_background_primary_action",
+    "section_macro_premarket_background_condition_action",
+    "section_macro_premarket_background_avoid_action",
+    "section_sector_thematic_etf_primary_action",
+    "section_sector_thematic_etf_condition_action",
+    "section_sector_thematic_etf_avoid_action",
+    "section_major_etf_technical_primary_action",
+    "section_major_etf_technical_condition_action",
+    "section_major_etf_technical_avoid_action",
+    "section_50ma_atr_extension_primary_action",
+    "section_50ma_atr_extension_condition_action",
+    "section_50ma_atr_extension_avoid_action",
+    "section_market_breadth_primary_action",
+    "section_market_breadth_condition_action",
+    "section_market_breadth_avoid_action",
+    "section_fx_commodities_primary_action",
+    "section_fx_commodities_condition_action",
+    "section_fx_commodities_avoid_action"
+  ]
+}

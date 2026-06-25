@@ -4,6 +4,18 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
+    "positioning_primary": {
+      "type": "string",
+      "description": "Entry-point summary: overall position sizing or positioning bias for today."
+    },
+    "positioning_secondary": {
+      "type": "string",
+      "description": "Entry-point summary: hedge, balance, or portfolio offset instruction for today."
+    },
+    "positioning_watch": {
+      "type": "string",
+      "description": "Entry-point summary: the single most important market watch for today."
+    },
     "section_pre_market_movers_primary_action": {
       "type": "string",
       "description": "Pre-market movers: positive instruction, what to do today."
@@ -102,6 +114,9 @@
     }
   },
   "required": [
+    "positioning_primary",
+    "positioning_secondary",
+    "positioning_watch",
     "section_pre_market_movers_primary_action",
     "section_pre_market_movers_condition_action",
     "section_pre_market_movers_avoid_action",

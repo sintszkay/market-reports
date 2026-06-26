@@ -5,6 +5,36 @@
   "additionalProperties": true,
   "properties": {
 
+    "upgrade_trigger_1": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Regime upgrade trigger 1. Single sentence with explicit numeric threshold; no consider/watch verbs."
+    },
+    "upgrade_trigger_2": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Regime upgrade trigger 2. Single sentence with explicit numeric threshold; no consider/watch verbs."
+    },
+    "upgrade_trigger_3": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Regime upgrade trigger 3. Single sentence with explicit numeric threshold; no consider/watch verbs."
+    },
+    "downgrade_trigger_1": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Regime downgrade trigger 1. Single sentence with explicit numeric threshold; no consider/watch verbs."
+    },
+    "downgrade_trigger_2": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Regime downgrade trigger 2. Single sentence with explicit numeric threshold; no consider/watch verbs."
+    },
+    "downgrade_trigger_3": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Regime downgrade trigger 3. Single sentence with explicit numeric threshold; no consider/watch verbs."
+    },
     "intraday_playbook_rows": {
       "type": "array",
       "minItems": 5,
@@ -152,6 +182,12 @@
     }
   },
   "required": [
+    "upgrade_trigger_1",
+    "upgrade_trigger_2",
+    "upgrade_trigger_3",
+    "downgrade_trigger_1",
+    "downgrade_trigger_2",
+    "downgrade_trigger_3",
     "intraday_playbook_rows",
     "positioning_primary",
     "positioning_secondary",

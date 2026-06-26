@@ -19,6 +19,20 @@
     .ad-secondary{color:#4b5563}.ad-secondary::before{content:"◐";color:var(--amber)}
     .ad-watch{color:var(--text)}.ad-watch::before{content:"◆";color:var(--blue)}
     .ad-avoid{color:var(--muted)}.ad-avoid::before{content:"✗";color:var(--red)}
+    .regime-triggers{display:flex;gap:16px;margin-bottom:32px}
+    .trigger-box{flex:1;padding:16px 20px;border-radius:4px}
+    .trigger-upgrade{background:#E8F3EC;border-left:4px solid #2E7D5C}
+    .trigger-downgrade{background:#FAEEEA;border-left:4px solid #A3422B}
+    .tb-header{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+    .tb-arrow{font-size:18px;font-weight:500}
+    .tb-label{font-size:14px;font-weight:500;letter-spacing:.02em}
+    .tb-sub{font-size:11px;color:rgba(0,0,0,.5);letter-spacing:.05em}
+    .tb-list{list-style:none;padding:0;margin:0}
+    .tb-list li{position:relative;font-size:13px;line-height:1.55;padding:6px 0 6px 18px;border-bottom:.5px solid rgba(0,0,0,.08)}
+    .tb-list li:last-child{border-bottom:0}
+    .trigger-upgrade .tb-list li::before{content:"↑";position:absolute;left:0;color:#2E7D5C;font-weight:700}
+    .trigger-downgrade .tb-list li::before{content:"↓";position:absolute;left:0;color:#A3422B;font-weight:700}
+    @media(max-width:600px){.regime-triggers{flex-direction:column}}
     .playbook-intro{color:#6B6960;font-style:italic;font-size:13px;line-height:1.5;margin-bottom:16px}
     .playbook-table{width:100%;border-collapse:collapse}
     .playbook-table tbody tr:nth-child(odd){background:#FAF8F2}
@@ -46,6 +60,32 @@
   <!-- DATA: summary_cards -->
 </section>
 
+<section class="regime-triggers">
+  <div class="trigger-box trigger-upgrade">
+    <div class="tb-header">
+      <span class="tb-arrow">↑</span>
+      <span class="tb-label">油門升級訊號</span>
+      <span class="tb-sub">轉攻擊</span>
+    </div>
+    <ul class="tb-list">
+      <li><!-- DATA: upgrade_trigger_1 --></li>
+      <li><!-- DATA: upgrade_trigger_2 --></li>
+      <li><!-- DATA: upgrade_trigger_3 --></li>
+    </ul>
+  </div>
+  <div class="trigger-box trigger-downgrade">
+    <div class="tb-header">
+      <span class="tb-arrow">↓</span>
+      <span class="tb-label">油門降級訊號</span>
+      <span class="tb-sub">轉防守</span>
+    </div>
+    <ul class="tb-list">
+      <li><!-- DATA: downgrade_trigger_1 --></li>
+      <li><!-- DATA: downgrade_trigger_2 --></li>
+      <li><!-- DATA: downgrade_trigger_3 --></li>
+    </ul>
+  </div>
+</section>
 <section><h2>核心結論</h2>
   <!-- DATA: core_conclusions -->
   <div class="action-directive action-directive--positioning">

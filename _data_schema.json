@@ -4,6 +4,44 @@
   "type": "object",
   "additionalProperties": true,
   "properties": {
+
+    "intraday_playbook_rows": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 10,
+      "description": "Intraday trigger playbook rows. Must include ORB up/down scenarios, macro or catalyst reaction, mid-day reversal, late-day Fed/VIX behavior, and MOC imbalance.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "time_slot": {
+            "type": "string",
+            "description": "ET time, e.g. '09:30 ORB', '10:00', or '15:30 MOC'."
+          },
+          "trigger_event": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Specific level or threshold."
+          },
+          "interpretation": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Why it matters."
+          },
+          "action": {
+            "type": "string",
+            "maxLength": 25,
+            "description": "Binary action. Render the first word in bold in HTML rows."
+          }
+        },
+        "required": [
+          "time_slot",
+          "trigger_event",
+          "interpretation",
+          "action"
+        ]
+      }
+    },
     "positioning_primary": {
       "type": "string",
       "description": "Entry-point summary: overall position sizing or positioning bias for today."
@@ -114,6 +152,7 @@
     }
   },
   "required": [
+    "intraday_playbook_rows",
     "positioning_primary",
     "positioning_secondary",
     "positioning_watch",

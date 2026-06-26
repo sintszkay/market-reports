@@ -19,6 +19,18 @@
     .ad-secondary{color:#4b5563}.ad-secondary::before{content:"◐";color:var(--amber)}
     .ad-watch{color:var(--text)}.ad-watch::before{content:"◆";color:var(--blue)}
     .ad-avoid{color:var(--muted)}.ad-avoid::before{content:"✗";color:var(--red)}
+    .playbook-intro{color:#6B6960;font-style:italic;font-size:13px;line-height:1.5;margin-bottom:16px}
+    .playbook-table{width:100%;border-collapse:collapse}
+    .playbook-table tbody tr:nth-child(odd){background:#FAF8F2}
+    .playbook-table tbody tr:nth-child(even){background:#fff}
+    .playbook-table th{background:#F1EFE8;font-weight:500;padding:8px 12px;font-size:12px;letter-spacing:.03em;text-align:left}
+    .playbook-table td{padding:10px 12px;font-size:13px;vertical-align:top}
+    .playbook-table th:nth-child(1),.playbook-table td:nth-child(1){width:15%;font-family:Consolas,"SFMono-Regular",Menlo,monospace;color:#BA7517;font-weight:500}
+    .playbook-table th:nth-child(2),.playbook-table td:nth-child(2){width:30%}
+    .playbook-table th:nth-child(3),.playbook-table td:nth-child(3){width:25%;font-style:italic;color:#6B6960}
+    .playbook-table th:nth-child(4),.playbook-table td:nth-child(4){width:30%}
+    .playbook-table td:nth-child(4) strong{font-weight:700}
+    @media(max-width:700px){.playbook-table,.playbook-table thead,.playbook-table tbody,.playbook-table tr,.playbook-table th,.playbook-table td{display:block;width:100%}.playbook-table thead{display:none}.playbook-table tr{background:#fff;border:1px solid var(--line);border-radius:8px;margin:10px 0;overflow:hidden}.playbook-table tbody tr:nth-child(odd),.playbook-table tbody tr:nth-child(even){background:#fff}.playbook-table td{border-bottom:1px solid var(--line);padding:8px 12px}.playbook-table td:last-child{border-bottom:0}.playbook-table td:nth-child(1){background:#FAF8F2;color:#BA7517;font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-weight:600}.playbook-table td:nth-child(n+2)::before{display:block;color:#6B6960;font-size:11px;font-weight:600;letter-spacing:.03em;margin-bottom:2px}.playbook-table td:nth-child(2)::before{content:"觸發事件"}.playbook-table td:nth-child(3)::before{content:"判讀"}.playbook-table td:nth-child(4)::before{content:"行動"}}
     @media(max-width:900px){.grid,.checks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.wrap{padding:20px 12px 40px}header{padding:18px;border-radius:16px}h1{font-size:26px}.grid,.checks{grid-template-columns:1fr}table{display:block;overflow-x:auto;white-space:nowrap}}
   </style>
 </head>
@@ -149,6 +161,27 @@
 
 <section><h2>交易計畫</h2>
   <!-- DATA: trading_plan -->
+</section>
+
+<section class="intraday-playbook">
+  <h2>盤中觸發劇本</h2>
+  <p class="playbook-intro">
+    開盤後若以下事件發生，按表格執行，不要在當下重新評估。
+    這是事前承諾 (pre-commitment)，避免實時情緒化決策。
+  </p>
+  <table class="playbook-table">
+    <thead>
+      <tr>
+        <th>時段 (ET)</th>
+        <th>觸發事件</th>
+        <th>判讀</th>
+        <th>行動</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- DATA: intraday_playbook_rows -->
+    </tbody>
+  </table>
 </section>
 
 <section><h2>交叉驗證總結 / Cross-validation summary</h2>

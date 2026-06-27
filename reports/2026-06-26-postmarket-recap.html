@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美股盤後對賬｜2026 年 6 月 26 日</title>
+  <style>
+    :root{--bg:#f5f5f7;--panel:#fff;--text:#111827;--muted:#6B6960;--line:#e5e7eb;--green:#2E7D5C;--amber:#BA7517;--red:#A3422B;--blue:#007aff;--warm:#FAF8F2;--shadow:0 18px 48px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#fbfbfd 0,var(--bg) 300px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.58;letter-spacing:0}
+    .wrap{max-width:1160px;margin:0 auto;padding:32px 16px 52px}
+    header{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.8);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-bottom:18px}
+    h1{font-size:32px;line-height:1.2;margin:0}
+    h2{font-size:23px;margin:30px 0 12px}
+    section{margin-bottom:30px}
+    .ds-grid,.hr-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .ds-card,.hr-card{padding:14px 16px;border-radius:4px;background:#FAF8F2;text-align:center;border:1px solid rgba(107,105,96,.1)}
+    .ds-label,.hr-label{font-size:11px;color:#6B6960;letter-spacing:.05em;margin-bottom:4px}
+    .ds-value,.hr-value{font-size:22px;font-weight:500;font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-variant-numeric:tabular-nums}
+    .hr-sub{font-size:11px;color:#6B6960;margin-top:4px}
+    .ar-intro{color:#6B6960;font-style:italic;font-size:13px;line-height:1.5;margin-bottom:16px}
+    .recap-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);font-size:13px;box-shadow:0 8px 20px rgba(15,23,42,.04)}
+    .recap-table tbody tr:nth-child(odd){background:#FAF8F2}
+    .recap-table tbody tr:nth-child(even){background:#fff}
+    .recap-table th{background:#F1EFE8;font-weight:500;padding:8px 12px;font-size:12px;letter-spacing:.03em;text-align:left}
+    .recap-table td{padding:10px 12px;font-size:13px;vertical-align:top;border-top:1px solid var(--line)}
+    .recap-table th:nth-child(1),.recap-table td:nth-child(1){width:18%;font-weight:500}
+    .recap-table th:nth-child(2),.recap-table td:nth-child(2){width:32%}
+    .recap-table th:nth-child(3),.recap-table td:nth-child(3){width:32%;color:#6B6960}
+    .recap-table th:nth-child(4),.recap-table td:nth-child(4){width:18%;white-space:nowrap}
+    .result-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:600}
+    .result-hit{color:#2E7D5C;background:#E8F3EC}.result-hit::before{content:"✅"}
+    .result-partial{color:#8A5A0A;background:#FFF3D6}.result-partial::before{content:"⚠"}
+    .result-miss{color:#A3422B;background:#FAEEEA}.result-miss::before{content:"❌"}
+    .result-invalidated{color:#365F91;background:#EAF2FF}.result-invalidated::before{content:"🔄"}
+    .lessons{background:#FAF8F2;padding:16px 20px;border-radius:4px}
+    .lessons h2{margin-top:0}
+    .lesson-list{list-style:none;padding:0;margin:0}
+    .lesson-list li{padding:9px 0;border-bottom:.5px solid rgba(0,0,0,.08)}
+    .lesson-list li:last-child{border-bottom:0}
+    .lesson-correct strong{color:#2E7D5C}
+    .lesson-wrong strong{color:#A3422B}
+    .lesson-pattern strong{color:#BA7517}
+    @media(max-width:760px){.ds-grid,.hr-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.recap-table,.recap-table thead,.recap-table tbody,.recap-table tr,.recap-table th,.recap-table td{display:block;width:100%}.recap-table thead{display:none}.recap-table tr{background:#fff;border:1px solid var(--line);border-radius:4px;margin:10px 0;overflow:hidden}.recap-table tbody tr:nth-child(odd),.recap-table tbody tr:nth-child(even){background:#fff}.recap-table td{border-top:0;border-bottom:1px solid var(--line);padding:8px 12px}.recap-table td:last-child{border-bottom:0}.recap-table td::before{display:block;color:#6B6960;font-size:11px;font-weight:600;letter-spacing:.03em;margin-bottom:2px}.recap-table td:nth-child(1){background:#FAF8F2}.recap-table td:nth-child(1)::before{content:"Section"}.recap-table td:nth-child(2)::before{content:"盤前指引"}.recap-table td:nth-child(3)::before{content:"當日實況"}.recap-table td:nth-child(4)::before{content:"結果"}}
+    @media(max-width:480px){.wrap{padding:20px 12px 40px}header{padding:18px;border-radius:16px}h1{font-size:26px}.ds-grid,.hr-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body><main class="wrap">
+<header>
+  <h1>美股盤後對賬｜2026 年 6 月 26 日</h1>
+</header>
+
+<section class="day-summary">
+  <h2>當日實際 vs 盤前判斷</h2>
+  <div class="ds-grid">
+    <div class="ds-card"><div class="ds-label">SPY 實際</div><div class="ds-value">-0.72%</div></div>
+    <div class="ds-card"><div class="ds-label">QQQ 實際</div><div class="ds-value">-1.38%</div></div>
+    <div class="ds-card"><div class="ds-label">VIX 收盤</div><div class="ds-value">18.41</div></div>
+    <div class="ds-card"><div class="ds-label">廣度（4%+ 漲/跌）</div><div class="ds-value">880 / 258</div></div>
+  </div>
+</section>
+
+<section class="action-recap">
+  <h2>盤前「→ 今日行動」對賬</h2>
+  <p class="ar-intro">對照盤前各 section 的四條行動指引（Primary / Condition / Avoid / Invalidation），逐條判定結果。</p>
+  <table class="recap-table">
+    <thead><tr><th>Section</th><th>盤前指引</th><th>當日實況</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td>核心定位</td><td>整體倉位降至半倉攻擊；科技 beta 低配。</td><td>SPY -0.72%、QQQ -1.38%；XLV +3.03%、IWM +0.31%。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>Pre-market movers</td><td>不追 MU/ON/SMH 盤前反抽，只等 1H 站回 VWAP。</td><td>SMH 收 611.61，日跌 3.97%，且低於 615 反向門檻。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>Correction Checklist</td><td>防守持倉保留，進攻倉位砍到半倉。</td><td>QQQ -1.38%，VIX 18.41；XLV +3.03%，防守輪動有效。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>宏觀事件</td><td>宏觀不支持滿倉 risk-on，保持事件前彈性。</td><td>Core PCE 3.4% YoY，QQQ -1.38%，10Y 收 4.37%。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>Sector / Thematic ETF</td><td>偏配金融、醫療、生技、航空；科技只做回踩確認。</td><td>XLV +3.03%、XLF +0.22%；SMH -3.97%、QQQ -1.38%。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>大盤 ETF 技術</td><td>SPY/QQQ 低於 20MA 前，配置偏 RSP/IWM/DIA。</td><td>IWM +0.31%、DIA -0.29%、RSP -0.68%，均優於 QQQ -1.38%。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>50MA ATR 延伸</td><td>IWM/RSP/DIA 新倉 size 砍半。</td><td>IWM +0.31%，但 RSP -0.68%、DIA -0.29%；延伸風險只部分兌現。</td><td><span class="result-badge result-partial">部分</span></td></tr>
+<tr><td>市場廣度</td><td>突破策略暫停，只做回踩確認。</td><td>4%+ 漲/跌 880/258，但 T2108 51.77 未達 55，升級條件未完整觸發。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>外匯與商品</td><td>不持商品 beta；油價下跌只支持 JETS/consumer 相對交易。</td><td>WTI -0.59% 至 69.23，Copper -0.65% 至 6.14，商品 beta 未修復。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+<tr><td>美債、Fed</td><td>維持 duration，不因 10Y 小跌大幅加長久期。</td><td>10Y 由約 4.39% 降至 4.37%，未跌破 4.30% 觸發線。</td><td><span class="result-badge result-hit">命中</span></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="hit-rate">
+  <h2>命中率統計</h2>
+  <div class="hr-grid">
+    <div class="hr-card hr-today"><div class="hr-label">今日命中率</div><div class="hr-value">90%</div><div class="hr-sub">9/10 條</div></div>
+    <div class="hr-card hr-week"><div class="hr-label">本週累積</div><div class="hr-value">90%</div><div class="hr-sub">9/10 條</div></div>
+    <div class="hr-card hr-month"><div class="hr-label">30 日滾動</div><div class="hr-value">資料不足</div><div class="hr-sub">—/— 條</div></div>
+    <div class="hr-card hr-invalidation"><div class="hr-label">反向訊號觸發</div><div class="hr-value">0 / —</div><div class="hr-sub">本週 / 30 日</div></div>
+  </div>
+</section>
+
+<section class="lessons">
+  <h2>本日教訓</h2>
+  <ul class="lesson-list">
+    <li class="lesson-correct"><strong>✅ 做對的判斷：</strong>科技低配與防守輪動正確：QQQ -1.38%，XLV +3.03%，IWM +0.31%。</li>
+    <li class="lesson-wrong"><strong>❌ 做錯的判斷：</strong>IWM/RSP/DIA 全面減半偏保守；IWM +0.31%，IWM >50MA 廣度升至 72.50%。</li>
+    <li class="lesson-pattern"><strong>🔍 累積 pattern：</strong>QQQ 下跌但 4%+ 漲股 880、T2108 51.77，顯示科技去風險不等於全市場 risk-off。</li>
+  </ul>
+</section>
+</main></body></html>

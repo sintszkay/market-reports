@@ -179,6 +179,76 @@
     "section_fx_commodities_avoid_action": {
       "type": "string",
       "description": "FX and commodities: negative instruction, what to avoid today."
+    },
+    "positioning_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "premarket_movers_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "checklist_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "macro_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "sector_etf_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "major_etf_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "atr_extension_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "breadth_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "forex_commodity_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
+    },
+    "treasury_invalidation": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "",
+      "pattern": "^(?:$|若 .+ → .+失效[,，] ?.+)$",
+      "description": "Falsifier only. Format: 若 [trigger] → [original action] 失效, [replacement]. Must use a numeric threshold or binary event."
     }
   },
   "required": [

@@ -19,6 +19,12 @@
     .ad-secondary{color:#4b5563}.ad-secondary::before{content:"◐";color:var(--amber)}
     .ad-watch{color:var(--text)}.ad-watch::before{content:"◆";color:var(--blue)}
     .ad-avoid{color:var(--muted)}.ad-avoid::before{content:"✗";color:var(--red)}
+    .ad-invalidate{padding:8px 0;border-top:.5px dashed rgba(163,66,43,.3);margin-top:6px;font-size:12.5px;color:#6B6960;font-style:italic}
+    .ad-invalidate::before{content:none}
+    .ad-invalidate .ad-bullet{color:#A3422B;font-style:normal;margin-right:8px}
+    .ad-invalidate strong{color:#A3422B;font-style:normal;font-weight:500}
+    .ad-invalidate .ad-content{line-height:1.5}
+    .ad-invalidation-value:empty::after{content:"—"}
     .regime-triggers{display:flex;gap:16px;margin-bottom:32px}
     .trigger-box{flex:1;padding:16px 20px;border-radius:4px}
     .trigger-upgrade{background:#E8F3EC;border-left:4px solid #2E7D5C}
@@ -94,6 +100,7 @@
       <li class="ad-primary"><!-- DATA: positioning_primary --></li>
       <li class="ad-secondary"><!-- DATA: positioning_secondary --></li>
       <li class="ad-watch"><!-- DATA: positioning_watch --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: positioning_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -106,6 +113,7 @@
       <li class="ad-primary"><!-- DATA: section_pre_market_movers_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_pre_market_movers_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_pre_market_movers_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: premarket_movers_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -118,6 +126,7 @@
       <li class="ad-primary"><!-- DATA: section_correction_checklist_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_correction_checklist_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_correction_checklist_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: checklist_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -130,6 +139,7 @@
       <li class="ad-primary"><!-- DATA: section_macro_premarket_background_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_macro_premarket_background_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_macro_premarket_background_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: macro_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -142,6 +152,7 @@
       <li class="ad-primary"><!-- DATA: section_sector_thematic_etf_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_sector_thematic_etf_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_sector_thematic_etf_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: sector_etf_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -154,6 +165,7 @@
       <li class="ad-primary"><!-- DATA: section_major_etf_technical_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_major_etf_technical_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_major_etf_technical_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: major_etf_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -166,6 +178,7 @@
       <li class="ad-primary"><!-- DATA: section_50ma_atr_extension_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_50ma_atr_extension_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_50ma_atr_extension_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: atr_extension_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -179,6 +192,7 @@
       <li class="ad-primary"><!-- DATA: section_market_breadth_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_market_breadth_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_market_breadth_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: breadth_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
@@ -191,12 +205,22 @@
       <li class="ad-primary"><!-- DATA: section_fx_commodities_primary_action --></li>
       <li class="ad-condition"><!-- DATA: section_fx_commodities_condition_action --></li>
       <li class="ad-avoid"><!-- DATA: section_fx_commodities_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: forex_commodity_invalidation --></span></span></li>
     </ul>
   </div>
 </section>
 
 <section><h2>美債、Fed 與經濟資料</h2>
   <!-- DATA: treasury_fed_economic_data_table -->
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><!-- DATA: section_treasury_fed_primary_action --></li>
+      <li class="ad-condition"><!-- DATA: section_treasury_fed_condition_action --></li>
+      <li class="ad-avoid"><!-- DATA: section_treasury_fed_avoid_action --></li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value"><!-- DATA: treasury_invalidation --></span></span></li>
+    </ul>
+  </div>
 </section>
 
 <section><h2>交易計畫</h2>

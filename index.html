@@ -8,7 +8,7 @@
   <style>
     :root{--bg:#f5f5f7;--panel:#fff;--text:#111827;--muted:#6e7480;--line:#e6e8ee;--blue:#007aff;--green:#18864b;--amber:#a86600;--red:#c9342f;--shadow:0 18px 48px rgba(15,23,42,.08)}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fbfbfd 0,var(--bg) 280px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.56}.wrap{max-width:1040px;margin:0 auto;padding:34px 18px 48px}.masthead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px;align-items:end;background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.76);border-radius:18px;box-shadow:var(--shadow);padding:22px 24px;margin-bottom:18px}.eyebrow{color:var(--blue);font-size:13px;font-weight:700;margin-bottom:8px}h1{margin:0;font-size:34px;line-height:1.18}.summary{color:var(--muted);margin:10px 0 0}.status-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.stat,.report{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.78);border-radius:16px;box-shadow:0 8px 24px rgba(15,23,42,.06)}.stat{padding:14px 15px}.stat span{display:block;color:var(--muted);font-size:12px;font-weight:700;margin-bottom:4px}.stat strong{font-size:18px}.report-list{display:grid;gap:12px}.report{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;padding:18px}.report h2{margin:0 0 7px;font-size:20px;line-height:1.3}.report p{margin:0;color:var(--muted);font-size:14px}.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}.badge{display:inline-flex;align-items:center;min-height:24px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:700;white-space:nowrap}.green{color:var(--green);background:#eaf8ef}.amber{color:var(--amber);background:#fff4d9}.red{color:var(--red);background:#fff0ef}.blue{color:var(--blue);background:#eaf4ff}.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}a.button{display:inline-flex;align-items:center;justify-content:center;min-height:40px;color:#fff;background:var(--blue);text-decoration:none;border-radius:999px;padding:9px 15px;font-size:14px;font-weight:700;white-space:nowrap;box-shadow:0 10px 24px rgba(0,122,255,.22)}a.button:hover{background:#006ee6}.note{color:var(--muted);font-size:13px;margin-top:18px}code{background:#eef2f6;padding:2px 5px;border-radius:5px;font-family:Consolas,monospace;font-size:.92em}@media(max-width:760px){.wrap{padding:20px 12px 36px}.masthead{grid-template-columns:1fr;border-radius:16px;padding:18px}h1{font-size:28px}.status-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.report{grid-template-columns:1fr}.actions{justify-content:flex-start}}@media(max-width:440px){.status-strip{grid-template-columns:1fr}}
-  </style>
+    .archive-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 2px 12px}.archive-toolbar h2{margin:0;font-size:20px}.archive-meta{color:var(--muted);font-size:13px}.report[hidden]{display:none}.pagination{display:flex;align-items:center;justify-content:center;gap:8px;margin:20px 0 0}.page-numbers{display:flex;gap:6px}.page-button{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--text);font:600 13px/1 inherit;cursor:pointer}.page-button:hover{border-color:#b8c0cc}.page-button.is-active{border-color:var(--blue);background:var(--blue);color:#fff}.page-button:disabled{opacity:.35;cursor:default}.page-status{min-width:72px;color:var(--muted);font-size:12px;text-align:center}@media(max-width:760px){.archive-toolbar{align-items:flex-end}}@media(max-width:440px){.archive-toolbar{display:block}.archive-meta{margin-top:3px}.pagination{gap:5px}.page-button{width:34px;height:34px}.page-status{display:none}}  </style>
 </head>
 <body>
   <main class="wrap">
@@ -28,6 +28,10 @@
       <div class="stat"><span>科技確認</span><strong>SPY 744.50 / QQQ 728.90</strong></div>
     </section>
 
+    <div class="archive-toolbar" id="report-archive">
+      <h2>全部報告</h2>
+      <div class="archive-meta"><span id="report-count">29</span> 份 · 每頁 6 份</div>
+    </div>
     <section class="report-list" aria-label="reports">
       <article class="report">
         <div>
@@ -146,18 +150,124 @@
         </div>
         <div class="actions"><a class="button" href="reports/2026-06-15-weekly-expected-move.html">打開報告</a></div>
       </article>
-
       <article class="report">
-        <div>
-          <h2>2026-06-13｜一週復盤：廣度修復確認，但科技權重仍分裂</h2>
-          <p>Market Breadth 從週中惡化轉為週末修復，S&P 500 與 Nasdaq 100 50MA 廣度回升；IWM/RSP/QQQE 跑贏 QQQ/VOO。</p>
-          <div class="badges"><span class="badge amber">Weekly Review</span><span class="badge green">Breadth Repair</span><span class="badge amber">Style Rotation</span></div>
-        </div>
-        <div class="actions"><a class="button" href="reports/2026-06-13-weekly.html">打開報告</a></div>
+        <div><h2>美股盤前更新｜2026-06-11｜PPI 後反彈，但 Market Breadth 明顯轉弱</h2><p>資料時間：2026-06-11 Asia/Hong_Kong；美東盤前。Market Breadth 已更新至 2026-06-10，Stockbee 最新為 2026-06-10。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-11-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前更新｜2026-06-10｜CPI 符合預期但科技壓力未解除</h2><p>資料時間：2026-06-10 Asia/Hong_Kong；美東盤前。Market Breadth 已更新至 2026-06-09；CPI 已於 08:30 ET 公布。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-10-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>每週預期波動新舊週對比｜2026-06-09｜Move 擴縮與 1SD/2SD 邊界重定價</h2><p>資料時間：2026-06-09 Asia/Hong_Kong。比較 `1 Jun - 5 Jun` 與 `8 Jun - 12 Jun` Weekly Expected Move。</p><div class="badges"><span class="badge amber">Expected Move</span><span class="badge blue">Volatility</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-09-weekly-expected-move.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前更新｜2026-06-09｜CPI 前夕區間消化，反彈但廣度未同步擴散</h2><p>資料時間：2026-06-09 Asia/Hong_Kong；美東盤前。Market Breadth 已更新至 2026-06-08。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-09-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股週末總結｜2026-06-01 至 2026-06-05｜NFP 重新定價利率，高 beta 集中降槓桿</h2><p>資料時間：2026-06-06 Asia/Hong_Kong；美股資料截至 2026-06-05 收盤。MA breadth sheet 與 Stockbee breadth 最新列均已更新至 2026-06-05。</p><div class="badges"><span class="badge amber">Weekly Review</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-06-weekly.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前更新｜2026-06-05｜NFP 高於預期，消費與半導體仍承壓</h2><p>資料時間：2026-06-05 21:05 Asia/Shanghai；09:05 美東，NFP 公布後。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-05-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前更新｜2026-06-04｜Broadcom 壓科技，進入調整期觀察</h2><p>資料時間：2026-06-04 21:25 Asia/Shanghai；09:25 美東，初請失業金公布後。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-04-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前更新｜2026-06-03｜ADP偏強，油價再成壓力測試</h2><p>資料時間：2026-06-03 20:56 Asia/Shanghai；美東開盤前。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-03-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前更新｜2026-06-02｜AI延伸，廣度背離未解</h2><p>資料時間：2026-06-02 21:22 Asia/Shanghai；美東開盤前。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-02-premarket-update.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>NVDA GTC 產業鏈深度分析：AI Factory 是主線，AI PC 與 Robotics 是擴散</h2><p>本補充聚焦 GTC Taipei 事件與可交易產業鏈，不重算週末已完成的廣度、ETF 技術與 50MA ATR。核心結論是 Vera Rubin / NVL72 把投資焦點從單顆 GPU 推向整櫃級 AI infrastructure。</p><div class="badges"><span class="badge blue">Deep Dive</span><span class="badge green">AI</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-06-01-nvda-gtc.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股週末復盤｜2026-05-26 至 2026-05-29</h2><p>本週因 2026-05-25 Memorial Day 休市，完整交易週為 5/26-5/29。美股完成第 9 週連漲，但主要 ETF 已進入極端 ATR 延伸區，策略從追突破轉為持強與等回踩。</p><div class="badges"><span class="badge amber">Weekly Review</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-05-30-weekly.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前日報｜2026-05-29 更新版</h2><p>美股多頭延續但技術延伸極高；本版聚焦 PCE / Fed 壓力、Stockbee 廣度、50MA ATR 延伸與 FX/商品對風險偏好的確認。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-05-29.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前日報｜2026-05-28</h2><p>資料時間：Asia/Shanghai 2026-05-28；美東 2026-05-28 盤前。Macro、Sector/Theme ETF、FX/商品讀取 Google Sheet Market Watch ；Stockbee 廣度讀取 2026-05-27 收盤資料。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-05-28.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前日報｜2026-05-27 更新版</h2><p>資料時間：Asia/Shanghai 2026-05-27 更新版；美東 2026-05-27 盤前至歐洲時段。FX/商品與 sector/theme ETF 讀取 Google Sheet Market Watch 分析。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-05-27.html">打開報告</a></div>
+      </article>
+      <article class="report">
+        <div><h2>美股盤前監控｜2026-05-26</h2><p>歷史市場報告，包含當日指數、廣度、ETF 技術與主要交易風險。</p><div class="badges"><span class="badge amber">Premarket</span><span class="badge green">Archive</span></div></div>
+        <div class="actions"><a class="button" href="reports/2026-05-26.html">打開報告</a></div>
       </article>
     </section>
+
+    <nav class="pagination" id="report-pagination" aria-label="報告分頁">
+      <button class="page-button" id="page-prev" type="button" aria-label="上一頁" title="上一頁">‹</button>
+      <div class="page-numbers" id="page-numbers"></div>
+      <button class="page-button" id="page-next" type="button" aria-label="下一頁" title="下一頁">›</button>
+      <span class="page-status" id="page-status" aria-live="polite"></span>
+    </nav>
   </main>
-</body>
+  <script>
+    (() => {
+      const reports = Array.from(document.querySelectorAll('.report-list .report'));
+      const pageSize = 6;
+      const totalPages = Math.max(1, Math.ceil(reports.length / pageSize));
+      const prev = document.getElementById('page-prev');
+      const next = document.getElementById('page-next');
+      const numbers = document.getElementById('page-numbers');
+      const status = document.getElementById('page-status');
+      const count = document.getElementById('report-count');
+      let currentPage = Math.min(totalPages, Math.max(1, Number(new URLSearchParams(location.search).get('page')) || 1));
+      count.textContent = reports.length;
+      function render(pushState = false, scroll = false) {
+        const start = (currentPage - 1) * pageSize;
+        reports.forEach((report, index) => { report.hidden = index < start || index >= start + pageSize; });
+        numbers.replaceChildren();
+        for (let page = 1; page <= totalPages; page += 1) {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = `page-button${page === currentPage ? ' is-active' : ''}`;
+          button.textContent = page;
+          button.setAttribute('aria-label', `第 ${page} 頁`);
+          if (page === currentPage) button.setAttribute('aria-current', 'page');
+          button.addEventListener('click', () => goTo(page));
+          numbers.append(button);
+        }
+        prev.disabled = currentPage === 1;
+        next.disabled = currentPage === totalPages;
+        status.textContent = `${currentPage} / ${totalPages}`;
+        if (pushState) {
+          const url = new URL(location.href);
+          currentPage === 1 ? url.searchParams.delete('page') : url.searchParams.set('page', currentPage);
+          history.pushState({ page: currentPage }, '', url);
+        }
+        if (scroll) document.getElementById('report-archive').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      function goTo(page) {
+        currentPage = Math.min(totalPages, Math.max(1, page));
+        render(true, true);
+      }
+      prev.addEventListener('click', () => goTo(currentPage - 1));
+      next.addEventListener('click', () => goTo(currentPage + 1));
+      addEventListener('popstate', () => {
+        currentPage = Math.min(totalPages, Math.max(1, Number(new URLSearchParams(location.search).get('page')) || 1));
+        render(false, false);
+      });
+      render(false, false);
+    })();
+  </script></body>
 </html>
 
 

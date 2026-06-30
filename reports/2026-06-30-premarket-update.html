@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-06-30 美股盤前監控｜廣度修復，科技測試 20MA</title>
+  <style>
+    :root{--bg:#f5f5f7;--panel:#fff;--text:#111827;--muted:#667085;--line:#e5e7eb;--blue:#007aff;--green:#18864b;--amber:#a86600;--red:#c9342f;--shadow:0 18px 48px rgba(15,23,42,.08)}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fbfbfd 0,var(--bg) 300px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.58}.wrap{max-width:1160px;margin:0 auto;padding:32px 16px 52px}header{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.8);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-bottom:18px}.eyebrow{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:8px}h1{font-size:32px;line-height:1.2;margin:0}h2{font-size:23px;margin:30px 0 12px}h3{font-size:18px;margin:20px 0 8px}.muted,.note{color:var(--muted)}.note{font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.card,.check{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:0 8px 20px rgba(15,23,42,.04)}.card span,.check span{display:block;color:var(--muted);font-size:12px;font-weight:800}.card strong{display:block;margin-top:4px;font-size:18px;line-height:1.25}.badge{display:inline-flex;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:800}.amber{color:var(--amber);background:#fff7ed}.blue{color:var(--blue);background:#eff6ff}.green{color:var(--green);background:#ecfdf3}.red{color:var(--red);background:#fff1f1}table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:10px 0 12px;font-size:14px;box-shadow:0 8px 20px rgba(15,23,42,.04)}th,td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}tr:last-child td{border-bottom:0}th{background:#f8fafc;color:#334155;font-weight:800}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}ol{padding-left:22px}li{margin:7px 0}.callout{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:14px 16px;margin:12px 0 18px}.risk{border-left-color:var(--red)}.warn{border-left-color:var(--amber)}.ok{border-left-color:var(--green)}.checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.check strong{display:block;margin-top:4px}.check.low{border-left:4px solid var(--green)}.check.mid{border-left:4px solid var(--amber)}.check.high{border-left:4px solid var(--red)}
+    .action-directive{border-left:3px solid var(--amber);background:#FAF6EE;padding:12px 16px;margin-top:20px;border-radius:0}
+    .action-directive--positioning{border-left-width:4px;padding:16px 20px}
+    .ad-label{display:inline-block;color:var(--amber);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+    .action-directive--positioning .ad-label{font-weight:600}
+    .ad-list{list-style:none;padding:0;margin:10px 0 0}
+    .ad-list li{position:relative;margin:6px 0;padding-left:22px}
+    .ad-list li::before{position:absolute;left:0;top:0;font-weight:700}
+    .ad-primary{color:var(--text);font-weight:600}.ad-primary::before{content:"●";color:var(--amber)}
+    .ad-condition{color:#4b5563}.ad-condition::before{content:"◐";color:var(--amber)}
+    .ad-secondary{color:#4b5563}.ad-secondary::before{content:"◐";color:var(--amber)}
+    .ad-watch{color:var(--text)}.ad-watch::before{content:"◆";color:var(--blue)}
+    .ad-avoid{color:var(--muted)}.ad-avoid::before{content:"✗";color:var(--red)}
+    .ad-invalidate{padding:8px 0;border-top:.5px dashed rgba(163,66,43,.3);margin-top:6px;font-size:12.5px;color:#6B6960;font-style:italic}
+    .ad-invalidate::before{content:none}
+    .ad-invalidate .ad-bullet{color:#A3422B;font-style:normal;margin-right:8px}
+    .ad-invalidate strong{color:#A3422B;font-style:normal;font-weight:500}
+    .ad-invalidate .ad-content{line-height:1.5}
+    .ad-invalidation-value:empty::after{content:"—"}
+    .regime-triggers{display:flex;gap:16px;margin-bottom:32px}
+    .trigger-box{flex:1;padding:16px 20px;border-radius:4px}
+    .trigger-upgrade{background:#E8F3EC;border-left:4px solid #2E7D5C}
+    .trigger-downgrade{background:#FAEEEA;border-left:4px solid #A3422B}
+    .tb-header{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+    .tb-arrow{font-size:18px;font-weight:500}
+    .tb-label{font-size:14px;font-weight:500;letter-spacing:.02em}
+    .tb-sub{font-size:11px;color:rgba(0,0,0,.5);letter-spacing:.05em}
+    .tb-list{list-style:none;padding:0;margin:0}
+    .tb-list li{position:relative;font-size:13px;line-height:1.55;padding:6px 0 6px 18px;border-bottom:.5px solid rgba(0,0,0,.08)}
+    .tb-list li:last-child{border-bottom:0}
+    .trigger-upgrade .tb-list li::before{content:"↑";position:absolute;left:0;color:#2E7D5C;font-weight:700}
+    .trigger-downgrade .tb-list li::before{content:"↓";position:absolute;left:0;color:#A3422B;font-weight:700}
+    @media(max-width:600px){.regime-triggers{flex-direction:column}}
+    .playbook-intro{color:#6B6960;font-style:italic;font-size:13px;line-height:1.5;margin-bottom:16px}
+    .playbook-table{width:100%;border-collapse:collapse}
+    .playbook-table tbody tr:nth-child(odd){background:#FAF8F2}
+    .playbook-table tbody tr:nth-child(even){background:#fff}
+    .playbook-table th{background:#F1EFE8;font-weight:500;padding:8px 12px;font-size:12px;letter-spacing:.03em;text-align:left}
+    .playbook-table td{padding:10px 12px;font-size:13px;vertical-align:top}
+    .playbook-table th:nth-child(1),.playbook-table td:nth-child(1){width:15%;font-family:Consolas,"SFMono-Regular",Menlo,monospace;color:#BA7517;font-weight:500}
+    .playbook-table th:nth-child(2),.playbook-table td:nth-child(2){width:30%}
+    .playbook-table th:nth-child(3),.playbook-table td:nth-child(3){width:25%;font-style:italic;color:#6B6960}
+    .playbook-table th:nth-child(4),.playbook-table td:nth-child(4){width:30%}
+    .playbook-table td:nth-child(4) strong{font-weight:700}
+    @media(max-width:700px){.playbook-table,.playbook-table thead,.playbook-table tbody,.playbook-table tr,.playbook-table th,.playbook-table td{display:block;width:100%}.playbook-table thead{display:none}.playbook-table tr{background:#fff;border:1px solid var(--line);border-radius:8px;margin:10px 0;overflow:hidden}.playbook-table tbody tr:nth-child(odd),.playbook-table tbody tr:nth-child(even){background:#fff}.playbook-table td{border-bottom:1px solid var(--line);padding:8px 12px}.playbook-table td:last-child{border-bottom:0}.playbook-table td:nth-child(1){background:#FAF8F2;color:#BA7517;font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-weight:600}.playbook-table td:nth-child(n+2)::before{display:block;color:#6B6960;font-size:11px;font-weight:600;letter-spacing:.03em;margin-bottom:2px}.playbook-table td:nth-child(2)::before{content:"觸發事件"}.playbook-table td:nth-child(3)::before{content:"判讀"}.playbook-table td:nth-child(4)::before{content:"行動"}}
+    @media(max-width:900px){.grid,.checks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.wrap{padding:20px 12px 40px}header{padding:18px;border-radius:16px}h1{font-size:26px}.grid,.checks{grid-template-columns:1fr}table{display:block;overflow-x:auto;white-space:nowrap}}
+  .table-scroll{overflow-x:auto}.source-list{padding-left:22px}.source-list a{color:var(--blue)}
+</style>
+</head>
+<body><main class="wrap">
+<header>
+  <div class="eyebrow">US PREMARKET MONITOR · 2026-06-30</div>
+  <h1>美股盤前監控：廣度修復，科技反彈測試 20MA</h1>
+  <p class="muted">盤前行情約截至 05:49 ET；ETF 技術、Market Breadth、Stockbee 與 Weekly Expected Move 截至 2026-06-29 收盤。</p>
+  <p><span class="badge green">Checklist 0 High / 8 · Low Risk</span></p>
+</header>
+
+<section class="grid" aria-label="summary">
+  
+    <div class="card"><span>S&amp;P / Nasdaq futures</span><strong>+0.04% / +0.04%</strong><p class="note">Dow futures +0.13%，季度末盤前近乎持平。</p></div>
+    <div class="card"><span>核心催化</span><strong>10:00 ET 雙數據</strong><p class="note">JOLTS 7.28M 預期；消費者信心 97.5 預期。</p></div>
+    <div class="card"><span>Stockbee Breadth</span><strong>5D 1.43 / 10D 1.38</strong><p class="note">Primary Breadth 1729 vs 1112，維持偏多。</p></div>
+    <div class="card"><span>修正風險</span><strong>0 High / 8</strong><p class="note">短線 Low Risk；中期科技趨勢尚未完全修復。</p></div>
+</section>
+
+<section class="regime-triggers">
+  <div class="trigger-box trigger-upgrade">
+    <div class="tb-header">
+      <span class="tb-arrow">↑</span>
+      <span class="tb-label">油門升級訊號</span>
+      <span class="tb-sub">轉攻擊</span>
+    </div>
+    <ul class="tb-list">
+      <li>SPY 收盤 &gt;744.50 + QQQ &gt;728.90</li>
+      <li>10D breadth ratio &gt;1.50</li>
+      <li>4%+上漲股 &gt;300 + T2108 &gt;55</li>
+    </ul>
+  </div>
+  <div class="trigger-box trigger-downgrade">
+    <div class="tb-header">
+      <span class="tb-arrow">↓</span>
+      <span class="tb-label">油門降級訊號</span>
+      <span class="tb-sub">轉防守</span>
+    </div>
+    <ul class="tb-list">
+      <li>SPY 收盤 &lt;732.21 + QQQ &lt;699.02</li>
+      <li>T2108 &lt;45 + 4%+下跌股 &gt;500</li>
+      <li>VIX &gt;20 + NDX &gt;50MA 跌破 45%</li>
+    </ul>
+  </div>
+</section>
+<section><h2>核心結論</h2>
+  <ol>
+    <li><strong>盤前沒有新增指數方向。</strong> S&amp;P 與 Nasdaq futures 均約 +0.04%，市場在 10:00 ET 數據前維持平衡。</li>
+    <li><strong>廣度已明顯修復。</strong> S&amp;P 500 &gt;20MA / &gt;50MA 升至 64.74% / 64.94%，IWM &gt;20MA 升至 70.36%。</li>
+    <li><strong>科技仍是待確認項。</strong> Nasdaq 100 &gt;50MA 僅 50.49%，較一個月前低 14.85 個百分點；QQQ 仍略低於 20MA 724.87。</li>
+    <li><strong>輪動比單一 risk-on 更清楚。</strong> RSP、IWM、DIA 趨勢強，但已達 +2.48 / +2.42 / +2.79 ATR；不適合追突破。</li>
+    <li><strong>短線 Low Risk 不等於中期全面轉強。</strong> 10D ratio 1.38 尚未達 2，美元一個月 +2.35%，BTC 與貴金屬仍弱。</li>
+  </ol>
+  <div class="action-directive action-directive--positioning">
+    <span class="ad-label">→ 今日定位</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>倉位：</strong>10:00 ET 前維持 60%-70%，數據落地後再調整。</li>
+      <li class="ad-secondary"><strong>平衡：</strong>保留 RSP/QQQE，科技只在收回 20MA 後加碼。</li>
+      <li class="ad-watch"><strong>關鍵：</strong>JOLTS 7.28M 預期與 10Y 4.40% 附近反應。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 SPY &gt;744.50 且 QQQ &gt;728.90 → 60%-70%倉位失效, 恢復標準倉位</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>Pre-market movers</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>股票</th><th>盤前變化</th><th>催化 / 背景</th><th>板塊 read-through</th><th>判斷</th></tr></thead><tbody><tr><td data-label="股票">AMAT</td><td data-label="盤前變化" class="num">+3.55%</td><td data-label="催化 / 背景" class="num">半導體設備盤前買盤；LRCX 同步約 +2.94%</td><td data-label="板塊 read-through">SMH、半導體設備與 AI capex</td><td data-label="判斷">高市值且有板塊確認；等 VWAP，不追跳空</td></tr><tr><td data-label="股票">TSLA</td><td data-label="盤前變化" class="num">-0.94%</td><td data-label="催化 / 背景">季度末獲利了結；仍高於本週 +1SD 399.09</td><td data-label="板塊 read-through">QQQ、XLY 與高 beta</td><td data-label="判斷">成交參與足夠且具指數權重；守 400 才維持強勢</td></tr></tbody></table></div><p class="note">DLR、NSC 的盤前跌幅因缺少可核對的盤前成交參與，不列入主表；AVAV 市值低於主表門檻。</p>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>AMAT/TSLA 不追盤前價，等首 30 分鐘守 VWAP。</li>
+      <li class="ad-condition"><strong>觸發：</strong>AMAT &gt;719 且 SMH &gt;640 → 加碼半導體 1/3。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不把 AVAV 低市值跳空納入主表或追價。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 AMAT &lt;700 且 LRCX &lt;420 → 半導體候選失效, 取消加碼</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>General Market Correction Checklist / 大盤修正檢查表</h2>
+  <div class="checks">
+    <div class="check low"><span>S&amp;P 500 overextension</span><strong>Low</strong><p class="note">SPY 距 50MA 約 +1.20 ATR。</p></div>
+    <div class="check low"><span>Increasing downward momentum</span><strong>Low</strong><p class="note">SPY/QQQ 5日為正，futures 持平。</p></div>
+    <div class="check mid"><span>Top range &amp; breakdown</span><strong>Intermediate</strong><p class="note">SPY/QQQ 仍在 20MA 附近，尚未站穩。</p></div>
+    <div class="check mid"><span>Technical indicators deteriorating</span><strong>Intermediate</strong><p class="note">權重指數低於 20MA，但守 50/200MA。</p></div>
+    <div class="check low"><span>Market breadth worsening</span><strong>Low</strong><p class="note">SPX 與 IWM 短線廣度同步改善。</p></div>
+    <div class="check low"><span>VIX &gt;20 / VIX spike</span><strong>Low</strong><p class="note">VIX 17.50，5日 -10.21%。</p></div>
+    <div class="check low"><span>Breakout win rate down</span><strong>Low</strong><p class="note">GOOGL/TSLA +1SD，VZ -1SD，無 2SD 警報。</p></div>
+    <div class="check mid"><span>Theme momentum weakening</span><strong>Intermediate</strong><p class="note">半導體修復，但 crypto/軟體/商品鏈仍弱。</p></div>
+  </div><div class="callout ok"><strong>Checklist Score = 0 High / 8 → Low Risk。</strong> 短線修正風險下降；這不等於中期趨勢已全面修復，科技仍需站回 20MA 且 Nasdaq 100 &gt;50MA 廣度持續高於 50%。</div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>維持現有部位；新倉先用 2/3 size。</li>
+      <li class="ad-condition"><strong>觸發：</strong>High 增至 ≥3 → 降至半倉；維持 ≤2 → 標準 size。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不把 Low Risk 解讀為無回撤風險。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 VIX &gt;20 且 SPY &lt;732.21 → Low Risk 定位失效, 轉防守</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>宏觀事件與盤前背景</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>時間 (ET)</th><th>事件</th><th>預期</th><th>前值</th><th>美股判讀</th></tr></thead><tbody><tr><td data-label="時間 (ET)">盤前</td><td data-label="事件">S&amp;P / Nasdaq / Dow futures</td><td data-label="預期" class="num">+0.04% / +0.04% / +0.13%</td><td data-label="前值">—</td><td data-label="美股判讀">數據前中性，沒有價格確認</td></tr><tr><td data-label="時間 (ET)">09:00</td><td data-label="事件">FHFA 房價月率 / Case-Shiller 年率</td><td data-label="預期" class="num">+0.20% / +0.90%</td><td data-label="前值" class="num">+0.10% / +0.80%</td><td data-label="美股判讀">高於預期會增加利率敏感股壓力</td></tr><tr><td data-label="時間 (ET)">09:45</td><td data-label="事件">Chicago PMI</td><td data-label="預期">不可得</td><td data-label="前值" class="num">62.7</td><td data-label="美股判讀">製造活動若明顯降溫，留意 cyclical 反應</td></tr><tr><td data-label="時間 (ET)">10:00</td><td data-label="事件">JOLTS 職位空缺（5月）</td><td data-label="預期" class="num">7.28M</td><td data-label="前值" class="num">7.618M</td><td data-label="美股判讀">高於 7.60M 對 10Y 與長久期成長不利</td></tr><tr><td data-label="時間 (ET)">10:00</td><td data-label="事件">Conference Board 消費者信心</td><td data-label="預期" class="num">97.5</td><td data-label="前值" class="num">93.1</td><td data-label="美股判讀">強數據利好消費，但可能推高殖利率</td></tr><tr><td data-label="時間 (ET)">07/01</td><td data-label="事件">ADP / ISM Manufacturing</td><td data-label="預期" class="num">115K / 不可得</td><td data-label="前值" class="num">122K / 54.0</td><td data-label="美股判讀">NFP 前一日，降低隔夜槓桿</td></tr><tr><td data-label="時間 (ET)">07/02 08:30</td><td data-label="事件">非農 / 失業率</td><td data-label="預期" class="num">105K / 4.35%</td><td data-label="前值" class="num">172K / 4.30%</td><td data-label="美股判讀">本週最高事件風險</td></tr><tr><td data-label="時間 (ET)">07/03</td><td data-label="事件">美股休市</td><td data-label="預期">—</td><td data-label="前值">—</td><td data-label="美股判讀">縮短週使 MOC 與季度末資金流更重要</td></tr></tbody></table></div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>10:00 ET 前不開新指數倉，等 JOLTS 與信心數據。</li>
+      <li class="ad-condition"><strong>觸發：</strong>JOLTS &gt;7.60M 且 10Y &gt;4.42% → 減長久期 1/3。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不在 09:45-10:05 ET 追開盤突破。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 JOLTS &lt;7.00M 且 10Y &lt;4.30% → 事件防守失效, 加成長 1/3</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>Sector / Thematic ETF</h2>
+  <h3>S&amp;P 500 Sector ETF（按 RSI 由高至低）</h3><div class="table-scroll"><table class=""><thead><tr><th>指標</th><th>最新</th><th>5日</th><th>1月</th><th>RSI</th><th>判斷</th></tr></thead><tbody><tr><td data-label="指標">XLU</td><td data-label="最新" class="num">46.02</td><td data-label="5日" class="num">+2.11%</td><td data-label="1月" class="num">+3.60%</td><td data-label="RSI" class="num">80.19</td><td data-label="判斷">三均線上；過熱，不追</td></tr><tr><td data-label="指標">XLV</td><td data-label="最新" class="num">160.74</td><td data-label="5日" class="num">+5.62%</td><td data-label="1月" class="num">+7.54%</td><td data-label="RSI" class="num">69.25</td><td data-label="判斷">強趨勢；接近過熱</td></tr><tr><td data-label="指標">XLF</td><td data-label="最新" class="num">53.72</td><td data-label="5日" class="num">-0.30%</td><td data-label="1月" class="num">+4.15%</td><td data-label="RSI" class="num">68.90</td><td data-label="判斷">中期強、短線整理</td></tr><tr><td data-label="指標">XLI</td><td data-label="最新" class="num">182.76</td><td data-label="5日" class="num">+2.59%</td><td data-label="1月" class="num">+5.56%</td><td data-label="RSI" class="num">63.17</td><td data-label="判斷">工業強勢延續</td></tr><tr><td data-label="指標">XLRE</td><td data-label="最新" class="num">44.92</td><td data-label="5日" class="num">+0.63%</td><td data-label="1月" class="num">+2.11%</td><td data-label="RSI" class="num">58.64</td><td data-label="判斷">溫和上升</td></tr><tr><td data-label="指標">XLP</td><td data-label="最新" class="num">84.37</td><td data-label="5日" class="num">+0.78%</td><td data-label="1月" class="num">+1.76%</td><td data-label="RSI" class="num">55.95</td><td data-label="判斷">防守穩定</td></tr><tr><td data-label="指標">XLB</td><td data-label="最新" class="num">50.66</td><td data-label="5日" class="num">-0.41%</td><td data-label="1月" class="num">-0.96%</td><td data-label="RSI" class="num">53.85</td><td data-label="判斷">低於 20/50MA，偏弱</td></tr><tr><td data-label="指標">XLY</td><td data-label="最新" class="num">117.12</td><td data-label="5日" class="num">+2.95%</td><td data-label="1月" class="num">-3.10%</td><td data-label="RSI" class="num">53.78</td><td data-label="判斷">短彈；50/200MA 下</td></tr><tr><td data-label="指標">XLK</td><td data-label="最新" class="num">185.41</td><td data-label="5日" class="num">+0.66%</td><td data-label="1月" class="num">-2.94%</td><td data-label="RSI" class="num">51.15</td><td data-label="判斷">反彈但尚未收回 20MA</td></tr><tr><td data-label="指標">SPY</td><td data-label="最新" class="num">741.00</td><td data-label="5日" class="num">+1.01%</td><td data-label="1月" class="num">-2.05%</td><td data-label="RSI" class="num">50.94</td><td data-label="判斷"><strong>Benchmark：</strong>20MA 下、50/200MA 上</td></tr><tr><td data-label="指標">XLC</td><td data-label="最新" class="num">107.88</td><td data-label="5日" class="num">+0.57%</td><td data-label="1月" class="num">-6.75%</td><td data-label="RSI" class="num">38.08</td><td data-label="判斷">三均線下，下降趨勢</td></tr><tr><td data-label="指標">XLE</td><td data-label="最新" class="num">53.58</td><td data-label="5日" class="num">-1.62%</td><td data-label="1月" class="num">-4.81%</td><td data-label="RSI" class="num">25.64</td><td data-label="判斷">超賣，不代表趨勢反轉</td></tr></tbody></table></div><h3>Thematic Sectors（獨立 tab，按 RSI 由高至低）</h3><div class="table-scroll"><table class=""><thead><tr><th>指標</th><th>最新</th><th>5日</th><th>1月</th><th>RSI</th><th>判斷</th></tr></thead><tbody><tr><td data-label="指標">XBI</td><td data-label="最新" class="num">158.31</td><td data-label="5日" class="num">+7.67%</td><td data-label="1月" class="num">+15.82%</td><td data-label="RSI" class="num">90.31</td><td data-label="判斷">極度過熱</td></tr><tr><td data-label="指標">IBB</td><td data-label="最新" class="num">189.79</td><td data-label="5日" class="num">+6.57%</td><td data-label="1月" class="num">+10.23%</td><td data-label="RSI" class="num">86.66</td><td data-label="判斷">極度過熱</td></tr><tr><td data-label="指標">IAK</td><td data-label="最新" class="num">141.72</td><td data-label="5日" class="num">+2.30%</td><td data-label="1月" class="num">+10.40%</td><td data-label="RSI" class="num">79.49</td><td data-label="判斷">保險強勢但過熱</td></tr><tr><td data-label="指標">JETS</td><td data-label="最新" class="num">33.08</td><td data-label="5日" class="num">+6.09%</td><td data-label="1月" class="num">+12.82%</td><td data-label="RSI" class="num">79.24</td><td data-label="判斷">油價利多已反映不少</td></tr><tr><td data-label="指標">KRE</td><td data-label="最新" class="num">74.75</td><td data-label="5日" class="num">+2.23%</td><td data-label="1月" class="num">+7.38%</td><td data-label="RSI" class="num">71.37</td><td data-label="判斷">區域銀行強勢</td></tr><tr><td data-label="指標">ITB</td><td data-label="最新" class="num">103.97</td><td data-label="5日" class="num">+6.82%</td><td data-label="1月" class="num">+11.72%</td><td data-label="RSI" class="num">69.69</td><td data-label="判斷">房建延續</td></tr><tr><td data-label="指標">XHB</td><td data-label="最新" class="num">115.39</td><td data-label="5日" class="num">+6.65%</td><td data-label="1月" class="num">+12.43%</td><td data-label="RSI" class="num">69.26</td><td data-label="判斷">接近過熱</td></tr><tr><td data-label="指標">ARKK</td><td data-label="最新" class="num">8.91</td><td data-label="5日" class="num">+4.21%</td><td data-label="1月" class="num">+0.56%</td><td data-label="RSI" class="num">68.62</td><td data-label="判斷">反彈但 beta 高</td></tr><tr><td data-label="指標">CIBR</td><td data-label="最新" class="num">88.50</td><td data-label="5日" class="num">+5.09%</td><td data-label="1月" class="num">-0.61%</td><td data-label="RSI" class="num">57.64</td><td data-label="判斷">短線修復，月線未翻正</td></tr><tr><td data-label="指標">SMH</td><td data-label="最新" class="num">631.98</td><td data-label="5日" class="num">+1.60%</td><td data-label="1月" class="num">+5.52%</td><td data-label="RSI" class="num">55.62</td><td data-label="判斷">半導體修復</td></tr><tr><td data-label="指標">LIT</td><td data-label="最新" class="num">77.31</td><td data-label="5日" class="num">-1.43%</td><td data-label="1月" class="num">-11.29%</td><td data-label="RSI" class="num">50.49</td><td data-label="判斷">中期弱</td></tr><tr><td data-label="指標">AIQ</td><td data-label="最新" class="num">64.22</td><td data-label="5日" class="num">+1.37%</td><td data-label="1月" class="num">-4.60%</td><td data-label="RSI" class="num">49.45</td><td data-label="判斷">AI 廣度不足</td></tr><tr><td data-label="指標">WGMI</td><td data-label="最新" class="num">63.70</td><td data-label="5日" class="num">-10.26%</td><td data-label="1月" class="num">-6.45%</td><td data-label="RSI" class="num">46.60</td><td data-label="判斷">crypto miners 弱</td></tr><tr><td data-label="指標">URA</td><td data-label="最新" class="num">43.93</td><td data-label="5日" class="num">-3.62%</td><td data-label="1月" class="num">-13.46%</td><td data-label="RSI" class="num">43.56</td><td data-label="判斷">鈾礦下降趨勢</td></tr><tr><td data-label="指標">IBIT</td><td data-label="最新" class="num">34.18</td><td data-label="5日" class="num">-3.20%</td><td data-label="1月" class="num">-17.90%</td><td data-label="RSI" class="num">41.56</td><td data-label="判斷">crypto beta 弱</td></tr><tr><td data-label="指標">COPX</td><td data-label="最新" class="num">75.74</td><td data-label="5日" class="num">-4.71%</td><td data-label="1月" class="num">-14.07%</td><td data-label="RSI" class="num">41.28</td><td data-label="判斷">銅礦弱</td></tr><tr><td data-label="指標">IGV</td><td data-label="最新" class="num">89.89</td><td data-label="5日" class="num">+2.94%</td><td data-label="1月" class="num">-11.58%</td><td data-label="RSI" class="num">35.60</td><td data-label="判斷">軟體超賣反彈</td></tr><tr><td data-label="指標">TAN</td><td data-label="最新" class="num">57.60</td><td data-label="5日" class="num">-1.64%</td><td data-label="1月" class="num">-22.09%</td><td data-label="RSI" class="num">35.44</td><td data-label="判斷">太陽能下降趨勢</td></tr></tbody></table></div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>只在 XLI/CIBR 回踩 20MA 後加 1/3；XLV/XBI 不追。</li>
+      <li class="ad-condition"><strong>觸發：</strong>XLC &gt;111.64 且 RSI &gt;45 → 加碼 XLC 1/3。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不追 RSI &gt;75 的 XLU/XBI/IBB/IAK/JETS。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 XLV &lt;151.88 且 XLF &lt;52.62 → 防守偏配失效, 轉現金</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>大盤 ETF 技術</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>指標</th><th>最新</th><th>5日</th><th>1月</th><th>Above MA</th><th>RSI</th><th>判斷</th></tr></thead><tbody><tr><td data-label="指標">SPY</td><td data-label="最新" class="num">741.00</td><td data-label="5日" class="num">+1.01%</td><td data-label="1月" class="num">-2.05%</td><td data-label="Above MA" class="num">20 N / 50 Y / 200 Y</td><td data-label="RSI" class="num">50.94</td><td data-label="判斷">混合；20MA 744.50 是確認位</td></tr><tr><td data-label="指標">QQQ</td><td data-label="最新" class="num">724.08</td><td data-label="5日" class="num">+1.46%</td><td data-label="1月" class="num">-1.93%</td><td data-label="Above MA" class="num">20 N / 50 Y / 200 Y</td><td data-label="RSI" class="num">52</td><td data-label="判斷">混合；僅低 20MA 0.79</td></tr><tr><td data-label="指標">QQQE</td><td data-label="最新" class="num">120.95</td><td data-label="5日" class="num">+1.86%</td><td data-label="1月" class="num">+1.39%</td><td data-label="Above MA" class="num">20 Y / 50 Y / 200 Y</td><td data-label="RSI" class="num">57</td><td data-label="判斷">等權科技優於權重科技</td></tr><tr><td data-label="指標">VOO</td><td data-label="最新" class="num">681.01</td><td data-label="5日" class="num">+0.69%</td><td data-label="1月" class="num">-2.08%</td><td data-label="Above MA" class="num">20 N / 50 Y / 200 Y</td><td data-label="RSI" class="num">51</td><td data-label="判斷">與 SPY 同步，待收 20MA</td></tr><tr><td data-label="指標">RSP</td><td data-label="最新" class="num">213.05</td><td data-label="5日" class="num">+1.99%</td><td data-label="1月" class="num">+2.02%</td><td data-label="Above MA" class="num">20 Y / 50 Y / 200 Y</td><td data-label="RSI" class="num">62</td><td data-label="判斷">等權強勢但延伸</td></tr><tr><td data-label="指標">IWM</td><td data-label="最新" class="num">298.97</td><td data-label="5日" class="num">+1.24%</td><td data-label="1月" class="num">+2.94%</td><td data-label="Above MA" class="num">20 Y / 50 Y / 200 Y</td><td data-label="RSI" class="num">70</td><td data-label="判斷">小型股強勢且過熱</td></tr><tr><td data-label="指標">DIA</td><td data-label="最新" class="num">521.68</td><td data-label="5日" class="num">+0.98%</td><td data-label="1月" class="num">+2.13%</td><td data-label="Above MA" class="num">20 Y / 50 Y / 200 Y</td><td data-label="RSI" class="num">64</td><td data-label="判斷">Dow 強勢但 ATR 延伸高</td></tr><tr><td data-label="指標">VIX</td><td data-label="最新" class="num">17.50</td><td data-label="5日" class="num">-10.21%</td><td data-label="1月" class="num">+14.23%</td><td data-label="Above MA" class="num">20 N / 50 N / 200 N</td><td data-label="RSI" class="num">47</td><td data-label="判斷">短線風險下降；月度仍高</td></tr><tr><td data-label="指標">ARKK</td><td data-label="最新" class="num">8.91</td><td data-label="5日" class="num">+4.21%</td><td data-label="1月" class="num">+0.56%</td><td data-label="Above MA" class="num">20 Y / 50 Y / 200 Y</td><td data-label="RSI" class="num">68.62</td><td data-label="判斷">高 beta 反彈接近過熱</td></tr></tbody></table></div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>RSP/QQQE 保留，SPY/QQQ 收回 20MA 才加碼。</li>
+      <li class="ad-condition"><strong>觸發：</strong>SPY &gt;744.50 且 QQQ &gt;724.87 → 恢復科技標準配置。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不在 IWM RSI 70、DIA +2.79 ATR 時追突破。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 QQQ &lt;699.02 且 SPY &lt;732.21 → 技術修復失效, 減成長 1/3</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>50MA ATR 延伸</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>指標</th><th>價格</th><th>50MA</th><th>ATR(14)</th><th>距50MA ATR</th><th>判斷</th></tr></thead><tbody><tr><td data-label="指標">QQQ</td><td data-label="價格" class="num">724.08</td><td data-label="50MA" class="num">699.02</td><td data-label="ATR(14)" class="num">19.58</td><td data-label="距50MA ATR" class="num">+1.28</td><td data-label="判斷">正常偏高</td></tr><tr><td data-label="指標">QQQE</td><td data-label="價格" class="num">120.95</td><td data-label="50MA" class="num">114.23</td><td data-label="ATR(14)" class="num">2.73</td><td data-label="距50MA ATR" class="num">+2.46</td><td data-label="判斷">警戒；不追</td></tr><tr><td data-label="指標">VOO</td><td data-label="價格" class="num">681.01</td><td data-label="50MA" class="num">673.27</td><td data-label="ATR(14)" class="num">10.83</td><td data-label="距50MA ATR" class="num">+0.71</td><td data-label="判斷">正常</td></tr><tr><td data-label="指標">RSP</td><td data-label="價格" class="num">213.05</td><td data-label="50MA" class="num">205.73</td><td data-label="ATR(14)" class="num">2.95</td><td data-label="距50MA ATR" class="num">+2.48</td><td data-label="判斷">警戒；等權延伸</td></tr><tr><td data-label="指標">IWM</td><td data-label="價格" class="num">298.97</td><td data-label="50MA" class="num">283.93</td><td data-label="ATR(14)" class="num">6.21</td><td data-label="距50MA ATR" class="num">+2.42</td><td data-label="判斷">警戒；RSI 70</td></tr><tr><td data-label="指標">DIA</td><td data-label="價格" class="num">521.68</td><td data-label="50MA" class="num">502.55</td><td data-label="ATR(14)" class="num">6.85</td><td data-label="距50MA ATR" class="num">+2.79</td><td data-label="判斷">最高延伸；新倉減半</td></tr></tbody></table></div><div class="callout warn"><strong>判讀：</strong>廣度改善主要由等權、小型股與 Dow 帶動，但這些工具同時比 SPY/QQQ 更延伸。策略是保留強勢，不在 +2 ATR 以上追價。</div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>RSP/IWM/DIA 新倉 size 砍半，等待延伸回落。</li>
+      <li class="ad-condition"><strong>觸發：</strong>IWM ≤296.35 且 20MA 廣度 &gt;65% → 恢復正常 size。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不追 DIA &gt;523、RSP &gt;214 的盤中突破。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 IWM &gt;303 且 IWM 20MA廣度 &gt;75% → 減半失效, 恢復正常 size</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>市場廣度</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>指標</th><th>最新</th><th>最近5日趨勢</th><th>1個月趨勢</th><th>判斷</th></tr></thead><tbody><tr><td data-label="指標">S&amp;P 500 &gt;20MA</td><td data-label="最新" class="num">64.74%</td><td data-label="最近5日趨勢" class="num">+11.07pp</td><td data-label="1個月趨勢" class="num">+18.22pp</td><td data-label="判斷">短線明顯擴張</td></tr><tr><td data-label="指標">S&amp;P 500 &gt;50MA</td><td data-label="最新" class="num">64.94%</td><td data-label="最近5日趨勢" class="num">+6.10pp</td><td data-label="1個月趨勢" class="num">+14.05pp</td><td data-label="判斷">中期健康</td></tr><tr><td data-label="指標">Nasdaq 100 &gt;20MA</td><td data-label="最新" class="num">60.39%</td><td data-label="最近5日趨勢" class="num">-2.97pp</td><td data-label="1個月趨勢" class="num">+4.95pp</td><td data-label="判斷" class="num">短線仍高於 50%</td></tr><tr><td data-label="指標">Nasdaq 100 &gt;50MA</td><td data-label="最新" class="num">50.49%</td><td data-label="最近5日趨勢" class="num">-0.99pp</td><td data-label="1個月趨勢" class="num">-14.85pp</td><td data-label="判斷" class="num">剛回 50%，中期修復不足</td></tr><tr><td data-label="指標">IWM &gt;20MA</td><td data-label="最新" class="num">70.36%</td><td data-label="最近5日趨勢" class="num">+12.97pp</td><td data-label="1個月趨勢" class="num">+22.36pp</td><td data-label="判斷">小型股短線廣度強</td></tr><tr><td data-label="指標">IWM &gt;50MA</td><td data-label="最新" class="num">67.55%</td><td data-label="最近5日趨勢" class="num">-0.47pp</td><td data-label="1個月趨勢" class="num">+6.46pp</td><td data-label="判斷">中期仍健康</td></tr><tr><td data-label="指標">T2108</td><td data-label="最新" class="num">51.65%</td><td data-label="最近5日趨勢" class="num">+6.39pp</td><td data-label="1個月趨勢" class="num">+7.79pp</td><td data-label="判斷">中性偏多</td></tr><tr><td data-label="指標">5日 breadth ratio</td><td data-label="最新" class="num">1.43</td><td data-label="最近5日趨勢" class="num">+0.32</td><td data-label="1個月趨勢" class="num">-0.85</td><td data-label="判斷">短線回升，未達 thrust</td></tr><tr><td data-label="指標">10日 breadth ratio</td><td data-label="最新" class="num">1.38</td><td data-label="最近5日趨勢" class="num">+0.02</td><td data-label="1個月趨勢" class="num">-0.59</td><td data-label="判斷">中期偏多，追多條件不足</td></tr><tr><td data-label="指標">4%+ 上漲股數</td><td data-label="最新" class="num">230</td><td data-label="最近5日趨勢" class="num">+38</td><td data-label="1個月趨勢" class="num">-189</td><td data-label="判斷">正常買盤，非全面爆發</td></tr><tr><td data-label="指標">4%+ 下跌股數</td><td data-label="最新" class="num">83</td><td data-label="最近5日趨勢" class="num">-196</td><td data-label="1個月趨勢" class="num">-138</td><td data-label="判斷">賣壓顯著收斂</td></tr></tbody></table></div>
+  <div class="callout ok"><ol>
+    <li><strong>Primary Breadth：</strong>25%+季度上漲 1729 對下跌 1112，差值 +617，維持 bullish。</li>
+    <li><strong>10 Day Ratio：</strong>1.38 高於 1、低於 2，屬中期偏多但短線不適合激進追多。</li>
+    <li><strong>4% plus/down Daily：</strong>230 / 83，賣壓收斂但沒有 500+ 的廣度 thrust。</li>
+    <li><strong>50% plus/down Month：</strong>35 / 41 同時高於 20，代表高分化與局部過熱並存。</li>
+    <li><strong>34/13：</strong>2094 / 1580，bull side 重新擴大。</li>
+    <li><strong>T2108：</strong>51.65%，回到中性偏多區。</li>
+  </ol><strong>結論：</strong>選擇性做多；回踩確認優先。指數上升時 SPX 廣度同步改善，沒有新增廣度背離；但 Nasdaq 100 &gt;50MA 僅 50.49%，科技集中度風險仍在。</div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>只做回踩 5DMA/20DMA 確認與第二日跟進。</li>
+      <li class="ad-condition"><strong>觸發：</strong>4%+上漲股 &gt;300 且 T2108 &gt;55 → 恢復突破策略。</li>
+      <li class="ad-avoid"><strong>避免：</strong>10D ratio 只有 1.38，不擴大突破 watchlist。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 10D ratio &lt;1.0 且 T2108 &lt;45 → 回踩做多失效, 轉防守</span></span></li>
+    </ul>
+  </div>
+</section>
+
+
+<section><h2>Weekly Expected Move 對比分析</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>資產</th><th>最新</th><th>本週邊界</th><th>狀態</th><th>判讀</th></tr></thead><tbody><tr><td data-label="資產">GOOGL</td><td data-label="最新" class="num">353.65</td><td data-label="本週邊界" class="num">+1SD 349.75</td><td data-label="狀態">已突破 +1SD</td><td data-label="判讀">mega-cap 上行擴張；不追，等回踩邊界</td></tr><tr><td data-label="資產">TSLA</td><td data-label="最新" class="num">411.84</td><td data-label="本週邊界" class="num">+1SD 399.09</td><td data-label="狀態">已突破 +1SD</td><td data-label="判讀">高 beta 延伸；400 為本週強弱分界</td></tr><tr><td data-label="資產">VZ</td><td data-label="最新" class="num">44.10</td><td data-label="本週邊界" class="num">-1SD 45.23</td><td data-label="狀態">已跌破 -1SD</td><td data-label="判讀">防守電信相對弱勢</td></tr><tr><td data-label="資產">SPY</td><td data-label="最新" class="num">741.00</td><td data-label="本週邊界" class="num">+1SD 741.49</td><td data-label="狀態">距上界 0.49</td><td data-label="判讀">開盤即測試擴張邊界</td></tr><tr><td data-label="資產">QQQ</td><td data-label="最新" class="num">724.08</td><td data-label="本週邊界" class="num">+1SD 728.90</td><td data-label="狀態">距上界 4.82</td><td data-label="判讀">需配合 20MA 724.87 確認</td></tr><tr><td data-label="資產">XLY</td><td data-label="最新" class="num">117.12</td><td data-label="本週邊界" class="num">+1SD 117.14</td><td data-label="狀態">距上界 0.02</td><td data-label="判讀">消費 beta 接近擴張</td></tr></tbody></table></div>
+  <div class="callout warn"><strong>總結：</strong>本週目前只有 GOOGL、TSLA、VZ 觸發 1SD，尚無 2SD 事件。SPY、QQQ 接近上緣，追價的報酬風險比不佳；突破後需等待 30 分鐘或回踩確認。Expected Move 只用於邊界警報，不用來認定盤前 mover。</div>
+</section>
+
+<section><h2>外匯與商品</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>資產</th><th>最新</th><th>日變化</th><th>5日 / 短線</th><th>1個月趨勢</th><th>關鍵位置 / 驅動</th><th>對美股含義</th></tr></thead><tbody><tr><td data-label="資產">DXY</td><td data-label="最新" class="num">101.35</td><td data-label="日變化" class="num">-0.25%</td><td data-label="5日 / 短線" class="num">-0.06%</td><td data-label="1個月趨勢" class="num">+2.35%</td><td data-label="關鍵位置 / 驅動" class="num">100.80 / 102</td><td data-label="對美股含義">月度美元偏強，壓制跨國成長與商品</td></tr><tr><td data-label="資產">EUR/USD</td><td data-label="最新" class="num">1.1391</td><td data-label="日變化" class="num">+0.21%</td><td data-label="5日 / 短線" class="num">-0.32%</td><td data-label="1個月趨勢" class="num">-2.25%</td><td data-label="關鍵位置 / 驅動" class="num">1.13</td><td data-label="對美股含義">美元壓力未完全解除</td></tr><tr><td data-label="資產">GBP/USD</td><td data-label="最新" class="num">1.3217</td><td data-label="日變化" class="num">+0.07%</td><td data-label="5日 / 短線" class="num">-0.23%</td><td data-label="1個月趨勢" class="num">-1.69%</td><td data-label="關鍵位置 / 驅動" class="num">1.31</td><td data-label="對美股含義">對美股影響次要</td></tr><tr><td data-label="資產">USD/JPY</td><td data-label="最新" class="num">162.40</td><td data-label="日變化" class="num">-0.01%</td><td data-label="5日 / 短線" class="num">+0.51%</td><td data-label="1個月趨勢" class="num">+1.96%</td><td data-label="關鍵位置 / 驅動" class="num">163</td><td data-label="對美股含義">日圓弱，留意 carry unwind 尾部風險</td></tr><tr><td data-label="資產">黃金</td><td data-label="最新" class="num">4047.70</td><td data-label="日變化" class="num">-1.38%</td><td data-label="5日 / 短線" class="num">-1.99%</td><td data-label="1個月趨勢" class="num">-10.05%</td><td data-label="關鍵位置 / 驅動">RSI 35.77</td><td data-label="對美股含義">避險與實物資產鏈弱</td></tr><tr><td data-label="資產">白銀</td><td data-label="最新" class="num">59.52</td><td data-label="日變化" class="num">-1.76%</td><td data-label="5日 / 短線" class="num">-4.03%</td><td data-label="1個月趨勢" class="num">-21.32%</td><td data-label="關鍵位置 / 驅動">RSI 33.37</td><td data-label="對美股含義">不抄底 SLV / miners</td></tr><tr><td data-label="資產">銅</td><td data-label="最新" class="num">6.25</td><td data-label="日變化" class="num">-0.72%</td><td data-label="5日 / 短線" class="num">+1.76%</td><td data-label="1個月趨勢" class="num">-2.30%</td><td data-label="關鍵位置 / 驅動" class="num">6.40</td><td data-label="對美股含義">cyclical 訊號混合</td></tr><tr><td data-label="資產">WTI</td><td data-label="最新" class="num">70.65</td><td data-label="日變化" class="num">+2.20%</td><td data-label="5日 / 短線" class="num">-3.52%</td><td data-label="1個月趨勢" class="num">-20.53%</td><td data-label="關鍵位置 / 驅動" class="num">75</td><td data-label="對美股含義">利好運輸/消費，相對不利 XLE</td></tr><tr><td data-label="資產">BTC</td><td data-label="最新" class="num">59,065</td><td data-label="日變化" class="num">+1.02%</td><td data-label="5日 / 短線" class="num">-1.10%</td><td data-label="1個月趨勢" class="num">-6.38%</td><td data-label="關鍵位置 / 驅動" class="num">60K / RSI 31.17</td><td data-label="對美股含義">crypto beta 尚未確認 risk-on</td></tr></tbody></table></div>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>不持貴金屬、能源與 crypto beta，等待趨勢翻正。</li>
+      <li class="ad-condition"><strong>觸發：</strong>DXY &lt;100.80 且 10Y &lt;4.30% → 加碼成長 1/3。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不抄 XAU/XAG/BTC 的一個月下跌趨勢。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 WTI &gt;75 且 Copper &gt;6.40 → 不持商品失效, 加 XLE/COPX 1/3</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>美債、Fed 與經濟資料</h2>
+  <div class="table-scroll"><table class=""><thead><tr><th>資產 / 事件</th><th>最新</th><th>日變化</th><th>5日</th><th>1個月</th><th>判斷</th></tr></thead><tbody><tr><td data-label="資產 / 事件">US 2Y</td><td data-label="最新" class="num">3.66%</td><td data-label="日變化" class="num">-1.0bp</td><td data-label="5日" class="num">+0.5bp</td><td data-label="1個月" class="num">+8.1bp</td><td data-label="判斷">短端仍反映偏緊政策</td></tr><tr><td data-label="資產 / 事件">US 10Y</td><td data-label="最新" class="num">4.37%</td><td data-label="日變化" class="num">-1.0bp</td><td data-label="5日" class="num">-7.9bp</td><td data-label="1個月" class="num">-12.1bp</td><td data-label="判斷">利率壓力短線緩解</td></tr><tr><td data-label="資產 / 事件">US 20Y</td><td data-label="最新" class="num">4.86%</td><td data-label="日變化" class="num">+0.2bp</td><td data-label="5日" class="num">-3.7bp</td><td data-label="1個月" class="num">-16.2bp</td><td data-label="判斷">長端回落但絕對值仍高</td></tr><tr><td data-label="資產 / 事件">Fed 路徑</td><td data-label="最新">數據依賴</td><td data-label="日變化">—</td><td data-label="5日">—</td><td data-label="1個月">—</td><td data-label="判斷">JOLTS、07/02 非農是本週主要重新定價點</td></tr><tr><td data-label="資產 / 事件">Fed Chair Warsh</td><td data-label="最新" class="num">07/01 09:30 ET</td><td data-label="日變化">—</td><td data-label="5日">—</td><td data-label="1個月">—</td><td data-label="判斷">發言與殖利率反應需一起確認</td></tr></tbody></table></div><p class="note">殖利率為最近可得收盤資料；若盤中來源無法一致核對，報告不猜測即時跳動。</p>
+  <div class="action-directive">
+    <span class="ad-label">→ 今日行動</span>
+    <ul class="ad-list">
+      <li class="ad-primary"><strong>主導：</strong>10:00 ET 前維持 duration，不先押注利率方向。</li>
+      <li class="ad-condition"><strong>觸發：</strong>10Y &gt;4.42% 減長久期 1/3；&lt;4.30% 加 IGV/QQQ 1/3。</li>
+      <li class="ad-avoid"><strong>避免：</strong>不把單日殖利率回落定價成 Fed 轉鴿。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 US2Y &gt;3.80% 且 10Y &gt;4.55% → 維持 duration 失效, 縮短久期</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<section><h2>交易計畫</h2>
+  <ol>
+    <li>10:00 ET 前維持 60%-70% 倉位，不開新的指數方向倉。</li>
+    <li>SPY &gt;744.50 且 QQQ &gt;728.90 持續 30 分鐘，成長倉加 1/3。</li>
+    <li>JOLTS &gt;7.60M 且 10Y &gt;4.42%，長久期與軟體倉減 1/3。</li>
+    <li>不追 XBI、IBB、XLU、JETS；這些 RSI 已接近或高於 80。</li>
+    <li>15:30 ET 若 MOC 賣盤 &gt;$2B 且 SPY 失守 VWAP，總倉減 1/3。</li>
+  </ol><div class="callout"><strong>總結：</strong>主線是「廣度改善、科技待確認」；先交易價格確認，不把盤前持平解讀成方向。</div>
+</section>
+
+<section class="intraday-playbook">
+  <h2>盤中觸發劇本</h2>
+  <p class="playbook-intro">
+    開盤後若以下事件發生，按表格執行，不要在當下重新評估。
+    這是事前承諾 (pre-commitment)，避免實時情緒化決策。
+  </p>
+  <table class="playbook-table">
+    <thead>
+      <tr>
+        <th>時段 (ET)</th>
+        <th>觸發事件</th>
+        <th>判讀</th>
+        <th>行動</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td data-label="時段 (ET)">09:30 ORB</td><td data-label="觸發事件">SPY &gt;744.50 + QQQ &gt;724.87</td><td data-label="判讀">權重指數收回 20MA</td><td data-label="行動"><strong>加碼：</strong>成長倉 1/3</td></tr><tr><td data-label="時段 (ET)">09:30 ORB</td><td data-label="觸發事件">SPY &lt;739 + QQQ &lt;720</td><td data-label="判讀">反彈未獲開盤確認</td><td data-label="行動"><strong>減倉：</strong>科技 1/3</td></tr><tr><td data-label="時段 (ET)">10:00</td><td data-label="觸發事件">JOLTS &gt;7.60M + 10Y &gt;4.42%</td><td data-label="判讀">勞動偏熱、利率上行</td><td data-label="行動"><strong>減倉：</strong>長久期 1/3</td></tr><tr><td data-label="時段 (ET)">10:00</td><td data-label="觸發事件">JOLTS &lt;7.00M + 10Y &lt;4.30%</td><td data-label="判讀">利率壓力解除</td><td data-label="行動"><strong>加碼：</strong>QQQE/IGV 1/3</td></tr><tr><td data-label="時段 (ET)">11:00-14:00</td><td data-label="觸發事件">QQQ 收回 VWAP + 4%漲/跌 &gt;2</td><td data-label="判讀">午盤反轉有廣度確認</td><td data-label="行動"><strong>持有：</strong>不減獲利倉</td></tr><tr><td data-label="時段 (ET)">14:00</td><td data-label="觸發事件">VIX &gt;20 + SPY &lt;732.21</td><td data-label="判讀">修正風險升級</td><td data-label="行動"><strong>停止：</strong>新多單</td></tr><tr><td data-label="時段 (ET)">15:30 MOC</td><td data-label="觸發事件">賣盤 &gt;$2B + SPY &lt;VWAP</td><td data-label="判讀">季度末被動賣壓主導</td><td data-label="行動"><strong>減倉：</strong>總倉 1/3</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section><h2>交叉驗證總結 / Cross-validation summary</h2>
+  <div class="callout ok"><strong>支持做多：</strong>SPX 與 IWM 廣度改善、Primary Breadth 1729/1112、RSP/QQQE 站在三條均線上、VIX 低於 20。</div>
+    <div class="callout warn"><strong>限制油門：</strong>SPY/QQQ 仍低於 20MA、Nasdaq 100 &gt;50MA 僅 50.49%、10D ratio 只有 1.38，且美元月度偏強、BTC/貴金屬仍弱。</div>
+    <div class="callout"><strong>最終定位：</strong>中等油門、選擇性做多。10:00 ET 前不預判；數據後只按 SPY 744.50、QQQ 724.87/728.90 與 10Y 4.42% 執行。</div>
+</section>
+<section><h2>資料來源</h2><ul class="source-list">
+  <li><a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit?gid=0#gid=0">Sector ETF / Major ETF / Market Breadth / Weekly Expected Move</a></li>
+  <li><a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit?gid=1082103394#gid=1082103394">Stockbee Breadth sheet</a></li>
+  <li><a href="https://www.investing.com/indices/indices-futures">Investing.com 指數期貨</a>、<a href="https://www.investing.com/equities/pre-market">盤前個股</a></li>
+  <li><a href="https://www.bls.gov/schedule/news_release/jolts.htm">U.S. BLS JOLTS 發布日程</a>、<a href="https://www.nasdaq.com/market-activity/stock-market-holiday-schedule">Nasdaq 休市日程</a></li>
+</ul><p class="note">不可得資料均明確標示，不作估算。報告只分析美股及其跨資產驅動。</p></section>
+</main></body></html>

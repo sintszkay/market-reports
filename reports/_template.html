@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="qqq-reengage-20ma" content="<!-- DATA: qqq_reengage_20ma -->">
+  <meta name="qqq-breakout-add-1sd" content="<!-- DATA: qqq_breakout_add_1sd -->">
   <title><!-- DATA: report_title --></title>
+  <link rel="stylesheet" href="report-shared.css">
   <style>
     :root{--bg:#f5f5f7;--panel:#fff;--text:#111827;--muted:#667085;--line:#e5e7eb;--blue:#007aff;--green:#18864b;--amber:#a86600;--red:#c9342f;--shadow:0 18px 48px rgba(15,23,42,.08)}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fbfbfd 0,var(--bg) 300px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.58}.wrap{max-width:1160px;margin:0 auto;padding:32px 16px 52px}header{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.8);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-bottom:18px}.eyebrow{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:8px}h1{font-size:32px;line-height:1.2;margin:0}h2{font-size:23px;margin:30px 0 12px}h3{font-size:18px;margin:20px 0 8px}.muted,.note{color:var(--muted)}.note{font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.card,.check{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:0 8px 20px rgba(15,23,42,.04)}.card span,.check span{display:block;color:var(--muted);font-size:12px;font-weight:800}.card strong{display:block;margin-top:4px;font-size:18px;line-height:1.25}.badge{display:inline-flex;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:800}.amber{color:var(--amber);background:#fff7ed}.blue{color:var(--blue);background:#eff6ff}.green{color:var(--green);background:#ecfdf3}.red{color:var(--red);background:#fff1f1}table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:10px 0 12px;font-size:14px;box-shadow:0 8px 20px rgba(15,23,42,.04)}th,td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}tr:last-child td{border-bottom:0}th{background:#f8fafc;color:#334155;font-weight:800}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}ol{padding-left:22px}li{margin:7px 0}.callout{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:14px 16px;margin:12px 0 18px}.risk{border-left-color:var(--red)}.warn{border-left-color:var(--amber)}.ok{border-left-color:var(--green)}.checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.check strong{display:block;margin-top:4px}.check.low{border-left:4px solid var(--green)}.check.mid{border-left:4px solid var(--amber)}.check.high{border-left:4px solid var(--red)}
@@ -17,7 +20,7 @@
     .ad-primary{color:var(--text);font-weight:600}.ad-primary::before{content:"●";color:var(--amber)}
     .ad-condition{color:#4b5563}.ad-condition::before{content:"◐";color:var(--amber)}
     .ad-secondary{color:#4b5563}.ad-secondary::before{content:"◐";color:var(--amber)}
-    .ad-watch{color:var(--text)}.ad-watch::before{content:"◆";color:var(--blue)}
+    .ad-watch{color:var(--text)}.ad-watch::before{content:"◎";color:var(--blue)}
     .ad-avoid{color:var(--muted)}.ad-avoid::before{content:"✗";color:var(--red)}
     .ad-invalidate{padding:8px 0;border-top:.5px dashed rgba(163,66,43,.3);margin-top:6px;font-size:12.5px;color:#6B6960;font-style:italic}
     .ad-invalidate::before{content:none}
@@ -52,9 +55,15 @@
     .playbook-table td:nth-child(4) strong{font-weight:700}
     @media(max-width:700px){.playbook-table,.playbook-table thead,.playbook-table tbody,.playbook-table tr,.playbook-table th,.playbook-table td{display:block;width:100%}.playbook-table thead{display:none}.playbook-table tr{background:#fff;border:1px solid var(--line);border-radius:8px;margin:10px 0;overflow:hidden}.playbook-table tbody tr:nth-child(odd),.playbook-table tbody tr:nth-child(even){background:#fff}.playbook-table td{border-bottom:1px solid var(--line);padding:8px 12px}.playbook-table td:last-child{border-bottom:0}.playbook-table td:nth-child(1){background:#FAF8F2;color:#BA7517;font-family:Consolas,"SFMono-Regular",Menlo,monospace;font-weight:600}.playbook-table td:nth-child(n+2)::before{display:block;color:#6B6960;font-size:11px;font-weight:600;letter-spacing:.03em;margin-bottom:2px}.playbook-table td:nth-child(2)::before{content:"觸發事件"}.playbook-table td:nth-child(3)::before{content:"判讀"}.playbook-table td:nth-child(4)::before{content:"行動"}}
     @media(max-width:900px){.grid,.checks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.wrap{padding:20px 12px 40px}header{padding:18px;border-radius:16px}h1{font-size:26px}.grid,.checks{grid-template-columns:1fr}table{display:block;overflow-x:auto;white-space:nowrap}}
-  </style>
+    .num.up{color:var(--green)}.num.dn{color:var(--red)}
+    td.rsi-hot{background:#FAEEEA;color:#8F3323;font-weight:700}
+    td.rsi-cold{background:#E8F3EC;color:#246849;font-weight:700}
+    .ma-cell{white-space:nowrap}.ma-state{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700}.ma-state.ma-up{color:var(--green)}.ma-state.ma-down{color:var(--red)}.ma-period{color:var(--muted);font-size:10px;font-weight:600}.ma-separator{display:inline-block;width:7px}
+    .tb-rule{margin:-2px 0 8px;font-size:11px;font-weight:700;letter-spacing:.03em;color:rgba(0,0,0,.58)}
+    .symbol-legend{margin:10px 0 16px;padding:8px 12px;border:1px solid var(--line);background:rgba(255,255,255,.82);color:var(--muted);font-size:12px;line-height:1.5}
+    .report-toc{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:6px;overflow-x:auto;margin:0 0 20px;padding:7px 8px;border:1px solid var(--line);background:rgba(255,255,255,.96);box-shadow:0 8px 20px rgba(15,23,42,.06);scrollbar-width:thin}.report-toc .toc-label{flex:0 0 auto;padding:5px 8px;color:var(--muted);font-size:11px;font-weight:800}.report-toc a{flex:0 0 auto;padding:5px 9px;border-radius:4px;color:var(--text);font-size:12px;text-decoration:none}.report-toc a:hover,.report-toc a:focus{background:#eef2f6;color:var(--blue)}h2{scroll-margin-top:72px}  </style>
 </head>
-<body><main class="wrap">
+<body data-report-type="premarket"><main class="wrap">
 <header>
   <div class="eyebrow"><!-- DATA: report_eyebrow --></div>
   <h1><!-- DATA: report_heading --></h1>
@@ -73,6 +82,7 @@
       <span class="tb-label">油門升級訊號</span>
       <span class="tb-sub">轉攻擊</span>
     </div>
+    <div class="tb-rule"><!-- DATA: upgrade_trigger_rule --></div>
     <ul class="tb-list">
       <li><!-- DATA: upgrade_trigger_1 --></li>
       <li><!-- DATA: upgrade_trigger_2 --></li>
@@ -85,6 +95,7 @@
       <span class="tb-label">油門降級訊號</span>
       <span class="tb-sub">轉防守</span>
     </div>
+    <div class="tb-rule"><!-- DATA: downgrade_trigger_rule --></div>
     <ul class="tb-list">
       <li><!-- DATA: downgrade_trigger_1 --></li>
       <li><!-- DATA: downgrade_trigger_2 --></li>
@@ -106,7 +117,11 @@
 </section>
 
 <section><h2>Pre-market movers</h2>
-  <!-- DATA: pre_market_movers_table -->
+  <div class="table-scroll"><table class="premarket-movers-table">
+    <thead><tr><th>股票</th><th class="num">價格</th><th class="num">盤前變化</th><th>催化 / 背景</th><th>板塊 read-through</th><th>判斷</th></tr></thead>
+    <tbody><!-- DATA: pre_market_movers_rows --></tbody>
+  </table></div>
+  <!-- DATA: pre_market_movers_note -->
   <div class="action-directive">
     <span class="ad-label">→ 今日行動</span>
     <ul class="ad-list">
@@ -251,4 +266,6 @@
 <section><h2>交叉驗證總結 / Cross-validation summary</h2>
   <!-- DATA: cross_validation_summary -->
 </section>
-</main></body></html>
+</main>
+<script src="report-runtime.js"></script>
+</body></html>

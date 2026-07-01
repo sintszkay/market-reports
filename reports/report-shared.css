@@ -1,0 +1,17 @@
+.num.up{color:var(--green)}.num.dn{color:var(--red)}
+td.rsi-hot{background:#FAEEEA;color:#8F3323;font-weight:700}
+td.rsi-cold{background:#E8F3EC;color:#246849;font-weight:700}
+.ma-cell{white-space:nowrap}
+.ma-state{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700}
+.ma-state.ma-up{color:var(--green)}
+.ma-state.ma-down{color:var(--red)}
+.ma-period{color:var(--muted);font-size:10px;font-weight:600}
+.ma-separator{display:inline-block;width:7px}
+.tb-rule{margin:-2px 0 8px;font-size:11px;font-weight:700;letter-spacing:.03em;color:rgba(0,0,0,.58)}
+.symbol-legend{margin:10px 0 16px;padding:8px 12px;border:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--muted);font-size:12px;line-height:1.5}
+.report-toc{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:6px;overflow-x:auto;margin:0 0 20px;padding:7px 8px;border:1px solid var(--line);background:rgba(255,255,255,.96);box-shadow:0 8px 20px rgba(15,23,42,.06);scrollbar-width:thin}
+.report-toc .toc-label{flex:0 0 auto;padding:5px 8px;color:var(--muted);font-size:11px;font-weight:800}
+.report-toc a{flex:0 0 auto;padding:5px 9px;border-radius:4px;color:var(--text);font-size:12px;text-decoration:none}
+.report-toc a:hover,.report-toc a:focus{background:#eef2f6;color:var(--blue)}
+h2{scroll-margin-top:72px}
+@media(max-width:700px){.report-toc{top:0;margin-left:-4px;margin-right:-4px;border-radius:0}.symbol-legend{font-size:11px}}

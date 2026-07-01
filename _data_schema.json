@@ -5,6 +5,107 @@
   "additionalProperties": true,
   "properties": {
 
+    "report_date_pretty": {
+      "type": "string",
+      "description": "Human-readable report date used in the end-of-day recap heading."
+    },
+    "spy_actual": {
+      "type": "number",
+      "description": "SPY regular-session percentage change; render with the percent sign in the template."
+    },
+    "qqq_actual": {
+      "type": "number",
+      "description": "QQQ regular-session percentage change; render with the percent sign in the template."
+    },
+    "vix_close": {
+      "type": ["number", "string"],
+      "description": "VIX closing value. Use a string only when the value is unavailable."
+    },
+    "breadth_actual": {
+      "type": "string",
+      "description": "Actual 4%+ advancing/declining stock counts, e.g. '369 / 118'."
+    },
+    "recap_rows": {
+      "type": "array",
+      "description": "End-of-day reconciliation of premarket action directives against actual market results.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "section": {"type": "string", "description": "Premarket section name."},
+          "directive": {"type": "string", "description": "Original premarket directive text."},
+          "actual": {"type": "string", "description": "What happened during the session, including concrete numbers."},
+          "result": {
+            "type": "string",
+            "enum": ["hit", "partial", "miss", "invalidated"],
+            "description": "Directive outcome: hit, partial, miss, or invalidated."
+          }
+        },
+        "required": ["section", "directive", "actual", "result"]
+      }
+    },
+    "today_hit_rate": {"type": "number", "minimum": 0, "maximum": 100, "description": "Today's directive hit rate as a percentage."},
+    "today_correct": {"type": "integer", "minimum": 0, "description": "Number of correct directives today."},
+    "today_total": {"type": "integer", "minimum": 0, "description": "Number of directives evaluated today."},
+    "week_hit_rate": {"type": "number", "minimum": 0, "maximum": 100, "description": "Current week's cumulative directive hit rate as a percentage."},
+    "week_correct": {"type": "integer", "minimum": 0, "description": "Number of correct directives during the current week."},
+    "week_total": {"type": "integer", "minimum": 0, "description": "Number of directives evaluated during the current week."},
+    "month_hit_rate": {"type": "number", "minimum": 0, "maximum": 100, "description": "Rolling 30-day directive hit rate as a percentage."},
+    "month_correct": {"type": "integer", "minimum": 0, "description": "Number of correct directives in the rolling 30-day window."},
+    "month_total": {"type": "integer", "minimum": 0, "description": "Number of directives evaluated in the rolling 30-day window."},
+    "invalidation_count": {"type": ["integer", "string"], "description": "Invalidation trigger count for the current week and rolling 30 days, e.g. '1 / 3'."},
+    "correct_judgment": {"type": "string", "description": "Most important judgment that was correct today."},
+    "wrong_judgment": {"type": "string", "description": "Most important judgment that was wrong today."},
+    "emerging_pattern": {"type": "string", "description": "Repeated pattern emerging from recent recap results."},
+
+    "report_type": {
+      "type": "string",
+      "enum": ["premarket", "weekly"],
+      "description": "Report generator mode. Shared report rules apply to both values."
+    },
+    "qqq_reengage_20ma": {
+      "type": ["number", "string"],
+      "description": "QQQ 20MA level. Every use must be labeled 20MA / 初步 re-engage and may restore standard tech allocation."
+    },
+    "qqq_breakout_add_1sd": {
+      "type": ["number", "string"],
+      "description": "QQQ +1SD expansion boundary. Every use must be labeled +1SD / 突破加碼 and may add risk beyond standard allocation."
+    },
+    "upgrade_trigger_rule": {
+      "type": "string",
+      "pattern": "^滿足 [1-3]/3 才成立$",
+      "default": "滿足 2/3 才成立",
+      "description": "Visible threshold for the upgrade trigger box."
+    },
+    "downgrade_trigger_rule": {
+      "type": "string",
+      "pattern": "^(?:任一觸發即成立|滿足 [1-3]/3 才成立)$",
+      "default": "任一觸發即成立",
+      "description": "Visible threshold for the downgrade trigger box."
+    },
+    "pre_market_movers": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Structured premarket movers. Price is mandatory and is rendered immediately before premarket_change.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ticker": {"type": "string", "pattern": "^[A-Z.]{1,6}$"},
+          "price": {"type": ["number", "string"], "description": "Verified current premarket price; do not estimate."},
+          "premarket_change": {"type": "string", "pattern": "^[+−-][0-9]+(?:\\.[0-9]+)?%$"},
+          "catalyst": {"type": "string"},
+          "read_through": {"type": "string"},
+          "judgment": {"type": "string"}
+        },
+        "required": ["ticker", "price", "premarket_change", "catalyst", "read_through", "judgment"]
+      }
+    },
+    "pre_market_movers_note": {
+      "type": "string",
+      "description": "Optional note below the movers table; unavailable values must be stated explicitly."
+    },
+
     "upgrade_trigger_1": {
       "type": "string",
       "maxLength": 50,
@@ -44,6 +145,107 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
+
+    "report_date_pretty": {
+      "type": "string",
+      "description": "Human-readable report date used in the end-of-day recap heading."
+    },
+    "spy_actual": {
+      "type": "number",
+      "description": "SPY regular-session percentage change; render with the percent sign in the template."
+    },
+    "qqq_actual": {
+      "type": "number",
+      "description": "QQQ regular-session percentage change; render with the percent sign in the template."
+    },
+    "vix_close": {
+      "type": ["number", "string"],
+      "description": "VIX closing value. Use a string only when the value is unavailable."
+    },
+    "breadth_actual": {
+      "type": "string",
+      "description": "Actual 4%+ advancing/declining stock counts, e.g. '369 / 118'."
+    },
+    "recap_rows": {
+      "type": "array",
+      "description": "End-of-day reconciliation of premarket action directives against actual market results.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "section": {"type": "string", "description": "Premarket section name."},
+          "directive": {"type": "string", "description": "Original premarket directive text."},
+          "actual": {"type": "string", "description": "What happened during the session, including concrete numbers."},
+          "result": {
+            "type": "string",
+            "enum": ["hit", "partial", "miss", "invalidated"],
+            "description": "Directive outcome: hit, partial, miss, or invalidated."
+          }
+        },
+        "required": ["section", "directive", "actual", "result"]
+      }
+    },
+    "today_hit_rate": {"type": "number", "minimum": 0, "maximum": 100, "description": "Today's directive hit rate as a percentage."},
+    "today_correct": {"type": "integer", "minimum": 0, "description": "Number of correct directives today."},
+    "today_total": {"type": "integer", "minimum": 0, "description": "Number of directives evaluated today."},
+    "week_hit_rate": {"type": "number", "minimum": 0, "maximum": 100, "description": "Current week's cumulative directive hit rate as a percentage."},
+    "week_correct": {"type": "integer", "minimum": 0, "description": "Number of correct directives during the current week."},
+    "week_total": {"type": "integer", "minimum": 0, "description": "Number of directives evaluated during the current week."},
+    "month_hit_rate": {"type": "number", "minimum": 0, "maximum": 100, "description": "Rolling 30-day directive hit rate as a percentage."},
+    "month_correct": {"type": "integer", "minimum": 0, "description": "Number of correct directives in the rolling 30-day window."},
+    "month_total": {"type": "integer", "minimum": 0, "description": "Number of directives evaluated in the rolling 30-day window."},
+    "invalidation_count": {"type": ["integer", "string"], "description": "Invalidation trigger count for the current week and rolling 30 days, e.g. '1 / 3'."},
+    "correct_judgment": {"type": "string", "description": "Most important judgment that was correct today."},
+    "wrong_judgment": {"type": "string", "description": "Most important judgment that was wrong today."},
+    "emerging_pattern": {"type": "string", "description": "Repeated pattern emerging from recent recap results."},
+
+    "report_type": {
+      "type": "string",
+      "enum": ["premarket", "weekly"],
+      "description": "Report generator mode. Shared report rules apply to both values."
+    },
+    "qqq_reengage_20ma": {
+      "type": ["number", "string"],
+      "description": "QQQ 20MA level. Every use must be labeled 20MA / 初步 re-engage and may restore standard tech allocation."
+    },
+    "qqq_breakout_add_1sd": {
+      "type": ["number", "string"],
+      "description": "QQQ +1SD expansion boundary. Every use must be labeled +1SD / 突破加碼 and may add risk beyond standard allocation."
+    },
+    "upgrade_trigger_rule": {
+      "type": "string",
+      "pattern": "^滿足 [1-3]/3 才成立$",
+      "default": "滿足 2/3 才成立",
+      "description": "Visible threshold for the upgrade trigger box."
+    },
+    "downgrade_trigger_rule": {
+      "type": "string",
+      "pattern": "^(?:任一觸發即成立|滿足 [1-3]/3 才成立)$",
+      "default": "任一觸發即成立",
+      "description": "Visible threshold for the downgrade trigger box."
+    },
+    "pre_market_movers": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Structured premarket movers. Price is mandatory and is rendered immediately before premarket_change.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ticker": {"type": "string", "pattern": "^[A-Z.]{1,6}$"},
+          "price": {"type": ["number", "string"], "description": "Verified current premarket price; do not estimate."},
+          "premarket_change": {"type": "string", "pattern": "^[+−-][0-9]+(?:\\.[0-9]+)?%$"},
+          "catalyst": {"type": "string"},
+          "read_through": {"type": "string"},
+          "judgment": {"type": "string"}
+        },
+        "required": ["ticker", "price", "premarket_change", "catalyst", "read_through", "judgment"]
+      }
+    },
+    "pre_market_movers_note": {
+      "type": "string",
+      "description": "Optional note below the movers table; unavailable values must be stated explicitly."
+    },
           "time_slot": {
             "type": "string",
             "description": "ET time, e.g. '09:30 ORB', '10:00', or '15:30 MOC'."
@@ -252,6 +454,12 @@
     }
   },
   "required": [
+    "report_type",
+    "qqq_reengage_20ma",
+    "qqq_breakout_add_1sd",
+    "upgrade_trigger_rule",
+    "downgrade_trigger_rule",
+    "pre_market_movers",
     "upgrade_trigger_1",
     "upgrade_trigger_2",
     "upgrade_trigger_3",

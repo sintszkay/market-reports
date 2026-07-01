@@ -287,34 +287,39 @@
 
 <section><h2>外匯與商品</h2>
   <table><thead><tr><th>資產</th><th>最新</th><th>日變化</th><th>5日/短線</th><th>1個月趨勢</th><th>關鍵位置/驅動</th><th>對美股含義</th></tr></thead><tbody>
-    <tr><td>DXY</td><td>即時不可得</td><td>不可得</td><td>不可得</td><td>不可得</td><td>Yahoo/Stooq 不可得</td><td>不把美元作今日主觸發</td></tr>
-    <tr><td>US 10Y</td><td>即時不可得</td><td>不可得</td><td>不可得</td><td>不可得</td><td>以盤中 4.42 / 4.30 作觸發</td><td>利率不確認前，科技只按價格執行</td></tr>
-    <tr><td>WTI</td><td>即時不可得</td><td>不可得</td><td>不可得</td><td>不可得</td><td>商品 beta 不作主倉</td><td>不主動持有 XLE/XLB/COPX</td></tr>
-    <tr><td>Gold/Silver/Copper/BTC</td><td>即時不可得</td><td>不可得</td><td>不可得</td><td>不可得</td><td>外部 quote API 不可得</td><td>不把商品/crypto beta 當今日主線</td></tr>
+    <tr><td>EUR/USD</td><td class="num">1.1399</td><td class="num">0.32%</td><td class="num">0.17%</td><td class="num">-2.15%</td><td>Google Sheet 最新收盤</td><td>短線偏強，美元分母下仍需確認</td></tr>
+    <tr><td>GBP/USD</td><td class="num">1.3248</td><td class="num">0.43%</td><td class="num">0.37%</td><td class="num">-1.51%</td><td>Google Sheet 最新收盤</td><td>短線偏強，美元分母下仍需確認</td></tr>
+    <tr><td>USD/JPY</td><td class="num">162.70</td><td class="num">0.08%</td><td class="num">0.68%</td><td class="num">2.11%</td><td>162.70；月線 +2.11%</td><td>日圓走弱，carry 尚未逆轉</td></tr>
+    <tr><td>DXY</td><td class="num">101.36</td><td class="num">0.08%</td><td class="num">-0.25%</td><td class="num">2.48%</td><td>101.36；月線 +2.48%</td><td>美元月線偏強，壓制跨國成長與商品 beta</td></tr>
+    <tr><td>XAU</td><td class="num">3988.60</td><td class="num">0.01%</td><td class="num">-0.04%</td><td class="num">-12.54%</td><td>🔴 Downtrend；RSI 32.38</td><td>RSI 接近超賣但仍在下跌趨勢，不抄底</td></tr>
+    <tr><td>XAG</td><td class="num">58.26</td><td class="num">2.24%</td><td class="num">0.34%</td><td class="num">-22.96%</td><td>🔴 Downtrend；RSI 31.58</td><td>RSI 接近超賣但仍在下跌趨勢，不抄底</td></tr>
+    <tr><td>COPPER</td><td class="num">6.13</td><td class="num">1.56%</td><td class="num">3.10%</td><td class="num">-3.64%</td><td>🔴 Weak；RSI 44.92</td><td>銅價月線偏弱，全球成長訊號不足</td></tr>
+    <tr><td>CL</td><td class="num">68.31</td><td class="num">-1.77%</td><td class="num">-2.89%</td><td class="num">-21.81%</td><td>🔴 Downtrend；RSI 28.3</td><td>RSI 接近超賣但仍在下跌趨勢，不抄底</td></tr>
+    <tr><td>BTC</td><td class="num">58845.15</td><td class="num">-2.63%</td><td class="num">-1.95%</td><td class="num">-4.53%</td><td>🔴 Downtrend；RSI 31.57</td><td>RSI 接近超賣但仍在下跌趨勢，不抄底</td></tr>
   </tbody></table>
   <div class="action-directive">
     <span class="ad-label">→ 今日行動</span>
     <ul class="ad-list">
-      <li class="ad-primary">不主動持商品 beta；外匯商品資料不可得不下注。</li>
-      <li class="ad-condition">若 DXY/10Y 同步上行且 10Y >4.42 → 減長久期。</li>
-      <li class="ad-avoid">不在 quote 不可得時抄底金屬或 crypto beta。</li>
-      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 WTI >75 + Copper >6.40 → 不持商品失效, 加 XLE/COPX</span></span></li>
+      <li class="ad-primary">DXY 101.36 月線偏強；不主動持商品 beta。</li>
+      <li class="ad-condition">若 DXY 跌破 100.80 + 10Y <4.30 → 成長加 1/3。</li>
+      <li class="ad-avoid">不抄底 XAU/XAG/BTC，RSI 低但趨勢仍弱。</li>
+      <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 DXY <100.80 → 不持跨國成長失效, 加 IGV/QQQ</span></span></li>
     </ul>
   </div>
 </section>
 
 <section><h2>美債、Fed 與經濟資料</h2>
   <table><thead><tr><th>資產 / 事件</th><th>最新</th><th>日變化</th><th>5日</th><th>1個月</th><th>判斷</th></tr></thead><tbody>
-    <tr><td>US 2Y</td><td>不可得</td><td>不可得</td><td>不可得</td><td>不可得</td><td>即時資料不可得，不猜 Fed 路徑</td></tr>
-    <tr><td>US 10Y</td><td>不可得</td><td>不可得</td><td>不可得</td><td>不可得</td><td>用 4.42% / 4.30% 作盤中條件門檻</td></tr>
-    <tr><td>Fed 路徑</td><td>資料依賴</td><td>—</td><td>—</td><td>—</td><td>本週就業/ISM 資料比盤前噪音重要</td></tr>
+    <tr><td>US2Y</td><td class="num">3.66%</td><td class="num">-1bp</td><td class="num">+0.5bp</td><td class="num">+8.1bp</td><td>2Y 3.66%，月線仍 +8.1bp，Fed 路徑未完全寬鬆</td></tr>
+    <tr><td>US10Y</td><td class="num">4.37%</td><td class="num">-1bp</td><td class="num">-7.9bp</td><td class="num">-12.1bp</td><td>10Y 4.37%，5日 -7.9bp、1月 -12.1bp，利率壓力短線緩和</td></tr>
+    <tr><td>US20Y</td><td class="num">4.86%</td><td class="num">+0.2bp</td><td class="num">-3.7bp</td><td class="num">-16.2bp</td><td>20Y 4.86%，長端仍高，duration 不宜追滿</td></tr>
   </tbody></table>
   <div class="action-directive">
     <span class="ad-label">→ 今日行動</span>
     <ul class="ad-list">
-      <li class="ad-primary">維持 duration，不在資料不可得時押 Fed 路徑。</li>
+      <li class="ad-primary">10Y 4.37% 且5日回落，維持 duration。</li>
       <li class="ad-condition">若 10Y <4.30% → 長久期成長加 1/3。</li>
-      <li class="ad-avoid">不在就業/ISM 前提前定價 Fed 轉向。</li>
+      <li class="ad-avoid">不把2Y月線上升解讀為 Fed 已全面轉鴿。</li>
       <li class="ad-invalidate"><span class="ad-bullet">⚠</span><span class="ad-content"><strong>反向訊號：</strong><span class="ad-invalidation-value">若 US10Y >4.55% → 維持 duration 失效, 縮短久期</span></span></li>
     </ul>
   </div>
@@ -358,7 +363,7 @@
 </section>
 
 <section><h2>交叉驗證總結 / Cross-validation summary</h2>
-  <div class="callout ok"><strong>確認訊號：</strong>SPY/QQQ 回到 20MA 上方、Market Breath 六項多數改善、Stockbee Primary Breadth 偏多，支持中等偏多。</div><div class="callout warn"><strong>分歧訊號：</strong>10D ratio 只有 1.39，未達 >2；QQQE/IWM/DIA 延伸偏高，XBI/IBB/ARKK RSI 過熱，追高風險升。</div><div class="callout"><strong>主結論：</strong>做多可以，但只做回踩和確認；QQQ 20MA(初步) 725.72 是今日核心分界，+1SD(加碼) 不可得所以不啟動加速模式。</div>
+  <div class="callout ok"><strong>確認訊號：</strong>SPY/QQQ 回到 20MA 上方、Market Breath 六項多數改善、Stockbee Primary Breadth 偏多，支持中等偏多。</div><div class="callout warn"><strong>分歧訊號：</strong>10D ratio 只有 1.39，未達 >2；QQQE/IWM/DIA 延伸偏高，XBI/IBB/ARKK RSI 過熱，追高風險升。</div><div class="callout"><strong>主結論：</strong>做多可以，但只做回踩和確認；DXY 101.36、US10Y 4.37% 代表美元仍偏強但利率壓力短線緩和；QQQ 20MA(初步) 725.72 是今日核心分界，+1SD(加碼) 不可得所以不啟動加速模式。</div>
 </section>
 </main>
 <script src="report-runtime.js"></script>

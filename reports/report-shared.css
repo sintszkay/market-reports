@@ -2,11 +2,12 @@
 td.rsi-hot{background:#FAEEEA;color:#8F3323;font-weight:700}
 td.rsi-cold{background:#E8F3EC;color:#246849;font-weight:700}
 .ma-cell{white-space:nowrap}
-.ma-state{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:700}
+.ma-state{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:800}
 .ma-state.ma-up{color:var(--green)}
 .ma-state.ma-down{color:var(--red)}
-.ma-period{color:var(--muted);font-size:10px;font-weight:600}
-.ma-separator{display:inline-block;width:7px}
+.ma-period{color:var(--muted);font-size:10px;font-weight:700}
+.ma-arrow{font-size:14px;line-height:1}
+.ma-separator{display:inline-block;width:10px;color:#a0a7b2;text-align:center}
 .tb-rule{margin:-2px 0 8px;font-size:11px;font-weight:700;letter-spacing:.03em;color:rgba(0,0,0,.58)}
 .symbol-legend{margin:10px 0 16px;padding:8px 12px;border:1px solid var(--line);background:rgba(255,255,255,.92);color:var(--muted);font-size:12px;line-height:1.5}
 .report-toc{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:6px;overflow-x:auto;margin:0 0 20px;padding:7px 8px;border:1px solid var(--line);background:rgba(255,255,255,.96);box-shadow:0 8px 20px rgba(15,23,42,.06);scrollbar-width:thin}

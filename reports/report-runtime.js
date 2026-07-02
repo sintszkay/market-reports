@@ -93,11 +93,64 @@
     });
   }
 
+  function formatMovingAverageStates() {
+    document.querySelectorAll("table").forEach(function (table) {
+      var headers = Array.from(table.querySelectorAll("thead th")).map(textOf);
+      var maIndex = headers.findIndex(function (header) {
+        return /20\s*\/\s*50\s*\/\s*200\s*MA|Above\s*MA/i.test(header);
+      });
+      if (maIndex < 0) return;
+
+      table.querySelectorAll("tbody tr").forEach(function (row) {
+        var cell = row.cells[maIndex];
+        if (!cell || cell.querySelector(".ma-state")) return;
+        var states = textOf(cell).split(/\s*[／/]\s*/);
+        if (states.length !== 3) return;
+
+        var fragment = document.createDocumentFragment();
+        states.forEach(function (state, index) {
+          var normalized = state.trim();
+          var isUp = /^(上|▲|✓|Y)$/i.test(normalized);
+          var isDown = /^(下|▼|✗|N)$/i.test(normalized);
+          if (!isUp && !isDown) return;
+
+          var badge = document.createElement("span");
+          badge.className = "ma-state " + (isUp ? "ma-up" : "ma-down");
+          badge.setAttribute("aria-label", [20, 50, 200][index] + "MA " + (isUp ? "上方" : "下方"));
+
+          var period = document.createElement("span");
+          period.className = "ma-period";
+          period.textContent = [20, 50, 200][index] + "MA";
+          var arrow = document.createElement("span");
+          arrow.className = "ma-arrow";
+          arrow.textContent = isUp ? "▲" : "▼";
+          badge.appendChild(period);
+          badge.appendChild(arrow);
+          fragment.appendChild(badge);
+
+          if (index < states.length - 1) {
+            var separator = document.createElement("span");
+            separator.className = "ma-separator";
+            separator.textContent = "·";
+            fragment.appendChild(separator);
+          }
+        });
+
+        if (fragment.childNodes.length) {
+          cell.textContent = "";
+          cell.classList.add("ma-cell");
+          cell.appendChild(fragment);
+        }
+      });
+    });
+  }
+
   function init() {
     formatRsiTables();
     addSymbolLegend();
     addTableOfContents();
     colorSignedNumbers();
+    formatMovingAverageStates();
   }
 
   if (document.readyState === "loading") {

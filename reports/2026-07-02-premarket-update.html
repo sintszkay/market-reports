@@ -10,6 +10,8 @@
   <style>
     :root{--bg:#f5f5f7;--panel:#fff;--text:#111827;--muted:#667085;--line:#e5e7eb;--blue:#007aff;--green:#18864b;--amber:#a86600;--red:#c9342f;--shadow:0 18px 48px rgba(15,23,42,.08)}
     *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fbfbfd 0,var(--bg) 300px);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.58}.wrap{max-width:1160px;margin:0 auto;padding:32px 16px 52px}header,.panel{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-bottom:18px}.eyebrow{font-size:13px;font-weight:800;color:var(--blue);margin-bottom:8px}h1{font-size:32px;line-height:1.2;margin:0}h2{font-size:23px;margin:30px 0 12px}h3{font-size:18px;margin:20px 0 8px}.muted,.note{color:var(--muted)}.note{font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}.card,.check{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 15px;box-shadow:0 8px 20px rgba(15,23,42,.04)}.card span,.check span{display:block;color:var(--muted);font-size:12px;font-weight:800}.card strong{display:block;margin-top:4px;font-size:18px}.badge{display:inline-flex;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:800}.amber{color:var(--amber);background:#fff7ed}.blue{color:var(--blue);background:#eff6ff}.green{color:var(--green);background:#ecfdf3}.red{color:var(--red);background:#fff1f1}table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:10px 0 12px;font-size:14px;box-shadow:0 8px 20px rgba(15,23,42,.04)}th,td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}tr:last-child td{border-bottom:0}th{background:#f8fafc;color:#334155;font-weight:800}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.up{color:var(--green)}.dn{color:var(--red)}.callout{background:#fff;border:1px solid var(--line);border-left:5px solid var(--blue);border-radius:12px;padding:14px 16px;margin:12px 0 18px}.ok{border-left-color:var(--green)}.warn{border-left-color:var(--amber)}.risk{border-left-color:var(--red)}.checks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.check.low{border-left:4px solid var(--green)}.check.mid{border-left:4px solid var(--amber)}.check.high{border-left:4px solid var(--red)}.check strong{display:block;margin-top:4px}.action{border-left:3px solid var(--amber);background:#faf6ee;padding:12px 16px;margin:14px 0 22px}.action strong{color:#8a5a00}.toc{position:sticky;top:8px;z-index:20;display:flex;gap:6px;overflow-x:auto;padding:7px 8px;margin-bottom:20px;border:1px solid var(--line);background:rgba(255,255,255,.96)}.toc a{flex:0 0 auto;padding:5px 9px;color:var(--text);font-size:12px;text-decoration:none}.source{font-size:12px;color:var(--muted)}@media(max-width:900px){.grid,.checks{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:640px){.wrap{padding:20px 12px 40px}header{padding:18px}h1{font-size:26px}.grid,.checks{grid-template-columns:1fr}table{display:block;overflow-x:auto;white-space:nowrap}}
+    .regime-triggers{display:flex;gap:16px;margin:0 0 28px}.trigger-box{flex:1;padding:16px 20px;border-radius:8px}.trigger-upgrade{background:#e8f3ec;border-left:4px solid #2e7d5c}.trigger-downgrade{background:#faeeea;border-left:4px solid #a3422b}.tb-header{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}.tb-arrow{font-size:18px}.tb-label{font-weight:800}.tb-sub{font-size:11px;color:var(--muted)}.tb-rule{font-size:11px;font-weight:800;color:var(--muted)}.tb-list{margin:8px 0 0;padding-left:20px}.tb-list li{margin:5px 0;font-size:13px}
+    .action-directive{border-left:3px solid var(--amber);background:#faf6ee;padding:12px 16px;margin:14px 0 24px}.action-directive--positioning{border-left-width:4px}.ad-label{color:var(--amber);font-size:12px;font-weight:800;letter-spacing:.05em}.ad-list{list-style:none;padding:0;margin:8px 0 0}.ad-list li{margin:6px 0}.ad-primary::before{content:"● ";color:var(--amber)}.ad-watch::before{content:"◎ ";color:var(--blue)}.ad-avoid::before{content:"✗ ";color:var(--red)}.ad-invalidate{border-top:1px dashed #d8c7a6;padding-top:8px;color:#6b6960;font-size:12.5px}.ad-invalidate strong{color:#a3422b}@media(max-width:640px){.regime-triggers{flex-direction:column}}
   </style>
 </head>
 <body data-report-type="premarket"><main class="wrap">
@@ -29,6 +31,11 @@
   <div class="card"><span>六月非農 Actual / Forecast</span><strong>+57K / +110K</strong><p class="note">前值由+172K下修至+129K。</p></div>
 </section>
 
+<section class="regime-triggers" aria-label="倉位油門觸發">
+  <div class="trigger-box trigger-upgrade"><div class="tb-header"><span class="tb-arrow">↑</span><span class="tb-label">油門升級訊號</span><span class="tb-sub">轉攻擊</span></div><div class="tb-rule">滿足 2/3 才成立</div><ul class="tb-list"><li>QQQ收復20MA 726.01並站上+1SD 728.90</li><li>10Y跌破4.40%，DXY不反向急升</li><li>5D breadth ratio維持&gt;1.5且RSP/IWM守強</li></ul></div>
+  <div class="trigger-box trigger-downgrade"><div class="tb-header"><span class="tb-arrow">↓</span><span class="tb-label">油門降級訊號</span><span class="tb-sub">轉防守</span></div><div class="tb-rule">任一觸發即成立</div><ul class="tb-list"><li>SPY跌破-1SD 716.49</li><li>QQQ跌破-1SD 684.14</li><li>5D breadth ratio&lt;1或VIX&gt;20</li></ul></div>
+</section>
+
 <section id="core"><h2>核心結論</h2>
   <ol>
     <li>期指分化而非全面risk-off：Dow偏強、S&amp;P持平、Nasdaq受晶片獲利回吐拖累。</li>
@@ -37,7 +44,7 @@
     <li>等權、小型股與道指達+2.8至+3.1個50MA ATR，廣度改善同時帶來短線均值回歸風險。</li>
     <li>六月非農僅+57K、低於+110K預期；失業率降至4.2%，但參與率降至61.5%，就業降溫訊號比失業率表面更弱。</li>
   </ol>
-  <div class="action"><strong>今日定位：</strong>中性偏多，降低半導體追價，保留金融、等權及醫療相對強勢倉。<br><strong>反向訊號：</strong>若QQQ跌破-1SD 684.14 → 中性偏多失效，轉防守。</div>
+  <div class="action-directive action-directive--positioning"><span class="ad-label">→ 今日定位</span><ul class="ad-list"><li class="ad-primary">中性偏多；降低半導體追價，保留金融、等權及醫療。</li><li class="ad-watch">觀察10Y與QQQ 20MA 726.01是否同向確認。</li><li class="ad-avoid">避免把弱非農直接等同無條件利多。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若QQQ&lt;-1SD 684.14 → 中性偏多失效, 轉防守</span></li></ul></div>
 </section>
 
 <section id="movers"><h2>Pre-market movers</h2>
@@ -47,7 +54,8 @@
     <tr><td>CRCL</td><td class="num">64.44</td><td class="num up">+4.02%</td><td>約55萬股</td><td>穩定幣／加密金融改善</td><td>指數影響有限</td></tr>
   </tbody></table>
   <p class="source">來源：Reuters 06:40 ET盤前更新、TipRanks盤前榜；主表只納入價格與成交均可驗證者。ARM與SNDK約跌2.2%，顯示晶片壓力延續，但因缺少同時點可靠價格，僅列觀察、不放主表。</p>
-  <div class="callout warn"><strong>小結：</strong>軟件與加密偏強、半導體偏弱，是輪動而非全面撤退。<br><strong>反向訊號：</strong>若SMH收復651.57 → 半導體減倉判斷失效，改回補。</div>
+  <div class="callout warn"><strong>小結：</strong>軟件與加密偏強、半導體偏弱，是輪動而非全面撤退。<br><strong>反向訊號：</strong>若ARM與SNDK同步轉正 → 硬件弱勢失效，改回補。</div>
+  <div class="action-directive"><span class="ad-label">→ 異動行動</span><ul class="ad-list"><li class="ad-primary">PLTR只做回踩VWAP確認；MSTR/CRCL維持小倉。</li><li class="ad-watch">觀察ARM/SNDK弱勢是否擴散至NVDA/AVGO。</li><li class="ad-avoid">不以低成交百分比跳空取代價格確認。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若ARM與SNDK同步轉正 → 硬件弱勢失效, 回補科技</span></li></ul></div>
 </section>
 
 <section id="checklist"><h2>General Market Correction Checklist／大盤修正風險清單</h2>
@@ -62,6 +70,7 @@
     <div class="check high"><span>Theme momentum weakening</span><strong>High</strong><small>SMH、AIQ、WGMI、URA同步偏弱。</small></div>
   </div>
   <div class="callout ok"><strong>Checklist Score：1/8 High＝Low Risk。</strong>短線修正集中在AI硬件與過熱板塊，中期趨勢尚未受損。<br><strong>反向訊號：</strong>若VIX&gt;20且SPY&lt;716.49 → 低風險失效，轉防守。</div>
+  <div class="action-directive"><span class="ad-label">→ 修正風險行動</span><ul class="ad-list"><li class="ad-primary">持有現有多頭，新倉以半倉等待非農後確認。</li><li class="ad-watch">同步監察VIX 20與SPY -1SD 716.49。</li><li class="ad-avoid">不因1/8 High就忽略主題股過熱。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若VIX&gt;20且SPY&lt;716.49 → 低風險失效, 轉防守</span></li></ul></div>
 </section>
 
 <section id="macro"><h2>非農更新與Fed</h2>
@@ -75,7 +84,7 @@
   </tbody></table>
   <p>行業結構亦偏弱：專業及商業服務+36K、社會援助+25K、醫療+22K，但休閒及酒店業減少61K。失業率下降主要伴隨勞動參與率下滑，而不是廣泛招聘加速。</p>
   <p>2Y約4.17%、10Y約4.49%為數據前參考。報告偏鴿，理論上利多美債與長久期科技；但若收益率下降同時小型股、銀行及週期股轉弱，市場可能改為交易增長風險，而非單純降息利多。</p>
-  <div class="action"><strong>宏觀行動：</strong>先看10Y與RSP/IWM確認；利率下行且廣度穩定才增持QQQ。<br><strong>反向訊號：</strong>若10Y&gt;4.55% → 偏鴿利率交易失效，減長久期。</div>
+  <div class="action-directive"><span class="ad-label">→ 宏觀行動</span><ul class="ad-list"><li class="ad-primary">10Y下行且RSP/IWM穩定才增持QQQ。</li><li class="ad-watch">觀察弱非農是否演變為增長恐慌。</li><li class="ad-avoid">不只看4.2%失業率，忽略參與率下降與修訂。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若10Y&gt;4.55% → 偏鴿交易失效, 減長久期</span></li></ul></div>
 </section>
 
 <section id="sectors"><h2>S&amp;P 500 Sub Sector ETF</h2>
@@ -86,10 +95,14 @@
     <tr><td>SPY</td><td>基準</td><td class="num dn">-0.14%</td><td class="num up">+1.56%</td><td class="num dn">-1.82%</td><td class="num">61.59</td><td>上／上／上</td></tr>
     <tr><td>XLY</td><td>非必需消費</td><td class="num up">+0.69%</td><td class="num up">+4.18%</td><td class="num up">+0.43%</td><td class="num">60.95</td><td>上／上／上</td></tr>
     <tr><td>XLK</td><td>科技</td><td class="num dn">-2.57%</td><td class="num up">+0.57%</td><td class="num dn">-6.35%</td><td class="num">58.04</td><td>下／上／上</td></tr>
+    <tr><td>XLU</td><td>公用事業</td><td class="num dn">-1.26%</td><td class="num dn">-2.36%</td><td class="num up">+1.98%</td><td class="num">57.84</td><td>上／下／上</td></tr>
     <tr><td>XLC</td><td>通訊</td><td class="num up">+2.44%</td><td class="num up">+3.94%</td><td class="num dn">-3.37%</td><td class="num">46.02</td><td>下／下／下</td></tr>
+    <tr><td>XLRE</td><td>房地產</td><td class="num up">+0.34%</td><td class="num dn">-0.92%</td><td class="num up">+1.59%</td><td class="num">42.26</td><td>下／下／上</td></tr>
+    <tr><td>XLP</td><td>必需消費</td><td class="num up">+0.28%</td><td class="num dn">-0.76%</td><td class="num up">+1.80%</td><td class="num">39.08</td><td>下／下／上</td></tr>
     <tr><td>XLE</td><td>能源</td><td class="num dn">-0.56%</td><td class="num dn">-2.37%</td><td class="num dn">-8.89%</td><td class="num">18.81</td><td>下／下／上</td></tr>
   </tbody></table>
   <div class="callout ok"><strong>小結：</strong>金融、工業及醫療領先，科技是中期升勢內的短線修正。<br><strong>反向訊號：</strong>若XLF&lt;51.88 → 金融領先失效，降低週期倉。</div>
+  <div class="action-directive"><span class="ad-label">→ 板塊行動</span><ul class="ad-list"><li class="ad-primary">偏配XLF/XLV，科技只等回踩確認。</li><li class="ad-watch">觀察弱非農後銀行與小型股能否守住相對強勢。</li><li class="ad-avoid">不抄底XLE或追高過熱醫療。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若XLF&lt;51.88 → 週期領先失效, 降金融</span></li></ul></div>
 
   <h2>Thematic Sector</h2>
   <table><thead><tr><th>ETF</th><th>主題</th><th class="num">日變化</th><th class="num">1月</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
@@ -97,6 +110,10 @@
     <tr><td>JETS</td><td>航空</td><td class="num up">+0.03%</td><td class="num up">+16.60%</td><td class="num">91.64</td><td>極端過熱</td></tr>
     <tr><td>XBI</td><td>生技</td><td class="num dn">-1.07%</td><td class="num up">+22.53%</td><td class="num">91.54</td><td>極端過熱</td></tr>
     <tr><td>CIBR</td><td>網安</td><td class="num up">+1.40%</td><td class="num dn">-3.40%</td><td class="num">75.79</td><td>強勢、延伸偏大</td></tr>
+    <tr><td>KRE</td><td>區域銀行</td><td class="num up">+1.78%</td><td class="num up">+9.55%</td><td class="num">71.79</td><td>強勢但過熱</td></tr>
+    <tr><td>XSW</td><td>軟件等權</td><td class="num up">+2.88%</td><td class="num dn">-3.33%</td><td class="num">69.72</td><td>短線修復強</td></tr>
+    <tr><td>ITB</td><td>住宅建築</td><td class="num dn">-2.24%</td><td class="num up">+9.53%</td><td class="num">66.80</td><td>高位回吐</td></tr>
+    <tr><td>XHB</td><td>房屋建造</td><td class="num dn">-2.54%</td><td class="num up">+7.97%</td><td class="num">66.79</td><td>高位回吐</td></tr>
     <tr><td>SPY</td><td>基準</td><td class="num dn">-0.14%</td><td class="num dn">-1.82%</td><td class="num">61.59</td><td>中性偏多</td></tr>
     <tr><td>SMH</td><td>半導體</td><td class="num dn">-5.40%</td><td class="num dn">-1.86%</td><td class="num">57.44</td><td>短線受壓</td></tr>
     <tr><td>AIQ</td><td>人工智能</td><td class="num dn">-3.02%</td><td class="num dn">-9.28%</td><td class="num">55.62</td><td>20MA下</td></tr>
@@ -105,9 +122,10 @@
     <tr><td>WGMI</td><td>比特幣礦商</td><td class="num dn">-6.82%</td><td class="num dn">-17.82%</td><td class="num">48.94</td><td>弱勢</td></tr>
   </tbody></table>
   <div class="callout warn"><strong>小結：</strong>生技過熱、AI硬件轉弱、軟件改善，適合等待回踩而非普遍追高。<br><strong>反向訊號：</strong>若XBI&lt;150.21 → 生技強勢失效，停止追價。</div>
+  <div class="action-directive"><span class="ad-label">→ 主題行動</span><ul class="ad-list"><li class="ad-primary">IGV可候回踩；SMH等重返20MA；生技只持不追。</li><li class="ad-watch">觀察AIQ與SMH能否同時止跌。</li><li class="ad-avoid">不追IBB/XBI/JETS極端RSI。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若XBI&lt;150.21 → 生技強勢失效, 減倉</span></li></ul></div>
 </section>
 
-<section id="etf"><h2>主要ETF技術與50MA ATR</h2>
+<section id="etf"><h2>大盤ETF技術</h2>
   <table><thead><tr><th>ETF</th><th class="num">日變化</th><th class="num">5日</th><th class="num">1月</th><th>20/50/200MA</th><th class="num">RSI</th><th class="num">50MA ATR</th></tr></thead><tbody>
     <tr><td>VOO</td><td class="num dn">-0.20%</td><td class="num up">+1.44%</td><td class="num dn">-1.83%</td><td>上／上／上</td><td class="num">61</td><td class="num">+1.26</td></tr>
     <tr><td>QQQ</td><td class="num dn">-1.52%</td><td class="num up">+1.23%</td><td class="num dn">-2.81%</td><td>下／上／上</td><td class="num">59</td><td class="num">+1.45</td></tr>
@@ -119,6 +137,20 @@
   </tbody></table>
   <p class="note">ARKK來源價格與技術列互相矛盾，按資料品質規則不納入主要ETF表。QQQE優於QQQ、RSP優於VOO，集中度風險正在下降。</p>
   <div class="callout warn"><strong>小結：</strong>中期偏多，但過熱由大型科技擴散至道指、等權及小型股。<br><strong>反向訊號：</strong>若RSP&lt;205.99 → 廣度擴張失效，轉防守。</div>
+  <div class="action-directive"><span class="ad-label">→ ETF行動</span><ul class="ad-list"><li class="ad-primary">QQQ守20MA 726.01才恢復標準科技配置。</li><li class="ad-watch">比較QQQ/QQQE與VOO/RSP的相對強弱。</li><li class="ad-avoid">不把QQQ +1SD 728.90當成20MA初步訊號。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若RSP&lt;205.99 → 廣度擴張失效, 轉防守</span></li></ul></div>
+</section>
+
+<section><h2>50MA ATR延伸</h2>
+  <table><thead><tr><th>ETF</th><th class="num">價格</th><th class="num">50MA</th><th class="num">ATR(14)</th><th class="num">距50MA ATR</th><th>判斷</th></tr></thead><tbody>
+    <tr><td>DIA</td><td class="num">522.40</td><td class="num">503.26</td><td class="num">6.19</td><td class="num">+3.09</td><td>過熱</td></tr>
+    <tr><td>QQQE</td><td class="num">121.10</td><td class="num">114.50</td><td class="num">2.29</td><td class="num">+2.88</td><td>明顯延伸</td></tr>
+    <tr><td>RSP</td><td class="num">213.41</td><td class="num">205.99</td><td class="num">2.63</td><td class="num">+2.82</td><td>明顯延伸</td></tr>
+    <tr><td>IWM</td><td class="num">299.32</td><td class="num">284.50</td><td class="num">5.28</td><td class="num">+2.81</td><td>明顯延伸</td></tr>
+    <tr><td>QQQ</td><td class="num">725.17</td><td class="num">700.16</td><td class="num">17.28</td><td class="num">+1.45</td><td>溫和延伸</td></tr>
+    <tr><td>VOO</td><td class="num">685.46</td><td class="num">673.73</td><td class="num">9.31</td><td class="num">+1.26</td><td>溫和延伸</td></tr>
+  </tbody></table>
+  <div class="callout warn"><strong>小結：</strong>延伸集中於道指、等權與小型股；廣度擴張正面，但新倉回報風險比下降。</div>
+  <div class="action-directive"><span class="ad-label">→ ATR行動</span><ul class="ad-list"><li class="ad-primary">QQQE/RSP/IWM/DIA新倉size減半。</li><li class="ad-watch">等回踩20MA或ATR降至+2以下再加。</li><li class="ad-avoid">不追DIA +3ATR突破。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若IWM&gt;306.69並守穩 → 觀望失效, 順勢持有</span></li></ul></div>
 </section>
 
 <section id="breadth"><h2>市場廣度</h2>
@@ -137,6 +169,7 @@
   </tbody></table>
   <p>Primary Breadth為1,773隻季度上漲25%股票對1,087隻下跌25%股票；34日上漲13%股票2,244隻，亦高於下跌的1,502隻。中期結構偏多；一個月上漲50%股票達44隻，反映局部投機熱度。</p>
   <div class="callout ok"><strong>小結：</strong>廣度不僅未惡化，且小型股確認擴散；科技弱勢暫屬局部輪動。<br><strong>反向訊號：</strong>若5日廣度比率&lt;1 → 偏多廣度失效，降槓桿。</div>
+  <div class="action-directive"><span class="ad-label">→ 廣度行動</span><ul class="ad-list"><li class="ad-primary">只做回踩確認後的第二段跟進。</li><li class="ad-watch">監察Nasdaq 100 &gt;50MA能否續升。</li><li class="ad-avoid">10D ratio未達2，不全面擴大watchlist。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若5D ratio&lt;1 → 廣度偏多失效, 降總倉1/3</span></li></ul></div>
 </section>
 
 <section><h2>每週預期波幅警報</h2>
@@ -149,9 +182,10 @@
     <tr><td>COST／CRWV</td><td class="num">—</td><td>跌破-1SD</td><td>個股選擇重要</td></tr>
   </tbody></table>
   <div class="callout warn"><strong>小結：</strong>上下兩端均有2SD突破，市場適合選股而非單押指數。</div>
+  <div class="action-directive"><span class="ad-label">→ 波幅行動</span><ul class="ad-list"><li class="ad-primary">+2SD標的只持不追；-2SD標的不抄第一段。</li><li class="ad-watch">觀察META/TSLA是否守住+1SD。</li><li class="ad-avoid">不把指數內個股分化誤判成單向大盤訊號。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若SPY&lt;716.49 → 選股偏多失效, 降總倉</span></li></ul></div>
 </section>
 
-<section><h2>外匯、商品與美債</h2>
+<section><h2>外匯與商品</h2>
   <table><thead><tr><th>資產</th><th class="num">最新</th><th class="num">日變化</th><th class="num">5日</th><th class="num">1月</th><th>訊號</th></tr></thead><tbody>
     <tr><td>DXY</td><td class="num">101.04</td><td class="num dn">-0.34%</td><td class="num dn">-0.38%</td><td class="num up">+1.86%</td><td>短線回落</td></tr>
     <tr><td>USD/JPY</td><td class="num">161.39</td><td class="num dn">-0.76%</td><td class="num dn">-0.23%</td><td class="num up">+1.10%</td><td>日圓反彈</td></tr>
@@ -159,12 +193,28 @@
     <tr><td>銅</td><td class="num">6.14</td><td class="num up">+0.32%</td><td class="num up">+1.17%</td><td class="num dn">-5.86%</td><td>增長訊號偏弱</td></tr>
     <tr><td>WTI</td><td class="num">67.27</td><td class="num dn">-1.91%</td><td class="num dn">-6.47%</td><td class="num dn">-27.01%</td><td>通脹壓力下降</td></tr>
     <tr><td>BTC</td><td class="num">61,222</td><td class="num up">+2.03%</td><td class="num up">+2.14%</td><td class="num dn">-0.37%</td><td>風險偏好微升</td></tr>
-    <tr><td>US2Y／US10Y</td><td class="num">4.17%／4.49%</td><td class="num">約平</td><td class="num">—</td><td class="num">—</td><td>10Y 4.50%為科技分界</td></tr>
   </tbody></table>
-  <div class="action"><strong>小結：</strong>油價與美元提供溫和利多，但商品未全面確認risk-on。<br><strong>反向訊號：</strong>若DXY&gt;102且WTI&gt;72 → 宏觀利多失效，減科技。</div>
+  <div class="callout warn"><strong>小結：</strong>油價與美元提供溫和利多，但商品未全面確認risk-on。</div>
+  <div class="action-directive"><span class="ad-label">→ 外匯商品行動</span><ul class="ad-list"><li class="ad-primary">保留跨國成長，暫不主動持商品beta。</li><li class="ad-watch">觀察DXY 102與WTI 72。</li><li class="ad-avoid">不因RSI低就抄底黃金、銅或BTC。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若DXY&gt;102且WTI&gt;72 → 宏觀利多失效, 減科技</span></li></ul></div>
 </section>
 
-<section><h2>盤中交易劇本</h2>
+<section><h2>美債、Fed與經濟資料</h2>
+  <table><thead><tr><th>項目</th><th class="num">最新／結果</th><th>5日／近期趨勢</th><th>美股含義</th></tr></thead><tbody>
+    <tr><td>US2Y</td><td class="num">4.17%</td><td>高位震盪</td><td>政策預期仍未全面轉鴿</td></tr>
+    <tr><td>US10Y</td><td class="num">4.49%</td><td>約5日回落8bp</td><td>4.50%為科技估值分界</td></tr>
+    <tr><td>非農</td><td class="num dn">+57K vs +110K</td><td>兩月合計下修74K</td><td>偏鴿，但伴隨增長風險</td></tr>
+    <tr><td>失業率／參與率</td><td class="num">4.2%／61.5%</td><td>參與率下降0.3ppt</td><td>低失業率品質偏弱</td></tr>
+    <tr><td>Fed訊號</td><td class="num">通脹風險下降</td><td>仍堅守2%目標</td><td>不可直接推論快速寬鬆</td></tr>
+  </tbody></table>
+  <div class="callout warn"><strong>小結：</strong>債市若接納偏鴿非農，長久期成長受惠；若收益率不跌，市場將更重視增長惡化。</div>
+  <div class="action-directive"><span class="ad-label">→ 美債Fed行動</span><ul class="ad-list"><li class="ad-primary">10Y&lt;4.40%才提高duration與成長曝險。</li><li class="ad-watch">觀察2Y是否同步下行，確認政策路徑。</li><li class="ad-avoid">不把弱就業等同Fed立即寬鬆。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若US10Y&gt;4.55% → 維持duration失效, 縮短久期</span></li></ul></div>
+</section>
+
+<section><h2>交易計畫</h2>
+  <ol><li>開盤前維持中性偏多，不追NQ第一段反彈。</li><li>若10Y跌破4.40%且QQQ重返20MA 726.01，分兩段增加QQQ/IGV。</li><li>若RSP/IWM與XLF同步轉弱，把非農解讀為增長風險，降低總倉。</li><li>半導體需SMH重返20MA且ARM/SNDK止跌才恢復配置。</li><li>過熱生技、DIA及IWM只持不追，等待ATR降溫。</li></ol>
+  <div class="action-directive"><span class="ad-label">→ 總體交易行動</span><ul class="ad-list"><li class="ad-primary">先確認利率，再選擇成長或等權輪動。</li><li class="ad-watch">首30分鐘只看10Y、QQQ 726.01與RSP相對強弱。</li><li class="ad-avoid">不在數據後第一根5分鐘K追價。</li><li class="ad-invalidate"><strong>反向訊號：</strong><span class="ad-invalidation-value">若SPY&lt;716.49 → 回踩做多失效, 轉防守</span></li></ul></div>
+
+  <h2>盤中觸發劇本</h2>
   <table><thead><tr><th>觸發</th><th>確認</th><th>行動</th></tr></thead><tbody>
     <tr><td>偏鴿定價成立</td><td>10Y&lt;4.40%、QQQ重返20MA 726.01</td><td>分批增持QQQ／IGV；SMH待重返20MA</td></tr>
     <tr><td>利率反而上升</td><td>10Y&gt;4.55%、DXY同步走高</td><td>降低QQQ、SMH及高估值主題</td></tr>

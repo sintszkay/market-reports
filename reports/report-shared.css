@@ -32,16 +32,16 @@ h2{scroll-margin-top:72px}
   .macro-summary-table th:nth-child(3),.macro-summary-table td:nth-child(3){width:18%}
   .macro-summary-table th:nth-child(4),.macro-summary-table td:nth-child(4){width:42%;text-align:left}
 
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) th:nth-child(1),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) td:nth-child(1){width:24%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) th:nth-child(2),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) td:nth-child(2){width:13%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) th:nth-child(3),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) td:nth-child(3){width:22%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) th:nth-child(4),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) td:nth-child(4){width:22%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) th:nth-child(5),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(5):last-child) td:nth-child(5){width:19%;text-align:left}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(1),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(1){width:24%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(2),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(2){width:13%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(3),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(3){width:22%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(4),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(4){width:22%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(5),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(5){width:19%;text-align:left}
 
   table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(6):last-child) th:nth-child(1),
   table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(6):last-child) td:nth-child(1){width:26%}

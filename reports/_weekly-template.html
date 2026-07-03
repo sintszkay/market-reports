@@ -14,6 +14,7 @@
     .report-data-table{table-layout:fixed}.report-data-table th,.report-data-table td{padding-left:14px;padding-right:14px}.report-cols-3 th:first-child{width:22%}.report-cols-3 th:last-child{width:39%}.report-cols-4 th:first-child{width:18%}.report-cols-4 th:last-child{width:30%}.report-cols-5 th:first-child{width:14%}.report-cols-5 th:last-child{width:28%}.report-cols-6 th:first-child{width:12%}.report-cols-6 th:last-child{width:30%}.report-cols-7 th:first-child{width:10%}.report-cols-7 th:last-child{width:34%}.report-data-table th.num,.report-data-table td.num{text-align:right}.report-data-table th:last-child,.report-data-table td:last-child{padding-left:18px}
     .mover-state-table th:nth-child(1){width:8%}.mover-state-table th:nth-child(2){width:9%}.mover-state-table th:nth-child(3){width:8%}.mover-state-table th:nth-child(4){width:11%}.mover-state-table th:nth-child(5){width:20%}.mover-state-table th:nth-child(6){width:22%}.mover-state-table th:nth-child(7){width:22%}
     .etf-position-table th:nth-child(1){width:14%}.etf-position-table th:nth-child(2){width:10%}.etf-position-table th:nth-child(3){width:10%}.etf-position-table th:nth-child(4){width:10%}.etf-position-table th:nth-child(5){width:8%}.etf-position-table th:nth-child(6){width:13%}.etf-position-table th:nth-child(7){width:35%}
+    .result-not-triggered{color:var(--muted);background:#eef0f3}
   </style>
 </head>
 <body data-report-type="weekly"><main class="wrap">
@@ -39,17 +40,19 @@
   </div>
 </section>
 
+<!-- 所有反向訊號的價格閾值必須標示出處，例如 20MA、50MA、前高、預期波動1SD/2SD或明確的風險門檻；同一閾值在結論、計畫及監控清單中的數值與動作必須一致。 -->
 <section><h2>五個核心週結論</h2><!-- DATA: core_conclusions --><!-- DATA: weekly_positioning --></section>
-<section><h2>上週對賬</h2><!-- DATA: previous_week_reconciliation --></section>
-<section><h2>美股指數與風格復盤</h2><!-- DATA: indices_style_review --></section>
-<section><h2>Big Winners &amp; Losers</h2><!-- DATA: big_winners_losers --></section>
+<section><h2>上週對賬</h2><p class="note"><strong>分類：</strong>命中＝規則已觸發且判斷正確；失誤＝規則已觸發但判斷錯誤；未觸發＝條件未滿足，無法驗證。</p><!-- DATA: previous_week_reconciliation --></section>
+<section><h2>美股指數與風格復盤</h2><p class="note"><strong>時間窗：</strong>摘要卡片為本週交易日累計變化；下表「5日」為滾動5個交易日，可能跨週，兩者不可直接對比。</p><!-- DATA: indices_style_review --></section>
+<section><h2>Big Winners &amp; Losers</h2><!-- REQUIRED: 必須補充 NVDA 週變化與20/50MA位置；取不到時標示不可得。 --><!-- DATA: big_winners_losers --></section>
 <section><h2>Sector / Thematic ETF 週分析</h2><!-- DATA: sector_thematic_weekly --></section>
-<section><h2>市場廣度深度復盤</h2><!-- DATA: market_breadth_weekly --></section>
+<section><h2>市場廣度深度復盤</h2><!-- DATA: market_breadth_weekly --><p class="note"><strong>Stockbee術語：</strong>Primary Breadth＝大盤股中期買盤／賣壓總數；50% Month＝一個月內上漲／下跌逾50%的股票數；34/13＝34日內上漲／下跌逾13%的股票數。MA廣度與Stockbee若截止日不同，必須逐行標注日期。</p></section>
 <section><h2>50MA ATR 週延伸</h2><!-- DATA: atr_weekly --></section>
 <section><h2>外匯、商品與美債</h2><!-- DATA: fx_commodities_treasury_weekly --></section>
-<section><h2>宏觀與 Fed 路徑</h2><!-- DATA: macro_fed_weekly --></section>
+<section><h2>宏觀與 Fed 路徑</h2><!-- REQUIRED: 表格必須包含當前聯邦基金目標區間與下次FOMC會議市場定價。 --><!-- DATA: macro_fed_weekly --></section>
 <section><h2>下週事件與交易計畫</h2><!-- DATA: next_week_plan --></section>
 <section><h2>交叉驗證總結 / Cross-validation summary</h2><!-- DATA: cross_validation_summary --></section>
+<section><h2>下週監控清單</h2><!-- REQUIRED COLUMNS: 訊號名 / 閾值（含出處） / 當前值 / 觸發動作；必須匯總全文所有反向訊號。 --><!-- DATA: next_week_monitoring_checklist --></section>
 <section class="sources"><h2>資料來源</h2><!-- DATA: sources --></section>
 </main>
 <script src="report-runtime.js?v=20260704-visual-1"></script>

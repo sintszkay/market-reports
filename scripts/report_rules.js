@@ -4,8 +4,9 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const RUNTIME_TAG = '<script src="report-runtime.js"></script>';
-const SHARED_STYLE_TAG = '<link rel="stylesheet" href="report-shared.css">';
+const ASSET_VERSION = "20260704-visual-1";
+const RUNTIME_TAG = `<script src="report-runtime.js?v=${ASSET_VERSION}"></script>`;
+const SHARED_STYLE_TAG = `<link rel="stylesheet" href="report-shared.css?v=${ASSET_VERSION}">`;
 const MA_PERIODS = ["20", "50", "200"];
 
 function stripTags(value) {
@@ -215,15 +216,13 @@ function ensureTriggerRules(html) {
 
 function ensureRuntime(html, reportType) {
   let output = html;
-  if (!output.includes(SHARED_STYLE_TAG)) {
-    output = output.replace(/<\/head>/i, '  ' + SHARED_STYLE_TAG + '\n</head>');
-  }
+  output = output.replace(/\s*<link\b[^>]*href=(["'])report-shared\.css(?:\?v=[^"']*)?\1[^>]*>\s*/gi, "\n");
+  output = output.replace(/<\/head>/i, `  ${SHARED_STYLE_TAG}\n</head>`);
   if (!/<body\b[^>]*\bdata-report-type=/i.test(output)) {
     output = output.replace(/<body\b([^>]*)>/i, `<body$1 data-report-type="${reportType}">`);
   }
-  if (!output.includes(RUNTIME_TAG)) {
-    output = output.replace(/<\/body>/i, `${RUNTIME_TAG}\n</body>`);
-  }
+  output = output.replace(/\s*<script\b[^>]*src=(["'])report-runtime\.js(?:\?v=[^"']*)?\1[^>]*><\/script>\s*/gi, "\n");
+  output = output.replace(/<\/body>/i, `${RUNTIME_TAG}\n</body>`);
   return output;
 }
 
@@ -374,6 +373,10 @@ function validateTriggers(html, errors) {
 function validateRuntime(html, errors) {
   if (!html.includes(RUNTIME_TAG)) errors.push("報告未掛載 report-runtime.js。");
   if (!html.includes(SHARED_STYLE_TAG)) errors.push("報告未掛載 report-shared.css。");
+  const styleCount = (html.match(/report-shared\.css(?:\?v=[^"']*)?/gi) || []).length;
+  const runtimeCount = (html.match(/report-runtime\.js(?:\?v=[^"']*)?/gi) || []).length;
+  if (styleCount !== 1) errors.push(`report-shared.css 必須只載入一次，目前 ${styleCount} 次。`);
+  if (runtimeCount !== 1) errors.push(`report-runtime.js 必須只載入一次，目前 ${runtimeCount} 次。`);
 }
 
 function validatePostmarketVisuals(html, errors) {

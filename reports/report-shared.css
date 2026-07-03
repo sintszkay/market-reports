@@ -1,4 +1,6 @@
 .num.up{color:var(--green)}.num.dn{color:var(--red)}
+.num.dn-ok{color:var(--muted)}
+.result-not-triggered{color:var(--muted);background:#eef0f3}
 .report-data-table{table-layout:fixed}
 .report-data-table th,.report-data-table td{padding-left:14px;padding-right:14px}
 .report-cols-3 th:first-child{width:22%}.report-cols-3 th:last-child{width:39%}

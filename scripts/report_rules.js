@@ -83,11 +83,21 @@ function parseMaStates(text) {
 function renderMaStates(states) {
   return MA_PERIODS.map((period) => {
     const isUp = states[period];
-    const symbol = isUp ? "✓" : "✗";
+    const symbol = isUp ? "▲" : "▼";
     const direction = isUp ? "上方" : "下方";
     const stateClass = isUp ? "ma-up" : "ma-down";
-    return `<span class="ma-state ${stateClass}" title="${period}MA ${direction}" aria-label="${period}MA ${direction}"><span aria-hidden="true">${symbol}</span><span class="ma-period">${period}</span></span>`;
+    return `<span class="ma-state ${stateClass}" title="${period}MA ${direction}" aria-label="${period}MA ${direction}"><span class="ma-period">${period}</span><span class="ma-arrow" aria-hidden="true">${symbol}</span></span>`;
   }).join('<span class="ma-separator" aria-hidden="true"> </span>');
+}
+
+function parseRenderedMaStates(inner) {
+  const badges = [...inner.matchAll(/<span\b[^>]*class=(["'])[^"']*\bma-state\b[^"']*\1[^>]*>/gi)];
+  if (badges.length !== MA_PERIODS.length) return null;
+  const states = {};
+  badges.forEach((badge, index) => {
+    states[MA_PERIODS[index]] = /\bma-up\b/i.test(badge[0]);
+  });
+  return states;
 }
 
 function normalizeTable(tableHtml, options = {}) {
@@ -98,7 +108,24 @@ function normalizeTable(tableHtml, options = {}) {
   const rsiIndex = headers.findIndex((header) => /^RSI$/i.test(header));
   const maIndex = headers.findIndex((header) => /Above MA/i.test(header));
 
-  let output = tableHtml.replace(/<tbody\b([^>]*)>([\s\S]*?)<\/tbody>/i, (tbodyFull, tbodyAttributes, tbodyInner) => {
+  let output = tableHtml;
+  if (headers.length >= 3) {
+    output = output.replace(/^<table\b([^>]*)>/i, (full, attributes) => {
+      let nextAttributes = addClass(attributes.replace(/\breport-cols-\d+\b/gi, ""), "report-data-table");
+      nextAttributes = addClass(nextAttributes, `report-cols-${headers.length}`);
+      return `<table${nextAttributes}>`;
+    });
+  }
+  if (maIndex >= 0) {
+    output = output.replace(/^<table\b([^>]*)>/i, (full, attributes) =>
+      `<table${addClass(attributes, "ma-table")}>`
+    );
+    output = replaceCell(output, "th", maIndex, ({ attributes }) =>
+      `<th${addClass(attributes, "ma-heading")}>Above MA（20/50/200）</th>`
+    );
+  }
+
+  output = output.replace(/<tbody\b([^>]*)>([\s\S]*?)<\/tbody>/i, (tbodyFull, tbodyAttributes, tbodyInner) => {
     let rows = [];
     tbodyInner.replace(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi, (row) => {
       rows.push(row);
@@ -129,8 +156,7 @@ function normalizeTable(tableHtml, options = {}) {
 
       if (maIndex >= 0) {
         next = replaceCell(next, "td", maIndex, ({ attributes, inner }) => {
-          if (/\bma-state\b/.test(inner)) return `<td${attributes}>${inner}</td>`;
-          const states = parseMaStates(inner);
+          const states = /\bma-state\b/.test(inner) ? parseRenderedMaStates(inner) : parseMaStates(inner);
           if (!states) return `<td${attributes}>${inner}</td>`;
           return `<td${addClass(attributes, "ma-cell")}>${renderMaStates(states)}</td>`;
         });

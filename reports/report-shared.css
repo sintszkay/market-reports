@@ -21,7 +21,6 @@ h2{scroll-margin-top:72px}
 @media(min-width:701px){
   table{table-layout:fixed}
   th,td{line-height:1.45}
-  th:nth-child(n+2):not(:last-child),td:nth-child(n+2):not(:last-child){text-align:right;font-variant-numeric:tabular-nums}
   table th:last-child,table td:last-child{text-align:left}
 
   table:not(.premarket-movers-table):not(.playbook-table) th:nth-child(1),
@@ -71,6 +70,13 @@ h2{scroll-margin-top:72px}
   table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(6){width:16%}
   table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(7),
   table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(7){width:22%;text-align:left}
+
+  .recon-table th,.recon-table td{text-align:left}
+  .recon-table th:nth-child(1),.recon-table td:nth-child(1){width:13%}
+  .recon-table th:nth-child(2),.recon-table td:nth-child(2){width:29%}
+  .recon-table th:nth-child(3),.recon-table td:nth-child(3){width:27%}
+  .recon-table th:nth-child(4),.recon-table td:nth-child(4){width:9%;text-align:center}
+  .recon-table th:nth-child(5),.recon-table td:nth-child(5){width:22%}
 
   table.sector-summary-table th:nth-child(1),table.sector-summary-table td:nth-child(1){width:16%}
   table.sector-summary-table th:nth-child(2),table.sector-summary-table td:nth-child(2){width:12%}

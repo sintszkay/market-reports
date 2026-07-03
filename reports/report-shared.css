@@ -27,21 +27,21 @@ h2{scroll-margin-top:72px}
   table:not(.premarket-movers-table):not(.playbook-table) td:nth-child(1){text-align:left}
   td.ma-cell{text-align:center}
 
-  .macro-summary-table th:nth-child(1),.macro-summary-table td:nth-child(1){width:16%}
-  .macro-summary-table th:nth-child(2),.macro-summary-table td:nth-child(2){width:24%}
-  .macro-summary-table th:nth-child(3),.macro-summary-table td:nth-child(3){width:18%}
-  .macro-summary-table th:nth-child(4),.macro-summary-table td:nth-child(4){width:42%;text-align:left}
+  .macro-summary-table th:nth-child(1),.macro-summary-table td:nth-child(1){width:15%}
+  .macro-summary-table th:nth-child(2),.macro-summary-table td:nth-child(2){width:21%;text-align:right}
+  .macro-summary-table th:nth-child(3),.macro-summary-table td:nth-child(3){width:14%;text-align:right}
+  .macro-summary-table th:nth-child(4),.macro-summary-table td:nth-child(4){width:50%;text-align:left}
 
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(1),
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(1){width:24%}
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(2),
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(2){width:13%}
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(3),
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(3){width:22%}
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(4),
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(4){width:22%}
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) th:nth-child(5),
-  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):has(th:nth-child(5):last-child) td:nth-child(5){width:19%;text-align:left}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) th:nth-child(1),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) td:nth-child(1){width:24%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) th:nth-child(2),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) td:nth-child(2){width:13%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) th:nth-child(3),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) td:nth-child(3){width:22%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) th:nth-child(4),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) td:nth-child(4){width:22%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) th:nth-child(5),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.recon-table):not(.breadth-summary-table):has(th:nth-child(5):last-child) td:nth-child(5){width:19%;text-align:left}
 
   table:not(.premarket-movers-table):not(.playbook-table):not(.sector-summary-table):has(th:nth-child(6):last-child) th:nth-child(1),
   table:not(.premarket-movers-table):not(.playbook-table):not(.sector-summary-table):has(th:nth-child(6):last-child) td:nth-child(1){width:26%}
@@ -56,20 +56,20 @@ h2{scroll-margin-top:72px}
   table:not(.premarket-movers-table):not(.playbook-table):not(.sector-summary-table):has(th:nth-child(6):last-child) th:nth-child(6),
   table:not(.premarket-movers-table):not(.playbook-table):not(.sector-summary-table):has(th:nth-child(6):last-child) td:nth-child(6){width:20%;text-align:left}
 
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(1),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(1){width:16%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(2),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(2){width:11%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(3),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(3){width:11%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(4),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(4){width:11%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(5),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(5){width:13%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(6),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(6){width:16%}
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) th:nth-child(7),
-  table:not(.premarket-movers-table):not(.playbook-table):has(th:nth-child(7):last-child) td:nth-child(7){width:22%;text-align:left}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(1),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(1){width:16%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(2),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(2){width:11%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(3),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(3){width:11%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(4),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(4){width:11%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(5),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(5){width:13%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(6),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(6){width:16%}
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) th:nth-child(7),
+  table:not(.premarket-movers-table):not(.playbook-table):not(.index-summary-table):has(th:nth-child(7):last-child) td:nth-child(7){width:22%;text-align:left}
 
   .recon-table th,.recon-table td{text-align:left}
   .recon-table th:nth-child(1),.recon-table td:nth-child(1){width:13%}
@@ -77,6 +77,22 @@ h2{scroll-margin-top:72px}
   .recon-table th:nth-child(3),.recon-table td:nth-child(3){width:27%}
   .recon-table th:nth-child(4),.recon-table td:nth-child(4){width:9%;text-align:center}
   .recon-table th:nth-child(5),.recon-table td:nth-child(5){width:22%}
+
+  .breadth-summary-table th,.breadth-summary-table td{text-align:left}
+  .breadth-summary-table th:nth-child(1),.breadth-summary-table td:nth-child(1){width:24%}
+  .breadth-summary-table th:nth-child(2),.breadth-summary-table td:nth-child(2){width:10%;text-align:center}
+  .breadth-summary-table th:nth-child(3),.breadth-summary-table td:nth-child(3){width:18%;text-align:center}
+  .breadth-summary-table th:nth-child(4),.breadth-summary-table td:nth-child(4){width:18%;text-align:center}
+  .breadth-summary-table th:nth-child(5),.breadth-summary-table td:nth-child(5){width:30%}
+
+  .index-summary-table th,.index-summary-table td{text-align:left}
+  .index-summary-table th:nth-child(1),.index-summary-table td:nth-child(1){width:14%}
+  .index-summary-table th:nth-child(2),.index-summary-table td:nth-child(2){width:10%;text-align:right}
+  .index-summary-table th:nth-child(3),.index-summary-table td:nth-child(3){width:10%;text-align:right}
+  .index-summary-table th:nth-child(4),.index-summary-table td:nth-child(4){width:10%;text-align:right}
+  .index-summary-table th:nth-child(5),.index-summary-table td:nth-child(5){width:18%}
+  .index-summary-table th:nth-child(6),.index-summary-table td:nth-child(6){width:8%;text-align:right}
+  .index-summary-table th:nth-child(7),.index-summary-table td:nth-child(7){width:30%}
 
   table.sector-summary-table th:nth-child(1),table.sector-summary-table td:nth-child(1){width:12%}
   table.sector-summary-table th:nth-child(2),table.sector-summary-table td:nth-child(2){width:10%}

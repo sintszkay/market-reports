@@ -10,6 +10,8 @@ const premarketPath = path.join(root, "reports", "2026-06-30-premarket-update.ht
 const weeklyPath = path.join(root, "reports", "2026-06-27-weekly.html");
 const premarketTemplatePath = path.join(root, "reports", "_template.html");
 const weeklyTemplatePath = path.join(root, "reports", "_weekly-template.html");
+const postmarketTemplatePath = path.join(root, "reports", "_postmarket-template.html");
+const postmarketPath = path.join(root, "reports", "2026-07-02-postmarket-recap.html");
 const runtimePath = path.join(root, "reports", "report-runtime.js");
 const sharedCssPath = path.join(root, "reports", "report-shared.css");
 
@@ -17,6 +19,8 @@ const premarket = fs.readFileSync(premarketPath, "utf8");
 const weekly = fs.readFileSync(weeklyPath, "utf8");
 const premarketTemplate = fs.readFileSync(premarketTemplatePath, "utf8");
 const weeklyTemplate = fs.readFileSync(weeklyTemplatePath, "utf8");
+const postmarketTemplate = fs.readFileSync(postmarketTemplatePath, "utf8");
+const postmarket = fs.readFileSync(postmarketPath, "utf8");
 const runtime = fs.readFileSync(runtimePath, "utf8");
 const sharedCss = fs.readFileSync(sharedCssPath, "utf8");
 
@@ -40,6 +44,7 @@ function tableByHeading(html, headingPattern) {
 
 const premarketErrors = validateReportHtml(premarket, { reportType: "premarket" });
 const weeklyErrors = validateReportHtml(weekly, { reportType: "weekly" });
+const postmarketErrors = validateReportHtml(postmarket, { reportType: "postmarket" });
 
 const qqq724 = [...premarket.matchAll(/QQQ[\s\S]{0,100}?724\.87/g)].map(function (match) { return stripTags(match[0]); });
 const qqq728 = [...premarket.matchAll(/QQQ[\s\S]{0,100}?728\.90/g)].map(function (match) { return stripTags(match[0]); });
@@ -155,10 +160,46 @@ check(
 );
 
 check(
+  "Visual baseline",
+  "盤前、周報、盤後共用可視化設計基線",
+  [premarketTemplate, weeklyTemplate, postmarketTemplate].every(function (template) {
+    return /report-shared\.css\?v=20260704-visual-1/.test(template) &&
+      /\.card > span(?:,|\{)/.test(template) &&
+      /\.card strong\{[^}]*text-align:left/.test(template);
+  }) &&
+    runtime.includes("addSectionKickers()") &&
+    runtime.includes('kicker.className = "kicker"')
+);
+
+check(
+  "Postmarket visuals",
+  "盤後模板與實際報告包含完整視覺元件",
+  /reconciliation_hitbar/.test(postmarketTemplate) &&
+    /sector_chart/.test(postmarketTemplate) &&
+    /class="kicker"/.test(postmarketTemplate) &&
+    /class="hitbar"/.test(postmarket) &&
+    /class="chart"/.test(postmarket) &&
+    /class="rsi(?: |")/.test(postmarket) &&
+    /class="pct"/.test(postmarket) &&
+    /class="atr l[1-4]"/.test(postmarket) &&
+    /class="ma"/.test(postmarket) &&
+    postmarketErrors.length === 0,
+  postmarketErrors.join(" | ")
+);
+
+check(
+  "Postmarket default",
+  "盤後生成器預設使用可視化模板",
+  /postmarket:\s*path\.join\(__dirname, "\.\.", "reports", "_postmarket-template\.html"\)/.test(
+    fs.readFileSync(path.join(root, "scripts", "render_report.js"), "utf8")
+  )
+);
+
+check(
   "Validators",
   "兩種實際報告通過嚴格驗證",
-  premarketErrors.length === 0 && weeklyErrors.length === 0,
-  [...premarketErrors, ...weeklyErrors].join(" | ")
+  premarketErrors.length === 0 && weeklyErrors.length === 0 && postmarketErrors.length === 0,
+  [...premarketErrors, ...weeklyErrors, ...postmarketErrors].join(" | ")
 );
 
 let failed = false;

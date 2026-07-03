@@ -6,7 +6,7 @@ const path = require("node:path");
 const { applyToFile } = require("./report_rules");
 
 function usage() {
-  console.error("Usage: node scripts/apply_report_rules.js --type premarket|weekly [--write] <report.html> [...]");
+  console.error("Usage: node scripts/apply_report_rules.js --type premarket|weekly|postmarket [--write] <report.html> [...]");
 }
 
 const argv = process.argv.slice(2);
@@ -29,7 +29,7 @@ for (let index = 0; index < argv.length; index += 1) {
   }
 }
 
-if (!["premarket", "weekly"].includes(reportType) || files.length === 0) {
+if (!["premarket", "weekly", "postmarket"].includes(reportType) || files.length === 0) {
   usage();
   process.exit(2);
 }

@@ -4,6 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { normalizeReportHtml, validateReportHtml } = require("./report_rules");
+const postmarketVisuals = require("./postmarket_visuals");
 
 function parseArgs(argv) {
   const args = {};
@@ -62,12 +63,17 @@ function renderPlaybookRows(rows) {
 
 const args = parseArgs(process.argv.slice(2));
 const reportType = args.type;
-if (!["premarket", "weekly"].includes(reportType) || !args.template || !args.data || !args.out) {
-  console.error("Usage: node scripts/render_report.js --type premarket|weekly --template <template.html> --data <data.json> --out <report.html>");
+const defaultTemplates = {
+  premarket: path.join(__dirname, "..", "reports", "_template.html"),
+  weekly: path.join(__dirname, "..", "reports", "_weekly-template.html"),
+  postmarket: path.join(__dirname, "..", "reports", "_postmarket-template.html"),
+};
+if (!["premarket", "weekly", "postmarket"].includes(reportType) || !args.data || !args.out) {
+  console.error("Usage: node scripts/render_report.js --type premarket|weekly|postmarket [--template <template.html>] --data <data.json> --out <report.html>");
   process.exit(2);
 }
 
-const templatePath = path.resolve(args.template);
+const templatePath = path.resolve(args.template || defaultTemplates[reportType]);
 const dataPath = path.resolve(args.data);
 const outputPath = path.resolve(args.out);
 const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
@@ -78,6 +84,19 @@ const rendered = {
   pre_market_movers_rows: renderMoverRows(data.pre_market_movers),
   intraday_playbook_rows: renderPlaybookRows(data.intraday_playbook_rows),
 };
+
+if (reportType === "postmarket") {
+  Object.assign(rendered, {
+    reconciliation_hitbar: postmarketVisuals.renderHitbar(data.reconciliation_summary),
+    summary_cards: postmarketVisuals.renderSummaryCards(data.summary_cards),
+    reconciliation_rows: postmarketVisuals.renderReconciliationRows(data.reconciliation_rows),
+    index_rows: postmarketVisuals.renderIndexRows(data.index_rows),
+    sector_chart: postmarketVisuals.renderSectorChart(data.sector_rows),
+    sector_rows: postmarketVisuals.renderSectorRows(data.sector_rows),
+    breadth_rows: postmarketVisuals.renderBreadthRows(data.breadth_rows),
+    macro_rows: postmarketVisuals.renderMacroRows(data.macro_rows),
+  });
+}
 
 for (const [key, value] of Object.entries(rendered)) {
   if (typeof value === "string" || typeof value === "number") {

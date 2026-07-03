@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visual postmarket report data",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "report_type": {"const": "postmarket"},
+    "title": {"type": "string"},
+    "eyebrow": {"type": "string"},
+    "headline": {"type": "string"},
+    "as_of": {"type": "string"},
+    "reconciliation_summary": {
+      "type": "object",
+      "properties": {
+        "hit": {"type": "integer", "minimum": 0},
+        "partial": {"type": "integer", "minimum": 0},
+        "miss": {"type": "integer", "minimum": 0}
+      },
+      "required": ["hit", "partial", "miss"]
+    },
+    "summary_cards": {"type": "array", "minItems": 4, "maxItems": 4},
+    "reconciliation_rows": {"type": "array", "minItems": 1},
+    "index_rows": {"type": "array", "minItems": 1},
+    "sector_rows": {"type": "array", "minItems": 1},
+    "breadth_rows": {"type": "array", "minItems": 1},
+    "macro_rows": {"type": "array", "minItems": 1}
+  },
+  "required": [
+    "report_type",
+    "title",
+    "eyebrow",
+    "headline",
+    "as_of",
+    "reconciliation_summary",
+    "summary_cards",
+    "reconciliation_rows",
+    "index_rows",
+    "sector_rows",
+    "breadth_rows",
+    "macro_rows",
+    "core_conclusions",
+    "core_conclusion",
+    "reconciliation_conclusion",
+    "index_conclusion",
+    "sector_conclusion",
+    "breadth_context",
+    "breadth_conclusion",
+    "macro_conclusion",
+    "next_session",
+    "next_conclusion",
+    "cross_validation",
+    "sources"
+  ]
+}

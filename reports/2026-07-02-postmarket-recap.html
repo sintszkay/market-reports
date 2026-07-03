@@ -1,32 +1,39 @@
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>美股盤後對賬｜2026 年 7 月 2 日</title>
-  <link rel="stylesheet" href="report-shared.css?v=20260704-6">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>美股盤後對賬｜2026 年 7 月 2 日</title>
+<link rel="stylesheet" href="report-shared.css?v=20260704-visual-1">
   <style>
     :root{--bg:#f4f5f7;--panel:#fff;--text:#111827;--muted:#6b7280;--line:#e5e7eb;--blue:#2563eb;--green:#2e7d5c;--amber:#ba7517;--red:#a3422b;--shadow:0 12px 30px rgba(15,23,42,.06)}
-    *{box-sizing:border-box}body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.62}.wrap{max-width:1180px;margin:0 auto;padding:32px 16px 56px}header{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:24px 28px;box-shadow:var(--shadow);margin-bottom:20px}.eyebrow{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;margin-bottom:8px}h1{font-size:31px;line-height:1.25;margin:0}h2{font-size:22px;line-height:1.35;margin:32px 0 12px}.muted,.note{color:var(--muted)}.note{font-size:12px}section{min-width:0;margin-bottom:28px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 28px}.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:14px 15px;box-shadow:0 6px 16px rgba(15,23,42,.035)}.card span{display:block;color:var(--muted);font-size:12px;font-weight:700}.card strong{display:block;margin-top:4px;font-size:20px;line-height:1.3;font-variant-numeric:tabular-nums}.badge{display:inline-flex;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;margin:8px 6px 0 0}.amber{color:#9a5f0b;background:#fff3d6}.blue{color:var(--blue);background:#eaf2ff}.green{color:var(--green);background:#e8f3ec}.red{color:var(--red);background:#faeeea}.table-scroll{width:100%;max-width:100%;overflow-x:auto;margin:10px 0 12px;border-radius:6px;box-shadow:0 6px 16px rgba(15,23,42,.035);-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);border:1px solid var(--line);border-radius:6px;overflow:hidden;font-size:13px}.table-scroll table{margin:0;box-shadow:none}th,td{border-bottom:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;overflow-wrap:break-word}tr:last-child td{border-bottom:0}th{background:#f1efe8;color:#374151;font-size:12px;font-weight:600;white-space:nowrap}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.result-badge{display:inline-flex;min-width:52px;justify-content:center;border-radius:999px;padding:3px 8px;font-size:11px;font-weight:700}.result-hit{color:var(--green);background:#e8f3ec}.result-partial{color:#9a5f0b;background:#fff3d6}.result-miss{color:var(--red);background:#faeeea}.section-conclusion{border-left:4px solid var(--blue);background:var(--panel);padding:12px 14px;margin:12px 0 18px;border-radius:4px}.section-conclusion.ok{border-left-color:var(--green)}.section-conclusion.warn{border-left-color:var(--amber)}.section-conclusion.risk{border-left-color:var(--red)}ol{padding-left:22px}li{margin:7px 0}.sources{font-size:12px;color:var(--muted)}
-    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.wrap{padding:20px 12px 40px}header{padding:18px}h1{font-size:25px}.table-scroll table{min-width:760px}}@media(max-width:460px){.grid{grid-template-columns:1fr}h2{font-size:20px}}
+    *{box-sizing:border-box}body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;line-height:1.62}.wrap{max-width:1180px;margin:0 auto;padding:32px 16px 56px}header{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:24px 28px;box-shadow:var(--shadow);margin-bottom:20px}.eyebrow{font-size:12px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}h1{font-size:30px;line-height:1.25;margin:0 0 6px}h2{font-size:21px;line-height:1.35;margin:0 0 4px}.muted,.note{color:var(--muted)}.note{font-size:12px}section{min-width:0;margin-bottom:30px}.badge{display:inline-flex;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:700;margin:10px 6px 0 0}.badge.blue{color:var(--blue);background:var(--blue-bg)}.badge.green{color:var(--green);background:var(--green-bg)}.badge.red{color:var(--red);background:var(--red-bg)}.badge.amber{color:#9a5f0b;background:var(--amber-bg)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0 28px}.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:14px 16px;box-shadow:0 6px 16px rgba(15,23,42,.035)}.card > span{display:block;color:var(--muted);font-size:12px;font-weight:700}.card strong{display:block;margin-top:4px;font-size:22px;line-height:1.3;font-variant-numeric:tabular-nums;text-align:left}.card .note{margin:6px 0 0}.table-scroll{width:100%;overflow-x:auto;margin:12px 0;border-radius:8px;box-shadow:0 6px 16px rgba(15,23,42,.035);-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:separate;border-spacing:0;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:13px}th,td{border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:middle;overflow-wrap:break-word;line-height:1.5}tr:last-child td{border-bottom:0}tbody tr:hover td{background:#fafbfc}th{background:#f1efe8;color:#374151;font-size:12px;font-weight:600;white-space:nowrap}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.section-conclusion{border-left:4px solid var(--blue);background:var(--panel);padding:12px 14px;margin:12px 0 18px;border-radius:4px}.section-conclusion.ok{border-left-color:var(--green)}.section-conclusion.warn{border-left-color:var(--amber)}.section-conclusion.risk{border-left-color:var(--red)}ol{padding-left:22px}li{margin:7px 0}.sources{font-size:12px;color:var(--muted)}
+    body[data-report-type="postmarket"] table{table-layout:auto}body[data-report-type="postmarket"] .sector-summary-table th,body[data-report-type="postmarket"] .sector-summary-table td,body[data-report-type="postmarket"] .breadth-summary-table th,body[data-report-type="postmarket"] .breadth-summary-table td{width:auto!important}
+    @media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:760px){.wrap{padding:20px 12px 40px}header{padding:18px}h1{font-size:24px}.table-scroll table{min-width:760px}}@media(max-width:460px){.grid{grid-template-columns:1fr}h2{font-size:19px}}
   </style>
 </head>
-<body><main class="wrap">
+<body data-report-type="postmarket"><main class="wrap">
+
 <header>
   <div class="eyebrow">US Postmarket Reconciliation · 2026-07-02</div>
   <h1>美股盤後對賬：道指創新高，科技去擁擠延續</h1>
-  <p class="muted">資料截至 2026-07-02 美股收盤。Major ETF、Sector/Thematic ETF 與 Stockbee 已更新至 7/2；Market Breadth MA tab 最新為 7/1。</p>
-  <div><span class="badge green">7 命中 · 3 部分 · 0 失誤</span><span class="badge blue">Value-led Rotation</span><span class="badge red">Tech De-risking</span><span class="badge amber">Breadth Divergence</span></div>
+  <p class="muted" style="margin:4px 0 0">資料截至 2026-07-02 美股收盤。Major ETF、Sector/Thematic ETF 與 Stockbee 已更新至 7/2；Market Breadth MA tab 最新為 7/1。</p>
+  <div class="hitbar" role="img" aria-label="盤前判斷：7 命中、3 部分、0 失誤">
+    <i class="h" style="width:70%"></i><i class="p" style="width:30%"></i>
+  </div>
+  <div class="hitbar-legend">盤前判斷對賬：<span class="dot h"></span><b>7</b> 命中<span class="dot p"></span><b>3</b> 部分<span class="dot m"></span><b>0</b> 失誤</div>
+  <div><span class="badge blue">Value-led Rotation</span><span class="badge red">Tech De-risking</span><span class="badge amber">Breadth Divergence</span></div>
 </header>
 
 <section class="grid" aria-label="close summary">
-  <div class="card"><span>Dow</span><strong>+1.14%</strong><p class="note">收 52,900.07，創收盤新高。</p></div>
-  <div class="card"><span>QQQ</span><strong>-1.73%</strong><p class="note">收 712.60，續低於20MA。</p></div>
-  <div class="card"><span>RSP / VOO</span><strong>+0.70% / -0.09%</strong><p class="note">等權明顯勝過權重。</p></div>
-  <div class="card"><span>Stockbee 4%+ 漲 / 跌</span><strong>264 / 352</strong><p class="note">單日轉弱，5D ratio仍1.95。</p></div>
+  <div class="card"><span>Dow</span><strong class="num">+1.14%</strong><p class="note">收 52,900.07，創收盤新高。</p></div>
+  <div class="card"><span>QQQ</span><strong class="num">-1.73%</strong><p class="note">收 712.60，續低於20MA。</p></div>
+  <div class="card"><span>RSP / VOO</span><strong style="font-size:18px;white-space:nowrap"><span class="num">+0.70%</span>&nbsp;/&nbsp;<span class="num">-0.09%</span></strong><p class="note">等權明顯勝過權重。</p></div>
+  <div class="card"><span>Stockbee 4%+ 漲 / 跌</span><strong style="font-size:18px;white-space:nowrap"><span style="color:var(--green)">264</span>&nbsp;/&nbsp;<span style="color:var(--red)">352</span></strong><p class="note">單日轉弱，5D ratio仍1.95。</p></div>
 </section>
 
 <section>
+  <div class="kicker">Key takeaways</div>
   <h2>收盤核心結論</h2>
   <ol>
     <li><strong>市場屬價值／防禦領漲，而非全面 risk-off。</strong>Dow +1.14%、RSP +0.70%，Nasdaq -0.80%、QQQ -1.73%；標普內約七成成分股上漲。</li>
@@ -39,8 +46,9 @@
 </section>
 
 <section>
+  <div class="kicker">Reconciliation</div>
   <h2>盤前主導判斷對賬</h2>
-  <div class="table-scroll"><table class="recon-table"><thead><tr><th>Section</th><th>盤前行動／判斷</th><th>收盤實況</th><th>對賬</th><th>下次修正</th></tr></thead><tbody>
+  <div class="table-scroll"><table class="recon-table"><thead><tr><th style="width:13%">Section</th><th style="width:29%">盤前行動／判斷</th><th style="width:27%">收盤實況</th><th style="width:9%;text-align:center">對賬</th><th style="width:22%">下次修正</th></tr></thead><tbody>
     <tr><td>核心定位</td><td>中性偏多；降半導體追價，保留金融、等權及醫療。</td><td>XLF、RSP、XLV上漲；QQQ、SMH續跌。</td><td><span class="result-badge result-hit">命中</span></td><td>維持輪動框架。</td></tr>
     <tr><td>Pre-market movers</td><td>不抄半導體第一段；軟件與加密缺口只小倉／等VWAP。</td><td>SMH -4.54%、WGMI -9.49%；IGV僅+0.25%。</td><td><span class="result-badge result-hit">命中</span></td><td>缺口交易繼續要求量價確認。</td></tr>
     <tr><td>Correction Checklist</td><td>1 High / 8＝Low Risk，持有現有多頭。</td><td>VIX降至16.15，多數標普成分股上漲。</td><td><span class="result-badge result-hit">命中</span></td><td>保持低風險，但追蹤日內廣度轉弱。</td></tr>
@@ -56,84 +64,105 @@
 </section>
 
 <section>
+  <div class="kicker">Major indices &amp; style</div>
   <h2>指數與風格收盤</h2>
-  <div class="table-scroll"><table class="index-summary-table"><thead><tr><th>ETF／指數</th><th class="num">最新</th><th class="num">日變化</th><th class="num">5日</th><th>Above MA</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
-    <tr><td>DIA</td><td class="num">527.88</td><td class="num">+1.05%</td><td class="num">+1.96%</td><td class="ma-cell" aria-label="20MA、50MA、200MA上方"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">69.33</td><td>價值領漲，+4.06 ATR過熱。</td></tr>
-    <tr><td>RSP</td><td class="num">214.91</td><td class="num">+0.70%</td><td class="num">+2.19%</td><td class="ma-cell" aria-label="20MA、50MA、200MA上方"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">66.03</td><td>等權確認輪動。</td></tr>
-    <tr><td>VOO</td><td class="num">684.84</td><td class="num">-0.09%</td><td class="num">+2.18%</td><td class="ma-cell" aria-label="20MA下方，50MA、200MA上方"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">54.52</td><td>寬基中性。</td></tr>
-    <tr><td>QQQE</td><td class="num">120.15</td><td class="num">-0.78%</td><td class="num">+1.24%</td><td class="ma-cell" aria-label="20MA、50MA、200MA上方"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">54.55</td><td>仍優於權重科技。</td></tr>
-    <tr><td>IWM</td><td class="num">297.58</td><td class="num">-0.58%</td><td class="num">-0.75%</td><td class="ma-cell" aria-label="20MA、50MA、200MA上方"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">58.40</td><td>小型股未確認弱非農利多。</td></tr>
-    <tr><td>QQQ</td><td class="num">712.60</td><td class="num">-1.73%</td><td class="num">+0.86%</td><td class="ma-cell" aria-label="20MA下方，50MA、200MA上方"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-separator">·</span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">48.26</td><td>短線轉弱，中期未破。</td></tr>
-    <tr><td>VIX</td><td class="num">16.15</td><td class="num">-2.65%</td><td class="num">-12.28%</td><td class="ma-cell" aria-label="20MA、50MA、200MA下方"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-separator">·</span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-separator">·</span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></td><td class="num">44.37</td><td>未見系統性恐慌。</td></tr>
+  <div class="table-scroll"><table><thead><tr><th>ETF／指數</th><th class="num">最新</th><th class="num">日變化</th><th class="num">5日</th><th style="text-align:center">Above MA（20/50/200）</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+    <tr><td>DIA</td><td class="num">527.88</td><td class="num">+1.05%</td><td class="num">+1.96%</td><td class="ma" style="text-align:center"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></td><td class="num"><span class="rsi"><i><b style="width:69%"></b></i>69.33</span></td><td>價值領漲，+4.06 ATR過熱。</td></tr>
+    <tr><td>RSP</td><td class="num">214.91</td><td class="num">+0.70%</td><td class="num">+2.19%</td><td class="ma" style="text-align:center"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></td><td class="num"><span class="rsi"><i><b style="width:66%"></b></i>66.03</span></td><td>等權確認輪動。</td></tr>
+    <tr><td>VOO</td><td class="num">684.84</td><td class="num">-0.09%</td><td class="num">+2.18%</td><td class="ma" style="text-align:center"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></td><td class="num"><span class="rsi"><i><b style="width:55%"></b></i>54.52</span></td><td>寬基中性。</td></tr>
+    <tr><td>QQQE</td><td class="num">120.15</td><td class="num">-0.78%</td><td class="num">+1.24%</td><td class="ma" style="text-align:center"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></td><td class="num"><span class="rsi"><i><b style="width:55%"></b></i>54.55</span></td><td>仍優於權重科技。</td></tr>
+    <tr><td>IWM</td><td class="num">297.58</td><td class="num">-0.58%</td><td class="num">-0.75%</td><td class="ma" style="text-align:center"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></td><td class="num"><span class="rsi"><i><b style="width:58%"></b></i>58.40</span></td><td>小型股未確認弱非農利多。</td></tr>
+    <tr><td>QQQ</td><td class="num">712.60</td><td class="num">-1.73%</td><td class="num">+0.86%</td><td class="ma" style="text-align:center"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></td><td class="num"><span class="rsi"><i><b style="width:48%"></b></i>48.26</span></td><td>短線轉弱，中期未破。</td></tr>
+    <tr><td>VIX</td><td class="num">16.15</td><td class="num dn-ok">-2.65%</td><td class="num dn-ok">-12.28%</td><td class="ma" style="text-align:center"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="dn">200<i>▼</i></b></td><td class="num"><span class="rsi"><i><b style="width:44%"></b></i>44.37</span></td><td>未見系統性恐慌。</td></tr>
   </tbody></table></div>
   <div class="section-conclusion ok"><strong>本段結論：</strong>QQQ弱於QQQE、VOO弱於RSP，集中度風險繼續下降。這支持價值／等權輪動，但DIA與RSP已高度延伸，不宜追價。</div>
 </section>
 
 <section>
+  <div class="kicker">Sector / Thematic</div>
   <h2>Sector / Thematic ETF</h2>
+
+  <div class="chart" role="img" aria-label="板塊單日漲跌條形圖">
+    <p class="chart-title">單日漲跌一覽（%，按強弱排序）</p>
+    <div class="bar-row"><span class="lbl">IBB 生技</span><span class="val pos">+2.93</span><div class="bar-track"><div class="b pos" style="left:76.4%;width:23.6%"></div></div></div>
+    <div class="bar-row"><span class="lbl">XLV 醫療</span><span class="val pos">+2.63</span><div class="bar-track"><div class="b pos" style="left:76.4%;width:21.2%"></div></div></div>
+    <div class="bar-row"><span class="lbl">XBI 生技</span><span class="val pos">+2.50</span><div class="bar-track"><div class="b pos" style="left:76.4%;width:20.1%"></div></div></div>
+    <div class="bar-row"><span class="lbl">XLP 必需消費</span><span class="val pos">+2.03</span><div class="bar-track"><div class="b pos" style="left:76.4%;width:16.3%"></div></div></div>
+    <div class="bar-row"><span class="lbl">XLF 金融</span><span class="val pos">+1.53</span><div class="bar-track"><div class="b pos" style="left:76.4%;width:12.3%"></div></div></div>
+    <div class="bar-row"><span class="lbl">IGV 軟件</span><span class="val pos">+0.25</span><div class="bar-track"><div class="b pos" style="left:76.4%;width:2%"></div></div></div>
+    <div class="bar-row"><span class="lbl">XLK 科技</span><span class="val neg">-2.71</span><div class="bar-track"><div class="b neg" style="left:54.6%;width:21.8%"></div></div></div>
+    <div class="bar-row"><span class="lbl">AIQ 人工智能</span><span class="val neg">-2.80</span><div class="bar-track"><div class="b neg" style="left:53.9%;width:22.5%"></div></div></div>
+    <div class="bar-row"><span class="lbl">SMH 半導體</span><span class="val neg">-4.54</span><div class="bar-track"><div class="b neg" style="left:39.8%;width:36.6%"></div></div></div>
+    <div class="bar-row"><span class="lbl">WGMI 礦商</span><span class="val neg">-9.49</span><div class="bar-track"><div class="b neg" style="left:0;width:76.4%"></div></div></div>
+  </div>
+
   <div class="table-scroll"><table class="sector-summary-table"><thead><tr><th>ETF</th><th class="num">日變化</th><th class="num">5日</th><th class="num">1月</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
-    <tr><td>XLV 醫療</td><td class="num">+2.63%</td><td class="num">+2.12%</td><td class="num">+10.97%</td><td class="num">72.86</td><td>防禦領漲且月線加速，但 RSI 已過熱；持有優先，等回踩再加。</td></tr>
-    <tr><td>XLF 金融</td><td class="num">+1.53%</td><td class="num">+3.83%</td><td class="num">+9.34%</td><td class="num">73.79</td><td>價值輪動主線延續，但短線過熱；不追高，觀察回踩能否守住突破位。</td></tr>
-    <tr><td>XLP 必需消費</td><td class="num">+2.03%</td><td class="num">+0.33%</td><td class="num">+3.44%</td><td class="num">56.53</td><td>單日防禦買盤明顯，但中期動能仍溫和；可作低波動配置，未到主升段。</td></tr>
-    <tr><td>IBB 生技</td><td class="num">+2.93%</td><td class="num">+4.45%</td><td class="num">+16.84%</td><td class="num">80.24</td><td>月線強勢且 RSI 極熱；只持不追，若放量滯漲需主動收緊止盈。</td></tr>
-    <tr><td>XBI 生技</td><td class="num">+2.50%</td><td class="num">+3.27%</td><td class="num">+23.59%</td><td class="num">76.68</td><td>高 beta 生技維持主升，但一月升幅過大；回撤風險高於 IBB，宜縮小倉位。</td></tr>
-    <tr><td>IGV 軟件</td><td class="num">+0.25%</td><td class="num">+6.09%</td><td class="num">-6.62%</td><td class="num">55.93</td><td>短線相對硬件抗跌，但盤前缺口未延續；只算修復，需站穩 20MA 才確認轉強。</td></tr>
-    <tr><td>XLK 科技</td><td class="num">-2.71%</td><td class="num">-0.29%</td><td class="num">-7.97%</td><td class="num">47.27</td><td>跌至 20MA 下方且月線轉弱；維持低配，重新站穩 20MA 前不急於回補。</td></tr>
-    <tr><td>SMH 半導體</td><td class="num">-4.54%</td><td class="num">-3.16%</td><td class="num">-7.15%</td><td class="num">47.02</td><td>去擁擠加速，單日跌幅顯著高於科技；避免抄底，先等止跌與相對強度回升。</td></tr>
-    <tr><td>AIQ 人工智能</td><td class="num">-2.80%</td><td class="num">-2.06%</td><td class="num">-10.57%</td><td class="num">44.92</td><td>跌破 20MA 且一月動能最弱之一；反彈先視作減倉窗口，尚未出現回補訊號。</td></tr>
-    <tr><td>WGMI 礦商</td><td class="num">-9.49%</td><td class="num">-19.08%</td><td class="num">-24.79%</td><td class="num">33.62</td><td>加密強勢未擴散至礦商，三個周期同步轉弱；超賣不等於止跌，暫避高 beta。</td></tr>
+    <tr><td>XLV 醫療</td><td class="num">+2.63%</td><td class="num">+2.12%</td><td class="num">+10.97%</td><td class="num"><span class="rsi hot"><i><b style="width:73%"></b></i>72.86</span></td><td>防禦領漲且月線加速，但 RSI 已過熱；持有優先，等回踩再加。</td></tr>
+    <tr><td>XLF 金融</td><td class="num">+1.53%</td><td class="num">+3.83%</td><td class="num">+9.34%</td><td class="num"><span class="rsi hot"><i><b style="width:74%"></b></i>73.79</span></td><td>價值輪動主線延續，但短線過熱；不追高，觀察回踩能否守住突破位。</td></tr>
+    <tr><td>XLP 必需消費</td><td class="num">+2.03%</td><td class="num">+0.33%</td><td class="num">+3.44%</td><td class="num"><span class="rsi"><i><b style="width:57%"></b></i>56.53</span></td><td>單日防禦買盤明顯，但中期動能仍溫和；可作低波動配置，未到主升段。</td></tr>
+    <tr><td>IBB 生技</td><td class="num">+2.93%</td><td class="num">+4.45%</td><td class="num">+16.84%</td><td class="num"><span class="rsi hot"><i><b style="width:80%"></b></i>80.24</span></td><td>月線強勢且 RSI 極熱；只持不追，若放量滯漲需主動收緊止盈。</td></tr>
+    <tr><td>XBI 生技</td><td class="num">+2.50%</td><td class="num">+3.27%</td><td class="num">+23.59%</td><td class="num"><span class="rsi hot"><i><b style="width:77%"></b></i>76.68</span></td><td>高 beta 生技維持主升，但一月升幅過大；回撤風險高於 IBB，宜縮小倉位。</td></tr>
+    <tr><td>IGV 軟件</td><td class="num">+0.25%</td><td class="num">+6.09%</td><td class="num">-6.62%</td><td class="num"><span class="rsi"><i><b style="width:56%"></b></i>55.93</span></td><td>短線相對硬件抗跌，但盤前缺口未延續；只算修復，需站穩 20MA 才確認轉強。</td></tr>
+    <tr><td>XLK 科技</td><td class="num">-2.71%</td><td class="num">-0.29%</td><td class="num">-7.97%</td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.27</span></td><td>跌至 20MA 下方且月線轉弱；維持低配，重新站穩 20MA 前不急於回補。</td></tr>
+    <tr><td>SMH 半導體</td><td class="num">-4.54%</td><td class="num">-3.16%</td><td class="num">-7.15%</td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.02</span></td><td>去擁擠加速，單日跌幅顯著高於科技；避免抄底，先等止跌與相對強度回升。</td></tr>
+    <tr><td>AIQ 人工智能</td><td class="num">-2.80%</td><td class="num">-2.06%</td><td class="num">-10.57%</td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>44.92</span></td><td>跌破 20MA 且一月動能最弱之一；反彈先視作減倉窗口，尚未出現回補訊號。</td></tr>
+    <tr><td>WGMI 礦商</td><td class="num">-9.49%</td><td class="num">-19.08%</td><td class="num">-24.79%</td><td class="num"><span class="rsi cold"><i><b style="width:34%"></b></i>33.62</span></td><td>加密強勢未擴散至礦商，三個周期同步轉弱；超賣不等於止跌，暫避高 beta。</td></tr>
   </tbody></table></div>
   <div class="section-conclusion warn"><strong>本段結論：</strong>醫療、金融與防禦類確認risk-on內部輪動；科技硬件趨勢受損，軟件僅相對抗跌。交易上持強不追，科技等重返20MA。</div>
 </section>
 
 <section>
+  <div class="kicker">Breadth</div>
   <h2>市場廣度與Stockbee</h2>
   <div class="table-scroll"><table class="breadth-summary-table"><thead><tr><th>指標</th><th class="num">最新</th><th>最近5日趨勢</th><th>約1個月趨勢</th><th>判斷</th></tr></thead><tbody>
-    <tr><td>S&amp;P 500 &gt;20MA</td><td class="num">64.08%</td><td>+3.93ppt</td><td>+17.56ppt</td><td>偏多；資料截至7/1。</td></tr>
-    <tr><td>S&amp;P 500 &gt;50MA</td><td class="num">64.09%</td><td>+1.35ppt</td><td>+13.20ppt</td><td>中期偏多。</td></tr>
-    <tr><td>Nasdaq 100 &gt;20MA</td><td class="num">62.74%</td><td>-1.61ppt</td><td>+7.30ppt</td><td>科技短線整固。</td></tr>
-    <tr><td>Nasdaq 100 &gt;50MA</td><td class="num">56.86%</td><td>+0.43ppt</td><td>-8.48ppt</td><td>仍有中期背離。</td></tr>
-    <tr><td>IWM &gt;20MA</td><td class="num">71.88%</td><td>+6.31ppt</td><td>+23.88ppt</td><td>廣度強；資料截至7/1。</td></tr>
-    <tr><td>IWM &gt;50MA</td><td class="num">68.12%</td><td>-5.73ppt</td><td>+7.03ppt</td><td>中期仍強。</td></tr>
-    <tr><td>T2108</td><td class="num">51.95%</td><td>+3.76ppt</td><td>中性上升</td><td>中性偏多。</td></tr>
+    <tr><td>S&amp;P 500 &gt;20MA</td><td><span class="pct"><i><b style="width:64%"></b></i><em>64.08%</em></span></td><td class="trend">+3.93ppt</td><td class="trend">+17.56ppt</td><td>偏多；資料截至7/1。</td></tr>
+    <tr><td>S&amp;P 500 &gt;50MA</td><td><span class="pct"><i><b style="width:64%"></b></i><em>64.09%</em></span></td><td class="trend">+1.35ppt</td><td class="trend">+13.20ppt</td><td>中期偏多。</td></tr>
+    <tr><td>Nasdaq 100 &gt;20MA</td><td><span class="pct"><i><b style="width:63%"></b></i><em>62.74%</em></span></td><td class="trend">-1.61ppt</td><td class="trend">+7.30ppt</td><td>科技短線整固。</td></tr>
+    <tr><td>Nasdaq 100 &gt;50MA</td><td><span class="pct"><i><b style="width:57%"></b></i><em>56.86%</em></span></td><td class="trend">+0.43ppt</td><td class="trend">-8.48ppt</td><td>仍有中期背離。</td></tr>
+    <tr><td>IWM &gt;20MA</td><td><span class="pct"><i><b style="width:72%"></b></i><em>71.88%</em></span></td><td class="trend">+6.31ppt</td><td class="trend">+23.88ppt</td><td>廣度強；資料截至7/1。</td></tr>
+    <tr><td>IWM &gt;50MA</td><td><span class="pct"><i><b style="width:68%"></b></i><em>68.12%</em></span></td><td class="trend">-5.73ppt</td><td class="trend">+7.03ppt</td><td>中期仍強。</td></tr>
+    <tr><td>T2108</td><td><span class="pct"><i><b style="width:52%"></b></i><em>51.95%</em></span></td><td class="trend">+3.76ppt</td><td>中性上升</td><td>中性偏多。</td></tr>
     <tr><td>5日 breadth ratio</td><td class="num">1.95</td><td>由1.03附近改善</td><td>改善</td><td>長倉友善。</td></tr>
     <tr><td>10日 breadth ratio</td><td class="num">1.47</td><td>小幅改善</td><td>偏多</td><td>未達&gt;2強追多區。</td></tr>
-    <tr><td>上漲4%+股票</td><td class="num">264</td><td>較前日389下降</td><td>波動</td><td>普通買盤。</td></tr>
-    <tr><td>下跌4%+股票</td><td class="num">352</td><td>較前日219上升</td><td>波動</td><td>單日賣壓增加。</td></tr>
+    <tr><td>上漲4%+股票</td><td class="num" style="color:var(--green);font-weight:700">264</td><td>較前日389下降</td><td>波動</td><td>普通買盤。</td></tr>
+    <tr><td>下跌4%+股票</td><td class="num" style="color:var(--red);font-weight:700">352</td><td>較前日219上升</td><td>波動</td><td>單日賣壓增加。</td></tr>
   </tbody></table></div>
   <p><strong>Primary Breadth：</strong>1691隻季度上漲25%股票對1101隻下跌25%股票，仍在bullish phase。<strong>50% Month：</strong>48隻上漲、34隻下跌，局部投機熱度仍高。<strong>34/13：</strong>2217對1539，配合T2108 51.95，確認中期結構未破。</p>
   <div class="section-conclusion warn"><strong>本段結論：</strong>中期廣度偏多與單日賣壓上升同時存在。可持倉但不擴大watchlist；若5D ratio跌破1，才轉為明確防守。</div>
 </section>
 
 <section>
+  <div class="kicker">Macro / FX / Rates</div>
   <h2>50MA ATR、外匯商品與利率</h2>
-  <div class="table-scroll"><table class="macro-summary-table"><thead><tr><th>資產</th><th class="num">最新</th><th class="num">日變化</th><th>趨勢／交易含義</th></tr></thead><tbody>
-    <tr><td>DIA</td><td class="num">+4.06 ATR</td><td class="num">+1.05%</td><td>極端延伸，均值回歸風險高。</td></tr>
-    <tr><td>RSP</td><td class="num">+3.42 ATR</td><td class="num">+0.70%</td><td>輪動強，但不宜追。</td></tr>
-    <tr><td>QQQE / IWM</td><td class="num">+2.43 / +2.43 ATR</td><td class="num">-0.78% / -0.58%</td><td>延伸開始降溫。</td></tr>
-    <tr><td>QQQ / VOO</td><td class="num">+0.63 / +1.13 ATR</td><td class="num">-1.73% / -0.09%</td><td>不過熱，但低於20MA。</td></tr>
+  <div class="table-scroll"><table class="macro-summary-table"><thead><tr><th style="width:16%">資產</th><th class="num" style="width:24%">最新</th><th class="num" style="width:18%">日變化</th><th style="width:42%">趨勢／交易含義</th></tr></thead><tbody>
+    <tr><td>DIA</td><td class="num"><span class="atr l4"><i><b></b><b></b><b></b><b></b></i>+4.06 ATR</span></td><td class="num">+1.05%</td><td>極端延伸，均值回歸風險高。</td></tr>
+    <tr><td>RSP</td><td class="num"><span class="atr l3"><i><b></b><b></b><b></b><b></b></i>+3.42 ATR</span></td><td class="num">+0.70%</td><td>輪動強，但不宜追。</td></tr>
+    <tr><td>QQQE / IWM</td><td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>+2.43 / +2.43 ATR</span></td><td class="num">-0.78% / -0.58%</td><td>延伸開始降溫。</td></tr>
+    <tr><td>QQQ / VOO</td><td class="num"><span class="atr l1"><i><b></b><b></b><b></b><b></b></i>+0.63 / +1.13 ATR</span></td><td class="num">-1.73% / -0.09%</td><td>不過熱，但低於20MA。</td></tr>
     <tr><td>DXY</td><td class="num">100.94</td><td class="num">-0.45%</td><td>5日-0.49%、1月+1.75%；美元短線回落。</td></tr>
     <tr><td>黃金 / 白銀</td><td class="num">4,141.50 / 61.58</td><td class="num">+1.79% / +2.49%</td><td>超跌反彈，中期仍弱。</td></tr>
     <tr><td>WTI</td><td class="num">68.47</td><td class="num">-0.16%</td><td>5日-4.80%、1月-25.71%，通脹壓力低。</td></tr>
     <tr><td>BTC</td><td class="num">61,499.96</td><td class="num">+2.49%</td><td>反彈但仍低於主要均線。</td></tr>
     <tr><td>US10Y</td><td class="num">4.48%</td><td class="num">約持平</td><td>未跌破4.40%，不加長久期科技。</td></tr>
   </tbody></table></div>
-  <div class="section-conclusion warn"><strong>本段結論：</strong>美元與油價回落提供溫和支撐，但債息未確認偏鴿交易。價值風格已比科技更過熱，下一步應等待回踩，而非從一個擁擠交易跳进另一個。</div>
+  <div class="section-conclusion warn"><strong>本段結論：</strong>美元與油價回落提供溫和支撐，但債息未確認偏鴿交易。價值風格已比科技更過熱，下一步應等待回踩，而非從一個擁擠交易跳進另一個。</div>
 </section>
 
 <section>
+  <div class="kicker">Next session</div>
   <h2>下一交易日計畫</h2>
   <ol>
     <li>QQQ重新站上725.51前，科技維持低配；SMH需收復617.30才恢復半導體。</li>
     <li>XLF、XLV保持相對強勢，但RSI均超過70，只持不追。</li>
-    <li>RSP已+3.42 ATR、DIA已+4.06 ATR，等待回踩20MA或延伸降至+2 ATR内。</li>
+    <li>RSP已+3.42 ATR、DIA已+4.06 ATR，等待回踩20MA或延伸降至+2 ATR內。</li>
     <li>10Y低於4.40%且QQQ重返20MA，才分批增加QQQ/IGV。</li>
-    <li>7月3日美股休市；长周末后避免追首个缺口，先观察科技与等权相对强弱。</li>
+    <li>7月3日美股休市；長周末後避免追首個缺口，先觀察科技與等權相對強弱。</li>
   </ol>
   <div class="section-conclusion ok"><strong>本段結論：</strong>保留寬基與價值／醫療持倉，科技等待技術與利率雙重確認。短線可選股，不宜全面加槓桿。</div>
 </section>
 
 <section>
+  <div class="kicker">Cross-validation</div>
   <h2>交叉驗證總結 / Cross-validation summary</h2>
   <p><strong>確認訊號：</strong>Dow、RSP、XLF、XLV走強，配合低VIX及Primary Breadth偏多，確認領導權擴散；QQQ、SMH、XLK、AIQ同步走弱，確認科技去擁擠。</p>
   <p><strong>分歧訊號：</strong>中期廣度仍強，但當日4%下跌股反超；弱非農壓低美元，卻未使10Y跌破4.40%或帶動長久期科技。</p>
@@ -141,4 +170,21 @@
 </section>
 
 <section class="sources"><strong>資料來源：</strong>使用者Google Sheets（Major ETF、Sector、Thematic Sectors、Market Breadth、Stockbee）、7/2盤前報告；收盤敘事交叉核對AP與Reuters。資料不可得處不作估算。</section>
-</main></body></html>
+
+</main>
+<script>
+/* 依正負號自動配色：+ 綠、- 紅；VIX 行的下跌屬中性，標了 dn-ok 的不當跌處理 */
+document.querySelectorAll('.num, .trend').forEach(function(c){
+  if(c.querySelector('.rsi,.atr,.pct'))return;
+  var t=c.textContent.trim();
+  if(c.classList.contains('dn-ok')){c.style.color='var(--muted)';return;}
+  if(/^\+/.test(t))c.classList.add('up');
+  else if(/^[-−]/.test(t))c.classList.add('dn');
+});
+document.querySelectorAll('.trend').forEach(function(c){
+  c.style.fontVariantNumeric='tabular-nums';
+  if(c.classList.contains('up')){c.style.color='var(--green)';c.style.fontWeight='600';}
+  if(c.classList.contains('dn')){c.style.color='var(--red)';c.style.fontWeight='600';}
+});
+</script>
+</body></html>

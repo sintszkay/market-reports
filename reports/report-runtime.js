@@ -93,6 +93,62 @@
     });
   }
 
+  function addSectionKickers() {
+    var labels = [
+      [/核心結論|五個核心週結論/, "Key takeaways"],
+      [/Pre-market movers/i, "Premarket movers"],
+      [/修正檢查|Correction Checklist/i, "Risk checklist"],
+      [/宏觀事件與盤前背景/, "Macro backdrop"],
+      [/Sector\s*\/\s*Thematic/i, "Sector / Thematic"],
+      [/大盤 ETF 技術|指數與風格/, "Major indices & style"],
+      [/50MA ATR/, "50MA ATR extension"],
+      [/市場廣度/, "Breadth"],
+      [/外匯|商品與美債/, "Macro / FX / Rates"],
+      [/美債、Fed|宏觀與 Fed/, "Rates / Fed"],
+      [/交易計畫|下週事件與交易計畫/, "Trading plan"],
+      [/盤中觸發劇本/, "Intraday playbook"],
+      [/上週對賬/, "Reconciliation"],
+      [/Big Winners & Losers/i, "Leadership"],
+      [/交叉驗證/, "Cross-validation"],
+      [/資料來源/, "Sources"],
+    ];
+    document.querySelectorAll("main section h2").forEach(function (heading) {
+      var section = heading.closest("section");
+      if (!section || section.querySelector(":scope > .kicker")) return;
+      var match = labels.find(function (entry) { return entry[0].test(textOf(heading)); });
+      if (!match) return;
+      var kicker = document.createElement("div");
+      kicker.className = "kicker";
+      kicker.textContent = match[1];
+      section.insertBefore(kicker, heading);
+    });
+  }
+
+  function colorVisualSignedNumbers() {
+    document.querySelectorAll(".num, .trend").forEach(function (cell) {
+      if (cell.querySelector(".rsi, .atr, .pct")) return;
+      var value = textOf(cell);
+      if (cell.classList.contains("dn-ok")) {
+        cell.classList.remove("up", "dn");
+        cell.style.color = "var(--muted)";
+        return;
+      }
+      if (/^\+/.test(value)) cell.classList.add("up");
+      else if (/^[-−]/.test(value)) cell.classList.add("dn");
+      if (cell.classList.contains("trend")) {
+        cell.style.fontVariantNumeric = "tabular-nums";
+        if (cell.classList.contains("up")) {
+          cell.style.color = "var(--green)";
+          cell.style.fontWeight = "600";
+        }
+        if (cell.classList.contains("dn")) {
+          cell.style.color = "var(--red)";
+          cell.style.fontWeight = "600";
+        }
+      }
+    });
+  }
+
   function formatMovingAverageStates() {
     document.querySelectorAll("table").forEach(function (table) {
       var headers = Array.from(table.querySelectorAll("thead th")).map(textOf);
@@ -148,8 +204,10 @@
   function init() {
     formatRsiTables();
     addSymbolLegend();
+    addSectionKickers();
     addTableOfContents();
     colorSignedNumbers();
+    colorVisualSignedNumbers();
     formatMovingAverageStates();
   }
 

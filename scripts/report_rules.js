@@ -202,6 +202,7 @@ function ensureRuntime(html, reportType) {
 }
 
 function normalizeReportHtml(html, { reportType = "premarket" } = {}) {
+  if (reportType === "postmarket") return html;
   let output = normalizeSections(html);
   output = ensureTriggerRules(output);
   output = ensureRuntime(output, reportType);
@@ -349,8 +350,30 @@ function validateRuntime(html, errors) {
   if (!html.includes(SHARED_STYLE_TAG)) errors.push("報告未掛載 report-shared.css。");
 }
 
+function validatePostmarketVisuals(html, errors) {
+  const requiredClasses = ["hitbar", "kicker", "rsi", "pct", "atr", "ma", "chart", "bar-row", "bar-track"];
+  for (const className of requiredClasses) {
+    if (!new RegExp(`class=["'][^"']*\\b${className}\\b`).test(html)) {
+      errors.push(`盤後報告缺少視覺元件 .${className}。`);
+    }
+  }
+  if (!/document\.querySelectorAll\(['"]\.num, \.trend['"]\)/.test(html)) {
+    errors.push("盤後報告缺少 .num / .trend 正負號著色腳本。");
+  }
+  if (!/class=["'][^"']*\bdn-ok\b/.test(html)) {
+    errors.push("盤後報告缺少 dn-ok 中性負值標記。");
+  }
+  if (!/report-shared\.css\?v=/.test(html)) {
+    errors.push("盤後報告未使用帶版本號的共享樣式。");
+  }
+}
+
 function validateReportHtml(html, { reportType = "premarket" } = {}) {
   const errors = [];
+  if (reportType === "postmarket") {
+    validatePostmarketVisuals(html, errors);
+    return errors;
+  }
   validateRsiAndMa(html, errors);
   validateQqqTiers(html, errors);
   validateTriggers(html, errors);

@@ -18,17 +18,17 @@ function roundedPercent(value) {
 
 function renderHitbar(summary = {}) {
   const hit = Number(summary.hit) || 0;
-  const partial = Number(summary.partial) || 0;
+  const notTriggered = Number(summary.not_triggered ?? summary.partial) || 0;
   const miss = Number(summary.miss) || 0;
-  const total = hit + partial + miss;
+  const total = hit + notTriggered + miss;
   const width = (value) => total ? (value / total * 100).toFixed(2).replace(/\.00$/, "") : "0";
   const segments = [
     hit ? `<i class="h" style="width:${width(hit)}%"></i>` : "",
-    partial ? `<i class="p" style="width:${width(partial)}%"></i>` : "",
+    notTriggered ? `<i class="n" style="width:${width(notTriggered)}%"></i>` : "",
     miss ? `<i class="m" style="width:${width(miss)}%"></i>` : "",
   ].join("");
-  return `<div class="hitbar" role="img" aria-label="盤前判斷：${hit} 命中、${partial} 部分、${miss} 失誤">${segments}</div>
-  <div class="hitbar-legend">盤前判斷對賬：<span class="dot h"></span><b>${hit}</b> 命中<span class="dot p"></span><b>${partial}</b> 部分<span class="dot m"></span><b>${miss}</b> 失誤</div>`;
+  return `<div class="hitbar" role="img" aria-label="盤前判斷：${hit} 命中、${miss} 失誤、${notTriggered} 未觸發">${segments}</div>
+  <div class="hitbar-legend">盤前判斷對賬：<span class="dot h"></span><b>${hit}</b> 命中<span class="dot m"></span><b>${miss}</b> 失誤<span class="dot n"></span><b>${notTriggered}</b> 未觸發</div>`;
 }
 
 function renderSummaryCards(cards = []) {
@@ -49,10 +49,11 @@ function renderSummaryCards(cards = []) {
 }
 
 function renderReconciliationRows(rows = []) {
-  const labels = { hit: "命中", partial: "部分", miss: "失誤" };
+  const labels = { hit: "命中", miss: "失誤", not_triggered: "未觸發" };
   return rows.map(function (row) {
-    const result = ["hit", "partial", "miss"].includes(row.result) ? row.result : "partial";
-    return `<tr><td>${escapeHtml(row.section)}</td><td>${escapeHtml(row.directive)}</td><td>${escapeHtml(row.actual)}</td><td><span class="result-badge result-${result}">${labels[result]}</span></td><td>${escapeHtml(row.correction)}</td></tr>`;
+    const result = ["hit", "miss", "not_triggered"].includes(row.result) ? row.result : "not_triggered";
+    const resultClass = result === "not_triggered" ? "not-triggered" : result;
+    return `<tr><td>${escapeHtml(row.section)}</td><td>${escapeHtml(row.directive)}</td><td>${escapeHtml(row.actual)}</td><td><span class="result-badge result-${resultClass}">${labels[result]}</span></td><td>${escapeHtml(row.correction)}</td></tr>`;
   }).join("\n    ");
 }
 

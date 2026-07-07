@@ -13,10 +13,10 @@
       "type": "object",
       "properties": {
         "hit": {"type": "integer", "minimum": 0},
-        "partial": {"type": "integer", "minimum": 0},
+        "not_triggered": {"type": "integer", "minimum": 0},
         "miss": {"type": "integer", "minimum": 0}
       },
-      "required": ["hit", "partial", "miss"]
+      "required": ["hit", "not_triggered", "miss"]
     },
     "summary_cards": {"type": "array", "minItems": 4, "maxItems": 4},
     "reconciliation_rows": {"type": "array", "minItems": 1},

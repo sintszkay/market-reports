@@ -1,0 +1,78 @@
+{
+  "report_type": "postmarket",
+  "title": "美股盤後對賬｜2026 年 7 月 6 日",
+  "eyebrow": "US Postmarket Reconciliation · 2026-07-06",
+  "headline": "美股盤後對賬：AI反彈成立，20MA確認仍差一步",
+  "as_of": "資料截至 2026-07-06 美股收盤。Major ETF、Sector/Thematic ETF、Market Breadth與Stockbee均已更新至7/6。",
+  "reconciliation_summary": {"hit": 6, "miss": 1, "not_triggered": 3},
+  "regime_badges": "<span class=\"badge blue\">AI Rebound</span><span class=\"badge amber\">Below 20MA</span><span class=\"badge green\">Low VIX</span>",
+  "summary_cards": [
+    {"label": "SPY", "value": "+0.87%", "note": "收751.28，距+1SD 755.42约0.55%。"},
+    {"label": "QQQ", "value": "+1.43%", "note": "收722.82，仍低于20MA 725.07。"},
+    {"label": "SMH", "value": "+2.03%", "note": "收604.30，仍低于20MA 618.22。"},
+    {"label": "Stockbee 4%+ 漲 / 跌", "values": [{"text": "239", "numeric": false, "color": "green"}, {"text": "158", "numeric": false, "color": "red"}], "note": "單日改善，5D ratio降至1.47。"}
+  ],
+  "core_conclusions": "<ol><li><strong>AI與半導體跌深反彈成立。</strong>Nasdaq +1.12%、QQQ +1.43%、XLK +1.65%、SMH +2.03%，科技重新領先。</li><li><strong>但完整趨勢修復尚未確認。</strong>QQQ收722.82，低於20MA 725.07；SMH收604.30，低於20MA 618.22，盤前雙重回補條件未觸發。</li><li><strong>大盤低風險框架仍有效。</strong>SPY +0.87%、VIX降3.59%至15.85，SPY沒有跌破-1SD 734.14。</li><li><strong>指數上漲但內部並非全面擴散。</strong>Reuters顯示標普成分股跌多漲少；Stockbee的4%上漲股239多於下跌股158，但5D ratio由1.92回落至1.47。</li><li><strong>ISM沒有制造新的利率冲击。</strong>Services PMI 54.0符合预期，10Y由4.49%回落至约4.47%；偏热且10Y&gt;4.55%的减仓条件没有出现。</li></ol>",
+  "core_conclusion": "盘前把半导体定义为修复而非趋势反转是正确的；当天可以保留科技观察仓，但仍不应在QQQ与SMH双双低于20MA时恢复标准配置。",
+  "reconciliation_rows": [
+    {"section": "核心定位", "directive": "中性等待科技确认，不预先追认全面risk-on。", "actual": "QQQ +1.43%、SMH +2.03%，但两者仍低于20MA；标普内部跌多涨少。", "result": "hit", "correction": "继续区分反弹与趋势确认。"},
+    {"section": "Pre-market movers", "directive": "半导体可续抱，新仓等20MA，不追第一段高开。", "actual": "SMH收涨2.03%，盘中反弹延续但未收复20MA 618.22。", "result": "hit", "correction": "首日反弹仍以观察仓处理。"},
+    {"section": "Correction Checklist", "directive": "0 High / 8＝Low Risk，总仓中性，VIX与SPY为防线。", "actual": "SPY +0.87%、VIX -3.59%至15.85，SPY远高于-1SD 734.14。", "result": "hit", "correction": "低风险判断保留。"},
+    {"section": "宏观／ISM", "directive": "数据前不加长久期；若ISM低于52且10Y低于4.40%才加QQQ/IGV。", "actual": "ISM 54.0、10Y约4.47%，宽松加仓条件未满足。", "result": "not_triggered", "correction": "条件未满足，无法验证触发动作。"},
+    {"section": "Sector / Theme", "directive": "偏金融、医疗、CIBR；科技等SMH/AIQ修复。", "actual": "XLF +0.93%、CIBR +2.47%、AIQ +3.22%；XLV -1.09%，强势板块出现轮动。", "result": "hit", "correction": "由静态偏配改为强势板块轮动管理。"},
+    {"section": "大盘ETF", "directive": "QQQ重返20MA 725.33才初步回补1/3。", "actual": "QQQ收722.82，最新20MA 725.07，条件未满足。", "result": "not_triggered", "correction": "继续等收盘确认。"},
+    {"section": "50MA ATR", "directive": "DIA/RSP超过+3 ATR，只持不追。", "actual": "DIA +0.42%、RSP +0.04%；延伸升至+4.23/+3.34 ATR，追价回报有限。", "result": "hit", "correction": "过热限制继续有效。"},
+    {"section": "市场广度", "directive": "只做有广度确认的金融、医疗与等权。", "actual": "科技/AI领涨，XLK +1.65%、AIQ +3.22%，而XLV -1.09%、RSP仅+0.04%。", "result": "miss", "correction": "广度偏多时允许超跌科技观察仓参与。"},
+    {"section": "Expected Move", "directive": "若SPY跌破-1SD 734.14则总仓降1/3。", "actual": "SPY收751.28，未跌破734.14；全表无1SD/2SD正式触发。", "result": "not_triggered", "correction": "防守条件未满足。"},
+    {"section": "风险管理", "directive": "不追ISM后第一根K，科技修复不等于全面risk-on。", "actual": "指数上涨但标普成分股跌多涨少，且QQQ/SMH仍低于20MA。", "result": "hit", "correction": "维持收盘确认优先。"}
+  ],
+  "reconciliation_conclusion": "6命中、1失误、3未触发。主要命中是科技修复与低风险判断；唯一失误是把可参与范围过度限制在金融、医疗与等权，低估了超跌AI/半导体的首日修复强度。",
+  "index_rows": [
+    {"asset": "DIA", "latest": "530.09", "daily": "+0.42%", "five_day": "+1.47%", "ma": {"20": true, "50": true, "200": true}, "rsi": 69.33, "judgment": "+4.23 ATR，趋势强但过热。"},
+    {"asset": "RSP", "latest": "215.00", "daily": "+0.04%", "five_day": "+1.05%", "ma": {"20": true, "50": true, "200": true}, "rsi": 66.03, "judgment": "等权横盘，+3.34 ATR。"},
+    {"asset": "VOO", "latest": "690.62", "daily": "+0.84%", "five_day": "+0.55%", "ma": {"20": true, "50": true, "200": true}, "rsi": 54.52, "judgment": "宽基恢复20MA上方。"},
+    {"asset": "QQQE", "latest": "120.89", "daily": "+0.62%", "five_day": "-0.92%", "ma": {"20": true, "50": true, "200": true}, "rsi": 54.55, "judgment": "仍在三条均线上。"},
+    {"asset": "IWM", "latest": "298.90", "daily": "+0.44%", "five_day": "-0.52%", "ma": {"20": true, "50": true, "200": true}, "rsi": 58.40, "judgment": "中期结构仍强。"},
+    {"asset": "QQQ", "latest": "722.82", "daily": "+1.43%", "five_day": "-1.84%", "ma": {"20": false, "50": true, "200": true}, "rsi": 48.26, "judgment": "反弹但未收复20MA。"},
+    {"asset": "VIX", "latest": "15.85", "daily": "-3.59%", "five_day": "-3.65%", "ma": {"20": false, "50": false, "200": false}, "rsi": 44.37, "judgment": "系统性恐慌低。", "dn_ok": true}
+  ],
+  "index_conclusion": "QQQ日内领涨但仍低于20MA，QQQE、RSP、IWM与DIA则维持三线之上。短线科技修复、中期等权结构偏多，两者并存。",
+  "sector_rows": [
+    {"label": "XLF 金融", "daily": 0.93, "daily_display": "+0.93%", "five_day": "+4.72%", "one_month": "+7.34%", "rsi": 73.79, "judgment": "趋势强但极度延伸，只持不追。"},
+    {"label": "XLV 医疗", "daily": -1.09, "daily_display": "-1.09%", "five_day": "+2.08%", "one_month": "+5.85%", "rsi": 72.86, "judgment": "高RSI后回吐，轮动降温。"},
+    {"label": "CIBR 网安", "daily": 2.47, "daily_display": "+2.47%", "five_day": "+3.41%", "one_month": "+7.16%", "rsi": 66.72, "judgment": "科技内部最强趋势之一。"},
+    {"label": "IGV 软件", "daily": 1.30, "daily_display": "+1.30%", "five_day": "+4.62%", "one_month": "-1.11%", "rsi": 55.93, "judgment": "站20/50MA上，修复延续。"},
+    {"label": "XLK 科技", "daily": 1.65, "daily_display": "+1.65%", "five_day": "-3.65%", "one_month": "+1.81%", "rsi": 47.27, "judgment": "反弹但仍低于20MA。"},
+    {"label": "SMH 半导体", "daily": 2.03, "daily_display": "+2.03%", "five_day": "-7.87%", "one_month": "+6.08%", "rsi": 47.02, "judgment": "跌深修复，20MA 618.22未收复。"},
+    {"label": "AIQ 人工智能", "daily": 3.22, "daily_display": "+3.22%", "five_day": "-2.70%", "one_month": "+2.11%", "rsi": 44.92, "judgment": "日内最强，但仍低于20MA。"}
+  ],
+  "sector_conclusion": "资金由上周医疗防守轮回AI、半导体与网安；然而科技硬件仍在20MA下方。可参与修复，不把单日反弹升级为趋势反转。",
+  "breadth_rows": [
+    {"indicator": "S&P 500 >20MA (7/6)", "latest": 67.39, "percent": true, "five_day": "+4.65ppt", "one_month": "显著改善", "judgment": "中期偏多。"},
+    {"indicator": "S&P 500 >50MA (7/6)", "latest": 67.39, "percent": true, "five_day": "+5.84ppt", "one_month": "上升", "judgment": "结构稳健。"},
+    {"indicator": "Nasdaq 100 >20MA (7/6)", "latest": 57.84, "percent": true, "five_day": "+7.35ppt", "one_month": "改善", "judgment": "科技广度修复。"},
+    {"indicator": "Nasdaq 100 >50MA (7/6)", "latest": 58.82, "percent": true, "five_day": "+7.34ppt", "one_month": "改善", "judgment": "中期未破。"},
+    {"indicator": "T2108 (7/6)", "latest": 51.95, "percent": true, "five_day": "+0.81ppt", "one_month": "中性", "judgment": "未进入危险区。"},
+    {"indicator": "5日 breadth ratio (7/6)", "latest": "1.47", "five_day": "由1.92回落", "one_month": "仍>1", "judgment": "偏多但动能降温。"},
+    {"indicator": "10日 breadth ratio (7/6)", "latest": "1.36", "five_day": "由1.46回落", "one_month": "温和偏多", "judgment": "未达强追多区。"},
+    {"indicator": "上升4%+股票 (7/6)", "latest": "239", "tone": "green", "five_day": "较7/2的272减少", "one_month": "波动", "judgment": "买盘一般。"},
+    {"indicator": "下跌4%+股票 (7/6)", "latest": "158", "tone": "red", "five_day": "较7/2的375减少", "one_month": "波动", "judgment": "卖压明显缓和。"}
+  ],
+  "breadth_context": "<p><strong>Primary Breadth：</strong>季度上涨25%股票1704只、下跌25%股票1078只，衡量中期强弱股数量，仍属偏多。<strong>50% Month：</strong>一个月上涨／下跌50%的股票为36／39，衡量极端投机与崩跌，两端接近。<strong>34/13：</strong>34日上涨13%／下跌13%为2246／1516，衡量中短期趋势扩散，仍偏多。</p>",
+  "breadth_conclusion": "MA广度与Primary Breadth确认中期趋势未坏，4%下跌股锐减确认卖压缓和；但5D/10D ratio同步回落，指数上涨的扩散度仍不够强。",
+  "macro_rows": [
+    {"asset": "DIA / RSP", "latest": "+4.23 / +3.34 ATR", "atr_value": 4.23, "daily": "+0.42% / +0.04%", "meaning": "价值延伸过热，继续只持不追。"},
+    {"asset": "QQQ / VOO", "latest": "+0.92 / +1.51 ATR", "atr_value": 1.51, "daily": "+1.43% / +0.84%", "meaning": "成长修复，宽基风险正常。"},
+    {"asset": "DXY", "latest": "100.87", "daily": "-0.01%", "meaning": "5日-0.24%、1月+1.35%，短线中性。"},
+    {"asset": "黄金 / 白银", "latest": "382.13 / 56.11", "daily": "+2.03% / +2.69%", "meaning": "反弹延续，中期趋势仍弱。"},
+    {"asset": "USO", "latest": "104.35", "daily": "+0.69%", "meaning": "5日-1.07%、1月-23.98%，油价压力有限。"},
+    {"asset": "IBIT", "latest": "36.12", "daily": "+2.56%", "meaning": "5日+6.71%，高beta回暖。"},
+    {"asset": "US10Y", "latest": "约4.47%", "daily": "-2bp", "meaning": "ISM后回落，但未跌破4.40%加仓门槛。"},
+    {"asset": "ISM Services", "latest": "54.0", "daily": "符合预期", "meaning": "较前值54.5放缓，未触发偏热减仓。"}
+  ],
+  "macro_conclusion": "ISM符合预期、10Y小幅回落，为科技反弹提供温和支撑，但没有形成10Y跌破4.40%的宽松确认。商品和加密反弹不改变主要仓位规则。",
+  "next_session": "<ol><li>QQQ收盘站上20MA 725.07且SMH站上20MA 618.22，才回补科技1/3。</li><li>SPY接近+1SD 755.42；首次触及不追，观察能否收盘站稳。</li><li>AMD已接近+1SD 562.58；高beta半导体不追边界，优先看NVDA与SMH确认。</li><li>DIA/RSP继续只持不追，ATR延伸降至+2以内才恢复正常size。</li><li>若5D ratio跌破1或VIX升破20，撤回修复交易并降低总仓。</li></ol>",
+  "next_conclusion": "维持中性偏多：允许AI/半导体观察仓继续参与，但标准科技仓仍等待QQQ与SMH双重20MA确认。",
+  "cross_validation": "<p><strong>确认讯号：</strong>QQQ、SMH、XLK、AIQ同步上涨，VIX与10Y回落，确认科技跌深修复；MA广度与Primary Breadth确认中期趋势未受损。</p><p><strong>分歧讯号：</strong>QQQ/SMH仍低于20MA，标普成分股跌多涨少，5D与10D breadth ratio反而回落，说明指数涨势集中。</p><p><strong>主导结论：</strong>短线修正风险下降，但不是全面risk-on。交易上可持科技观察仓，不追SPY +1SD与高ATR价值，等双重20MA确认后再扩大beta。</p>",
+  "sources": "使用者Google Sheets（Major ETF、Sector、Thematic Sectors、Market Breadth、Stockbee、Weekly Expected Move）；7/6盘前报告；ISM官方6月Services PMI报告；AP与Reuters收盘报道。资料不可得处不作估算。"
+}

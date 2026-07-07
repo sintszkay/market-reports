@@ -43,9 +43,9 @@ h2{scroll-margin-top:72px}
 
 .hitbar{display:flex;height:14px;border-radius:999px;overflow:hidden;margin:14px 0 6px;max-width:520px}
 .hitbar i{display:block;height:100%}
-.hitbar .h{background:var(--green)}.hitbar .p{background:#e0a83a}.hitbar .m{background:var(--red)}
+.hitbar .h{background:var(--green)}.hitbar .p{background:#e0a83a}.hitbar .m{background:var(--red)}.hitbar .n{background:#c8cdd5}
 .hitbar-legend{font-size:12px;color:var(--muted)}
-.hitbar-legend b{color:var(--text)}
+.hitbar-legend b{color:var(--text)}.hitbar-legend .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 4px 0 10px}.hitbar-legend .dot.h{background:var(--green)}.hitbar-legend .dot.m{background:var(--red)}.hitbar-legend .dot.n{background:#c8cdd5}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 4px 0 12px;vertical-align:1px}
 .dot.h{background:var(--green)}.dot.p{background:#e0a83a}.dot.m{background:var(--red)}
 

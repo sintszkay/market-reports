@@ -46,6 +46,28 @@ node scripts/apply_report_rules.js --type postmarket reports/2026-07-02-postmark
 node scripts/apply_report_rules.js --type premarket --write reports/2026-06-30-premarket-update.html
 ```
 
+## Mandatory report QA before publishing
+
+Every new report must pass both the structural validator and the QA gate before commit/push:
+
+```powershell
+node scripts/apply_report_rules.js --type postmarket reports/YYYY-MM-DD-postmarket-recap.html
+node scripts/report_qa.js reports/YYYY-MM-DD-postmarket-recap.html
+```
+
+Use the matching `--type premarket|weekly|postmarket` for `apply_report_rules.js`.
+
+`scripts/report_qa.js` is the publish blocker for the recurring issues we hit:
+
+- visible mojibake / encoding garbage in report text;
+- missing numeric cells such as `—`, `#N/A`, blank values in tables;
+- broken table layout from putting `.pct`, `.rsi`, or `.atr` directly on `<td>`;
+- table row/header column-count mismatches;
+- missing core Major ETF rows when a Major ETF technical table is present;
+- duplicate `report-shared.css` or `report-runtime.js` loads.
+
+If a datapoint is genuinely unavailable, do not leave a bare dash in a numeric table cell. Mark it explicitly as unavailable in prose, or add a deliberate `data-allow-missing` marker to the cell with an explanation in the same section.
+
 The validator enforces:
 
 - QQQ 20MA as the initial re-engage tier and +1SD as the breakout-add tier.

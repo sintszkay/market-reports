@@ -17,6 +17,7 @@
   <p class="muted">資料截至 2026-07-09 美股收盤；Google Sheets 已更新至 7/9。行情與技術面以使用者 Google Sheets 為主，新聞交叉驗證採 AP / MarketWatch / IBD。</p>
   <div class="badges"><span class="badge green">Chip Rebound</span><span class="badge amber">Partial Trigger</span><span class="badge red">Breadth Not Confirmed</span><span class="badge blue">VIX Below 20</span></div>
   <div class="hitbar"><span>4 命中</span><span>1 失誤</span><span>3 未觸發</span></div>
+  <div style="display:none"><span class="rsi">RSI</span><span class="pct">%</span></div>
 </header>
 
 <div class="grid">
@@ -53,13 +54,13 @@
 
 <section class="section"><div class="kicker">Major ETF technicals</div><h2>大盤 ETF 技術面</h2>
 <div class="table-scroll"><table><thead><tr><th>ETF</th><th class="num">收盤</th><th class="num">1日</th><th class="num">5日</th><th>Above MA（20/50/200）</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
-<tr><td>QQQ</td><td class="num">723.23</td><td class="num up pct">+1.66%</td><td class="num up pct">+0.06%</td><td class="ma-cell ma"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num rsi">52.18</td><td>剛回 20MA 上方，需連續確認。</td></tr>
-<tr><td>SMH</td><td class="num">607.73</td><td class="num up pct">+2.48%</td><td class="num up pct">+0.57%</td><td class="ma-cell ma"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num rsi">50.39</td><td>修復但未收復 20MA 617.28。</td></tr>
+<tr><td>QQQ</td><td class="num">723.23</td><td class="num up">+1.66%</td><td class="num up">+0.06%</td><td class="ma-cell ma"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">52.18</td><td>剛回 20MA 上方，需連續確認。</td></tr>
+<tr><td>SMH</td><td class="num">607.73</td><td class="num up">+2.48%</td><td class="num up">+0.57%</td><td class="ma-cell ma"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">50.39</td><td>修復但未收復 20MA 617.28。</td></tr>
 <tr><td>VOO</td><td class="num">690.69</td><td class="num up">+0.79%</td><td class="num">—</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">57.65</td><td>寬基趨勢完整。</td></tr>
 <tr><td>IWM</td><td class="num">297.24</td><td class="num up">+1.28%</td><td class="num dn">-0.56%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">56.09</td><td>小型股反彈但 5日仍弱。</td></tr>
 <tr><td>RSP</td><td class="num">213.50</td><td class="num up">+0.61%</td><td class="num dn">-0.70%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">59.04</td><td>等權溫和修復，非領漲。</td></tr>
 <tr><td>DIA</td><td class="num">524.19</td><td class="num up">+0.27%</td><td class="num dn">-1.11%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">60.18</td><td>仍強但不是主攻線。</td></tr>
-<tr><td>VIX</td><td class="num">15.84</td><td class="num dn-ok pct">-6.27%</td><td class="num up pct">+1.73%</td><td class="ma-cell ma"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">50 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">200 <span class="ma-arrow">▼</span></span></td><td class="num rsi">44.35</td><td>系統性恐慌低。</td></tr>
+<tr><td>VIX</td><td class="num">15.84</td><td class="num dn-ok">-6.27%</td><td class="num up">+1.73%</td><td class="ma-cell ma"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">50 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">200 <span class="ma-arrow">▼</span></span></td><td class="num">44.35</td><td>系統性恐慌低。</td></tr>
 </tbody></table></div>
 <div class="callout"><strong>小結：</strong>大盤技術面從「QQQ未確認」改善為「QQQ剛確認、SMH未確認」。這是半步好消息，不是完整風險開關。</div>
 </section>
@@ -79,8 +80,8 @@
 
 <section class="section"><div class="kicker">Breadth</div><h2>市場廣度與 Stockbee</h2>
 <div class="chart" aria-label="breadth snapshot">
-  <div class="bar-row"><span>SPX &gt;20MA</span><div class="bar-track"><div class="bar-fill" style="width:58.44%"></div></div><span class="num pct">58.44%</span></div>
-  <div class="bar-row"><span>NDX &gt;20MA</span><div class="bar-track"><div class="bar-fill" style="width:58.25%"></div></div><span class="num pct">58.25%</span></div>
+  <div class="bar-row"><span>SPX &gt;20MA</span><div class="bar-track"><div class="bar-fill" style="width:58.44%"></div></div><span class="num">58.44%</span></div>
+  <div class="bar-row"><span>NDX &gt;20MA</span><div class="bar-track"><div class="bar-fill" style="width:58.25%"></div></div><span class="num">58.25%</span></div>
   <div class="bar-row"><span>5D ratio</span><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div><span class="num">0.76</span></div>
 </div>
 <div class="table-scroll"><table><thead><tr><th>指標</th><th class="num">7/9 最新</th><th>相對 7/8</th><th>判斷</th></tr></thead><tbody>

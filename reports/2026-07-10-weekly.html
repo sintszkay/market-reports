@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-07-10 美股一週總結</title>
+<link rel="stylesheet" href="report-shared.css?v=20260704-visual-1">
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#142033;--muted:#64748b;--line:#dbe3ee;--blue:#2563eb;--green:#07865f;--red:#cf3f3f;--amber:#b66d00;--navy:#102a52}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.62 system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 22px 60px}
+header{background:linear-gradient(135deg,#102a52,#244f83);color:#fff;border-radius:18px;padding:28px 30px;box-shadow:0 12px 32px #17345c28}h1{font-size:32px;line-height:1.25;margin:4px 0 10px}h2{font-size:21px;color:var(--navy);margin:32px 0 12px;border-left:5px solid var(--blue);padding-left:11px}h3{font-size:17px;color:var(--navy);margin:20px 0 8px}.muted{color:#cbd5e1}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:800;margin-top:20px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800}.badge.green{color:#047857;background:#dcfce7}.badge.red{color:#b42336;background:#fee2e2}.badge.amber{color:#945a00;background:#fff2cc}.badge.blue{color:#1d4ed8;background:#dbeafe}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.card,.section{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 16px #2038580c}.card{padding:17px}.card span{color:var(--muted);font-size:13px}.card strong{display:block;font-size:25px;margin:4px 0}.note{font-size:12px;color:var(--muted);margin:0}.section{padding:8px 22px 22px;margin-top:16px}.callout{border-radius:10px;padding:13px 15px;background:#eff6ff;border-left:4px solid var(--blue);margin:14px 0}.callout.warn{background:#fff7ed;border-left-color:var(--amber)}.callout.risk{background:#fff1f2;border-left-color:var(--red)}
+ol{padding-left:22px}li{margin:7px 0}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;background:#fff;min-width:760px}th{background:#edf3fa;color:#294361;text-align:left;font-size:12px;letter-spacing:.02em}th,td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.up{color:var(--green)}.dn{color:var(--red)}.dn-ok{color:var(--green)}.hit,.miss,.nt{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}.hit{background:#dcfce7;color:#08734f}.miss{background:#fee2e2;color:#b42336}.nt{background:#fff2cc;color:#9a5800}.ma-cell{white-space:nowrap}.ma-state{display:inline-flex;gap:3px;min-width:46px;justify-content:center;font-weight:800;color:#475569}.ma-up .ma-arrow{color:#16866a}.ma-down .ma-arrow{color:#c84b43}.source,footer{font-size:12px;color:var(--muted)}footer{margin-top:28px}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}h1{font-size:25px}}@media(max-width:480px){.grid{grid-template-columns:1fr}.wrap{padding:14px 10px 40px}header{padding:22px 18px}}
+</style>
+</head>
+<body data-report-type="weekly"><main class="wrap">
+<header>
+  <div class="muted">US WEEKLY REVIEW · 2026-07-06–2026-07-10</div>
+  <h1>美股一週總結：AI 權重撐住指數，晶片未完成確認，廣度修復但仍不乾淨</h1>
+  <p class="muted">資料截止 2026-07-10 美股收盤；Google Sheets 已更新至 7/10。外部背景參考 AP、MarketWatch、IBD 與 Kiplinger 對下週 CPI / PPI / 財報日程的整理。</p>
+  <div class="badges"><span class="badge green">S&P +1.2% / Nasdaq +1.7%</span><span class="badge amber">SMH Below 20MA</span><span class="badge red">5D Ratio Below 1</span><span class="badge blue">CPI / Earnings Next</span></div>
+</header>
+
+<section class="grid" aria-label="weekly summary">
+  <div class="card"><span>S&P 500</span><strong class="up">+1.2%</strong><p class="note">週五收 7,575.39，四週內第三度週漲；VOO 5日 +0.47%。</p></div>
+  <div class="card"><span>Nasdaq</span><strong class="up">+1.7%</strong><p class="note">AI / 大型科技續撐盤；QQQ 5日 +0.37%。</p></div>
+  <div class="card"><span>Dow / Russell</span><strong class="dn">-0.5% / -0.6%</strong><p class="note">Dow 終止連續四週上漲；IWM 5日 -0.97%。</p></div>
+  <div class="card"><span>VIX / 10Y</span><strong>15.03 / 4.57%</strong><p class="note">恐慌低，但 10Y 週升 +8.4bp，宏觀壓力未消失。</p></div>
+</section>
+
+<section class="section"><div class="kicker">Core takeaways</div><h2>五個核心週結論</h2>
+<ol>
+  <li><strong>指數看起來強，內部其實很挑。</strong>S&P 500 週升 1.2%、Nasdaq 週升 1.7%，但 Dow -0.5%、Russell 2000 -0.6%；這不是全面擴散，而是 AI 權重與少數大盤股支撐。</li>
+  <li><strong>科技修復只完成一半。</strong>QQQ 收 725.51，高於 20MA 722.40；但 SMH 收 611.03，仍低於 20MA 617.05。所以下週科技回補仍需 QQQ 與 SMH 雙確認。</li>
+  <li><strong>廣度比週中好，但 Stockbee 沒給綠燈。</strong>SPX &gt;20MA 升至 62.22%、T2108 升至 52.02；但 5D ratio 0.81，4%+ 下跌股 181 多於上漲股 129。</li>
+  <li><strong>板塊主線從「晶片單押」轉成「金融 / 醫療 / AI 權重 / 局部能源」。</strong>XLF RSI 66.19、XLV RSI 60.65，XLE 週內反彈但仍距 52週高 -13.21%。</li>
+  <li><strong>下週事件風險密度升高。</strong>CPI、PPI、零售銷售、Warsh 國會證詞、銀行財報、TSMC / ASML 財報同週出現；偏多可以保留，但追價勝率會被事件波動壓縮。</li>
+</ol>
+<div class="callout warn"><strong>本週主結論：</strong>中期趨勢仍偏多，短線不是舒服的全面 risk-on。下週最好的打法不是追指數，而是等待 SMH 617.05、5D ratio 1.0 與 CPI / 財報事件確認。</div>
+</section>
+
+<section class="section"><div class="kicker">Reconciliation</div><h2>上週對賬 / Previous-week reconciliation</h2>
+<div class="badges"><span class="badge green">4 命中</span><span class="badge red">1 失誤</span><span class="badge blue">3 未觸發</span></div>
+<div class="table-scroll"><table><thead><tr><th>上週/週中判斷</th><th>本週結果</th><th>分類</th><th>修正</th></tr></thead><tbody>
+<tr><td>半導體反彈要等 SMH 20MA 確認，不追盤中彈。</td><td>SMH 週內反彈至 611.03，但仍低於 20MA 617.05。</td><td><span class="hit">命中</span></td><td>繼續用 617.05 作為回補門檻。</td></tr>
+<tr><td>QQQ 站回 20MA 可保留科技 tracking。</td><td>QQQ 收 725.51，高於 20MA 722.40。</td><td><span class="hit">命中</span></td><td>科技不空，但也不完整加倉。</td></tr>
+<tr><td>若 QQQ 與 SMH 同時站回 20MA，回補科技 1/3。</td><td>QQQ 達標，SMH 未達標。</td><td><span class="nt">未觸發</span></td><td>不把半條件算命中。</td></tr>
+<tr><td>5D ratio 低於 1 時，新倉 size 要縮小。</td><td>5D ratio 週末 0.81，仍低於 1。</td><td><span class="hit">命中</span></td><td>下週仍先小倉測試。</td></tr>
+<tr><td>加密鏈可能接棒。</td><td>IBIT 5日 +3.90%，但 WGMI 5日 -1.74%、COIN 未站穩盤前門檻。</td><td><span class="miss">失誤</span></td><td>加密股需 IBIT 與 WGMI / COIN 同步確認。</td></tr>
+<tr><td>SPY 跌破 737.66 或 VIX &gt;20 任一出現，總倉降 1/3。</td><td>SPY 754.95，VIX 15.03。</td><td><span class="nt">未觸發</span></td><td>系統性防守線未開。</td></tr>
+<tr><td>10Y &gt;4.65 且 DXY &gt;101.30，減少成長股。</td><td>10Y 4.57%，DXY 100.97。</td><td><span class="nt">未觸發</span></td><td>宏觀壓力未到撤退線，但需盯 CPI。</td></tr>
+<tr><td>金融 / 醫療是週內穩定器。</td><td>XLF 1月 +5.87%、XLV 1月 +4.38%，RSI 均在 60 以上。</td><td><span class="hit">命中</span></td><td>保留作防守偏多底倉。</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>對賬結論：</strong>核心框架沒有壞：QQQ 先修復、SMH 待確認、廣度限制 size。主要錯誤是把加密鏈接棒看得太早。</div>
+</section>
+
+<section class="section"><div class="kicker">Index and style</div><h2>美股指數與風格復盤</h2>
+<div class="table-scroll"><table><thead><tr><th>指標</th><th class="num">收盤 / 最新</th><th class="num">5日</th><th class="num">1月</th><th>Above MA<br>(20/50/200)</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+<tr><td>QQQ</td><td class="num">725.51</td><td class="num up">+0.37%</td><td class="num up">+1.17%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">52.95</td><td>站回短線，但 RSI 中性。</td></tr>
+<tr><td>SMH</td><td class="num">611.03</td><td class="num up">+1.11%</td><td class="num up">+0.26%</td><td class="ma-cell"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">51.03</td><td>修復未完成，仍是全週最大卡點。</td></tr>
+<tr><td>VOO</td><td class="num">693.86</td><td class="num up">+0.47%</td><td class="num up">+2.30%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">59.81</td><td>寬基趨勢完整。</td></tr>
+<tr><td>RSP</td><td class="num">214.30</td><td class="num dn">-0.33%</td><td class="num up">+2.17%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">60.94</td><td>等權強於小型股，市場非單點脆弱。</td></tr>
+<tr><td>IWM</td><td class="num">295.99</td><td class="num dn">-0.97%</td><td class="num up">+1.92%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">54.07</td><td>小型股落後，是廣度不乾淨的價格證據。</td></tr>
+<tr><td>DIA</td><td class="num">525.78</td><td class="num dn">-0.81%</td><td class="num up">+3.22%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">61.82</td><td>道指本週落後，但中期仍在強趨勢。</td></tr>
+<tr><td>VIX</td><td class="num">15.03</td><td class="num dn-ok">-3.47%</td><td class="num dn-ok">-22.69%</td><td class="ma-cell"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">50 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">200 <span class="ma-arrow">▼</span></span></td><td class="num">41.67</td><td>恐慌低，支持逢回做多。</td></tr>
+</tbody></table></div>
+<p class="source">註：S&P / Nasdaq / Dow / Russell 的週變化採 AP 週度口徑；表格 5日為使用者 Google Sheets 滾動 5日，會跨到前一週，不完全等同自然週。</p>
+<div class="callout"><strong>小結：</strong>寬基與等權中期偏多，但 IWM 與 SMH 阻止本週升級為全面 risk-on。</div>
+</section>
+
+<section class="section"><div class="kicker">Movers</div><h2>Big Winners｜5檔</h2>
+<div class="table-scroll"><table><thead><tr><th>標的</th><th class="num">本週/5日</th><th class="num">RSI</th><th class="num">距52週高</th><th>狀態與交易含義</th></tr></thead><tbody>
+<tr><td>META</td><td class="num up">+14.81%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>Weekly Expected Move 顯示突破 +2SD，是本週 AI 權重撐盤核心。</td></tr>
+<tr><td>NVDA</td><td class="num up">+8.28%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>突破 +1SD，支撐 Nasdaq；但位置已不適合追高。</td></tr>
+<tr><td>AMD</td><td class="num up">+7.74%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>接近 +1SD，半導體內部仍有強股，但 SMH 沒確認。</td></tr>
+<tr><td>CSCO</td><td class="num up">+7.65%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>突破 +1SD，網通/AI 基建有資金承接。</td></tr>
+<tr><td>XLE 能源</td><td class="num up">+3.67%</td><td class="num">50.26</td><td class="num dn">-13.21%</td><td>週內反彈並突破 +1SD，但月線 -3.57%，仍是修復不是主線。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>小結：</strong>赢家集中在 AI 權重與少數基建/能源；個股 RSI 與距52週高在現有資料源不可得，未硬估。</div>
+</section>
+
+<section class="section"><div class="kicker">Movers</div><h2>Big Losers｜5檔</h2>
+<div class="table-scroll"><table><thead><tr><th>標的</th><th class="num">本週/5日</th><th class="num">RSI</th><th class="num">距52週高</th><th>狀態與交易含義</th></tr></thead><tbody>
+<tr><td>SPCX</td><td class="num dn">-10.31%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>跌破 -1SD，高 beta 航太/民間太空風險退潮。</td></tr>
+<tr><td>IONQ</td><td class="num dn">-12.75%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>跌破 -1SD，量子題材本週明顯失血。</td></tr>
+<tr><td>NFLX</td><td class="num dn">-5.51%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>跌破 -1SD，非所有大型成長股都跟隨 AI 反彈。</td></tr>
+<tr><td>HD</td><td class="num dn">-4.08%</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>跌破 -1SD，房屋/消費鏈仍弱。</td></tr>
+<tr><td>WGMI 礦機</td><td class="num dn">-1.74%</td><td class="num">41.42</td><td class="num dn">-27.87%</td><td>IBIT 強但礦機弱，否定「加密鏈全面接棒」。</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>NVDA 補充：</strong>NVDA 本週約 +8.28%，突破 +1SD，是 AI 權重支撐之一；但其 20/50MA 狀態在本週既有資料源不可得，報告不作估算。</div>
+</section>
+
+<section class="section"><div class="kicker">Sector / Thematic</div><h2>Sector / Thematic ETF 週分析</h2>
+<h3>S&P 500 Sub Sector ETF（含距52週高）</h3>
+<div class="table-scroll"><table><thead><tr><th>ETF</th><th class="num">5日</th><th class="num">1月</th><th class="num">距52週高</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+<tr><td>XLF 金融</td><td class="num dn">-0.77%</td><td class="num up">+5.87%</td><td class="num dn">-1.56%</td><td class="num">66.19</td><td>月線主線，靠近高位但未過熱到失控。</td></tr>
+<tr><td>XLV 醫療</td><td class="num dn">-0.69%</td><td class="num up">+4.38%</td><td class="num dn">-2.88%</td><td class="num">60.65</td><td>防守偏多，事件週可保留。</td></tr>
+<tr><td>SPY 基準</td><td class="num up">+0.49%</td><td class="num up">+2.33%</td><td class="num dn">-0.72%</td><td class="num">59.56</td><td>接近高位，趨勢健康。</td></tr>
+<tr><td>XLK 科技</td><td class="num up">+1.20%</td><td class="num up">+1.40%</td><td class="num dn">-6.52%</td><td class="num">52.73</td><td>修復但不算強勢延伸。</td></tr>
+<tr><td>XLE 能源</td><td class="num up">+3.67%</td><td class="num dn">-3.57%</td><td class="num dn">-13.21%</td><td class="num">50.26</td><td>週內反彈，月線仍弱。</td></tr>
+<tr><td>XLB 材料</td><td class="num dn">-2.10%</td><td class="num dn">-0.64%</td><td class="num dn">-6.00%</td><td class="num">48.36</td><td>商品鏈未確認。</td></tr>
+</tbody></table></div>
+<h3>Thematic Sector（含距52週高）</h3>
+<div class="table-scroll"><table><thead><tr><th>ETF</th><th class="num">5日</th><th class="num">1月</th><th class="num">距52週高</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+<tr><td>XBI 生技</td><td class="num dn">-1.11%</td><td class="num up">+19.81%</td><td class="num dn">-4.03%</td><td class="num">65.57</td><td>月線強，週內休息，不追高。</td></tr>
+<tr><td>IBB 生技</td><td class="num dn">-1.66%</td><td class="num up">+12.65%</td><td class="num dn">-3.51%</td><td class="num">64.12</td><td>強勢但已不便宜。</td></tr>
+<tr><td>CIBR 網安</td><td class="num dn">-1.11%</td><td class="num up">+7.50%</td><td class="num dn">-2.96%</td><td class="num">62.09</td><td>仍是科技裡較好的分支。</td></tr>
+<tr><td>SMH 半導體</td><td class="num up">+1.11%</td><td class="num up">+0.26%</td><td class="num dn">-9.05%</td><td class="num">51.03</td><td>主線待確認，20MA 是門檻。</td></tr>
+<tr><td>IGV 軟體</td><td class="num dn">-2.51%</td><td class="num up">+1.64%</td><td class="num dn">-21.68%</td><td class="num">51.44</td><td>位置低，但週內轉弱。</td></tr>
+<tr><td>WGMI 礦機</td><td class="num dn">-1.74%</td><td class="num dn">-13.17%</td><td class="num dn">-27.87%</td><td class="num">41.42</td><td>加密股鏈條未接棒。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>小結：</strong>板塊輪動偏「金融/醫療穩、AI 權重強、晶片待確認、加密股弱」。下週不要把單一 AI 權重強勢誤讀成所有高 beta 都能追。</div>
+</section>
+
+<section class="section"><div class="kicker">Breadth</div><h2>市場廣度深度復盤</h2>
+<div class="table-scroll"><table><thead><tr><th>指標</th><th class="num">7/10 最新</th><th>週內變化</th><th>判斷</th></tr></thead><tbody>
+<tr><td>SPX &gt;20MA</td><td class="num">62.22%</td><td>67.39% → 62.22%</td><td>週內回落但仍在 60% 上方。</td></tr>
+<tr><td>SPX &gt;50MA</td><td class="num">67.79%</td><td>67.39% → 67.79%</td><td>中期穩。</td></tr>
+<tr><td>NDX &gt;20MA</td><td class="num">59.22%</td><td>57.84% → 59.22%</td><td>科技廣度小幅改善。</td></tr>
+<tr><td>IWM &gt;20MA</td><td class="num">57.31%</td><td>66.59% → 57.31%</td><td>小型股廣度降溫。</td></tr>
+<tr><td>T2108</td><td class="num">52.02%</td><td>51.95% → 52.02%</td><td>中性略偏多。</td></tr>
+<tr><td>Stockbee 5D ratio</td><td class="num">0.81</td><td>1.47 → 0.81</td><td>短線廣度轉保守。</td></tr>
+<tr><td>Stockbee 10D ratio</td><td class="num">1.33</td><td>1.36 → 1.33</td><td>中短線仍可，但未強化。</td></tr>
+<tr><td>4%+ 上漲 / 下跌</td><td class="num">129 / 181</td><td>239 / 158 → 129 / 181</td><td>尾部變差。</td></tr>
+</tbody></table></div>
+<p><strong>Primary Breadth：</strong>季度內大幅上漲/下跌股票數，本週 1452 對 1103，偏多但較週初降溫。<strong>50% Month：</strong>一個月內上漲/下跌逾 50% 的股票數，42 對 26，極端強股仍多。<strong>34/13：</strong>34日內上漲/下跌逾 13% 的股票數，1785 對 1553，多方仍占優但優勢縮小。</p>
+<div class="callout warn"><strong>小結：</strong>中期廣度沒壞，短線廣度不夠好。這支持「逢回選股」而不是「突破追一籃子」。</div>
+</section>
+
+<section class="section"><div class="kicker">Macro</div><h2>外匯、商品、美債與 Fed 路徑</h2>
+<div class="table-scroll"><table><thead><tr><th>資產 / 事件</th><th class="num">最新</th><th class="num">5日</th><th class="num">1月</th><th>含義</th></tr></thead><tbody>
+<tr><td>DXY</td><td class="num">100.97</td><td class="num up">+0.11%</td><td class="num up">+0.92%</td><td>美元未突破壓力線，但月線偏強。</td></tr>
+<tr><td>US10Y</td><td class="num">4.57%</td><td class="num up">+8.4bp</td><td class="num up">+1.7bp</td><td>利率壓力仍在，限制高估值追價。</td></tr>
+<tr><td>USO</td><td class="num">108.70</td><td class="num up">+4.54%</td><td class="num dn">-19.57%</td><td>週內反彈但月線弱；地緣風險仍需盯。</td></tr>
+<tr><td>GLD</td><td class="num">377.01</td><td class="num dn">-0.30%</td><td class="num dn">-5.10%</td><td>避險未成主線。</td></tr>
+<tr><td>Fed Funds</td><td class="num">不可得</td><td class="num" data-allow-missing>不可得</td><td class="num" data-allow-missing>不可得</td><td>本地資料源未提供即時下次會議定價；下週以 CPI / PPI 與 Warsh 證詞修正。</td></tr>
+<tr><td>下週宏觀</td><td class="num">7/14–7/17</td><td class="num" data-allow-missing>事件週</td><td class="num" data-allow-missing>事件週</td><td>CPI、PPI、零售銷售、Warsh 國會證詞與銀行財報同週。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>小結：</strong>宏觀不是立即風險，但 10Y 週升與 CPI 事件會壓縮下週追價容錯率。</div>
+</section>
+
+<section class="section"><div class="kicker">Plan</div><h2>下週交易計畫</h2>
+<ol>
+  <li><strong>科技回補：</strong>只有 QQQ &gt;20MA 722.40 且 SMH &gt;20MA 617.05，才回補科技 1/3。反向訊號：若 SMH 繼續低於 617.05，回補失效，維持 tracking。</li>
+  <li><strong>廣度升級：</strong>5D ratio &gt;1 且 T2108 &gt;50，才把新倉 size 從小倉恢復到標準 tracking。反向訊號：若 5D ratio &lt;0.8 或 4%+ 下跌股持續多於上漲股，降風險。</li>
+  <li><strong>防守底倉：</strong>保留金融 / 醫療作穩定器，但不追 RSI 65 以上的直線延伸。反向訊號：若 XLF 跌回 20MA 53.68 下方且 XLV 跌回 20MA 155.51 下方，防守偏多失效。</li>
+  <li><strong>半導體：</strong>SMH 未站回 20MA 前，只做核心個股回調，不追 SOXL。反向訊號：若 SMH &lt;600，半導體修復降級。</li>
+  <li><strong>事件管理：</strong>CPI / PPI / TSMC / ASML / 大銀行財報前不開滿倉。反向訊號：若 10Y &gt;4.65 且 DXY &gt;101.30，減少成長股 1/3。</li>
+</ol>
+</section>
+
+<section class="section"><div class="kicker">Watchlist</div><h2>下週監控清單</h2>
+<div class="table-scroll"><table><thead><tr><th>信號名</th><th>閾值（含出处）</th><th class="num">當前值</th><th>觸發動作</th></tr></thead><tbody>
+<tr><td>科技回補確認</td><td>QQQ &gt;20MA 722.40 且 SMH &gt;20MA 617.05</td><td class="num">725.51 / 611.03</td><td>回補科技 1/3。</td></tr>
+<tr><td>半導體修復失敗</td><td>SMH &lt;600</td><td class="num">611.03</td><td>取消半導體加倉，只留核心強勢。</td></tr>
+<tr><td>廣度解除保守</td><td>5D ratio &gt;1 且 T2108 &gt;50</td><td class="num">0.81 / 52.02</td><td>新倉恢復標準 tracking。</td></tr>
+<tr><td>短線廣度惡化</td><td>5D ratio &lt;0.8 或 4%+ 下跌股持續多於上漲股</td><td class="num">0.81 / 129:181</td><td>新倉降 size，避免追高。</td></tr>
+<tr><td>系統風險升級</td><td>SPY &lt;737.66 或 VIX &gt;20</td><td class="num">754.95 / 15.03</td><td>總風險降 1/3。</td></tr>
+<tr><td>宏觀壓力</td><td>10Y &gt;4.65 且 DXY &gt;101.30</td><td class="num">4.57 / 100.97</td><td>成長股與高 beta 減 1/3。</td></tr>
+<tr><td>防守失效</td><td>XLF &lt;20MA 53.68 且 XLV &lt;20MA 155.51</td><td class="num">55.71 / 160.84</td><td>降低金融/醫療偏多底倉。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="section"><div class="kicker">Cross-validation</div><h2>交叉驗證總結 / Cross-validation summary</h2>
+<div class="callout"><strong>互相確認：</strong>S&P / Nasdaq 週漲、VOO / QQQ / RSP 均在主要均線上方、VIX 低、SPX &gt;50MA 67.79%，確認中期趨勢未壞。</div>
+<div class="callout warn"><strong>互相分歧：</strong>SMH 仍低於 20MA、IWM 週跌、Stockbee 5D ratio 低於 1、4%+ 下跌股多於上漲股，說明短線不是全面風險擴散。</div>
+<div class="callout"><strong>主結論：</strong>下週偏多但不追高；用 QQQ / SMH 雙確認決定科技回補，用 5D ratio 決定倉位大小，用 CPI / 財報控制事件風險。</div>
+</section>
+
+<footer>資料來源：使用者 Google Sheets（Major ETF、Sector、Thematic Sectors、Market Breadth、Stockbee、Weekly Expected Move）；AP 7/10 指數週度收盤；MarketWatch、Investor's Business Daily、Kiplinger 下週宏觀與財報日程。資料不可得處不作估算。</footer>
+</main>
+<script src="report-runtime.js?v=20260704-visual-1"></script>
+</body>
+</html>

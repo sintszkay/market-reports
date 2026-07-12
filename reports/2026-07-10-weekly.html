@@ -11,7 +11,7 @@
 header{background:linear-gradient(135deg,#102a52,#244f83);color:#fff;border-radius:18px;padding:28px 30px;box-shadow:0 12px 32px #17345c28}h1{font-size:32px;line-height:1.25;margin:4px 0 10px}h2{font-size:21px;color:var(--navy);margin:32px 0 12px;border-left:5px solid var(--blue);padding-left:11px}h3{font-size:17px;color:var(--navy);margin:20px 0 8px}.muted{color:#cbd5e1}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:800;margin-top:20px}
 .badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800}.badge.green{color:#047857;background:#dcfce7}.badge.red{color:#b42336;background:#fee2e2}.badge.amber{color:#945a00;background:#fff2cc}.badge.blue{color:#1d4ed8;background:#dbeafe}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.card,.section{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 16px #2038580c}.card{padding:17px}.card span{color:var(--muted);font-size:13px}.card strong{display:block;font-size:25px;margin:4px 0}.note{font-size:12px;color:var(--muted);margin:0}.section{padding:8px 22px 22px;margin-top:16px}.callout{border-radius:10px;padding:13px 15px;background:#eff6ff;border-left:4px solid var(--blue);margin:14px 0}.callout.warn{background:#fff7ed;border-left-color:var(--amber)}.callout.risk{background:#fff1f2;border-left-color:var(--red)}
-ol{padding-left:22px}li{margin:7px 0}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;background:#fff;min-width:760px}th{background:#edf3fa;color:#294361;text-align:left;font-size:12px;letter-spacing:.02em}th,td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.up{color:var(--green)}.dn{color:var(--red)}.dn-ok{color:var(--green)}.hit,.miss,.nt{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}.hit{background:#dcfce7;color:#08734f}.miss{background:#fee2e2;color:#b42336}.nt{background:#fff2cc;color:#9a5800}.ma-cell{white-space:nowrap}.ma-state{display:inline-flex;gap:3px;min-width:46px;justify-content:center;font-weight:800;color:#475569}.ma-up .ma-arrow{color:#16866a}.ma-down .ma-arrow{color:#c84b43}.source,footer{font-size:12px;color:var(--muted)}footer{margin-top:28px}
+ol{padding-left:22px}li{margin:7px 0}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;background:#fff;min-width:760px}th{background:#edf3fa;color:#294361;text-align:left;font-size:12px;letter-spacing:.02em}th,td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.up{color:var(--green)}.dn{color:var(--red)}.dn-ok{color:var(--green)}.hit,.miss,.nt,.trig{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}.hit{background:#dcfce7;color:#08734f}.miss{background:#fee2e2;color:#b42336}.nt{background:#fff2cc;color:#9a5800}.trig{background:#dbeafe;color:#1d4ed8}.ma-cell{white-space:nowrap}.ma-state{display:inline-flex;gap:3px;min-width:46px;justify-content:center;font-weight:800;color:#475569}.ma-up .ma-arrow{color:#16866a}.ma-down .ma-arrow{color:#c84b43}.source,footer{font-size:12px;color:var(--muted)}footer{margin-top:28px}
 @media(max-width:800px){.grid{grid-template-columns:1fr 1fr}h1{font-size:25px}}@media(max-width:480px){.grid{grid-template-columns:1fr}.wrap{padding:14px 10px 40px}header{padding:22px 18px}}
 </style>
 </head>
@@ -42,18 +42,20 @@ ol{padding-left:22px}li{margin:7px 0}.table-scroll{overflow:auto;border:1px soli
 </section>
 
 <section class="section"><div class="kicker">Reconciliation</div><h2>上週對賬 / Previous-week reconciliation</h2>
-<div class="badges"><span class="badge green">4 命中</span><span class="badge red">1 失誤</span><span class="badge blue">3 未觸發</span></div>
-<div class="table-scroll"><table><thead><tr><th>上週/週中判斷</th><th>本週結果</th><th>分類</th><th>修正</th></tr></thead><tbody>
-<tr><td>半導體反彈要等 SMH 20MA 確認，不追盤中彈。</td><td>SMH 週內反彈至 611.03，但仍低於 20MA 617.05。</td><td><span class="hit">命中</span></td><td>繼續用 617.05 作為回補門檻。</td></tr>
-<tr><td>QQQ 站回 20MA 可保留科技 tracking。</td><td>QQQ 收 725.51，高於 20MA 722.40。</td><td><span class="hit">命中</span></td><td>科技不空，但也不完整加倉。</td></tr>
-<tr><td>若 QQQ 與 SMH 同時站回 20MA，回補科技 1/3。</td><td>QQQ 達標，SMH 未達標。</td><td><span class="nt">未觸發</span></td><td>不把半條件算命中。</td></tr>
-<tr><td>5D ratio 低於 1 時，新倉 size 要縮小。</td><td>5D ratio 週末 0.81，仍低於 1。</td><td><span class="hit">命中</span></td><td>下週仍先小倉測試。</td></tr>
-<tr><td>加密鏈可能接棒。</td><td>IBIT 5日 +3.90%，但 WGMI 5日 -1.74%、COIN 未站穩盤前門檻。</td><td><span class="miss">失誤</span></td><td>加密股需 IBIT 與 WGMI / COIN 同步確認。</td></tr>
-<tr><td>SPY 跌破 737.66 或 VIX &gt;20 任一出現，總倉降 1/3。</td><td>SPY 754.95，VIX 15.03。</td><td><span class="nt">未觸發</span></td><td>系統性防守線未開。</td></tr>
-<tr><td>10Y &gt;4.65 且 DXY &gt;101.30，減少成長股。</td><td>10Y 4.57%，DXY 100.97。</td><td><span class="nt">未觸發</span></td><td>宏觀壓力未到撤退線，但需盯 CPI。</td></tr>
-<tr><td>金融 / 醫療是週內穩定器。</td><td>XLF 1月 +5.87%、XLV 1月 +4.38%，RSI 均在 60 以上。</td><td><span class="hit">命中</span></td><td>保留作防守偏多底倉。</td></tr>
+<div class="badges"><span class="badge green">1 命中</span><span class="badge red">0 失誤</span><span class="badge blue">7 未觸發</span><span class="badge amber">1 已觸發</span></div>
+<p class="note"><strong>分類：</strong>命中＝規則觸發且判斷正確；失誤＝觸發但判斷錯誤；未觸發＝條件未滿足、無法驗證；已觸發＝風控／動作規則已達觸發線，需按原規則執行或在本週計畫中明確修訂。</p>
+<div class="table-scroll"><table><thead><tr><th>上週規則 / 監控項</th><th>本週結果</th><th>分類</th><th>修正 / 備註</th></tr></thead><tbody>
+<tr><td>小型股接棒：IWM &gt;+2SD上緣 310.38 且 5D ratio &gt;2。</td><td>IWM 295.99，5D ratio 0.81。</td><td><span class="nt">未觸發</span></td><td>小型股未接棒，維持觀察。</td></tr>
+<tr><td>等權輪動失效：RSP &lt;20MA 210.12 且 QQQE &lt;20MA 119.56。</td><td>RSP 214.30，QQQE 120.57。</td><td><span class="nt">未觸發</span></td><td>等權輪動未失效，但追價勝率下降。</td></tr>
+<tr><td>科技回補確認：QQQ &gt;20MA 725.51 且 SMH &gt;20MA 617.30。</td><td>QQQ 725.51 附近，SMH 611.03，SMH 未達 20MA。</td><td><span class="nt">未觸發</span></td><td>不把半條件算命中；科技只保留 tracking，不擴大 beta。</td></tr>
+<tr><td>廣度／波動降級：5D ratio&lt;1、T2108&lt;45 或 VIX&gt;20 任一出現 → 總倉減1/3。</td><td>5D ratio 0.81，已跌破 1；T2108 52.02、VIX 15.03 未觸發。</td><td><span class="trig">已觸發</span></td><td>依上週規則應總倉減1/3；規則是否向前修訂見交易計畫。</td></tr>
+<tr><td>DIA/RSP ATR 過熱限制：DIA +4.06ATR、RSP +3.42ATR，新倉減半，不追價值延伸。</td><td>Dow 本週 -0.5% 終結四連漲；DIA 5日 -0.81%，RSP 5日 -0.33%。</td><td><span class="hit">命中</span></td><td>高 ATR 追價限制有效；價值／等權只持不追。</td></tr>
+<tr><td>價值延伸失效：DIA &lt;20MA 516.03 且 RSP &lt;20MA 210.12。</td><td>DIA 525.78，RSP 214.30，均未跌破各自 20MA。</td><td><span class="nt">未觸發</span></td><td>延伸降溫不等於趨勢失效。</td></tr>
+<tr><td>廣度升級：10D ratio &gt;1.5 且 4%上漲股 &gt;300，才擴大 watchlist。</td><td>10D ratio 1.33，4%上漲股 129。</td><td><span class="nt">未觸發</span></td><td>不能升級為全面 risk-on。</td></tr>
+<tr><td>宏觀支撐失效：DXY &gt;風險門檻 102 且 10Y &gt;風險門檻 4.55%。</td><td>DXY 100.97，10Y 4.57%；只觸發 10Y，未同時觸發 DXY。</td><td><span class="nt">未觸發</span></td><td>原 10Y 4.55 且 DXY 102 → 7/10 計畫修訂為 10Y 4.65 且 DXY 101.30；見交易計畫註記。</td></tr>
+<tr><td>回踩做多失效：VIX &gt;風險門檻 20 或 SPY &lt;20MA 733.76。</td><td>VIX 15.03，SPY 754.95。</td><td><span class="nt">未觸發</span></td><td>原 SPY 733.76 → 7/9 修訂 737.66；本週未觸發系統性防守線。</td></tr>
 </tbody></table></div>
-<div class="callout"><strong>對賬結論：</strong>核心框架沒有壞：QQQ 先修復、SMH 待確認、廣度限制 size。主要錯誤是把加密鏈接棒看得太早。</div>
+<div class="callout warn"><strong>對賬結論：</strong>上週最重要的防守條件已由 5D ratio 0.81 觸發，不能只寫成「新倉 size 縮小」。本週若要保留較緊或較鬆的新閾值，必須在交易計畫中明確標示規則修訂與理由。</div>
 </section>
 
 <section class="section"><div class="kicker">Index and style</div><h2>美股指數與風格復盤</h2>
@@ -180,21 +182,21 @@ ol{padding-left:22px}li{margin:7px 0}.table-scroll{overflow:auto;border:1px soli
 <section class="section"><div class="kicker">Plan</div><h2>下週交易計畫</h2>
 <ol>
   <li><strong>科技回補：</strong>只有 QQQ &gt;20MA 722.40 且 SMH &gt;20MA 617.05，才回補科技 1/3。反向訊號：若 SMH 繼續低於 617.05，回補失效，維持 tracking。</li>
-  <li><strong>廣度升級：</strong>5D ratio &gt;1 且 T2108 &gt;50，才把新倉 size 從小倉恢復到標準 tracking。反向訊號：若 5D ratio &lt;0.8 或 4%+ 下跌股持續多於上漲股，降風險。</li>
+  <li><strong>廣度風控：</strong>沿用上週任一規則，若 5D ratio &lt;1、T2108 &lt;45 或 VIX &gt;20 任一出現，總倉減 1/3；目前 5D ratio 0.81 已觸發。若下週 5D ratio 重新站回 1 且 4%上漲股重新多於下跌股，才評估恢復標準 tracking。</li>
   <li><strong>防守底倉：</strong>保留金融 / 醫療作穩定器，但不追 RSI 65 以上的直線延伸。反向訊號：若 XLF 跌回 20MA 53.68 下方且 XLV 跌回 20MA 155.51 下方，防守偏多失效。</li>
-  <li><strong>半導體：</strong>SMH 未站回 20MA 前，只做核心個股回調，不追 SOXL。反向訊號：若 SMH &lt;600，半導體修復降級。</li>
-  <li><strong>事件管理：</strong>CPI / PPI / TSMC / ASML / 大銀行財報前不開滿倉。反向訊號：若 10Y &gt;4.65 且 DXY &gt;101.30，減少成長股 1/3。</li>
+  <li><strong>半導體：</strong>SMH 未站回 20MA 前，只做核心個股回踩，不追 SOXL。反向訊號：若 SMH &lt;600，半導體修復降級。</li>
+  <li><strong>事件管理：</strong>CPI / PPI / TSMC / ASML / 大銀行財報前不開滿倉。反向訊號：若 10Y &gt;4.65 且 DXY &gt;101.30，減少成長股 1/3。<span class="source">規則修訂：原 10Y &gt;4.55 且 DXY &gt;102 → 7/10 修訂為 10Y &gt;4.65 且 DXY &gt;101.30；理由是 10Y 已升至 4.57 附近，需用事件週壓力升級線判斷，而 DXY 101.30 是較近的短線壓力位。</span></li>
 </ol>
 </section>
 
 <section class="section"><div class="kicker">Watchlist</div><h2>下週監控清單</h2>
-<div class="table-scroll"><table><thead><tr><th>信號名</th><th>閾值（含出处）</th><th class="num">當前值</th><th>觸發動作</th></tr></thead><tbody>
+<div class="table-scroll"><table><thead><tr><th>信號名</th><th>閾值（含出處）</th><th class="num">當前值</th><th>觸發動作</th></tr></thead><tbody>
 <tr><td>科技回補確認</td><td>QQQ &gt;20MA 722.40 且 SMH &gt;20MA 617.05</td><td class="num">725.51 / 611.03</td><td>回補科技 1/3。</td></tr>
-<tr><td>半導體修復失敗</td><td>SMH &lt;600</td><td class="num">611.03</td><td>取消半導體加倉，只留核心強勢。</td></tr>
+<tr><td>半導體修復失效</td><td>SMH &lt;600</td><td class="num">611.03</td><td>取消半導體加倉，只留核心強勢。</td></tr>
 <tr><td>廣度解除保守</td><td>5D ratio &gt;1 且 T2108 &gt;50</td><td class="num">0.81 / 52.02</td><td>新倉恢復標準 tracking。</td></tr>
-<tr><td>短線廣度惡化</td><td>5D ratio &lt;0.8 或 4%+ 下跌股持續多於上漲股</td><td class="num">0.81 / 129:181</td><td>新倉降 size，避免追高。</td></tr>
-<tr><td>系統風險升級</td><td>SPY &lt;737.66 或 VIX &gt;20</td><td class="num">754.95 / 15.03</td><td>總風險降 1/3。</td></tr>
-<tr><td>宏觀壓力</td><td>10Y &gt;4.65 且 DXY &gt;101.30</td><td class="num">4.57 / 100.97</td><td>成長股與高 beta 減 1/3。</td></tr>
+<tr><td>廣度／波動降級</td><td>沿用上週：5D ratio &lt;1、T2108 &lt;45 或 VIX &gt;20 任一出現</td><td class="num">0.81 / 52.02 / 15.03</td><td>總倉減 1/3；若 5D 重新站回 1 再評估恢復。</td></tr>
+<tr><td>系統風險升級</td><td>SPY &lt;20MA 737.66 或 VIX &gt;20（原 733.76 → 7/9 修訂 737.66）</td><td class="num">754.95 / 15.03</td><td>總風險降 1/3。</td></tr>
+<tr><td>宏觀壓力</td><td>10Y &gt;4.65 且 DXY &gt;101.30（原 10Y &gt;4.55 且 DXY &gt;102 → 7/10 修訂）</td><td class="num">4.57 / 100.97</td><td>成長股與高 beta 減 1/3。</td></tr>
 <tr><td>防守失效</td><td>XLF &lt;20MA 53.68 且 XLV &lt;20MA 155.51</td><td class="num">55.71 / 160.84</td><td>降低金融/醫療偏多底倉。</td></tr>
 </tbody></table></div>
 </section>

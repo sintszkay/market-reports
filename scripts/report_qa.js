@@ -60,6 +60,10 @@ function validateVisibleText(html, errors) {
   if (matches.length) {
     errors.push(`可見文字疑似亂碼：${[...new Set(matches)].join(" / ")}`);
   }
+  const questionRuns = [...visible.matchAll(/\?{3,}/g)].slice(0, 10).map((match) => match[0]);
+  if (questionRuns.length) {
+    errors.push("可見文字出現連續問號，疑似編碼遺失。");
+  }
 }
 
 function validateAssets(html, errors) {

@@ -128,6 +128,15 @@ function validateTables(html, errors) {
   }
 }
 
+function validateWeeklyRequiredSections(html, errors) {
+  if (!/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) return;
+  const visible = stripTags(stripBlocks(html));
+  const hasAtrSection = /50MA\s*ATR/i.test(visible) && /ATR\(14\)/i.test(visible) && /距50MA\s*ATR/i.test(visible);
+  if (!hasAtrSection) {
+    errors.push("Weekly report 必須包含「50MA ATR 週延伸」表，且欄位需含 ATR(14) / 距50MA ATR。");
+  }
+}
+
 function validateReport(file) {
   const html = fs.readFileSync(file, "utf8");
   const errors = [];
@@ -135,6 +144,7 @@ function validateReport(file) {
   validateAssets(html, errors);
   validateDangerousTableClasses(html, errors);
   validateTables(html, errors);
+  validateWeeklyRequiredSections(html, errors);
   return errors;
 }
 

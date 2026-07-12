@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2026-07-10 美股盤後對帳</title>
+<link rel="stylesheet" href="report-shared.css?v=20260704-visual-1">
+<style>
+:root{--bg:#f4f7fb;--card:#fff;--ink:#142033;--muted:#64748b;--line:#dbe3ee;--blue:#2563eb;--green:#07865f;--red:#cf3f3f;--amber:#b66d00;--navy:#102a52}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.62 system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 22px 60px}
+header{background:linear-gradient(135deg,#102a52,#244f83);color:#fff;border-radius:18px;padding:28px 30px;box-shadow:0 12px 32px #17345c28}h1{font-size:32px;line-height:1.25;margin:4px 0 10px}h2{font-size:21px;color:var(--navy);margin:32px 0 12px;border-left:5px solid var(--blue);padding-left:11px}.muted{color:#cbd5e1}.kicker{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:800;margin-top:20px}
+.badges,.recon-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge,.recon-pills span{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800}.badge.green{color:#047857;background:#dcfce7}.badge.red{color:#b42336;background:#fee2e2}.badge.amber{color:#945a00;background:#fff2cc}.badge.blue{color:#1d4ed8;background:#dbeafe}.recon-pills span{background:#ffffff22;border:1px solid #ffffff38;color:#fff;line-height:1.35}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.card,.section,.recon-card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 5px 16px #2038580c}.card{padding:17px}.card span{color:var(--muted);font-size:13px}.card strong{display:block;font-size:25px;margin:4px 0}.note{font-size:12px;color:var(--muted);margin:0}.section{padding:8px 22px 22px;margin-top:16px}.recon-card{padding:14px 17px;margin:14px 0 18px}
+.hitbar{height:12px;display:flex;overflow:hidden;border-radius:999px;background:#e5e7eb}.hitbar i{display:block}.hitbar .h{background:#16a34a}.hitbar .m{background:#dc2626}.hitbar .n{background:#f59e0b}.hitbar-legend{margin-top:9px;font-size:13px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin:0 4px 0 12px}.dot.h{background:#16a34a}.dot.m{background:#dc2626}.dot.n{background:#f59e0b}
+.callout{border-radius:10px;padding:13px 15px;background:#eff6ff;border-left:4px solid var(--blue);margin:14px 0}.callout.warn{background:#fff7ed;border-left-color:var(--amber)}.callout.risk{background:#fff1f2;border-left-color:var(--red)}ol{padding-left:22px}li{margin:7px 0}.table-scroll{overflow:auto;border:1px solid var(--line);border-radius:11px}table{width:100%;border-collapse:collapse;background:#fff;min-width:760px}th{background:#edf3fa;color:#294361;text-align:left;font-size:12px;letter-spacing:.02em}th,td{padding:10px 11px;border-bottom:1px solid var(--line);vertical-align:top}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.up{color:var(--green)}.dn{color:var(--red)}.dn-ok{color:var(--green)}.hit,.miss,.nt{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:800}.hit{background:#dcfce7;color:#08734f}.miss{background:#fee2e2;color:#b42336}.nt{background:#fff2cc;color:#9a5800}.ma-cell{white-space:nowrap}.ma-state{display:inline-flex;gap:3px;min-width:46px;justify-content:center;font-weight:800;color:#475569}.ma-up .ma-arrow{color:#16866a}.ma-down .ma-arrow{color:#c84b43}footer{margin-top:28px;color:var(--muted);font-size:12px}.source{font-size:12px;color:var(--muted)}
+@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}h1{font-size:25px}}@media(max-width:480px){.grid{grid-template-columns:1fr}.wrap{padding:14px 10px 40px}header{padding:22px 18px}}
+</style>
+</head>
+<body data-report-type="postmarket"><main class="wrap">
+<header>
+  <div class="muted">US POSTMARKET RECON · 2026-07-10</div>
+  <h1>美股盤後對帳：指數續漲但晶片未完成確認，廣度修復仍偏脆</h1>
+  <p class="muted">資料截止 2026-07-10 美股收盤；主要數據取自使用者 Google Sheets（7/10 收盤）、Weekly Expected Move 與 Stockbee，新聞背景交叉參考 AP、MarketWatch 與 IBD。</p>
+  <div class="badges"><span class="badge green">SPX / Nasdaq Up</span><span class="badge amber">SMH Still Below 20MA</span><span class="badge red">5D Ratio Below 1</span><span class="badge blue">VIX 15.03</span></div>
+  <div class="recon-pills"><span>3 命中</span><span>1 失誤</span><span>5 未觸發</span></div>
+</header>
+
+<div class="recon-card" aria-label="reconciliation hit rate">
+  <div class="hitbar"><i class="h" style="width:33.33%"></i><i class="m" style="width:11.11%"></i><i class="n" style="width:55.56%"></i></div>
+  <div class="hitbar-legend"><b>盤前對帳：</b><span class="dot h"></span>3 命中 <span class="dot m"></span>1 失誤 <span class="dot n"></span>5 未觸發</div>
+</div>
+
+<div class="grid">
+  <div class="card"><span>SPX / VOO</span><strong class="up">+0.46%</strong><p class="note">S&P 500 收 7,575.39；VOO 收 693.86，趨勢仍在 20/50/200MA 上方。</p></div>
+  <div class="card"><span>QQQ</span><strong class="up">+0.32%</strong><p class="note">收 725.51，高於 20MA 722.40；但漲幅溫和，不是全面追高日。</p></div>
+  <div class="card"><span>SMH</span><strong class="up">+0.54%</strong><p class="note">收 611.03，仍低於 20MA 617.05；半導體修復尚未完成確認。</p></div>
+  <div class="card"><span>Stockbee 5D ratio</span><strong class="dn">0.81</strong><p class="note">T2108 回到 52.02，但短線廣度 ratio 仍低於 1。</p></div>
+</div>
+
+<section class="section"><div class="kicker">Core takeaways</div><h2>收盤核心結論</h2>
+<ol>
+  <li><strong>週五指數小幅續漲，AI / 大型科技仍是撐盤主軸。</strong>AP 統計 S&P 500 +0.4%、Nasdaq +0.3%、Dow +0.3%，Russell 2000 下跌；這與表內 VOO +0.46%、QQQ +0.32%、IWM -0.42%一致。</li>
+  <li><strong>盤前「不要追 SMH、先看 600 / 20MA」是正確的。</strong>SMH 收 611.03，守住 600，但仍低於 20MA 617.05；所以半導體不是崩，也不是完成回補。</li>
+  <li><strong>QQQ 技術面改善，但回補科技 1/3 的雙條件未滿足。</strong>QQQ 收 725.51，高於 20MA 722.40；SMH 仍低於 20MA 617.05，因此「QQQ + SMH 同時站回 20MA」未觸發。</li>
+  <li><strong>廣度有修復但不乾淨。</strong>SPX &gt;20MA 升至 62.22%、T2108 升至 52.02；但 Stockbee 5D ratio 只有 0.81，4%+ 下跌股 181 多於上漲股 129。</li>
+  <li><strong>風險不是系統性，但輪動很挑剔。</strong>VIX 跌至 15.03，防守警報未開；金融、醫療與價值端相對穩，但軟體、網安、礦機、生技高 RSI 區域出現分化。</li>
+</ol>
+<div class="callout"><strong>一句話：</strong>週五是「指數與 QQQ 延續修復，但 SMH、廣度與部分高 beta 沒同步確認」；可以維持偏多觀察，不適合把倉位直接升級成全面 risk-on。</div>
+</section>
+
+<section class="section"><div class="kicker">Reconciliation</div><h2>盤前主判斷對帳</h2>
+<div class="table-scroll"><table><thead><tr><th>盤前規則 / 判斷</th><th>收盤驗證</th><th>分類</th><th>修正</th></tr></thead><tbody>
+<tr><td>QQQ 守住 20MA 723.04，科技 tracking 可以保留。</td><td>QQQ 收 725.51，高於更新後 20MA 722.40；日線仍在 20/50/200MA 上方。</td><td><span class="hit">命中</span></td><td>保留科技觀察倉，但不自動加碼到完整 risk-on。</td></tr>
+<tr><td>SMH 不追高，先看 600 支撐與 20MA 確認。</td><td>SMH 收 611.03，守住 600，但低於 20MA 617.05。</td><td><span class="hit">命中</span></td><td>「不追、等確認」仍有效；下個交易日看 617.05。</td></tr>
+<tr><td>若 QQQ 站 20MA 且 SMH 站 20MA，回補科技 1/3。</td><td>QQQ 達標，SMH 未達標。</td><td><span class="nt">未觸發</span></td><td>不把半條件算命中；科技回補仍等待雙確認。</td></tr>
+<tr><td>加密鏈是盤前主線，可小倉跟蹤 CRCL / COIN / MSTR / HOOD。</td><td>IBIT +1.17%，但 WGMI -2.96%；COIN 收 159.07，低於盤前 165 附近的接棒門檻。</td><td><span class="miss">失誤</span></td><td>加密現貨強不等於加密股全面接棒；下次需同時看 IBIT 與 WGMI/COIN。</td></tr>
+<tr><td>5D ratio 仍低於 1，所有新加倉要縮小 size。</td><td>Stockbee 5D ratio 0.81，仍低於 1；4%+ 下跌股 181 多於上漲股 129。</td><td><span class="hit">命中</span></td><td>偏多但低槓桿，仍是正確倉位語氣。</td></tr>
+<tr><td>若 10Y &gt;4.65 且 QQQ 跌回 20MA 下方，撤回成長股加倉。</td><td>10Y 收 4.57%，QQQ 仍高於 20MA。</td><td><span class="nt">未觸發</span></td><td>宏觀壓力警報未啟動。</td></tr>
+<tr><td>若 SMH &lt;600 且 MU &lt;975.56，撤回硬體修復判斷。</td><td>SMH 611.03；MU 979.30，兩者都未跌破觸發線。</td><td><span class="nt">未觸發</span></td><td>半導體不是假跌破，但仍未完成上方確認。</td></tr>
+<tr><td>若 SPY &lt;737.66 且 VIX &gt;20，總倉降 1/3。</td><td>SPY 754.95；VIX 15.03。</td><td><span class="nt">未觸發</span></td><td>系統性風險線未觸發。</td></tr>
+<tr><td>若 DXY &gt;101.30 且 10Y &gt;4.65，減少成長股。</td><td>DXY 100.97；10Y 4.57%。</td><td><span class="nt">未觸發</span></td><td>美元與利率壓力未達盤前撤退線。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>對帳統計：</strong>3 命中、1 失誤、5 未觸發。未觸發代表條件未滿足，不能算命中，也不能算失誤；這次最主要的未觸發就是 SMH 沒有站回 20MA。</div>
+</section>
+
+<section class="section"><div class="kicker">Major ETF technicals</div><h2>大盤 ETF 技術面</h2>
+<div class="table-scroll"><table><thead><tr><th>ETF</th><th class="num">收盤</th><th class="num">1日</th><th class="num">5日</th><th class="num">1月</th><th>Above MA<br>(20/50/200)</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+<tr><td>QQQ</td><td class="num">725.51</td><td class="num up">+0.32%</td><td class="num up">+0.37%</td><td class="num up">+1.17%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">52.95</td><td>站回 20MA 722.40，但 RSI 只是中性修復。</td></tr>
+<tr><td>SMH</td><td class="num">611.03</td><td class="num up">+0.54%</td><td class="num up">+1.11%</td><td class="num up">+0.26%</td><td class="ma-cell"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">51.03</td><td>仍低於 20MA 617.05，半導體修復待確認。</td></tr>
+<tr><td>VOO</td><td class="num">693.86</td><td class="num up">+0.46%</td><td class="num up">+0.47%</td><td class="num up">+2.30%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">59.81</td><td>寬基趨勢完整，仍偏多。</td></tr>
+<tr><td>RSP</td><td class="num">214.30</td><td class="num up">+0.37%</td><td class="num dn">-0.33%</td><td class="num up">+2.17%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">60.94</td><td>等權仍強，市場不是單一權重撐住。</td></tr>
+<tr><td>IWM</td><td class="num">295.99</td><td class="num dn">-0.42%</td><td class="num dn">-0.97%</td><td class="num up">+1.92%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">54.07</td><td>小型股拖後腿，短線廣度不夠乾淨。</td></tr>
+<tr><td>DIA</td><td class="num">525.78</td><td class="num up">+0.30%</td><td class="num dn">-0.81%</td><td class="num up">+3.22%</td><td class="ma-cell"><span class="ma-state ma-up">20 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">50 <span class="ma-arrow">▲</span></span><span class="ma-state ma-up">200 <span class="ma-arrow">▲</span></span></td><td class="num">61.82</td><td>道指相對穩，但 5日仍落後。</td></tr>
+<tr><td>VIX</td><td class="num">15.03</td><td class="num dn-ok">-5.11%</td><td class="num dn-ok">-3.47%</td><td class="num dn-ok">-22.69%</td><td class="ma-cell"><span class="ma-state ma-down">20 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">50 <span class="ma-arrow">▼</span></span><span class="ma-state ma-down">200 <span class="ma-arrow">▼</span></span></td><td class="num">41.67</td><td>恐慌低，對股市是支撐。</td></tr>
+</tbody></table></div>
+<p class="source">註：1日/5日/1月為表格資料口徑；VIX 下跌用綠色表示，因波動率下降通常利好股市風險偏好。</p>
+<div class="callout"><strong>小結：</strong>大盤技術面偏多，真正卡住的是 SMH 未站回 20MA，以及 IWM/5D 廣度未同步。</div>
+</section>
+
+<section class="section"><div class="kicker">Sector / Thematic</div><h2>Sector / Thematic ETF 收盤觀察</h2>
+<div class="table-scroll"><table><thead><tr><th>ETF</th><th class="num">1日</th><th class="num">5日</th><th class="num">1月</th><th class="num">距52週高</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+<tr><td>XLF 金融</td><td class="num up">+0.31%</td><td class="num dn">-0.77%</td><td class="num up">+5.87%</td><td class="num dn">-1.56%</td><td class="num">66.19</td><td>金融靠近高位，是廣度穩定器。</td></tr>
+<tr><td>XLV 醫療</td><td class="num dn">-0.82%</td><td class="num dn">-0.69%</td><td class="num up">+4.38%</td><td class="num dn">-2.88%</td><td class="num">60.65</td><td>月線強但當日回落，偏防守。</td></tr>
+<tr><td>SPY 標普</td><td class="num up">+0.43%</td><td class="num up">+0.49%</td><td class="num up">+2.33%</td><td class="num dn">-0.72%</td><td class="num">59.56</td><td>接近 52週高，寬基仍健康。</td></tr>
+<tr><td>XLK 科技</td><td class="num up">+0.23%</td><td class="num up">+1.20%</td><td class="num up">+1.40%</td><td class="num dn">-6.52%</td><td class="num">52.73</td><td>科技修復但離前高仍有距離。</td></tr>
+<tr><td>SMH 半導體</td><td class="num up">+0.54%</td><td class="num up">+1.11%</td><td class="num up">+0.26%</td><td class="num dn">-9.05%</td><td class="num">51.03</td><td>主題修復，但位置仍低於前高與 20MA。</td></tr>
+<tr><td>XLE 能源</td><td class="num up">+0.47%</td><td class="num up">+3.67%</td><td class="num dn">-3.57%</td><td class="num dn">-13.21%</td><td class="num">50.26</td><td>5日反彈，月線和位置仍弱；這次數據完整。</td></tr>
+<tr><td>IGV 軟體</td><td class="num dn">-1.57%</td><td class="num dn">-2.51%</td><td class="num up">+1.64%</td><td class="num dn">-21.68%</td><td class="num">51.44</td><td>軟體仍是主要拖累之一。</td></tr>
+<tr><td>WGMI 礦機</td><td class="num dn">-2.96%</td><td class="num dn">-1.74%</td><td class="num dn">-13.17%</td><td class="num dn">-27.87%</td><td class="num">41.42</td><td>加密股未跟上 IBIT，盤前接棒判斷失誤。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>小結：</strong>金融與寬基穩、科技溫和修復；但 SMH、IGV、WGMI 顯示高 beta 內部分化，不能只看 QQQ 綠盤就升級風險。</div>
+</section>
+
+<section class="section"><div class="kicker">Breadth</div><h2>市場廣度與 Stockbee</h2>
+<div class="table-scroll"><table><thead><tr><th>指標</th><th class="num">7/10 最新</th><th>相對 7/9</th><th>判斷</th></tr></thead><tbody>
+<tr><td>SPX &gt;20MA</td><td class="num">62.22%</td><td>58.44% → 62.22%</td><td>短線廣度改善。</td></tr>
+<tr><td>SPX &gt;50MA</td><td class="num">67.79%</td><td>64.01% → 67.79%</td><td>中期廣度穩定。</td></tr>
+<tr><td>NDX &gt;20MA</td><td class="num">59.22%</td><td>58.25% → 59.22%</td><td>科技廣度小幅改善。</td></tr>
+<tr><td>IWM &gt;20MA</td><td class="num">57.31%</td><td>57.28% → 57.31%</td><td>小型股沒有同步擴散。</td></tr>
+<tr><td>T2108</td><td class="num">52.02%</td><td>49.81% → 52.02%</td><td>回到 50 上方，是好消息。</td></tr>
+<tr><td>Stockbee 5D ratio</td><td class="num">0.81</td><td>0.80 → 0.81</td><td>仍低於 1，短線廣度未解除保守。</td></tr>
+<tr><td>Stockbee 10D ratio</td><td class="num">1.33</td><td>1.31 → 1.33</td><td>中短期修復仍在。</td></tr>
+<tr><td>4%+ 上漲 / 下跌</td><td class="num">129 / 181</td><td>250 / 100 → 129 / 181</td><td>尾部轉弱，追高勝率下降。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>小結：</strong>MA 廣度改善，但 Stockbee 的 5D ratio 與 4%+ 分布提醒：這是「指數修復」而不是「全市場擴散」。</div>
+</section>
+
+<section class="section"><div class="kicker">Expected move</div><h2>Weekly Expected Move 邊界警報</h2>
+<div class="table-scroll"><table><thead><tr><th>股票 / ETF</th><th class="num">價格</th><th>狀態</th><th>交易含義</th></tr></thead><tbody>
+<tr><td>META</td><td class="num">669.21</td><td>突破 +2SD</td><td>大型科技核心強勢，但高於預期波動邊界，追價需降 size。</td></tr>
+<tr><td>NVDA</td><td class="num">210.96</td><td>突破 +1SD</td><td>AI 權重仍在上沿，支撐 Nasdaq；但不是低風險加碼點。</td></tr>
+<tr><td>CSCO / CVX / XLE</td><td class="num">121.31 / 176.40 / 55.08</td><td>突破 +1SD</td><td>資金有擴散到通訊設備與能源，但 XLE 月線仍弱。</td></tr>
+<tr><td>COST / HD / DIS</td><td class="num">916.25 / 343.30 / 95.62</td><td>跌破 -1SD</td><td>消費與家居仍是防守端壓力。</td></tr>
+<tr><td>IONQ / NFLX / SPCX</td><td class="num">42.86 / 73.37 / 145.30</td><td>跌破 -1SD</td><td>高 beta 內部分化，不能把科技上漲等同全面風險偏好。</td></tr>
+</tbody></table></div>
+<div class="callout"><strong>小結：</strong>META / NVDA 支撐指數，但多個消費與高 beta 名單跌破 -1SD，說明市場仍是局部強、局部弱。</div>
+</section>
+
+<section class="section"><div class="kicker">Next session</div><h2>下個交易日計畫</h2>
+<ol>
+  <li>若 QQQ 守住 20MA 722.40 且 SMH 收回 20MA 617.05，才執行「回補科技 1/3」。</li>
+  <li>若 SMH 跌破 600，半導體修復降級，只保留核心強勢股，不追 SOXL / 高槓桿半導體。</li>
+  <li>若 Stockbee 5D ratio 回到 1 以上且 T2108 維持 50 以上，新倉 size 可從小倉恢復到標準 tracking。</li>
+  <li>若 SPY 跌破 737.66 或 VIX 升破 20 任一出現，撤回本輪修復交易，總風險降 1/3。</li>
+  <li>加密鏈改成雙確認：IBIT 續強且 WGMI/COIN 同步站回短線門檻，才把它當主線；否則只看成現貨 BTC 強、股票鏈弱。</li>
+</ol>
+</section>
+
+<section class="section"><div class="kicker">Watchlist</div><h2>下個交易日監控清單</h2>
+<div class="table-scroll"><table><thead><tr><th>信號名</th><th>閾值（含出处）</th><th class="num">當前值</th><th>觸發動作</th></tr></thead><tbody>
+<tr><td>科技回補確認</td><td>QQQ &gt;20MA 722.40 且 SMH &gt;20MA 617.05</td><td class="num">725.51 / 611.03</td><td>雙確認後回補科技 1/3。</td></tr>
+<tr><td>半導體修復失敗</td><td>SMH &lt;600</td><td class="num">611.03</td><td>降級半導體，只留核心強勢。</td></tr>
+<tr><td>廣度解除保守</td><td>5D ratio &gt;1 且 T2108 &gt;50</td><td class="num">0.81 / 52.02</td><td>新倉 size 回到標準 tracking。</td></tr>
+<tr><td>系統風險升級</td><td>SPY &lt;737.66 或 VIX &gt;20</td><td class="num">754.95 / 15.03</td><td>總風險降 1/3。</td></tr>
+<tr><td>宏觀壓力</td><td>10Y &gt;4.65 且 DXY &gt;101.30</td><td class="num">4.57 / 100.97</td><td>減少成長股與高 beta。</td></tr>
+</tbody></table></div>
+</section>
+
+<section class="section"><div class="kicker">Cross-validation</div><h2>交叉驗證總結</h2>
+<div class="callout"><strong>互相確認：</strong>VOO / QQQ / RSP / DIA 都在主要均線上方，VIX 低於 20，MA 廣度改善，支持「中期趨勢未壞」。</div>
+<div class="callout warn"><strong>互相分歧：</strong>SMH 未站回 20MA、IWM 下跌、Stockbee 5D ratio 低於 1、4%+ 下跌股多於上漲股，說明短線風險偏好仍不乾淨。</div>
+<div class="callout"><strong>主結論：</strong>下個交易日仍以偏多觀察為主，但操作上只接受確認後加碼；最關鍵不是 SPY 是否再創高，而是 SMH 617.05 與 5D ratio 1.0 能否補上。</div>
+</section>
+
+<footer>資料來源：使用者 Google Sheets（Major ETF、Sector、Thematic Sectors、Market Breadth、Stockbee、Weekly Expected Move）；AP「How major US stock indexes fared Friday 7/10/2026」；MarketWatch 與 Investor's Business Daily 7/10 收盤背景。資料不可得處不作估算。</footer>
+</main>
+<script>
+document.querySelectorAll('table').forEach((table)=>{
+  table.querySelectorAll('tbody tr').forEach((row)=>{
+    row.querySelectorAll('td').forEach((cell,index)=>{cell.style.setProperty('--col',index+1)});
+  });
+});
+</script>
+<script src="report-runtime.js?v=20260704-visual-1"></script>
+</body>
+</html>

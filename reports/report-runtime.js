@@ -31,7 +31,7 @@
     var legend = document.createElement("div");
     legend.className = "symbol-legend";
     legend.setAttribute("aria-label", "報告符號圖例");
-    legend.textContent = "● 主要　◐ 條件/次要　◎ 觀察　✕ 避免　⚠ 反向訊號　↑ 升級　↓ 降級";
+    legend.textContent = "符號圖例：● 主要　● 條件／次要　● 觀察　✓ 避免　⚠ 反向訊號　↑ 升級　↓ 降級";
     summary.insertAdjacentElement("afterend", legend);
   }
 
@@ -70,7 +70,7 @@
     nav.setAttribute("aria-label", "報告目錄");
     var label = document.createElement("span");
     label.className = "toc-label";
-    label.textContent = "快速跳轉";
+    label.textContent = "快速導覽";
     nav.appendChild(label);
 
     headings.forEach(function (heading) {
@@ -86,31 +86,38 @@
   }
 
   function colorSignedNumbers() {
-    document.querySelectorAll('td.num').forEach(function(c){
-      var t=c.textContent.trim();
-      if(/^\+/.test(t))c.classList.add('up');
-      else if(/^[-−]/.test(t))c.classList.add('dn');
+    document.querySelectorAll(".num, .trend").forEach(function (cell) {
+      if (cell.querySelector(".rsi, .atr, .pct")) return;
+      var value = textOf(cell);
+      if (cell.classList.contains("dn-ok")) {
+        cell.classList.remove("up", "dn");
+        return;
+      }
+      if (/^\+/.test(value)) cell.classList.add("up");
+      else if (/^[-−]/.test(value)) cell.classList.add("dn");
+      if (cell.classList.contains("trend")) {
+        cell.style.fontVariantNumeric = "tabular-nums";
+      }
     });
   }
 
   function addSectionKickers() {
     var labels = [
-      [/核心結論|五個核心週結論/, "Key takeaways"],
-      [/Pre-market movers/i, "Premarket movers"],
-      [/修正檢查|Correction Checklist/i, "Risk checklist"],
-      [/宏觀事件與盤前背景/, "Macro backdrop"],
-      [/Sector\s*\/\s*Thematic/i, "Sector / Thematic"],
-      [/大盤 ETF 技術|指數與風格/, "Major indices & style"],
-      [/50MA ATR/, "50MA ATR extension"],
-      [/市場廣度/, "Breadth"],
-      [/外匯|商品與美債/, "Macro / FX / Rates"],
-      [/美債、Fed|宏觀與 Fed/, "Rates / Fed"],
-      [/交易計畫|下週事件與交易計畫/, "Trading plan"],
-      [/盤中觸發劇本/, "Intraday playbook"],
-      [/上週對賬/, "Reconciliation"],
-      [/Big Winners & Losers/i, "Leadership"],
-      [/交叉驗證/, "Cross-validation"],
-      [/資料來源/, "Sources"],
+      [/核心結論|五個核心|收盤核心/i, "重點摘要"],
+      [/Pre-market movers/i, "盤前異動"],
+      [/Correction Checklist|修正檢查/i, "風險檢查"],
+      [/宏觀|事件|Fed/i, "宏觀脈絡"],
+      [/Sector\s*\/\s*Thematic|板塊|主題/i, "板塊與主題"],
+      [/大盤 ETF|指數|風格/i, "指數與風格"],
+      [/50MA ATR/i, "延伸程度"],
+      [/市場廣度|Stockbee/i, "廣度"],
+      [/外匯|商品|利率|美債/i, "匯率與利率"],
+      [/交易計畫|下一週|下一交易日/i, "交易計畫"],
+      [/盤中觸發/i, "盤中劇本"],
+      [/上週對賬|對帳|對賬/i, "對賬"],
+      [/Big Winners|Big Losers|贏家|輸家/i, "個股領先／落後"],
+      [/Cross-validation|交叉驗證/i, "交叉驗證"],
+      [/資料來源/i, "資料來源"],
     ];
     document.querySelectorAll("main section h2").forEach(function (heading) {
       var section = heading.closest("section");
@@ -121,31 +128,6 @@
       kicker.className = "kicker";
       kicker.textContent = match[1];
       section.insertBefore(kicker, heading);
-    });
-  }
-
-  function colorVisualSignedNumbers() {
-    document.querySelectorAll(".num, .trend").forEach(function (cell) {
-      if (cell.querySelector(".rsi, .atr, .pct")) return;
-      var value = textOf(cell);
-      if (cell.classList.contains("dn-ok")) {
-        cell.classList.remove("up", "dn");
-        cell.style.color = "var(--muted)";
-        return;
-      }
-      if (/^\+/.test(value)) cell.classList.add("up");
-      else if (/^[-−]/.test(value)) cell.classList.add("dn");
-      if (cell.classList.contains("trend")) {
-        cell.style.fontVariantNumeric = "tabular-nums";
-        if (cell.classList.contains("up")) {
-          cell.style.color = "var(--green)";
-          cell.style.fontWeight = "600";
-        }
-        if (cell.classList.contains("dn")) {
-          cell.style.color = "var(--red)";
-          cell.style.fontWeight = "600";
-        }
-      }
     });
   }
 
@@ -160,14 +142,14 @@
       table.querySelectorAll("tbody tr").forEach(function (row) {
         var cell = row.cells[maIndex];
         if (!cell || cell.querySelector(".ma-state")) return;
-        var states = textOf(cell).split(/\s*[／/]\s*/);
+        var states = textOf(cell).split(/\s*[\/／]\s*/);
         if (states.length !== 3) return;
 
         var fragment = document.createDocumentFragment();
         states.forEach(function (state, index) {
           var normalized = state.trim();
-          var isUp = /^(上|▲|✓|Y)$/i.test(normalized);
-          var isDown = /^(下|▼|✗|N)$/i.test(normalized);
+          var isUp = /^(上|上方|▲|Y|Yes)$/i.test(normalized);
+          var isDown = /^(下|下方|▼|N|No)$/i.test(normalized);
           if (!isUp && !isDown) return;
 
           var badge = document.createElement("span");
@@ -187,7 +169,7 @@
           if (index < states.length - 1) {
             var separator = document.createElement("span");
             separator.className = "ma-separator";
-            separator.textContent = "·";
+            separator.textContent = " ";
             fragment.appendChild(separator);
           }
         });
@@ -207,7 +189,6 @@
     addSectionKickers();
     addTableOfContents();
     colorSignedNumbers();
-    colorVisualSignedNumbers();
     formatMovingAverageStates();
   }
 

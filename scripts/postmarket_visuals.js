@@ -95,8 +95,8 @@ function renderSectorChart(rows = []) {
     const sign = value > 0 ? "+" : "";
     return `    <div class="bar-row"><span class="lbl">${escapeHtml(row.label)}</span><span class="val ${positive ? "pos" : "neg"}">${sign}${value.toFixed(2)}</span><div class="bar-track" style="--zero:${zero.toFixed(2)}%"><div class="b ${positive ? "pos" : "neg"}" style="left:${left.toFixed(2)}%;width:${width.toFixed(2)}%"></div></div></div>`;
   }).join("\n");
-  return `<div class="chart" role="img" aria-label="板塊單日漲跌條形圖">
-    <p class="chart-title">單日漲跌一覽（%，按強弱排序）</p>
+  return `<div class="chart" role="img" aria-label="板塊 1 月漲跌條形圖">
+    <p class="chart-title">板塊動能一覽（1月漲跌，按強弱排序）</p>
 ${items}
   </div>`;
 }

@@ -65,7 +65,8 @@ function extractTickers(html) {
   for (const section of moverSections(html)) {
     const tbody = section[0].match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i)?.[1] || "";
     for (const row of tbody.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || []) {
-      const ticker = stripTags(row.match(/<td\b[^>]*>([\s\S]*?)<\/td>/i)?.[1] || "").toUpperCase();
+      const label = stripTags(row.match(/<td\b[^>]*>([\s\S]*?)<\/td>/i)?.[1] || "");
+      const ticker = label.split(/\s+/)[0].toUpperCase();
       if (/^[A-Z][A-Z0-9.-]{0,9}$/.test(ticker)) tickers.add(ticker);
     }
   }
@@ -132,19 +133,19 @@ function enrichTable(table, technicals) {
     `<table${addClass(attributes, "mover-state-table")}>`
   );
   output = output.replace(/<thead\b([^>]*)>([\s\S]*?)<\/thead>/i, (full, attributes, inner) => {
-    if (/距52周高位/i.test(stripTags(inner))) return full;
+    if (/RSI/i.test(stripTags(inner)) && /52/.test(stripTags(inner))) return full;
     return `<thead${attributes}>${inner.replace(/(<th\b[^>]*>[\s\S]*?<\/th>\s*){2}/i, (firstTwo) =>
-      `${firstTwo}<th class="num">RSI(14)</th><th class="num">距52周高位</th>`
+      `${firstTwo}<th class="num">RSI(14)</th><th class="num">距52週高</th>`
     )}</thead>`;
   });
   return output.replace(/<tbody\b([^>]*)>([\s\S]*?)<\/tbody>/i, (full, attributes, inner) => {
     const rows = (inner.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || []).map((row) => {
       const cells = row.match(/<td\b[^>]*>[\s\S]*?<\/td>/gi) || [];
-      const ticker = stripTags(cells[0] || "").toUpperCase();
+      const ticker = stripTags(cells[0] || "").split(/\s+/)[0].toUpperCase();
       const data = technicals[ticker] || {};
       const rsiCell = `<td class="num" data-rsi="${format(data.rsi14)}">${format(data.rsi14)}</td>`;
       const distanceCell = `<td class="num">${format(data.distanceFrom52wHighPct, "%")}</td>`;
-      if (cells.length >= 7 && /data-rsi/i.test(cells[2])) {
+      if (cells.length >= 4 && (/data-rsi/i.test(cells[2]) || /^(?:—|不可得|-?\d+(?:\.\d+)?)$/.test(stripTags(cells[2])))) {
         cells[2] = rsiCell;
         cells[3] = distanceCell;
       } else {
@@ -165,9 +166,9 @@ function enrichEtfTable(table, technicals) {
   const headers = headerInner.match(/<th\b[^>]*>[\s\S]*?<\/th>/gi) || [];
   const rsiIndex = headers.findIndex((cell) => /^RSI(?:\(14\))?$/i.test(stripTags(cell)));
   if (rsiIndex < 0) return output;
-  let distanceIndex = headers.findIndex((cell) => /距52周高位/i.test(stripTags(cell)));
+  let distanceIndex = headers.findIndex((cell) => /52/.test(stripTags(cell)));
   if (distanceIndex < 0) {
-    headers.splice(rsiIndex + 1, 0, '<th class="num">距52周高位</th>');
+    headers.splice(rsiIndex + 1, 0, '<th class="num">距52週高</th>');
     distanceIndex = rsiIndex + 1;
     output = output.replace(/(<thead\b[^>]*>[\s\S]*?<tr\b[^>]*>)[\s\S]*?(<\/tr>[\s\S]*?<\/thead>)/i, `$1${headers.join("")}$2`);
   }
@@ -194,7 +195,7 @@ function enrichReport(html, technicals) {
     if (/<h2\b[^>]*>\s*Sector\s*\/\s*Thematic ETF/i.test(section)) {
       return section.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, (table) => enrichEtfTable(table, technicals));
     }
-    if (!/mover-state-table/i.test(section) || !/距52周高位/i.test(section)) return section;
+    if (!/mover-state-table/i.test(section) || !/52/.test(stripTags(section))) return section;
     return section.replace(/<table\b[^>]*>[\s\S]*?<\/table>/i, (table) => {
       let repaired = table.replace(/\s*mover-state-table\b/i, "");
       repaired = repaired.replace(/<thead\b([^>]*)>([\s\S]*?)<\/thead>/i, (full, attributes, inner) => {

@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美股盤前監控｜2026-07-14</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260713-flat-1">
+  <style>
+    .source-note{font-size:12px;color:var(--muted)}
+    .mini-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    @media(max-width:760px){.mini-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body class="flat-report" data-report-type="premarket">
+<main class="wrap">
+  <header>
+    <div class="eyebrow">2026-07-14｜盤前監控｜資料時間 20:32 HKT / 08:32 ET</div>
+    <h1>美股盤前：半導體設備急彈，但廣度轉弱仍不宜追價</h1>
+    <p class="muted">盤前報價取自長橋 API；RSI 取長橋日線資料，截至 2026-07-13 收盤；Market Breath、Stockbee、技術表取自每日更新工作表。</p>
+    <div class="status-pills">
+      <span class="badge green">指數盤前反彈</span>
+      <span class="badge amber">廣度偏防守</span>
+      <span class="badge blue">半導體設備領先</span>
+      <span class="badge red">軟體與部分金融承壓</span>
+    </div>
+  </header>
+
+  <section class="grid" aria-label="summary">
+    <div class="card"><span>QQQ 盤前</span><strong class="up">+1.44%</strong><small>昨收低於 20/50MA，反彈仍需收盤確認</small></div>
+    <div class="card"><span>SMH 盤前</span><strong class="up">+4.04%</strong><small>設備鏈強彈，但昨收仍低於 20/50MA</small></div>
+    <div class="card"><span>Stockbee 5D / 10D</span><strong class="dn">0.63 / 0.96</strong><small>短線下跌股數擴大，追價勝率下降</small></div>
+    <div class="card"><span>SPX &gt;20MA</span><strong>63.02%</strong><small>中期仍在 50% 上方，但 NDX 廣度回落</small></div>
+  </section>
+
+  <section>
+    <h2>五個核心結論</h2>
+    <ol>
+      <li><strong>盤前不是全面 risk-on，而是半導體設備帶動的修復。</strong>QQQ +1.44%、SMH +4.04%，但前一交易日 QQQ 仍低於 20/50MA，SMH 也低於 20/50MA，開盤後需要觀察能否守住反彈。</li>
+      <li><strong>SNDK 的盤前強勢已由長橋確認。</strong>SNDK +7.65%，同時 AMAT、LRCX、KLAC、MRVL、MU、AMD、INTC 都在上漲榜，半導體鏈內部修復比大盤更強。</li>
+      <li><strong>廣度訊號偏保守。</strong>Stockbee 5D ratio 降至 0.63，10D ratio 降至 0.96，4% 下跌股 458 多於 4% 上漲股 207；這代表反彈更適合做確認，不適合無條件追高。</li>
+      <li><strong>防守與價值板塊仍佔優。</strong>XLF、XLV、SPY、XLI、XLU 的 20/50/200MA 結構較完整；XLK、XLY、XLB 仍有短線結構缺口。</li>
+      <li><strong>商品盤前同步反彈，但昨收技術面分化。</strong>GLD +2.34%、SLV +3.14%、USO +2.85%；然而 GLD/SLV 日線仍是弱勢結構，原油與能源股相對更有延續性。</li>
+    </ol>
+    <p class="section-summary"><strong>本段結論：</strong>今天盤前的可交易主線在半導體設備與部分硬體反彈；風控主線是廣度轉弱與軟體個股壓力。</p>
+  </section>
+
+  <section>
+    <h2>盤前指數與宏觀代理</h2>
+    <div class="table-scroll"><table class="report-data-table report-cols-7">
+      <thead><tr><th>標的</th><th class="num">盤前價</th><th class="num">昨收</th><th class="num">盤前變化</th><th class="num">成交量</th><th>解讀</th></tr></thead>
+      <tbody>
+        <tr><td>SPY</td><td class="num">752.87</td><td class="num">749.17</td><td class="num">+0.49%</td><td class="num">35.7萬股</td><td>大盤溫和反彈，仍需廣度配合。</td></tr>
+        <tr><td>QQQ</td><td class="num">722.00</td><td class="num">711.74</td><td class="num">+1.44%</td><td class="num">62.3萬股</td><td>科技反彈明顯，但昨收低於 20/50MA。</td></tr>
+        <tr><td>IWM</td><td class="num">298.34</td><td class="num">293.48</td><td class="num">+1.66%</td><td class="num">17.8萬股</td><td>小型股盤前強於 SPY，觀察開盤後能否擴散。</td></tr>
+        <tr><td>DIA</td><td class="num">524.67</td><td class="num">524.47</td><td class="num">+0.04%</td><td class="num">7.3萬股</td><td>道指相對平淡，盤前主力不在防守藍籌。</td></tr>
+        <tr><td>SMH</td><td class="num">609.29</td><td class="num">585.62</td><td class="num">+4.04%</td><td class="num">11.0萬股</td><td>半導體急彈，是今天最重要的風險偏好溫度計。</td></tr>
+        <tr><td>IBIT</td><td class="num">35.90</td><td class="num">35.22</td><td class="num">+1.93%</td><td class="num">81.2萬股</td><td>加密代理反彈，但日線仍低於三條均線。</td></tr>
+        <tr><td>TLT</td><td class="num">84.48</td><td class="num">83.97</td><td class="num">+0.61%</td><td class="num">21.5萬股</td><td>長債盤前回升，暫時緩和估值壓力。</td></tr>
+      </tbody>
+    </table></div>
+    <p class="section-summary"><strong>本段結論：</strong>盤前指數是成長股領漲，但若 QQQ 不能重新站回 20/50MA，上漲更像反彈而非趨勢恢復。</p>
+  </section>
+
+  <section>
+    <h2>盤前異動（長橋）</h2>
+    <div class="mini-grid">
+      <div class="panel">
+        <h3>上漲榜</h3>
+        <div class="table-scroll"><table class="report-data-table">
+          <thead><tr><th>股票</th><th class="num">盤前</th><th class="num">成交量</th><th>訊號</th></tr></thead>
+          <tbody>
+            <tr><td>SNDK</td><td class="num">+7.65%</td><td class="num">36.8萬股</td><td>記憶體鏈強彈，需看開盤是否守住高位。</td></tr>
+            <tr><td>AMAT</td><td class="num">+6.99%</td><td class="num">11.5萬股</td><td>半導體設備領先。</td></tr>
+            <tr><td>LRCX</td><td class="num">+6.94%</td><td class="num">9.0萬股</td><td>設備鏈同步修復。</td></tr>
+            <tr><td>KLAC</td><td class="num">+6.59%</td><td class="num">4.4萬股</td><td>半導體品質股跟漲。</td></tr>
+            <tr><td>MRVL</td><td class="num">+5.36%</td><td class="num">48.5萬股</td><td>AI / 網通鏈反彈。</td></tr>
+            <tr><td>MU</td><td class="num">+5.18%</td><td class="num">81.6萬股</td><td>記憶體延續高波動。</td></tr>
+            <tr><td>AMD</td><td class="num">+4.98%</td><td class="num">32.5萬股</td><td>AI beta 修復。</td></tr>
+            <tr><td>INTC</td><td class="num">+4.56%</td><td class="num">148.5萬股</td><td>高成交量反彈。</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div class="panel">
+        <h3>下跌榜 / 需複核</h3>
+        <div class="table-scroll"><table class="report-data-table">
+          <thead><tr><th>股票</th><th class="num">盤前</th><th class="num">成交量</th><th>訊號</th></tr></thead>
+          <tbody>
+            <tr><td>IBM</td><td class="num">-21.79%</td><td class="num">241.8萬股</td><td>幅度異常，需複核公司行動或報價來源。</td></tr>
+            <tr><td>NOW</td><td class="num">-7.17%</td><td class="num">65.7萬股</td><td>軟體承壓，是成長反彈的主要拖累。</td></tr>
+            <tr><td>CRM</td><td class="num">-5.41%</td><td class="num">13.4萬股</td><td>企業軟體走弱。</td></tr>
+            <tr><td>ADBE</td><td class="num">-5.20%</td><td class="num">8.5萬股</td><td>大型軟體同步承壓。</td></tr>
+            <tr><td>PLTR</td><td class="num">-4.64%</td><td class="num">55.7萬股</td><td>高 beta 分化，不是單邊風險偏好。</td></tr>
+            <tr><td>MSFT</td><td class="num">-2.65%</td><td class="num">57.8萬股</td><td>權重科技壓力需留意 QQQ 回落風險。</td></tr>
+            <tr><td>JPM</td><td class="num">-2.33%</td><td class="num">14.1萬股</td><td>金融內部分化。</td></tr>
+            <tr><td>BAC</td><td class="num">-2.10%</td><td class="num">21.3萬股</td><td>銀行短線承壓。</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <div class="callout warn">風險提示：長橋盤前 movers 以即時盤前撮合為準，低流動性或公司行動會放大百分比；IBM 的幅度與成交量都很突出，交易前必須再用券商終端複核。</div>
+  </section>
+
+  <section>
+    <h2>市場廣度與 Stockbee</h2>
+    <div class="table-scroll"><table class="report-data-table report-cols-7">
+      <thead><tr><th>日期</th><th class="num">SPX &gt;20MA</th><th class="num">SPX &gt;50MA</th><th class="num">NDX &gt;20MA</th><th class="num">NDX &gt;50MA</th><th class="num">IWM &gt;20MA</th><th class="num">IWM &gt;50MA</th></tr></thead>
+      <tbody>
+        <tr><td>2026-07-13</td><td class="num">63.02</td><td class="num">65.00</td><td class="num">54.36</td><td class="num">52.42</td><td class="num">56.30</td><td class="num">62.84</td></tr>
+        <tr><td>2026-07-10</td><td class="num">62.22</td><td class="num">67.79</td><td class="num">59.22</td><td class="num">59.22</td><td class="num">57.31</td><td class="num">64.50</td></tr>
+        <tr><td>2026-07-09</td><td class="num">58.44</td><td class="num">64.01</td><td class="num">58.25</td><td class="num">57.28</td><td class="num">57.28</td><td class="num">64.07</td></tr>
+      </tbody>
+    </table></div>
+    <div class="table-scroll"><table class="report-data-table">
+      <thead><tr><th>日期</th><th class="num">4% 上漲股</th><th class="num">4% 下跌股</th><th class="num">5D ratio</th><th class="num">10D ratio</th><th class="num">季度 +25%</th><th class="num">季度 -25%</th></tr></thead>
+      <tbody>
+        <tr><td>2026-07-13</td><td class="num">207</td><td class="num">458</td><td class="num">0.63</td><td class="num">0.96</td><td class="num">1370</td><td class="num">1160</td></tr>
+        <tr><td>2026-07-10</td><td class="num">129</td><td class="num">181</td><td class="num">0.81</td><td class="num">1.33</td><td class="num">1452</td><td class="num">1103</td></tr>
+        <tr><td>2026-07-09</td><td class="num">250</td><td class="num">100</td><td class="num">0.80</td><td class="num">1.31</td><td class="num">1533</td><td class="num">1108</td></tr>
+      </tbody>
+    </table></div>
+    <p class="section-summary"><strong>本段結論：</strong>大盤廣度仍高於 50%，但短線 Stockbee 已轉弱；盤前強彈若不能帶動 4% 上漲股重新擴大，容易變成高開後分化。</p>
+  </section>
+
+  <section>
+    <h2>指數 / 風格 ETF 技術面</h2>
+    <div class="table-scroll"><table class="ma-table report-data-table report-cols-7">
+      <thead><tr><th>ETF</th><th class="num">價格</th><th class="num">1日</th><th class="num">5日</th><th class="num">1月</th><th>20/50/200MA</th><th class="num">RSI</th><th>狀態</th></tr></thead>
+      <tbody>
+        <tr><td>VOO</td><td class="num">688.50</td><td class="num">-0.77%</td><td class="num">+0.21%</td><td class="num">+0.96%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">54.73</td><td>大盤趨勢仍完整。</td></tr>
+        <tr><td>QQQ</td><td class="num">711.74</td><td class="num">-1.90%</td><td class="num">+0.33%</td><td class="num">-1.33%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">47.83</td><td>盤前反彈，收盤需重回均線。</td></tr>
+        <tr><td>IWM</td><td class="num">293.48</td><td class="num">-0.85%</td><td class="num">-0.91%</td><td class="num">+0.18%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">50.16</td><td>中期可，但短線仍未修復。</td></tr>
+        <tr><td>DIA</td><td class="num">524.47</td><td class="num">-0.25%</td><td class="num">-0.75%</td><td class="num">+2.22%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">59.64</td><td>防守藍籌較穩。</td></tr>
+        <tr><td>RSP</td><td class="num">214.23</td><td class="num">-0.03%</td><td class="num">-0.23%</td><td class="num">+1.22%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">60.68</td><td>等權重仍支撐大盤。</td></tr>
+        <tr><td>SMH</td><td class="num">585.62</td><td class="num">-4.16%</td><td class="num">+0.72%</td><td class="num">-5.54%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">46.16</td><td>盤前急彈但日線未修好。</td></tr>
+        <tr><td>VIX</td><td class="num">21.02</td><td class="num dn-ok">+3.34%</td><td class="num dn-ok">+0.72%</td><td class="num dn-ok">-9.75%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></td><td class="num">40.39</td><td>波動仍未擴散成中期風險。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>板塊與主題 ETF</h2>
+    <div class="chart" aria-label="板塊動能一覽">
+      <div class="chart-title">板塊動能一覽（1月漲跌）</div>
+      <div class="bar-row"><span class="lbl">XBI 生技</span><span class="val pos">+16.11%</span><span class="bar-track"><span class="b pos" style="width:34%"></span></span></div>
+      <div class="bar-row"><span class="lbl">IBB 生技</span><span class="val pos">+11.07%</span><span class="bar-track"><span class="b pos" style="width:24%"></span></span></div>
+      <div class="bar-row"><span class="lbl">KIE 保險</span><span class="val pos">+10.30%</span><span class="bar-track"><span class="b pos" style="width:22%"></span></span></div>
+      <div class="bar-row"><span class="lbl">CIBR 網安</span><span class="val pos">+7.63%</span><span class="bar-track"><span class="b pos" style="width:16%"></span></span></div>
+      <div class="bar-row"><span class="lbl">SMH 半導體</span><span class="val neg">-5.54%</span><span class="bar-track"><span class="b neg" style="width:12%"></span></span></div>
+      <div class="bar-row"><span class="lbl">QTUM 量子</span><span class="val neg">-7.61%</span><span class="bar-track"><span class="b neg" style="width:16%"></span></span></div>
+      <div class="bar-row"><span class="lbl">SLV 白銀</span><span class="val neg">-14.90%</span><span class="bar-track"><span class="b neg" style="width:32%"></span></span></div>
+      <div class="bar-row"><span class="lbl">WGMI 礦股</span><span class="val neg">-20.77%</span><span class="bar-track"><span class="b neg" style="width:44%"></span></span></div>
+    </div>
+    <div class="table-scroll"><table class="ma-table report-data-table report-cols-7">
+      <thead><tr><th>ETF</th><th class="num">1日</th><th class="num">5日</th><th class="num">1月</th><th class="num">離高點</th><th>20/50/200MA</th><th class="num">RSI</th><th>判斷</th></tr></thead>
+      <tbody>
+        <tr><td>KIE 保險</td><td class="num">+1.58%</td><td class="num">+0.08%</td><td class="num">+10.30%</td><td class="num">-1.13%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">73.09</td><td>強勢但偏熱。</td></tr>
+        <tr><td>XBI 生技</td><td class="num">-2.32%</td><td class="num">-5.21%</td><td class="num">+16.11%</td><td class="num">-6.26%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">58.59</td><td>月線最強但短線回吐。</td></tr>
+        <tr><td>CIBR 網安</td><td class="num">-0.04%</td><td class="num">-0.40%</td><td class="num">+7.63%</td><td class="num">-3.00%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">61.95</td><td>趨勢完整。</td></tr>
+        <tr><td>XSW 軟體</td><td class="num">+0.89%</td><td class="num">-0.25%</td><td class="num">+7.50%</td><td class="num">-13.32%</td><td class="ma-cell"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">61.46</td><td>ETF 尚可，但個股 NOW/CRM 承壓。</td></tr>
+        <tr><td>SMH 半導體</td><td class="num">-4.16%</td><td class="num">+0.72%</td><td class="num">-5.54%</td><td class="num">-12.83%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">46.16</td><td>盤前修復，收盤確認最重要。</td></tr>
+        <tr><td>AIQ 人工智能</td><td class="num">-3.37%</td><td class="num">-1.26%</td><td class="num">-4.22%</td><td class="num">-12.75%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></td><td class="num">44.20</td><td>AI 主題仍未修好。</td></tr>
+        <tr><td>IBIT 比特幣</td><td class="num">-2.79%</td><td class="num">-2.57%</td><td class="num">-2.28%</td><td class="num">-50.96%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></td><td class="num">44.43</td><td>盤前反彈，但日線弱。</td></tr>
+        <tr><td>GLD 黃金</td><td class="num">-2.62%</td><td class="num">-2.74%</td><td class="num">-5.02%</td><td class="num">-28.60%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></td><td class="num">36.78</td><td>盤前反彈屬弱勢反抽。</td></tr>
+        <tr><td>SLV 白銀</td><td class="num">-3.32%</td><td class="num">-4.22%</td><td class="num">-14.90%</td><td class="num">-52.50%</td><td class="ma-cell"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></td><td class="num">35.35</td><td>跌深反彈，趨勢未翻多。</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>宏觀 / 匯率 / 利率</h2>
+    <div class="table-scroll"><table class="report-data-table report-cols-7">
+      <thead><tr><th>項目</th><th class="num">最新</th><th class="num">日變化</th><th class="num">5日</th><th class="num">1月</th><th>解讀</th></tr></thead>
+      <tbody>
+        <tr><td>DXY</td><td class="num">101.05</td><td class="num">-0.23%</td><td class="num">-0.09%</td><td class="num">+1.10%</td><td>美元短線回落，對成長股估值壓力暫緩。</td></tr>
+        <tr><td>EUR/USD</td><td class="num">1.1409</td><td class="num">+0.04%</td><td class="num">-0.29%</td><td class="num">-1.44%</td><td>歐元弱勢中反彈。</td></tr>
+        <tr><td>USD/JPY</td><td class="num">162.21</td><td class="num">+0.21%</td><td class="num">+0.07%</td><td class="num">+1.30%</td><td>日圓仍弱，亞洲風險資產需留意匯率壓力。</td></tr>
+        <tr><td>US2Y</td><td class="num">3.73%</td><td class="num">+3.3bp</td><td class="num">+3.8bp</td><td class="num">+9.3bp</td><td>短端利率偏上行。</td></tr>
+        <tr><td>US10Y</td><td class="num">4.61%</td><td class="num">+4.0bp</td><td class="num">+13.0bp</td><td class="num">+8.1bp</td><td>10Y 若續升，會壓制高估值科技。</td></tr>
+        <tr><td>US20Y</td><td class="num">5.10%</td><td class="num">+2.7bp</td><td class="num">+10.5bp</td><td class="num">+8.7bp</td><td>長端仍高，金融條件沒有明顯放鬆。</td></tr>
+      </tbody>
+    </table></div>
+    <p class="section-summary"><strong>本段結論：</strong>美元盤前回落有利反彈，但美債收益率仍在上行，這限制了科技股反彈的容錯率。</p>
+  </section>
+
+  <section>
+    <h2>周度 Expected Move 觸發</h2>
+    <div class="table-scroll"><table class="report-data-table">
+      <thead><tr><th>股票</th><th class="num">收盤</th><th class="num">周度波動</th><th class="num">上方 1SD</th><th class="num">下方 1SD</th><th class="num">現價</th><th>狀態</th></tr></thead>
+      <tbody>
+        <tr><td>IONQ</td><td class="num">42.86</td><td class="num">3.91</td><td class="num">46.77</td><td class="num">38.95</td><td class="num">38.88</td><td><span class="badge red">跌破 -1SD</span></td></tr>
+        <tr><td>ORCL</td><td class="num">140.64</td><td class="num">8.90</td><td class="num">149.54</td><td class="num">131.74</td><td class="num">131.54</td><td><span class="badge red">跌破 -1SD</span></td></tr>
+        <tr><td>XOM</td><td class="num">138.88</td><td class="num">4.19</td><td class="num">143.07</td><td class="num">134.69</td><td class="num">144.51</td><td><span class="badge amber">突破 +1SD</span></td></tr>
+        <tr><td>MA</td><td class="num">526.74</td><td class="num">13.84</td><td class="num">540.58</td><td class="num">512.90</td><td class="num">537.70</td><td><span class="badge amber">接近 +1SD</span></td></tr>
+        <tr><td>NVDA</td><td class="num">210.96</td><td class="num">9.22</td><td class="num">220.18</td><td class="num">201.74</td><td class="num">203.53</td><td><span class="badge amber">接近 -1SD</span></td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>修正檢查表</h2>
+    <div class="checks">
+      <div class="check low"><span>SPX 中期廣度</span><strong>63.02% &gt; 50%</strong></div>
+      <div class="check mid"><span>NDX 20MA 廣度</span><strong>54.36%，較前日回落</strong></div>
+      <div class="check high"><span>Stockbee 5D ratio</span><strong>0.63，短線偏弱</strong></div>
+      <div class="check mid"><span>QQQ 均線</span><strong>昨收低於 20/50MA</strong></div>
+      <div class="check high"><span>SMH 均線</span><strong>昨收低於 20/50MA</strong></div>
+      <div class="check low"><span>VIXY 結構</span><strong>低於 20/50/200MA</strong></div>
+      <div class="check mid"><span>10Y 利率</span><strong>4.61%，近 5 日 +13bp</strong></div>
+      <div class="check mid"><span>盤前分化</span><strong>設備強、軟體弱</strong></div>
+    </div>
+    <div class="action-directive">
+      <span class="ad-label">交易計畫</span>
+      <ul class="ad-list">
+        <li class="ad-primary"><strong>主線：</strong>只在 SMH / QQQ 開盤後守住盤前漲幅、且半導體設備股不回吐時，才考慮順勢。</li>
+        <li class="ad-secondary"><strong>確認：</strong>若 SPY、QQQ 高開後回落但 IWM / RSP 不破，偏輪動；若同步回落，盤前反彈視為失敗。</li>
+        <li class="ad-watch"><strong>觀察：</strong>SNDK、AMAT、LRCX、MU、AMD、INTC 的首小時成交與回撤幅度。</li>
+        <li class="ad-avoid"><strong>避免：</strong>在 Stockbee 5D ratio 低於 1 且 QQQ 未重回均線前，追高整體科技 ETF。</li>
+        <li class="ad-invalidate"><span class="ad-bullet">失效：</span><strong>QQQ 無法重新站回 50MA 713.04 / 20MA 720.24，或 SMH 無法靠近 20MA 614.45，盤前半導體修復劇本降級。</strong></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>資料來源</h2>
+    <p class="sources">長橋 OpenAPI 盤前報價與日線 RSI；Google Sheets：Market Breath、Stockbee、Major ETF、Thematic ETF、Macro / FX / Rates、Weekly Expected Move。資料已做同日檔名對賬：expected_0714.csv、premarket_movers_0714.json、premarket_quotes_0714.json。</p>
+    <p class="source-note">本報告為交易前監控，不構成投資建議。盤前價格可能因流動性不足而快速變動。</p>
+  </section>
+</main>
+<script src="report-runtime.js?v=20260713-flat-1"></script>
+</body>
+</html>

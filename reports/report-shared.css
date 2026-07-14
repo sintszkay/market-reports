@@ -58,6 +58,10 @@ a{color:var(--blue)}
 .premarket-movers-table th:nth-child(4),.premarket-movers-table td:nth-child(4){width:24%;text-align:left}
 .premarket-movers-table th:nth-child(5),.premarket-movers-table td:nth-child(5){width:20%;text-align:left}
 .premarket-movers-table th:nth-child(6),.premarket-movers-table td:nth-child(6){width:24%;text-align:left}
+.premarket-movers-compact th:nth-child(1),.premarket-movers-compact td:nth-child(1){width:11%}
+.premarket-movers-compact th:nth-child(2),.premarket-movers-compact td:nth-child(2){width:13%;text-align:right}
+.premarket-movers-compact th:nth-child(3),.premarket-movers-compact td:nth-child(3){width:16%;text-align:right}
+.premarket-movers-compact th:nth-child(4),.premarket-movers-compact td:nth-child(4){width:60%;text-align:left}
 
 td.rsi-hot{background:var(--red-bg);color:var(--red);font-weight:500}
 td.rsi-cold{background:var(--green-bg);color:var(--green);font-weight:500}

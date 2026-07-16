@@ -52,16 +52,17 @@ a{color:var(--blue)}
 
 .mover-state-table th:nth-child(1){width:8%}.mover-state-table th:nth-child(2){width:9%}.mover-state-table th:nth-child(3){width:8%}.mover-state-table th:nth-child(4){width:11%}.mover-state-table th:nth-child(5){width:20%}.mover-state-table th:nth-child(6){width:22%}.mover-state-table th:nth-child(7){width:22%}
 .etf-position-table th:nth-child(1){width:14%}.etf-position-table th:nth-child(2){width:10%}.etf-position-table th:nth-child(3){width:10%}.etf-position-table th:nth-child(4){width:10%}.etf-position-table th:nth-child(5){width:8%}.etf-position-table th:nth-child(6){width:13%}.etf-position-table th:nth-child(7){width:35%}
-.premarket-movers-table th:nth-child(1),.premarket-movers-table td:nth-child(1){width:10%}
+.premarket-movers-table th:nth-child(1),.premarket-movers-table td:nth-child(1){width:10%;white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 .premarket-movers-table th:nth-child(2),.premarket-movers-table td:nth-child(2){width:10%;text-align:right}
 .premarket-movers-table th:nth-child(3),.premarket-movers-table td:nth-child(3){width:12%;text-align:right}
 .premarket-movers-table th:nth-child(4),.premarket-movers-table td:nth-child(4){width:24%;text-align:left}
 .premarket-movers-table th:nth-child(5),.premarket-movers-table td:nth-child(5){width:20%;text-align:left}
 .premarket-movers-table th:nth-child(6),.premarket-movers-table td:nth-child(6){width:24%;text-align:left}
-.premarket-movers-compact th:nth-child(1),.premarket-movers-compact td:nth-child(1){width:11%}
+.premarket-movers-compact{min-width:520px}
+.premarket-movers-compact th:nth-child(1),.premarket-movers-compact td:nth-child(1){width:14%;white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 .premarket-movers-compact th:nth-child(2),.premarket-movers-compact td:nth-child(2){width:13%;text-align:right}
-.premarket-movers-compact th:nth-child(3),.premarket-movers-compact td:nth-child(3){width:16%;text-align:right}
-.premarket-movers-compact th:nth-child(4),.premarket-movers-compact td:nth-child(4){width:60%;text-align:left}
+.premarket-movers-compact th:nth-child(3),.premarket-movers-compact td:nth-child(3){width:15%;text-align:right}
+.premarket-movers-compact th:nth-child(4),.premarket-movers-compact td:nth-child(4){width:58%;text-align:left}
 
 td.rsi-hot{background:var(--red-bg);color:var(--red);font-weight:500}
 td.rsi-cold{background:var(--green-bg);color:var(--green);font-weight:500}

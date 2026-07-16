@@ -48,7 +48,9 @@ node scripts/apply_report_rules.js --type premarket --write reports/2026-06-30-p
 
 ## Mandatory report QA before publishing
 
-Every new report must pass both the structural validator and the QA gate before commit/push:
+Every new report is a local draft first. Commit/push only after the user reviews the local HTML and explicitly confirms publication.
+
+Every new report must pass both the structural validator and the QA gate before asking for publication confirmation:
 
 ```powershell
 node scripts/apply_report_rules.js --type postmarket reports/YYYY-MM-DD-postmarket-recap.html
@@ -67,6 +69,15 @@ Use the matching `--type premarket|weekly|postmarket` for `apply_report_rules.js
 - duplicate `report-shared.css` or `report-runtime.js` loads.
 
 If a datapoint is genuinely unavailable, do not leave a bare dash in a numeric table cell. Mark it explicitly as unavailable in prose, or add a deliberate `data-allow-missing` marker to the cell with an explanation in the same section.
+
+Premarket macro and earnings tables should maximize decision-useful numbers:
+
+- Do not reserve a standalone time column unless timing is the main signal.
+- Macro rows should show `Actual / Forecast / Previous`.
+- Earnings rows should show EPS actual vs estimate, revenue actual vs estimate, and an explicit `Beat`, `Miss`, or `待公布` result.
+- If an earnings release has not happened yet, do not infer beat/miss; show consensus and mark it `待公布`.
+- Premarket mover ticker cells must stay on one line. Do not allow symbols such as `PANW` or `GOOG` to wrap by character; if the card is narrow, prefer table scrolling over broken tickers.
+- Sector / thematic ETF sections must include a broad enough full table: at least 20 ETF rows when the data source has enough rows. The zero-axis momentum chart can stay compact, but the full table should cover all major S&P sector ETFs plus core themes such as biotech, cybersecurity/software, regional banks, semiconductors, AI, and commodity beta.
 
 The validator enforces:
 

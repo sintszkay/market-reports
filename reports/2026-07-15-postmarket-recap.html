@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美股盤後對賬｜2026-07-15</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260715-flat-1">
+  <style>
+    body[data-report-type="postmarket"] table{table-layout:auto}
+    body[data-report-type="postmarket"] .sector-summary-table th,
+    body[data-report-type="postmarket"] .sector-summary-table td,
+    body[data-report-type="postmarket"] .breadth-summary-table th,
+    body[data-report-type="postmarket"] .breadth-summary-table td{width:auto!important}
+    .mini-note{font-size:12px;color:var(--muted);line-height:1.55}
+  </style>
+</head>
+<body class="flat-report" data-report-type="postmarket"><main class="wrap">
+<header>
+  <div class="eyebrow">US Postmarket Reconciliation · 2026-07-15</div>
+  <h1>美股盤後：PPI 利多未能延續到科技收盤，資金轉向金融與權重分化</h1>
+  <p class="muted">資料截至 2026-07-15 美股收盤；對照 2026-07-15 盤前報告。行情、技術面與 RSI 使用 Longbridge API 與 Google Sheet「Market Watch」讀值，Market Breadth 已更新至 7/15。</p>
+  <div class="hitbar" role="img" aria-label="盤前判斷：4 命中、1 失誤、3 未觸發"><i class="h" style="width:50%"></i><i class="n" style="width:37.5%"></i><i class="m" style="width:12.5%"></i></div>
+  <div class="hitbar-legend">盤前判斷對賬：<span class="dot h"></span><b>4</b> 命中<span class="dot m"></span><b>1</b> 失誤<span class="dot n"></span><b>3</b> 未觸發</div>
+  <div class="status-pills"><span class="badge red">QQQ Lost 20MA</span><span class="badge red">SMH Failed Follow-through</span><span class="badge green">Financials Lead</span><span class="badge amber">Breadth Mixed</span></div>
+</header>
+
+<section class="grid" aria-label="收盤摘要">
+  <div class="card"><span>SPY / QQQ</span><strong style="font-size:18px;white-space:nowrap"><span class="num" style="color:var(--green)">+0.40%</span>&nbsp;/&nbsp;<span class="num" style="color:var(--red)">-0.27%</span></strong><p class="note">大盤權重仍撐住，但科技 ETF 未守盤前利多。</p></div>
+  <div class="card"><span>QQQ 守位</span><strong class="dn">717.74</strong><p class="note">低於盤前失效線 719.44，也低於 20MA 719.93。</p></div>
+  <div class="card"><span>SMH 收盤</span><strong class="dn">-1.59%</strong><p class="note">未靠近 613.41 / 614 附近 20MA，設備鏈高開回吐。</p></div>
+  <div class="card"><span>Market Breadth</span><strong style="font-size:18px;white-space:nowrap"><span class="num" style="color:var(--red)">48.54%</span>&nbsp;/&nbsp;<span class="num" style="color:var(--amber)">50.48%</span></strong><p class="note">NDX &gt;20MA 仍低於 50%，&gt;50MA 只剩臨界。</p></div>
+</section>
+
+<section><div class="kicker">Core takeaways</div><h2>收盤核心結論</h2>
+<ol>
+  <li><strong>盤前宏觀利多沒有變成全天科技趨勢。</strong>PPI 低於預期讓 QQQ 盤前 +0.55%、SMH +1.05%，但收盤 QQQ -0.27%、SMH -1.59%，代表開盤後買盤承接不足。</li>
+  <li><strong>盤前最重要的失效線被觸發。</strong>盤前計畫寫明「PPI 利多後 QQQ 跌回 719.44 下方，盤前偏多判斷失效」；實際 QQQ 收 717.74，低於失效線與 20MA，這條要嚴格執行。</li>
+  <li><strong>半導體設備鏈判斷需要降級。</strong>AMAT -2.73%、LRCX -3.08%、KLAC -2.55%，盤前 ASML / 設備鏈利多沒有守到收盤；MU -8.02%、SNDK -8.12% 顯示硬件內部壓力仍在。</li>
+  <li><strong>大盤不是崩盤，是風格輪動與權重分化。</strong>SPY +0.40%、DIA +0.24%、IWM +0.43%，VIXY -2.90%；金融 XLF +0.68%、XLC +1.73%、XLY +0.95%，支撐指數沒有全面破壞。</li>
+  <li><strong>廣度混合，不支持追科技跳空。</strong>SPX &gt;20MA 由 56.85 降至 51.88，NDX &gt;20MA 只有 48.54；IWM 廣度改善，但科技廣度仍沒有回到全面 risk-on。</li>
+</ol>
+<p class="section-summary"><strong>本段結論：</strong>7/15 盤前「偏多但要守位」的框架是正確的；真正需要修正的是不能把 PPI + ASML 的盤前反應外推到全天。收盤後應把科技 beta 降回觀察，保留金融 / 通訊 / 消費相對強勢。</p></section>
+
+<section><div class="kicker">Reconciliation</div><h2>盤前主判斷對賬</h2>
+<div class="table-scroll"><table class="recon-table"><thead><tr><th>段落</th><th>盤前行動／判斷</th><th>收盤事實</th><th>對賬</th><th>下次修正</th></tr></thead><tbody>
+  <tr><td>盤前主線</td><td>PPI 給出利多，但只有 QQQ 守 719.44、SMH 靠近 613.41，才把設備鏈視為可追隨主線。</td><td>QQQ 收 717.74，跌回 719.44 下方；SMH 收 590.77，遠低於 20MA 區域。</td><td><span class="result-badge result-hit">命中</span></td><td>失效條件明確觸發，科技偏多不延續到隔日。</td></tr>
+  <tr><td>設備鏈確認</td><td>AMAT、KLAC、LRCX、INTC 開盤第一小時若放量不回吐，半導體盤前訊號才有效。</td><td>AMAT -2.73%、KLAC -2.55%、LRCX -3.08%；SMH -1.59%。盤前訊號未守住。</td><td><span class="result-badge result-hit">命中</span></td><td>盤前半導體只看作測試，不可提前升級主線。</td></tr>
+  <tr><td>不追科技跳空</td><td>Stockbee 5D / 10D ratio 低於 1 時，不追整體科技 ETF 的開盤跳空。</td><td>QQQ 由盤前 +0.55% 轉收 -0.27%，XLK -1.11%，AIQ -1.36%。</td><td><span class="result-badge result-hit">命中</span></td><td>這條繼續保留，尤其在 NDX 廣度低於 50% 時。</td></tr>
+  <tr><td>廣度瑕疵</td><td>NDX &gt;20MA 低於 50%、5D / 10D 低於 1，是盤前最大瑕疵。</td><td>7/15 NDX &gt;20MA 48.54，仍低於 50%；SPX &gt;20MA 降至 51.88。</td><td><span class="result-badge result-hit">命中</span></td><td>短線修復需要先看廣度回到 50% 以上。</td></tr>
+  <tr><td>金融觀察</td><td>觀察 BLK / MS 財報買盤能否帶動 XLF。</td><td>XLF +0.68%、KRE +1.04%，金融延續相對強；XLF RSI 70.98，已接近過熱。</td><td><span class="result-badge result-hit">命中</span></td><td>金融可持有但不追高，注意 RSI 過熱。</td></tr>
+  <tr><td>醫療防守</td><td>JNJ / UNH 若拖累 XLV，防守板塊不宜當作避風港。</td><td>XLV 0.00%，IHI +1.30%、IBB +0.65%，醫療沒有崩，但也不是主線。</td><td><span class="result-badge result-not-triggered">未觸發</span></td><td>醫療維持中性，不作防守核心。</td></tr>
+  <tr><td>宏觀利率</td><td>PPI 後 10Y 是否真正回落，是 QQQ / SMH 能不能延續的關鍵。</td><td>即使宏觀沒有明顯風險擴散，QQQ / SMH 仍回吐，主因更像廣度與板塊承接不足。</td><td><span class="result-badge result-miss">失誤</span></td><td>宏觀利多不是充分條件，需把「開盤後資金流」權重提高。</td></tr>
+  <tr><td>系統風險</td><td>若 VIX 升破 20 且 SPY / VOO 失守 20MA，才觸發系統性降倉。</td><td>VIXY -2.90%，SPY / VOO 仍在 20/50/200MA 上方。</td><td><span class="result-badge result-not-triggered">未觸發</span></td><td>不是系統性風險，是科技與硬件相對降級。</td></tr>
+</tbody></table></div>
+<p class="section-summary"><strong>本段結論：</strong>4 命中、1 失誤、3 未觸發。盤前最大價值是把「偏多」綁在 QQQ 719.44 / SMH 613.41 守位上；收盤證明條件沒有通過，所以盤後應降級科技，而不是硬凹 PPI 利多。</p></section>
+
+<section><div class="kicker">Major ETF technicals</div><h2>指數與風格收盤</h2>
+<div class="table-scroll"><table class="index-summary-table"><thead><tr><th>ETF／指數</th><th class="num">最新</th><th class="num">日變化</th><th class="num">5日</th><th>Above MA（20/50/200）</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+  <tr><td>SPY</td><td class="num">754.81</td><td class="num">+0.40%</td><td class="num">+0.41%</td><td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:58%"></b></i>58.40</span></td><td>大盤趨勢仍完整，沒有系統破壞。</td></tr>
+  <tr><td>QQQ</td><td class="num">717.74</td><td class="num">-0.27%</td><td class="num">-0.77%</td><td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:50%"></b></i>50.04</span></td><td>失守盤前 719.44 線，偏多判斷失效。</td></tr>
+  <tr><td>SMH</td><td class="num">590.77</td><td class="num">-1.59%</td><td class="num">-2.79%</td><td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.32</span></td><td>仍低於 20MA，設備鏈反彈失敗。</td></tr>
+  <tr><td>RSP</td><td class="num">212.97</td><td class="num">-0.22%</td><td class="num">-0.25%</td><td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:56%"></b></i>55.83</span></td><td>等權小跌，指數不是全面擴散。</td></tr>
+  <tr><td>IWM</td><td class="num">295.77</td><td class="num">+0.43%</td><td class="num">-0.49%</td><td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:54%"></b></i>53.60</span></td><td>小型股比 QQQ 抗跌，風格沒有全面 risk-off。</td></tr>
+  <tr><td>DIA</td><td class="num">525.95</td><td class="num">+0.24%</td><td class="num">+0.34%</td><td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:61%"></b></i>61.40</span></td><td>道指保持強勢，資金偏向價值 / 金融。</td></tr>
+  <tr><td>VIX / VIXY</td><td class="num">20.06</td><td class="num dn-ok">-2.90%</td><td class="num dn-ok">-3.60%</td><td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="dn">200<i>▼</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:35%"></b></i>35.29</span></td><td>波動產品仍弱，沒有恐慌擴散。</td></tr>
+</tbody></table></div>
+<p class="section-summary"><strong>本段結論：</strong>指數層面是「SPY / DIA / IWM 尚可，QQQ / SMH 失敗」。因此不是大盤轉熊，而是科技 beta 和硬件 beta 需要降級。</p></section>
+
+<section><div class="kicker">Sector and thematic ETF</div><h2>板塊與主題 ETF</h2>
+<div class="table-scroll"><table class="sector-summary-table"><thead><tr><th>ETF</th><th class="num">日變化</th><th class="num">5日</th><th class="num">1月</th><th class="num">RSI</th><th>判斷</th></tr></thead><tbody>
+  <tr><td>XLF</td><td class="num">+0.68%</td><td class="num">+1.84%</td><td class="num">+4.07%</td><td class="num"><span class="rsi"><i><b style="width:71%"></b></i>70.98</span></td><td>金融領先，但 RSI 進入偏熱區。</td></tr>
+  <tr><td>KRE</td><td class="num">+1.04%</td><td class="num">+1.51%</td><td class="num">+4.54%</td><td class="num"><span class="rsi"><i><b style="width:62%"></b></i>62.35</span></td><td>區域銀行接棒，支持價值風格。</td></tr>
+  <tr><td>XLC</td><td class="num">+1.73%</td><td class="num">+2.60%</td><td class="num">+0.94%</td><td class="num"><span class="rsi"><i><b style="width:61%"></b></i>60.64</span></td><td>通訊服務強於科技硬件，是權重支撐來源。</td></tr>
+  <tr><td>XLY</td><td class="num">+0.95%</td><td class="num">+0.13%</td><td class="num">-1.23%</td><td class="num"><span class="rsi"><i><b style="width:52%"></b></i>51.50</span></td><td>消費可選反彈，但中期仍未轉強。</td></tr>
+  <tr><td>CIBR</td><td class="num">-1.73%</td><td class="num">-1.24%</td><td class="num">+9.41%</td><td class="num"><span class="rsi"><i><b style="width:62%"></b></i>61.98</span></td><td>網安月線仍強，但當日跟隨科技降溫。</td></tr>
+  <tr><td>XSW</td><td class="num">+0.16%</td><td class="num">-0.45%</td><td class="num">+7.00%</td><td class="num"><span class="rsi"><i><b style="width:61%"></b></i>61.27</span></td><td>軟件 ETF 抗跌，優於硬件。</td></tr>
+  <tr><td>SMH</td><td class="num">-1.59%</td><td class="num">-2.79%</td><td class="num">-4.10%</td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.32</span></td><td>半導體盤前修復失敗，仍是科技風險源。</td></tr>
+  <tr><td>AIQ</td><td class="num">-1.36%</td><td class="num">-4.25%</td><td class="num">-5.45%</td><td class="num"><span class="rsi"><i><b style="width:44%"></b></i>44.04</span></td><td>AI 主題繼續弱於大盤。</td></tr>
+  <tr><td>IBIT</td><td class="num">+0.63%</td><td class="num">+2.79%</td><td class="num">-0.97%</td><td class="num"><span class="rsi"><i><b style="width:52%"></b></i>52.14</span></td><td>加密代理溫和支撐，但不是當日主線。</td></tr>
+  <tr><td>GLD</td><td class="num">+0.05%</td><td class="num">-1.54%</td><td class="num">-6.36%</td><td class="num"><span class="rsi"><i><b style="width:42%"></b></i>41.56</span></td><td>避險金屬仍弱，沒有恐慌資金流。</td></tr>
+  <tr><td>SLV</td><td class="num">-1.81%</td><td class="num">-3.56%</td><td class="num">-17.64%</td><td class="num"><span class="rsi"><i><b style="width:37%"></b></i>36.77</span></td><td>白銀持續弱勢，商品 beta 未修復。</td></tr>
+</tbody></table></div>
+<div class="callout warn"><strong>本段結論：</strong>板塊分化很乾淨：金融 / 區域銀行 / 通訊撐住市場，半導體 / AI / 網安當日承壓。Sector / Thematic ETF 應逐個分析，不把科技內部混成同一方向。</div></section>
+
+<section><div class="kicker">Market breadth</div><h2>市場廣度</h2>
+<div class="table-scroll"><table class="breadth-summary-table"><thead><tr><th>指標</th><th class="num">7/15</th><th class="num">7/14</th><th>變化</th><th>判斷</th></tr></thead><tbody>
+  <tr><td>SPX &gt;20MA</td><td class="num">51.88%</td><td class="num">56.85%</td><td>下降</td><td>大盤短線廣度降溫，接近 50% 關口。</td></tr>
+  <tr><td>SPX &gt;50MA</td><td class="num">61.82%</td><td class="num">63.22%</td><td>下降</td><td>中期仍在 50% 上方。</td></tr>
+  <tr><td>NDX &gt;20MA</td><td class="num">48.54%</td><td class="num">47.57%</td><td>小升</td><td>仍低於 50%，科技短線廣度未確認。</td></tr>
+  <tr><td>NDX &gt;50MA</td><td class="num">50.48%</td><td class="num">55.33%</td><td>下降</td><td>中期科技廣度只剩臨界。</td></tr>
+  <tr><td>IWM &gt;20MA</td><td class="num">56.74%</td><td class="num">53.74%</td><td>改善</td><td>小型股短線反而改善。</td></tr>
+  <tr><td>IWM &gt;50MA</td><td class="num">63.14%</td><td class="num">62.24%</td><td>改善</td><td>小型股中期仍健康。</td></tr>
+</tbody></table></div>
+<p class="section-summary"><strong>小結：</strong>廣度不是全面崩壞，但科技廣度仍弱。這和收盤價格一致：QQQ / SMH 弱、IWM / DIA 較穩。下一步不能只看 Nasdaq 期貨，要看 NDX &gt;20MA 能否重新站回 50%。</p></section>
+
+<section><div class="kicker">Expected Move</div><h2>Weekly Expected Move 對賬</h2>
+<div class="table-scroll"><table><thead><tr><th>類別</th><th>收盤觸發</th><th>交易含義</th></tr></thead><tbody>
+  <tr><td>上方突破</td><td>AMZN、GOOGL、AAPL、XOM、GS、XOP 突破 +1SD；XLF / XLE 接近 +1SD。</td><td>權重平台、能源與金融仍有相對強勢，市場不是單純 risk-off。</td></tr>
+  <tr><td>下方破位</td><td>IBM 跌破 -2SD；ARM、CRWV、IONQ、NOK、CSCO、MCD 跌破 -1SD；MU、ORCL、SOFI、SPCX 接近 -1SD。</td><td>高 beta 與部分科技 / 工業個股分化仍重，不能用 SPY 上漲掩蓋個股破位。</td></tr>
+  <tr><td>核心 ETF</td><td>SPY、QQQ、IWM、DIA、SMH 均仍在本週 expected move 區間內。</td><td>指數還不是極端週，但內部破位股已提供風險提醒。</td></tr>
+</tbody></table></div></section>
+
+<section><div class="kicker">Next session</div><h2>下一交易日計畫</h2>
+<ol>
+  <li><strong>QQQ：</strong>先看能否重回 719.93 / 720.78 附近 20MA；若繼續低於 717，科技 beta 只保留觀察倉。</li>
+  <li><strong>SMH：</strong>收回 20MA 614 附近前，不把半導體視為主線；若跌破 50MA 區域，硬件風險再升級。</li>
+  <li><strong>金融：</strong>XLF / KRE 是當日相對強，但 XLF RSI 70.98，隔日只做回踩承接，不追開盤高位。</li>
+  <li><strong>廣度：</strong>NDX &gt;20MA 必須重新站上 50%，NDX &gt;50MA 不能跌破 50%；否則科技修復仍不成立。</li>
+  <li><strong>系統風險：</strong>只有 SPY 跌破 20MA 且 VIXY 重回 20MA 上方，才從「科技降級」升級為「大盤降倉」。</li>
+</ol>
+<p class="section-summary"><strong>本段結論：</strong>明天不是追科技反彈日，而是確認 QQQ 能否重新奪回 20MA、SMH 能否止跌、金融能否不過熱的日子。</p></section>
+
+<section><div class="kicker">Cross-validation</div><h2>交叉驗證總結</h2>
+<div class="callout"><strong>互相確認：</strong>QQQ 跌回 719.44 下方、SMH 未靠近 20MA、設備鏈 AMAT / LRCX / KLAC 收跌、NDX 廣度仍低於 50%，共同確認「盤前半導體修復未成立」。</div>
+<div class="callout warn"><strong>互相分歧：</strong>SPY / DIA / IWM 仍收紅、VIXY 下跌、金融與通訊走強，說明這不是全面風險撤退，而是科技硬件相對失敗。</div>
+<div class="callout"><strong>主導結論：</strong>盤前框架有效：PPI 利多可以觀察，但必須讓價格守位確認。7/15 收盤沒有守住，所以盤後配置應降低科技 / 半導體 beta，保留金融、通訊與部分小型股相對強勢。</div>
+</section>
+
+<section class="sources"><strong>資料來源：</strong>2026-07-15 盤前報告；Longbridge OpenAPI 7/15 收盤快照；Google Sheet「Market Watch」Market、Thematic Sectors、Macro、Maket breath、Weekly Expected Move（讀取時間 2026-07-16 HKT）。僅供交易復盤，不構成投資建議。</section>
+</main>
+<script>
+document.querySelectorAll('.num, .trend').forEach((el)=>{
+  const text = el.textContent.trim();
+  if (/^\+/.test(text)) el.classList.add('up');
+  if (/^-/.test(text)) el.classList.add('dn');
+});
+</script>
+<script src="report-runtime.js?v=20260715-flat-1"></script>
+</body></html>

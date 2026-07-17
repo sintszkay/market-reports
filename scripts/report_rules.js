@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ASSET_VERSION = "20260704-visual-1";
+const ASSET_VERSION = "20260717-flat-2";
 const RUNTIME_TAG = `<script src="report-runtime.js?v=${ASSET_VERSION}"></script>`;
 const SHARED_STYLE_TAG = `<link rel="stylesheet" href="report-shared.css?v=${ASSET_VERSION}">`;
 const MA_PERIODS = ["20", "50", "200"];
@@ -148,10 +148,10 @@ function normalizeTable(tableHtml, options = {}) {
           const text = stripTags(inner);
           if (!/^-?\d+(?:\.\d+)?$/.test(text)) return `<td${attributes}>${inner}</td>`;
           const value = Number(text);
-          let nextAttributes = addClass(attributes.replace(/\sdata-rsi=(?:["'][^"']*["'])/gi, ""), "num");
-          if (value >= 70) nextAttributes = addClass(nextAttributes, "rsi-hot");
-          if (value <= 30) nextAttributes = addClass(nextAttributes, "rsi-cold");
-          return `<td${nextAttributes} data-rsi="${value.toFixed(2)}">${value.toFixed(2)}</td>`;
+          const nextAttributes = addClass(attributes.replace(/\sdata-rsi=(?:["'][^"']*["'])/gi, ""), "num");
+          const rsiClass = value >= 70 ? "rsi-hot" : value <= 30 ? "rsi-cold" : "";
+          const display = rsiClass ? `<span class="${rsiClass}">${value.toFixed(2)}</span>` : value.toFixed(2);
+          return `<td${nextAttributes} data-rsi="${value.toFixed(2)}">${display}</td>`;
         });
       }
 

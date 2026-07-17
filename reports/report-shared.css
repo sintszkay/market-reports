@@ -66,6 +66,9 @@ a{color:var(--blue)}
 
 td.rsi-hot{background:var(--red-bg);color:var(--red);font-weight:500}
 td.rsi-cold{background:var(--green-bg);color:var(--green);font-weight:500}
+span.rsi-hot,span.rsi-cold{display:inline-flex;align-items:center;justify-content:flex-end;min-width:4.25em;padding:2px 7px;border-radius:6px;font-weight:500;font-variant-numeric:tabular-nums}
+span.rsi-hot{background:var(--red-bg);color:var(--red)}
+span.rsi-cold{background:var(--green-bg);color:var(--green)}
 .ma-heading,.ma-cell{text-align:center}
 .ma-table{table-layout:fixed}
 .ma-table th,.ma-table td{padding-left:14px;padding-right:14px}
@@ -319,6 +322,25 @@ body.flat-report{
 .flat-report tbody tr:last-child td{border-bottom:0}
 .flat-report tbody tr:hover td{background:transparent}
 .flat-report th.num,.flat-report td.num{text-align:right}
+.flat-report .ma-table.report-cols-7{min-width:960px}
+.flat-report .ma-table.report-cols-7 th{width:auto}
+.flat-report .ma-table.report-cols-7 th:nth-child(1){width:8%}
+.flat-report .ma-table.report-cols-7 th:nth-child(2),
+.flat-report .ma-table.report-cols-7 th:nth-child(3),
+.flat-report .ma-table.report-cols-7 th:nth-child(4){width:9%}
+.flat-report .ma-table.report-cols-7 th:nth-child(5){width:24%}
+.flat-report .ma-table.report-cols-7 th:nth-child(6){width:8%}
+.flat-report .ma-table.report-cols-7 th:nth-child(7){width:33%}
+.flat-report .ma-table.report-cols-8{min-width:1080px}
+.flat-report .ma-table.report-cols-8 th{width:auto}
+.flat-report .ma-table.report-cols-8 th:nth-child(1){width:8%}
+.flat-report .ma-table.report-cols-8 th:nth-child(2),
+.flat-report .ma-table.report-cols-8 th:nth-child(3),
+.flat-report .ma-table.report-cols-8 th:nth-child(4),
+.flat-report .ma-table.report-cols-8 th:nth-child(5){width:8%}
+.flat-report .ma-table.report-cols-8 th:nth-child(6){width:22%}
+.flat-report .ma-table.report-cols-8 th:nth-child(7){width:8%}
+.flat-report .ma-table.report-cols-8 th:nth-child(8){width:30%}
 .flat-report ol{padding-left:22px;margin:8px 0}
 .flat-report li{margin:7px 0}
 

@@ -79,8 +79,16 @@ const outputPath = path.resolve(args.out);
 const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
 let html = fs.readFileSync(templatePath, "utf8");
 
+if (typeof data.sector_momentum_chart === "string") {
+  html = html.replace(
+    "<!-- 板塊動能列由報告生成流程填入 -->",
+    data.sector_momentum_chart
+  );
+}
+
 const rendered = {
   ...data,
+  sector_momentum_chart: data.sector_momentum_chart || "",
   pre_market_movers_rows: renderMoverRows(data.pre_market_movers),
   intraday_playbook_rows: renderPlaybookRows(data.intraday_playbook_rows),
 };
@@ -95,6 +103,7 @@ if (reportType === "postmarket") {
     sector_rows: postmarketVisuals.renderSectorRows(data.sector_rows),
     breadth_rows: postmarketVisuals.renderBreadthRows(data.breadth_rows),
     macro_rows: postmarketVisuals.renderMacroRows(data.macro_rows),
+    expected_move_rows: postmarketVisuals.renderExpectedMoveRows(data.expected_move_rows),
   });
 }
 

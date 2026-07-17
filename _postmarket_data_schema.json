@@ -13,6 +13,7 @@
       "type": "object",
       "properties": {
         "hit": {"type": "integer", "minimum": 0},
+        "triggered": {"type": "integer", "minimum": 0},
         "not_triggered": {"type": "integer", "minimum": 0},
         "miss": {"type": "integer", "minimum": 0}
       },
@@ -23,7 +24,8 @@
     "index_rows": {"type": "array", "minItems": 1},
     "sector_rows": {"type": "array", "minItems": 1},
     "breadth_rows": {"type": "array", "minItems": 1},
-    "macro_rows": {"type": "array", "minItems": 1}
+    "macro_rows": {"type": "array", "minItems": 1},
+    "expected_move_rows": {"type": "array", "minItems": 1}
   },
   "required": [
     "report_type",
@@ -38,6 +40,7 @@
     "sector_rows",
     "breadth_rows",
     "macro_rows",
+    "expected_move_rows",
     "core_conclusions",
     "core_conclusion",
     "reconciliation_conclusion",

@@ -18,17 +18,19 @@ function roundedPercent(value) {
 
 function renderHitbar(summary = {}) {
   const hit = Number(summary.hit) || 0;
+  const triggered = Number(summary.triggered) || 0;
   const notTriggered = Number(summary.not_triggered ?? summary.partial) || 0;
   const miss = Number(summary.miss) || 0;
-  const total = hit + notTriggered + miss;
+  const total = hit + triggered + notTriggered + miss;
   const width = (value) => total ? (value / total * 100).toFixed(2).replace(/\.00$/, "") : "0";
   const segments = [
     hit ? `<i class="h" style="width:${width(hit)}%"></i>` : "",
+    triggered ? `<i class="p" style="width:${width(triggered)}%"></i>` : "",
     notTriggered ? `<i class="n" style="width:${width(notTriggered)}%"></i>` : "",
     miss ? `<i class="m" style="width:${width(miss)}%"></i>` : "",
   ].join("");
-  return `<div class="hitbar" role="img" aria-label="盤前判斷：${hit} 命中、${miss} 失誤、${notTriggered} 未觸發">${segments}</div>
-  <div class="hitbar-legend">盤前判斷對賬：<span class="dot h"></span><b>${hit}</b> 命中<span class="dot m"></span><b>${miss}</b> 失誤<span class="dot n"></span><b>${notTriggered}</b> 未觸發</div>`;
+  return `<div class="hitbar" role="img" aria-label="盤前判斷：${hit} 命中、${triggered} 已觸發、${miss} 失誤、${notTriggered} 未觸發">${segments}</div>
+  <div class="hitbar-legend">盤前判斷對賬：<span class="dot h"></span><b>${hit}</b> 命中<span class="dot p"></span><b>${triggered}</b> 已觸發<span class="dot m"></span><b>${miss}</b> 失誤<span class="dot n"></span><b>${notTriggered}</b> 未觸發</div>`;
 }
 
 function renderSummaryCards(cards = []) {
@@ -49,15 +51,18 @@ function renderSummaryCards(cards = []) {
 }
 
 function renderReconciliationRows(rows = []) {
-  const labels = { hit: "命中", miss: "失誤", not_triggered: "未觸發" };
+  const labels = { hit: "命中", triggered: "已觸發", miss: "失誤", not_triggered: "未觸發" };
   return rows.map(function (row) {
-    const result = ["hit", "miss", "not_triggered"].includes(row.result) ? row.result : "not_triggered";
-    const resultClass = result === "not_triggered" ? "not-triggered" : result;
+    const result = ["hit", "triggered", "miss", "not_triggered"].includes(row.result) ? row.result : "not_triggered";
+    const resultClass = result === "not_triggered" ? "not-triggered" : result === "triggered" ? "partial" : result;
     return `<tr><td>${escapeHtml(row.section)}</td><td>${escapeHtml(row.directive)}</td><td>${escapeHtml(row.actual)}</td><td><span class="result-badge result-${resultClass}">${labels[result]}</span></td><td>${escapeHtml(row.correction)}</td></tr>`;
   }).join("\n    ");
 }
 
 function renderRsi(value) {
+  if (value == null || value === "" || !Number.isFinite(Number(value))) {
+    return '<span class="badge grey">待長橋</span>';
+  }
   const numeric = Number(value);
   const heat = numeric >= 70 ? " hot" : numeric <= 35 ? " cold" : "";
   return `<span class="rsi${heat}"><i><b style="width:${roundedPercent(numeric)}%"></b></i>${numeric.toFixed(2)}</span>`;
@@ -82,13 +87,18 @@ function renderMa(states = {}) {
 }
 
 function renderSectorChart(rows = []) {
-  const sorted = [...rows].sort((left, right) => Number(right.daily) - Number(left.daily));
-  const maxNeg = Math.max(0, ...sorted.map((row) => Math.max(0, -Number(row.daily))));
-  const maxPos = Math.max(0, ...sorted.map((row) => Math.max(0, Number(row.daily))));
+  const valueOf = (row) => {
+    if (Number.isFinite(Number(row.one_month_numeric))) return Number(row.one_month_numeric);
+    const parsed = Number.parseFloat(String(row.one_month ?? "").replace("%", ""));
+    return Number.isFinite(parsed) ? parsed : Number(row.daily) || 0;
+  };
+  const sorted = rows.filter((row) => row.chart !== false).sort((left, right) => valueOf(right) - valueOf(left));
+  const maxNeg = Math.max(0, ...sorted.map((row) => Math.max(0, -valueOf(row))));
+  const maxPos = Math.max(0, ...sorted.map((row) => Math.max(0, valueOf(row))));
   const span = maxNeg + maxPos || 1;
   const zero = maxNeg / span * 100;
   const items = sorted.map(function (row) {
-    const value = Number(row.daily);
+    const value = valueOf(row);
     const width = Math.abs(value) / span * 100;
     const positive = value >= 0;
     const left = positive ? zero : zero - width;
@@ -99,6 +109,13 @@ function renderSectorChart(rows = []) {
     <p class="chart-title">板塊動能一覽（1月漲跌，按強弱排序）</p>
 ${items}
   </div>`;
+}
+
+function renderExpectedMoveRows(rows = []) {
+  return rows.map(function (row) {
+    const tone = row.tone === "red" ? "red" : row.tone === "green" ? "green" : "amber";
+    return `<tr><td>${escapeHtml(row.ticker)}</td><td class="num">${escapeHtml(row.price)}</td><td class="num">${escapeHtml(row.boundary)}</td><td><span class="badge ${tone}">${escapeHtml(row.status)}</span></td><td>${escapeHtml(row.implication)}</td></tr>`;
+  }).join("\n    ");
 }
 
 function renderIndexRows(rows = []) {
@@ -119,7 +136,7 @@ function renderBreadthRows(rows = []) {
   return rows.map(function (row) {
     const latest = row.percent ? renderPct(row.latest) : escapeHtml(row.latest);
     const latestClass = row.percent ? "" : "num";
-    const tone = row.tone ? ` style="color:var(--${escapeHtml(row.tone)});font-weight:700"` : "";
+    const tone = row.tone ? ` style="color:var(--${escapeHtml(row.tone)});font-weight:500"` : "";
     const fiveDayClass = /^[+−-]/.test(String(row.five_day)) ? ' class="trend"' : "";
     const monthClass = /^[+−-]/.test(String(row.one_month)) ? ' class="trend"' : "";
     return `<tr><td>${escapeHtml(row.indicator)}</td><td${latestClass ? ` class="${latestClass}"` : ""}${tone}>${latest}</td><td${fiveDayClass}>${escapeHtml(row.five_day)}</td><td${monthClass}>${escapeHtml(row.one_month)}</td><td>${escapeHtml(row.judgment)}</td></tr>`;
@@ -136,6 +153,7 @@ function renderMacroRows(rows = []) {
 module.exports = {
   renderAtr,
   renderBreadthRows,
+  renderExpectedMoveRows,
   renderHitbar,
   renderIndexRows,
   renderMa,

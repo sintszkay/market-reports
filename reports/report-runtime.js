@@ -16,10 +16,17 @@
         if (!cell) return;
         var value = Number(textOf(cell).replace(/,/g, ""));
         if (!Number.isFinite(value)) return;
-        cell.textContent = value.toFixed(2);
         cell.classList.add("num");
-        cell.classList.toggle("rsi-hot", value >= 70);
-        cell.classList.toggle("rsi-cold", value <= 30);
+        cell.classList.remove("rsi-hot", "rsi-cold");
+        cell.textContent = "";
+        if (value >= 70 || value <= 30) {
+          var badge = document.createElement("span");
+          badge.className = value >= 70 ? "rsi-hot" : "rsi-cold";
+          badge.textContent = value.toFixed(2);
+          cell.appendChild(badge);
+        } else {
+          cell.textContent = value.toFixed(2);
+        }
       });
     });
   }

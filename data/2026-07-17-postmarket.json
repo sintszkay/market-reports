@@ -1,0 +1,199 @@
+{
+  "report_type": "postmarket",
+  "title": "美股盤後對賬｜2026-07-17",
+  "eyebrow": "US postmarket reconciliation · 2026-07-17",
+  "headline": "美股盤後：油價與能源獨強，科技連跌且廣度下沉",
+  "as_of": "資料截至 2026-07-17 美股收盤。長橋 51 個資產全數取得 7/17 完整日線；Market、Thematic 與 Macro RSI 均為長橋靜態數值，盤前判斷逐項以收盤結果對賬。",
+  "reconciliation_summary": {
+    "hit": 3,
+    "triggered": 1,
+    "miss": 1,
+    "not_triggered": 3
+  },
+  "regime_badges": "<span class='badge red'>科技與晶片續弱</span><span class='badge amber'>VIX 升至 18.77</span><span class='badge green'>能源唯一明顯強勢</span><span class='badge blue'>中期結構未全面破壞</span>",
+  "summary_cards": [
+    {
+      "label": "S&P 500 / Nasdaq",
+      "values": [
+        { "text": "-1.01%", "color": "red" },
+        { "text": "-1.40%", "color": "red" }
+      ],
+      "note": "大型科技與高估值成長股拖累指數。"
+    },
+    {
+      "label": "QQQ / SMH",
+      "values": [
+        { "text": "-1.50%", "color": "red" },
+        { "text": "-2.18%", "color": "red" }
+      ],
+      "note": "兩者仍低於 20／50MA，但守住週度 -2SD。"
+    },
+    {
+      "label": "XLE / USO",
+      "values": [
+        { "text": "+1.16%", "color": "green" },
+        { "text": "+3.91%", "color": "green" }
+      ],
+      "note": "油價急升，能源成為主要相對強勢。"
+    },
+    {
+      "label": "SPX / NDX >20MA",
+      "values": [
+        { "text": "58.05%", "color": "amber" },
+        { "text": "44.66%", "color": "red" }
+      ],
+      "note": "短線廣度同步惡化，科技弱勢最明顯。"
+    }
+  ],
+  "core_conclusions": "<ol><li><strong>科技修正延續，但沒有跌破盤前設定的 -2SD 極端邊界。</strong>QQQ 收 695.33、SMH 收 556.53，分別下跌 1.50% 與 2.18%；兩者仍低於 20／50MA，卻守住 690.75 與 540.10。</li><li><strong>能源是本日最清楚的對沖方向。</strong>XLE +1.16%、USO +3.91%，WTI 與 Brent 分別升至約 82.49 與 88.10 美元；能源是標普主要板塊中唯一明顯上漲者。</li><li><strong>風險已由權重科技擴散至較廣市場。</strong>SPX >20MA 由 64.61% 降至 58.05%，NDX >20MA 降至 44.66%；Stockbee 5D／10D ratio 只有 0.63／0.70，4% 下跌股 516 檔。</li><li><strong>中期趨勢尚未全面破壞，但緩衝明顯縮小。</strong>SPY 收在 50MA 上方僅約 0.01 ATR，RSP、IWM、DIA 仍高於 50／200MA；QQQ、SMH 則已低於 20／50MA，市場分化仍大。</li><li><strong>宏觀數據比股價反應更有韌性。</strong>密大信心 54.4 高於 51.0 預期、通膨預期下降；工業生產 +0.1% 略低於 +0.2% 預期，10 年債殖利率降至約 4.55%，但仍未托住科技。</li><li><strong>財報 Beat 不能抵銷過高預期。</strong>NFLX 營收小幅 Miss 後收跌 7.26%；ISRG EPS 與營收雙 Beat 仍跌約 14.1%，顯示市場正在壓縮高估值公司的容錯率。</li></ol>",
+  "core_conclusion": "短線訊號維持防守，而且風險已不只限於半導體；但 VIX 仍低於 20、SPY 尚未明確失守 50MA，故目前應定義為高風險修正，而非已確認的中期熊市。",
+  "reconciliation_rows": [
+    {
+      "section": "科技主線",
+      "directive": "QQQ／SMH 未完成修復前降低高 beta，不盲目抄底。",
+      "actual": "QQQ -1.50%、SMH -2.18%；NVDA -2.21%、TSM -2.77%、AMAT -5.57%。",
+      "result": "hit",
+      "correction": "方向有效；下一步以 20MA／50MA 與廣度同步收復作為加倉條件。"
+    },
+    {
+      "section": "能源配置",
+      "directive": "能源只持有不追價，USO 已在週度 +2SD 外。",
+      "actual": "USO +3.91%、XLE +1.16%，油價受地緣風險推升；USO 收 123.96。",
+      "result": "hit",
+      "correction": "相對強勢確認，但週一仍不追跳空；以回踩 119.66 觀察承接。"
+    },
+    {
+      "section": "QQQ -2SD",
+      "directive": "若 QQQ 跌破 690.75，科技風險再升級。",
+      "actual": "QQQ 盤前一度靠近邊界，收盤 695.33，未跌破 690.75。",
+      "result": "not_triggered",
+      "correction": "690.75 續作極端風險線；708.13 是第一道修復門檻。"
+    },
+    {
+      "section": "SMH -2SD",
+      "directive": "若 SMH 跌破 540.10，再降低晶片曝險。",
+      "actual": "SMH 收 556.53，日跌 2.18%，未跌破 540.10。",
+      "result": "not_triggered",
+      "correction": "維持低曝險，但不把尚未觸發的極端線寫成已跌破。"
+    },
+    {
+      "section": "系統性風險",
+      "directive": "VIX >20 才把風險由科技內部擴大至全面大盤。",
+      "actual": "VIX 收 18.77、上升 12.19%，仍未突破 20；VIXY +5.30%。",
+      "result": "not_triggered",
+      "correction": "波動升溫但未恐慌；若 SPY 同時失守 50MA，才升級系統性判斷。"
+    },
+    {
+      "section": "密大數據",
+      "directive": "若信心高於 51 且通膨預期下降，視為溫和利多。",
+      "actual": "信心 54.4，1 年通膨預期由 4.6% 降至 4.2%；條件成立但 QQQ 仍下跌。",
+      "result": "triggered",
+      "correction": "宏觀條件成立不等於股價轉強；必須再加價格與廣度確認。"
+    },
+    {
+      "section": "廣度集中判斷",
+      "directive": "SPX／IWM 廣度尚可，風險主要集中在權重科技。",
+      "actual": "SPX >20MA 降 6.56 個百分點、IWM >20MA 降 5.70 個百分點，RSP 亦跌 0.79%。",
+      "result": "miss",
+      "correction": "不能只看絕對值仍高於 50%；日變化與 Stockbee ratio 也要納入風險擴散。"
+    },
+    {
+      "section": "交易紀律",
+      "directive": "不搶 NFLX、SOXL 與晶片跌深反彈，等待收回邊界。",
+      "actual": "NFLX 收跌 7.26%，SOX 約跌 1.6%，晶片設備股續弱。",
+      "result": "hit",
+      "correction": "紀律有效；週一仍以收回 -1SD、20MA 與成交承接為必要條件。"
+    }
+  ],
+  "reconciliation_conclusion": "本次對賬為 3 項命中、1 項已觸發、1 項失誤、3 項未觸發。最大修正是：雖然科技仍是核心弱點，但廣度惡化已向 SPX／IWM 擴散，不能再只以『科技集中修正』概括全場。",
+  "index_rows": [
+    { "asset": "VOO", "latest": "683.17", "daily": "-1.01%", "five_day": "-1.54%", "ma": { "20": false, "50": true, "200": true }, "rsi": 48.77, "judgment": "僅略高於 50MA，趨勢緩衝很薄。" },
+    { "asset": "SPY", "latest": "743.29", "daily": "-0.99%", "five_day": "-1.54%", "ma": { "20": false, "50": true, "200": true }, "rsi": 48.78, "judgment": "50MA ATR 約 +0.01，週一需確認是否失守。" },
+    { "asset": "QQQ", "latest": "695.33", "daily": "-1.50%", "five_day": "-4.16%", "ma": { "20": false, "50": false, "200": true }, "rsi": 42.07, "judgment": "低於 20／50MA；守住 -2SD 但尚未修復。" },
+    { "asset": "QQQE", "latest": "116.80", "daily": "-1.37%", "five_day": "-3.16%", "ma": { "20": false, "50": false, "200": true }, "rsi": 42.61, "judgment": "等權重 Nasdaq 也跌破 50MA，弱勢不只七巨頭。" },
+    { "asset": "RSP", "latest": "213.37", "daily": "-0.79%", "five_day": "-0.43%", "ma": { "20": true, "50": true, "200": true }, "rsi": 55.32, "judgment": "仍守主要均線，但本日未能維持正報酬。" },
+    { "asset": "IWM", "latest": "294.04", "daily": "-0.52%", "five_day": "-0.66%", "ma": { "20": false, "50": true, "200": true }, "rsi": 50.47, "judgment": "小型股中期未壞，短線廣度已降溫。" },
+    { "asset": "DIA", "latest": "520.81", "daily": "-0.74%", "five_day": "-0.92%", "ma": { "20": false, "50": true, "200": true }, "rsi": 52.49, "judgment": "仍高於 50／200MA，防守性有限但尚可。" },
+    { "asset": "SMH", "latest": "556.53", "daily": "-2.18%", "five_day": "-8.92%", "ma": { "20": false, "50": false, "200": true }, "rsi": 41.15, "judgment": "晶片五日跌近 9%，仍是主要風險來源。" },
+    { "asset": "VIX / VIXY", "latest": "18.77", "daily": "+12.19%", "five_day": "+6.44%", "ma": { "20": true, "50": false, "200": false }, "rsi": 47.97, "judgment": "最新值為 VIX；均線、5日與 RSI 使用 VIXY。", "dn_ok": true }
+  ],
+  "index_conclusion": "SPY／VOO 幾乎貼住 50MA，QQQ／SMH／QQQE 已在 20／50MA 下方；中期大盤尚未全面破位，但科技修正與廣度下沉正在壓縮安全墊。",
+  "sector_rows": [
+    { "label": "XOP", "daily": 2.25, "daily_display": "+2.25%", "five_day": "+7.32%", "one_month": "+8.81%", "one_month_numeric": 8.81, "rsi": 64.63, "judgment": "油氣勘探領先，地緣溢價推升但不追高。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "KIE", "daily": 1.10, "daily_display": "+1.10%", "five_day": "+1.12%", "one_month": "+9.56%", "one_month_numeric": 9.56, "rsi": 64.41, "judgment": "保險相對強，仍屬防守承接。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "KRE", "daily": -1.58, "daily_display": "-1.58%", "five_day": "+2.23%", "one_month": "+6.41%", "one_month_numeric": 6.41, "rsi": 62.19, "judgment": "月線仍強，但本日回吐顯示輪動降溫。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "IAK", "daily": 2.18, "daily_display": "+2.18%", "five_day": "+0.16%", "one_month": "+7.56%", "one_month_numeric": 7.56, "rsi": 60.20, "judgment": "保險股逆勢走強，防守訊號明確。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "XRT", "daily": -1.17, "daily_display": "-1.17%", "five_day": "+1.52%", "one_month": "+2.91%", "one_month_numeric": 2.91, "rsi": 59.98, "judgment": "零售月線仍正，但未受信心數據提振。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "XLRE", "daily": -0.09, "daily_display": "-0.09%", "five_day": "+2.18%", "one_month": "+1.59%", "one_month_numeric": 1.59, "rsi": 59.73, "judgment": "利率回落提供支撐，日內近乎持平。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "CIBR", "daily": 0.51, "daily_display": "+0.51%", "five_day": "+0.52%", "one_month": "+8.65%", "one_month_numeric": 8.65, "rsi": 59.29, "judgment": "網安逆勢上漲，軟體內部仍有承接。", "chart": true, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "IBB", "daily": 0.13, "daily_display": "+0.13%", "five_day": "-1.20%", "one_month": "+10.69%", "one_month_numeric": 10.69, "rsi": 58.74, "judgment": "大型生技守住漲勢，月線仍強。", "chart": true, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "XSW", "daily": -0.85, "daily_display": "-0.85%", "five_day": "+0.23%", "one_month": "+6.31%", "one_month_numeric": 6.31, "rsi": 58.51, "judgment": "等權軟體回落但未破主要均線。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "PPH", "daily": 0.15, "daily_display": "+0.15%", "five_day": "+1.14%", "one_month": "+5.31%", "one_month_numeric": 5.31, "rsi": 58.36, "judgment": "製藥維持防守強勢。", "chart": false, "ma": { "20": true, "50": true, "200": true } },
+    { "label": "XBI", "daily": 1.49, "daily_display": "+1.49%", "five_day": "-3.00%", "one_month": "+14.09%", "one_month_numeric": 14.09, "rsi": 55.38, "judgment": "月線最強之一，但仍低於 20MA。", "chart": true, "ma": { "20": false, "50": true, "200": true } },
+    { "label": "MAGS", "daily": -1.78, "daily_display": "-1.78%", "five_day": "-1.14%", "one_month": "+0.74%", "one_month_numeric": 0.74, "rsi": 52.40, "judgment": "七巨頭承壓，50MA 尚未收回。", "chart": false, "ma": { "20": true, "50": false, "200": true } },
+    { "label": "IGV", "daily": -0.96, "daily_display": "-0.96%", "five_day": "+0.42%", "one_month": "+1.57%", "one_month_numeric": 1.57, "rsi": 51.55, "judgment": "軟體弱於網安，仍在中性區。", "chart": false, "ma": { "20": true, "50": true, "200": false } },
+    { "label": "IHI", "daily": -3.24, "daily_display": "-3.24%", "five_day": "-1.62%", "one_month": "+1.20%", "one_month_numeric": 1.20, "rsi": 49.94, "judgment": "ISRG 拖累醫療器材，事件風險擴散。", "chart": false, "ma": { "20": false, "50": true, "200": false } },
+    { "label": "IBIT", "daily": -0.11, "daily_display": "-0.11%", "five_day": "+0.33%", "one_month": "-2.21%", "one_month_numeric": -2.21, "rsi": 49.83, "judgment": "加密代理近乎持平，未跟隨科技大跌。", "chart": false, "ma": { "20": true, "50": false, "200": false } },
+    { "label": "VOO", "daily": -1.01, "daily_display": "-1.01%", "five_day": "-1.54%", "one_month": "-0.67%", "one_month_numeric": -0.67, "rsi": 48.77, "judgment": "基準跌破 20MA，幾乎貼住 50MA。", "chart": false, "ma": { "20": false, "50": true, "200": true } },
+    { "label": "SMH", "daily": -2.18, "daily_display": "-2.18%", "five_day": "-8.92%", "one_month": "-9.65%", "one_month_numeric": -9.65, "rsi": 41.15, "judgment": "晶片主線持續降級，仍低於 20／50MA。", "chart": true, "ma": { "20": false, "50": false, "200": true } },
+    { "label": "ARKK", "daily": -1.92, "daily_display": "-1.92%", "five_day": "-6.29%", "one_month": "-4.91%", "one_month_numeric": -4.91, "rsi": 40.63, "judgment": "高 beta 成長股仍無止跌訊號。", "chart": false, "ma": { "20": false, "50": false, "200": false } },
+    { "label": "GLD", "daily": 0.95, "daily_display": "+0.95%", "five_day": "-2.28%", "one_month": "-7.35%", "one_month_numeric": -7.35, "rsi": 40.29, "judgment": "短線反彈，但中期均線仍全數失守。", "chart": false, "ma": { "20": false, "50": false, "200": false } },
+    { "label": "AIQ", "daily": -1.03, "daily_display": "-1.03%", "five_day": "-7.47%", "one_month": "-9.19%", "one_month_numeric": -9.19, "rsi": 38.45, "judgment": "AI 主題延續去風險，僅守 200MA。", "chart": true, "ma": { "20": false, "50": false, "200": true } },
+    { "label": "QTUM", "daily": -0.84, "daily_display": "-0.84%", "five_day": "-8.27%", "one_month": "-12.54%", "one_month_numeric": -12.54, "rsi": 36.33, "judgment": "量子主題高 beta 壓力仍大。", "chart": false, "ma": { "20": false, "50": false, "200": true } },
+    { "label": "SLV", "daily": 0.77, "daily_display": "+0.77%", "five_day": "-5.88%", "one_month": "-19.89%", "one_month_numeric": -19.89, "rsi": 34.72, "judgment": "跌深反彈，趨勢仍弱且未確認止跌。", "chart": true, "ma": { "20": false, "50": false, "200": false } },
+    { "label": "BOTZ", "daily": -3.18, "daily_display": "-3.18%", "five_day": "-6.80%", "one_month": "-9.14%", "one_month_numeric": -9.14, "rsi": 34.67, "judgment": "機器人主題受高估值與 ISRG 拖累。", "chart": false, "ma": { "20": false, "50": false, "200": false } },
+    { "label": "WGMI", "daily": -1.10, "daily_display": "-1.10%", "five_day": "-14.29%", "one_month": "-31.32%", "one_month_numeric": -31.32, "rsi": 32.97, "judgment": "礦股仍是最弱高 beta 群之一。", "chart": true, "ma": { "20": false, "50": false, "200": false } },
+    { "label": "REMX", "daily": -0.76, "daily_display": "-0.76%", "five_day": "-8.89%", "one_month": "-24.91%", "one_month_numeric": -24.91, "rsi": 27.15, "judgment": "稀土主題已超賣，但趨勢尚未翻多。", "chart": true, "ma": { "20": false, "50": false, "200": false } }
+  ],
+  "sector_conclusion": "25 檔 ETF 全部使用長橋 7/17 完整交易日靜態 RSI 並按 RSI 排序。能源、保險、生技與網安相對強；晶片、AI、量子、礦股與稀土仍弱，風格訊號明確偏防守。",
+  "breadth_rows": [
+    { "indicator": "SPX >20MA", "latest": 58.05, "percent": true, "five_day": "62.22% → 58.05%", "one_month": "由 60% 上方降溫", "judgment": "短線廣度跌回警戒區。" },
+    { "indicator": "SPX >50MA", "latest": 63.61, "percent": true, "five_day": "67.79% → 63.61%", "one_month": "仍高於 60%", "judgment": "中期結構尚可，但斜率轉弱。" },
+    { "indicator": "NDX >20MA", "latest": 44.66, "percent": true, "five_day": "59.22% → 44.66%", "one_month": "跌破 50%", "judgment": "科技短線廣度明顯惡化。" },
+    { "indicator": "NDX >50MA", "latest": 43.68, "percent": true, "five_day": "59.22% → 43.68%", "one_month": "跌破 50%", "judgment": "科技中期廣度也已轉弱。" },
+    { "indicator": "IWM >20MA", "latest": 54.56, "percent": true, "five_day": "57.31% → 54.56%", "one_month": "仍略高於 50%", "judgment": "小型股短線降溫但未全面失守。" },
+    { "indicator": "IWM >50MA", "latest": 62.27, "percent": true, "five_day": "64.50% → 62.27%", "one_month": "維持 60% 上方", "judgment": "小型股中期仍有緩衝。" },
+    { "indicator": "T2108", "latest": 56.57, "percent": true, "five_day": "維持 50% 上方", "one_month": "中性偏強", "judgment": "全市場長線廣度未全面轉空。" },
+    { "indicator": "5D ratio", "latest": "0.63", "five_day": "0.81 → 0.63", "one_month": "持續低於 1", "judgment": "短線強股擴散明顯不足。", "tone": "red" },
+    { "indicator": "10D ratio", "latest": "0.70", "five_day": "1.33 → 0.70", "one_month": "由偏多轉偏空", "judgment": "中短線動能惡化。", "tone": "red" },
+    { "indicator": "4%+ 上漲／下跌", "latest": "254 / 516", "five_day": "129 / 181 → 254 / 516", "one_month": "下跌家數擴大", "judgment": "高波動個股層面賣壓偏重。" },
+    { "indicator": "季度 +25%／-25%", "latest": "1347 / 1204", "five_day": "1452 / 1103 → 1347 / 1204", "one_month": "強弱差快速收窄", "judgment": "中期優勢尚在，但已接近失衡。" }
+  ],
+  "breadth_context": "<div class='callout warn'><strong>Stockbee：</strong>5D／10D ratio 降至 0.63／0.70，4% 下跌股 516 檔，季度強股與弱股差距由 349 縮至 143；短線擴散與中期優勢都在收窄。</div><p class='section-summary'><strong>小結：</strong>SPX、NDX、IWM 的 20MA 廣度同日下降，科技最弱，但 IWM >50MA 與 T2108 仍高於 50%，尚未形成全面趨勢破壞。</p><div class='callout warn'><strong>反向訊號：</strong>若 NDX >20MA 回到 50%、5D ratio 回到 1 且 QQQ 收回 708.13，短線防守才開始失效。</div>",
+  "breadth_conclusion": "廣度已確認風險由權重科技向較廣市場擴散，短線偏空；但長線廣度仍保留緩衝。操作上應降低高 beta 與總曝險，等待 NDX 廣度和 Stockbee ratio 同步回升。",
+  "macro_rows": [
+    { "asset": "QQQ 50MA ATR", "latest": "-1.52", "atr_value": -1.52, "daily": "-1.50%", "meaning": "明顯低於 50MA，科技修正尚未完成。" },
+    { "asset": "QQQE 50MA ATR", "latest": "-0.59", "atr_value": -0.59, "daily": "-1.37%", "meaning": "等權科技亦低於 50MA，弱勢不只集中權重股。" },
+    { "asset": "VOO 50MA ATR", "latest": "+0.01", "atr_value": 0.01, "daily": "-1.01%", "meaning": "幾乎貼住 50MA，週一是關鍵確認日。" },
+    { "asset": "RSP 50MA ATR", "latest": "+2.09", "atr_value": 2.09, "daily": "-0.79%", "meaning": "等權重仍高於 50MA，但相對優勢開始收斂。" },
+    { "asset": "IWM 50MA ATR", "latest": "+0.89", "atr_value": 0.89, "daily": "-0.52%", "meaning": "小型股中期仍可，短線需看廣度止跌。" },
+    { "asset": "DIA 50MA ATR", "latest": "+1.71", "atr_value": 1.71, "daily": "-0.74%", "meaning": "道指仍高於 50MA，防守結構尚未破壞。" },
+    { "asset": "US10Y", "latest": "4.55%", "daily": "-2bp", "meaning": "長端殖利率回落仍未托住科技，利率不是主要賣壓。" },
+    { "asset": "VIX", "latest": "18.77", "daily": "+12.19%", "meaning": "波動升溫但仍低於 20，尚未確認恐慌。" },
+    { "asset": "USO", "latest": "123.96", "daily": "+3.91%", "meaning": "油價與地緣溢價推升，已屬延伸區。" },
+    { "asset": "GLD", "latest": "368.41", "daily": "+0.95%", "meaning": "短線避險反彈，但仍低於 20／50／200MA。" },
+    { "asset": "SLV", "latest": "50.78", "daily": "+0.77%", "meaning": "超賣反彈，50MA ATR -5.24，趨勢仍弱。" },
+    { "asset": "CPER", "latest": "37.92", "daily": "-0.37%", "meaning": "銅價偏弱，未確認全球成長風險偏好。" },
+    { "asset": "TLT", "latest": "84.52", "daily": "+0.37%", "meaning": "債券小升，仍低於 20／50／200MA。" }
+  ],
+  "macro_conclusion": "利率下降與密大數據改善仍未托住科技，說明本日主導因素是盈利預期、估值與地緣油價，而非單純 Fed 路徑。能源延伸偏高，黃金白銀仍只屬弱勢反彈。",
+  "expected_move_rows": [
+    { "ticker": "SPY", "price": "743.29", "boundary": "745.83（-1SD）", "status": "跌破 -1SD", "tone": "red", "implication": "大盤已進入下緣區，週一先看能否收回 745.83。" },
+    { "ticker": "QQQ", "price": "695.33", "boundary": "690.75（-2SD）", "status": "守住 -2SD", "tone": "amber", "implication": "極端線未破，但仍低於 708.13（-1SD）。" },
+    { "ticker": "MU", "price": "848.95", "boundary": "872.20（-1SD）", "status": "跌破 -1SD", "tone": "red", "implication": "記憶體仍弱，未收回邊界前反彈偏減壓。" },
+    { "ticker": "INTC", "price": "95.04", "boundary": "99.67（-1SD）", "status": "跌破 -1SD", "tone": "red", "implication": "晶片去風險延續。" },
+    { "ticker": "TSM", "price": "398.37", "boundary": "402.19（-1SD）", "status": "跌破 -1SD", "tone": "red", "implication": "財報後仍未收回週度下緣。" },
+    { "ticker": "XOM", "price": "147.36", "boundary": "147.26（+2SD）", "status": "突破 +2SD", "tone": "green", "implication": "能源極強但已過度延伸，不追跳空。" },
+    { "ticker": "COST", "price": "940.87", "boundary": "939.34（+1SD）", "status": "突破 +1SD", "tone": "green", "implication": "防守消費相對強。" },
+    { "ticker": "AAPL", "price": "333.74", "boundary": "332.63（+2SD）", "status": "突破 +2SD", "tone": "green", "implication": "大型科技內部仍有個別強勢，非全面齊跌。" },
+    { "ticker": "IONQ", "price": "34.78", "boundary": "35.04（-2SD）", "status": "跌破 -2SD", "tone": "red", "implication": "量子高 beta 已進入極端弱勢區。" },
+    { "ticker": "IBM", "price": "212.67", "boundary": "262.04（-2SD）", "status": "跌破 -2SD", "tone": "red", "implication": "公司事件型跌幅仍大，需獨立處理。" }
+  ],
+  "expected_move_conclusion": "QQQ 守住 -2SD，但 SPY、MU、INTC、TSM 仍在 -1SD 下方，IONQ 與 IBM 已破 -2SD；另一端 XOM、AAPL 站上 +2SD。市場不是單向齊跌，而是能源、防守與少數巨頭對高 beta 的極端分化。",
+  "event_review": "<div class='table-scroll'><table><thead><tr><th>宏觀數據</th><th class='num'>Actual</th><th class='num'>Forecast</th><th class='num'>Previous</th><th>判斷</th></tr></thead><tbody><tr><td>建築許可（6月）</td><td class='num'>1.367M</td><td class='num'>1.40M</td><td class='num'>1.41M</td><td><span class='badge red'>Miss</span> 領先指標仍偏弱。</td></tr><tr><td>住宅開工（6月）</td><td class='num'>1.427M</td><td class='num'>1.31M</td><td class='num'>1.199M</td><td><span class='badge green'>Beat</span> 月增約 19%。</td></tr><tr><td>進口價格 MoM（6月）</td><td class='num'>+0.30%</td><td class='num'>-0.70%</td><td class='num'>+1.70%</td><td><span class='badge amber'>高於預期</span> 通膨降溫不如預期。</td></tr><tr><td>工業生產 MoM（6月）</td><td class='num'>+0.10%</td><td class='num'>+0.20%</td><td class='num'>+0.10%</td><td><span class='badge red'>Miss</span> 製造業持平。</td></tr><tr><td>產能利用率（6月）</td><td class='num'>76.1%</td><td class='num'>76.2%</td><td class='num'>76.1%</td><td><span class='badge amber'>略低</span> 需求沒有加速。</td></tr><tr><td>密大消費者信心（7月初值）</td><td class='num'>54.4</td><td class='num'>51.0</td><td class='num'>49.5</td><td><span class='badge green'>Beat</span> 1 年通膨預期由 4.6% 降至 4.2%。</td></tr></tbody></table></div><div class='table-scroll'><table><thead><tr><th>財報</th><th class='num'>EPS Actual / Forecast</th><th class='num'>Revenue Actual / Forecast</th><th>Beat / Miss</th><th>股價反應</th></tr></thead><tbody><tr><td>NFLX</td><td class='num'>$0.80 / $0.79</td><td class='num'>$12.56B / $12.58B</td><td><span class='badge amber'>EPS Beat / Revenue Miss</span></td><td>收跌 7.26%，市場亦擔心下一季展望。</td></tr><tr><td>ISRG</td><td class='num'>$2.80 / $2.51</td><td class='num'>$2.89B / $2.82B</td><td><span class='badge green'>Beat / Beat</span></td><td>仍跌約 14.1%，程序成長與保險需求疑慮壓過數字。</td></tr><tr><td>TRV</td><td class='num'>$10.26 / $5.34</td><td class='num'>$11.53B / $11.26B</td><td><span class='badge green'>Beat / Beat</span></td><td>支持保險股相對強勢。</td></tr><tr><td>FITB</td><td class='num'>$0.83 / $0.84</td><td class='num'>$3.26B / $3.25B</td><td><span class='badge amber'>EPS Miss / Revenue Beat</span></td><td>銀行財報分化。</td></tr></tbody></table></div>",
+  "event_conclusion": "經濟數據整體並非衰退訊號，但市場對高估值公司的要求更嚴格：NFLX 營收 Miss 被放大，ISRG 即使雙 Beat 也大跌。下一輪財報必須同時看 Actual、Forecast、指引與股價反應。",
+  "next_session": "<ol><li><strong>大盤門檻：</strong>SPY 先看 743.22 的 50MA；若收盤失守且 SPX >20MA 低於 55%，風險由高修正升級為中期結構損傷。</li><li><strong>科技修復：</strong>QQQ 先收回 708.13（週度 -1SD），再看 718.30／718.51 的 20／50MA；SMH 先收回 575.57，再看 597.33 的 50MA。</li><li><strong>廣度確認：</strong>NDX >20MA 需回到 50% 以上，Stockbee 5D ratio 需回到 1，否則反彈仍視為減壓。</li><li><strong>能源紀律：</strong>USO／XOM 已在 +2SD 外，只持有不追；若 USO 跌回 119.66 下方，地緣溢價交易降級。</li><li><strong>週一事件：</strong>7/20 美國高重要性數據較少，價格、油價與週末地緣消息將比日曆數據更重要。</li><li><strong>波動門檻：</strong>VIX 18.77 已接近 20；若 VIX >20 且 SPY 失守 50MA，再降低大盤總曝險。</li></ol>",
+  "next_conclusion": "週一不是預判反彈，而是檢查 SPY 50MA、QQQ／SMH 修復線與廣度能否同步止跌。未確認前保持低科技 beta、較高現金，並避免追逐已過度延伸的能源。",
+  "cross_validation": "<div class='callout danger'><strong>互相確認：</strong>QQQ／SMH 低於 20／50MA、NDX >20MA 44.66%、5D／10D ratio 0.63／0.70，以及高 beta 財報股大跌，共同確認科技與成長風格仍在去風險。</div><div class='callout warn'><strong>互相分歧：</strong>VIX 尚未破 20、SPY／RSP／IWM／DIA 仍在 50MA 上方，T2108 亦高於 50%；因此短線風險很高，但中期全面熊市尚未確認。</div><div class='callout'><strong>主導結論：</strong>降低科技與總 beta，保留防守配置；能源只持有不追。只有 SPY 守住 50MA、QQQ 收回 708.13、NDX 廣度回到 50% 且 5D ratio 回到 1，才逐步撤回防守。</div>",
+  "sources": "使用者 Google Sheets：Market Breath、Stockbee、Weekly Expected Move（更新至 2026-07-17）；長橋 OpenAPI：51 個資產 7/17 收盤、5 日／1 月變化、MA、ATR 與靜態 RSI；<a href='https://apnews.com/article/65449e9565fba441a617f9517e097f5a'>AP：7/17 美股收盤、油價與財報反應</a>；<a href='https://www.cboe.com/tradable-products/vix'>Cboe：VIX 18.77</a>；<a href='https://www.federalreserve.gov/releases/g17/current/default.htm'>Fed G.17：工業生產與產能利用率</a>；<a href='https://www.sca.isr.umich.edu/'>密西根大學消費者調查</a>；<a href='https://www.bls.gov/news.release/ximpim.nr0.htm'>BLS：進出口價格</a>；<a href='https://www.federalreserve.gov/releases/h15/'>Fed H.15：美債殖利率</a>。本報告不構成投資建議。"
+}

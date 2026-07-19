@@ -397,6 +397,84 @@ function validatePostmarketVisuals(html, errors) {
   }
 }
 
+function validateWeeklyMacroCoverage(html, errors) {
+  const fxSection = findSection(html, /外匯/);
+  if (!fxSection) {
+    errors.push("Weekly report 缺少外匯、商品與美債段落。");
+  } else if (!/<td\b[^>]*>\s*DXY\s*<\/td>/i.test(fxSection)) {
+    errors.push("外匯段落必須包含 DXY；主要來源缺列時須使用明確標示的外部收盤來源補位。");
+  }
+
+  const nextPlan = findSection(html, /下週事件與交易計畫/) || "";
+  const monitor = findSection(html, /下週監控清單/) || "";
+  const riskText = stripTags(`${nextPlan} ${monitor}`);
+  const hasTechReduction = /(?:(?:減|降低)[^。]{0,16}(?:科技|成長|高 beta)|(?:科技|成長|高 beta)[^。]{0,16}(?:減|降低))/i.test(riskText);
+  if (!/DXY\s*>\s*\d+(?:\.\d+)?/i.test(riskText) || !hasTechReduction) {
+    errors.push("Weekly report 必須在下週計畫或監控清單保留數值化 DXY 減科技風控觸發。");
+  }
+}
+
+function validateWeeklyMomentumWindow(html, errors) {
+  const sectorSection = findSection(html, /板塊與主題 ETF 週分析/);
+  if (!sectorSection) {
+    errors.push("Weekly report 缺少板塊與主題 ETF 週分析段落。");
+    return;
+  }
+
+  const titleMatch = sectorSection.match(/class=["'][^"']*\bchart-title\b[^"']*["'][^>]*>([\s\S]*?)<\/div>/i);
+  const chartTitle = stripTags(titleMatch?.[1] || "");
+  if (!/(?:本週|5日)/.test(chartTitle)) {
+    errors.push("Weekly report 動能長條圖必須使用本週／5日窗口，不能只畫 1 月漲跌。");
+  }
+
+  const barCount = (sectorSection.match(/class=["'][^"']*\bbar-row\b[^"']*["']/gi) || []).length;
+  if (barCount < 5 || barCount > 8) errors.push(`Weekly report 動能長條圖必須包含 5–8 檔 ETF，目前 ${barCount} 檔。`);
+  if (!/class=["'][^"']*\bval\s+pos\b/i.test(sectorSection) || !/class=["'][^"']*\bval\s+neg\b/i.test(sectorSection)) {
+    errors.push("Weekly report 動能長條圖必須同時呈現領漲與領跌 ETF。");
+  }
+}
+
+function validateWeeklySpyBenchmark(html, errors) {
+  const sectorSection = findSection(html, /板塊與主題 ETF 週分析/);
+  if (!sectorSection) return;
+
+  const tableSpecs = [
+    ["S&P 500 Sector ETF", /<h3\b[^>]*>\s*S&amp;P 500 Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
+    ["Thematic Sector ETF", /<h3\b[^>]*>\s*Thematic Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
+  ];
+  const expectedHeaders = ["ETF", "5日", "1月", "距52週高", "20/50/200MA", "RSI", "判斷"];
+  for (const [label, pattern] of tableSpecs) {
+    const table = sectorSection.match(pattern)?.[0] || "";
+    const spyCount = (table.match(/<td\b[^>]*>\s*SPY\s*<\/td>/gi) || []).length;
+    if (spyCount !== 1) errors.push(`${label} must contain exactly one SPY benchmark row; found ${spyCount}.`);
+    const headers = [...table.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((match) => stripTags(match[1]));
+    if (headers.join("|") !== expectedHeaders.join("|")) {
+      errors.push(`${label} must use the shared seven-column ETF layout: ${expectedHeaders.join(" / ")}.`);
+    }
+    if (!/<table\b[^>]*class=["'][^"']*\breport-cols-7\b[^"']*["']/i.test(table)) {
+      errors.push(`${label} must use report-cols-7 so both ETF tables share the same column widths.`);
+    }
+  }
+}
+
+function validateWeeklyBreadthSynthesis(html, errors) {
+  const breadthSection = findSection(html, /市場廣度深度復盤/);
+  if (!breadthSection) return;
+
+  const sectionText = stripTags(breadthSection);
+  const requiredRows = ["SPX >20MA", "SPX >50MA", "NDX >20MA", "NDX >50MA", "IWM >20MA", "IWM >50MA", "Stockbee 5D ratio", "Stockbee 10D ratio", "4%+ 上漲／下跌"];
+  for (const label of requiredRows) {
+    if (!sectionText.includes(label)) errors.push(`Weekly breadth table is missing ${label}.`);
+  }
+
+  const tableEnd = breadthSection.search(/<\/table>/i);
+  const synthesisText = stripTags(tableEnd >= 0 ? breadthSection.slice(tableEnd + 8) : "");
+  const requiredSynthesis = ["三大指數廣度", "SPX", "NDX", "IWM", "與 Stockbee 交叉驗證", "Stockbee", "綜合結論", "短線", "中期"];
+  for (const label of requiredSynthesis) {
+    if (!synthesisText.includes(label)) errors.push(`Weekly breadth conclusion must synthesize ${label}, not summarize Stockbee alone.`);
+  }
+}
+
 function validateReportHtml(html, { reportType = "premarket" } = {}) {
   const errors = [];
   if (reportType === "postmarket") {
@@ -408,6 +486,12 @@ function validateReportHtml(html, { reportType = "premarket" } = {}) {
   validateTriggers(html, errors);
   validateRuntime(html, errors);
   if (reportType === "premarket") validateMovers(html, errors);
+  if (reportType === "weekly") {
+    validateWeeklyMacroCoverage(html, errors);
+    validateWeeklyMomentumWindow(html, errors);
+    validateWeeklySpyBenchmark(html, errors);
+    validateWeeklyBreadthSynthesis(html, errors);
+  }
   return errors;
 }
 

@@ -45,14 +45,16 @@
 <section>
   <h2>板塊與主題 ETF 週分析</h2>
   <div class="chart" aria-label="板塊動能一覽">
-    <div class="chart-title">板塊動能一覽（1月漲跌）</div>
+    <div class="chart-title">板塊動能一覽（本週／5日漲跌）</div>
+    <!-- REQUIRED: 週報主圖使用本週／5日窗口；選取 5–8 檔並覆蓋標題與核心結論中的主要領漲／領跌 ETF。 -->
     <!-- 板塊動能列由報告生成流程填入 -->
   </div>
+  <!-- REQUIRED: S&P 500 Sector ETF 與 Thematic Sector ETF 完整表使用完全相同的七欄（ETF／5日／1月／距52週高／20/50/200MA／RSI／判斷）及 report-cols-7 排版；各包含且僅包含一個 SPY 基準，並維持 RSI 由高至低排序。 -->
   <!-- DATA: sector_thematic_weekly -->
 </section>
-<section><h2>市場廣度深度復盤</h2><!-- DATA: market_breadth_weekly --><p class="note"><strong>Stockbee 術語：</strong>Primary Breadth＝大盤股中期買盤／賣壓總數；50% Month＝一個月內上漲／下跌逾 50% 的股票數；34/13＝34 日內上漲／下跌逾 13% 的股票數。MA 廣度與 Stockbee 若截止日不同，必須逐行標註日期。</p></section>
+<section><h2>市場廣度深度復盤</h2><!-- REQUIRED: 表格須完整列出 SPX、NDX、IWM 的 20MA／50MA 廣度與 Stockbee 5D／10D ratio、4% 漲跌股；表後必須依序提供「三大指數廣度」、「與 Stockbee 交叉驗證」及「綜合結論」，明確區分短線與中期，不得只用 Stockbee 單獨總結。 --><!-- DATA: market_breadth_weekly --><p class="note"><strong>Stockbee 術語：</strong>Primary Breadth＝大盤股中期買盤／賣壓總數；50% Month＝一個月內上漲／下跌逾 50% 的股票數；34/13＝34 日內上漲／下跌逾 13% 的股票數。MA 廣度與 Stockbee 若截止日不同，必須逐行標註日期。</p></section>
 <section><h2>50MA ATR 週延伸</h2><!-- REQUIRED: 周報必須保留此段；表格需包含 ETF / 價格 / 50MA / ATR(14) / 距 50MA ATR / 判斷，用來約束追價風險。 --><!-- DATA: atr_weekly --></section>
-<section><h2>外匯、商品與美債</h2><!-- DATA: fx_commodities_treasury_weekly --></section>
+<section><h2>外匯、商品與美債</h2><!-- REQUIRED: 必須包含 DXY 最新／5日／1月；長橋或 Macro Sheet 缺列時改用明確標示的外部收盤來源，不得刪除外匯監控。 --><!-- DATA: fx_commodities_treasury_weekly --></section>
 <section><h2>宏觀與 Fed 路徑</h2><!-- REQUIRED: 表格必須包含當前聯邦基金目標區間與下次 FOMC 會議市場定價。 --><!-- DATA: macro_fed_weekly --></section>
 <section><h2>下週事件與交易計畫</h2><!-- DATA: next_week_plan --></section>
 <section><h2>交叉驗證總結</h2><!-- DATA: cross_validation_summary --></section>

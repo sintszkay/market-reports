@@ -78,6 +78,10 @@ Premarket macro and earnings tables should maximize decision-useful numbers:
 - If an earnings release has not happened yet, do not infer beat/miss; show consensus and mark it `待公布`.
 - Premarket mover ticker cells must stay on one line. Do not allow symbols such as `PANW` or `GOOG` to wrap by character; if the card is narrow, prefer table scrolling over broken tickers.
 - Sector / thematic ETF sections must include a broad enough full table: at least 20 ETF rows when the data source has enough rows. The zero-axis momentum chart can stay compact, but the full table should cover all major S&P sector ETFs plus core themes such as biotech, cybersecurity/software, regional banks, semiconductors, AI, and commodity beta.
+- The S&P 500 Sector ETF and Thematic Sector ETF full tables must use the identical seven-column layout (`ETF / 5日 / 1月 / 距52週高 / 20/50/200MA / RSI / 判斷`) and the same `report-cols-7` sizing. Each table must contain exactly one `SPY` benchmark row, kept in RSI-descending order with the other rows.
+- Any section whose visible heading includes `外匯` must include a DXY row with latest, 5-day, and 1-month readings. If Longbridge or the user's Macro sheet has no DXY row, use a clearly labeled external DXY close source instead of dropping the factor. Weekly reports must also carry a numeric DXY + US10Y technology-risk trigger into both the next-week plan and monitoring checklist.
+- The weekly sector-momentum bar chart must use the report's weekly / rolling-5-session window, or explicitly show both 5-day and 1-month windows. A 1-month-only chart is invalid for a weekly report. Select 5–8 representative ETFs and include the main weekly leader and laggard cited in the headline or core conclusions so the visual directly supports the narrative.
+- Weekly market-breadth conclusions must synthesize all three index breadth groups (`SPX`, `NDX`, and `IWM`, each with 20MA and 50MA breadth) before cross-validating them with Stockbee (`5D ratio`, `10D ratio`, `4%+ up/down`, and medium-term breadth). State the combined short-term and medium-term judgment; a Stockbee-only conclusion is invalid.
 
 The validator enforces:
 

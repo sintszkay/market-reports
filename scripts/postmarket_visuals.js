@@ -113,7 +113,7 @@ ${items}
 
 function renderExpectedMoveRows(rows = []) {
   return rows.map(function (row) {
-    const tone = row.tone === "red" ? "red" : row.tone === "green" ? "green" : "amber";
+    const tone = ["red", "green", "amber", "blue", "grey"].includes(row.tone) ? row.tone : "amber";
     return `<tr><td>${escapeHtml(row.ticker)}</td><td class="num">${escapeHtml(row.price)}</td><td class="num">${escapeHtml(row.boundary)}</td><td><span class="badge ${tone}">${escapeHtml(row.status)}</span></td><td>${escapeHtml(row.implication)}</td></tr>`;
   }).join("\n    ");
 }

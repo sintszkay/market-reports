@@ -1,0 +1,1500 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>美股盤後對帳｜2026-07-22</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260717-flat-2">
+  <style>:root{
+  --bg:#faf9f5;
+  --card:#fff;
+  --panel:#fff;
+  --ink:#141413;
+  --text:#141413;
+  --muted:#87867f;
+  --line:rgba(20,20,19,.10);
+  --line-strong:rgba(20,20,19,.18);
+  --green:#0f6e56;
+  --green-bg:#e1f5ee;
+  --red:#a32d2d;
+  --red-bg:#fcebeb;
+  --amber:#854f0b;
+  --amber-bg:#faeeda;
+  --blue:#185fa5;
+  --blue-bg:#e6f1fb;
+  --grey-bg:#eeeeea;
+  --grey:#6f6d66;
+}
+
+*{box-sizing:border-box}
+body{font-variant-numeric:normal}
+strong,b{font-weight:500}
+a{color:var(--blue)}
+
+/* Legacy-safe shared utilities. Existing reports keep their own inline layout,
+   while these helpers fix numbers, RSI, MA, TOC and charts without requiring edits. */
+.num,.trend,td.num,th.num{
+  text-align:right;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+.num.up,.trend.up,.up{color:var(--green)}
+.num.dn,.trend.dn,.dn{color:var(--red)}
+.num.dn-ok{color:var(--muted)}
+.result-not-triggered{color:var(--grey);background:var(--grey-bg)}
+.result-hit{color:var(--green);background:var(--green-bg)}
+.result-miss{color:var(--red);background:var(--red-bg)}
+.result-partial{color:var(--amber);background:var(--amber-bg)}
+
+.report-data-table{table-layout:fixed}
+.report-data-table th,.report-data-table td{padding-left:14px;padding-right:14px}
+.report-cols-3 th:first-child{width:22%}.report-cols-3 th:last-child{width:39%}
+.report-cols-4 th:first-child{width:18%}.report-cols-4 th:last-child{width:30%}
+.report-cols-5 th:first-child{width:14%}.report-cols-5 th:last-child{width:28%}
+.report-cols-6 th:first-child{width:12%}.report-cols-6 th:last-child{width:30%}
+.report-cols-7 th:first-child{width:10%}.report-cols-7 th:last-child{width:34%}
+.report-data-table th.num,.report-data-table td.num{text-align:right}
+.report-data-table th:not(.num):not(:last-child),.report-data-table td:not(.num):not(:last-child){text-align:left}
+.report-data-table th:last-child,.report-data-table td:last-child{padding-left:18px}
+
+.mover-state-table th:nth-child(1){width:8%}.mover-state-table th:nth-child(2){width:9%}.mover-state-table th:nth-child(3){width:8%}.mover-state-table th:nth-child(4){width:11%}.mover-state-table th:nth-child(5){width:20%}.mover-state-table th:nth-child(6){width:22%}.mover-state-table th:nth-child(7){width:22%}
+.etf-position-table th:nth-child(1){width:14%}.etf-position-table th:nth-child(2){width:10%}.etf-position-table th:nth-child(3){width:10%}.etf-position-table th:nth-child(4){width:10%}.etf-position-table th:nth-child(5){width:8%}.etf-position-table th:nth-child(6){width:13%}.etf-position-table th:nth-child(7){width:35%}
+.premarket-movers-table th:nth-child(1),.premarket-movers-table td:nth-child(1){width:10%;white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
+.premarket-movers-table th:nth-child(2),.premarket-movers-table td:nth-child(2){width:10%;text-align:right}
+.premarket-movers-table th:nth-child(3),.premarket-movers-table td:nth-child(3){width:12%;text-align:right}
+.premarket-movers-table th:nth-child(4),.premarket-movers-table td:nth-child(4){width:24%;text-align:left}
+.premarket-movers-table th:nth-child(5),.premarket-movers-table td:nth-child(5){width:20%;text-align:left}
+.premarket-movers-table th:nth-child(6),.premarket-movers-table td:nth-child(6){width:24%;text-align:left}
+.premarket-movers-compact{min-width:520px}
+.premarket-movers-compact th:nth-child(1),.premarket-movers-compact td:nth-child(1){width:14%;white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
+.premarket-movers-compact th:nth-child(2),.premarket-movers-compact td:nth-child(2){width:13%;text-align:right}
+.premarket-movers-compact th:nth-child(3),.premarket-movers-compact td:nth-child(3){width:15%;text-align:right}
+.premarket-movers-compact th:nth-child(4),.premarket-movers-compact td:nth-child(4){width:58%;text-align:left}
+
+td.rsi-hot{background:var(--red-bg);color:var(--red);font-weight:500}
+td.rsi-cold{background:var(--green-bg);color:var(--green);font-weight:500}
+span.rsi-hot,span.rsi-cold{display:inline-flex;align-items:center;justify-content:flex-end;min-width:4.25em;padding:2px 7px;border-radius:6px;font-weight:500;font-variant-numeric:tabular-nums}
+span.rsi-hot{background:var(--red-bg);color:var(--red)}
+span.rsi-cold{background:var(--green-bg);color:var(--green)}
+.ma-heading,.ma-cell{text-align:center}
+.ma-table{table-layout:fixed}
+.ma-table th,.ma-table td{padding-left:14px;padding-right:14px}
+.ma-table th:nth-child(1){width:10%}
+.ma-table th:nth-child(2),.ma-table th:nth-child(3),.ma-table th:nth-child(4){width:10%}
+.ma-table th:nth-child(5){width:18%}
+.ma-table th:nth-child(6){width:8%}
+.ma-table th:nth-child(7){width:34%}
+.ma-cell{white-space:nowrap}
+.ma-state{display:inline-flex;align-items:center;justify-content:center;gap:3px;width:52px;font-size:12.5px;font-weight:500}
+.ma-state.ma-up .ma-arrow{color:var(--green)}
+.ma-state.ma-down .ma-arrow{color:var(--red)}
+.ma-period{color:var(--muted);font-size:12.5px;font-weight:500}
+.ma-arrow{font-size:14px;line-height:1;font-weight:500}
+.ma-separator{display:inline-block;width:2px;color:var(--muted);text-align:center}
+
+.symbol-legend{
+  margin:10px 0 16px;
+  padding:8px 12px;
+  border:0.5px solid var(--line);
+  border-radius:10px;
+  background:var(--card);
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.5;
+}
+.report-toc{
+  position:sticky;
+  top:8px;
+  z-index:20;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  overflow-x:auto;
+  margin:0 0 20px;
+  padding:7px 8px;
+  border:0.5px solid var(--line);
+  border-radius:10px;
+  background:rgba(255,255,255,.96);
+  scrollbar-width:thin;
+}
+.report-toc .toc-label{flex:0 0 auto;padding:5px 8px;color:var(--muted);font-size:11.5px;font-weight:500}
+.report-toc a{flex:0 0 auto;padding:5px 9px;border-radius:999px;color:var(--ink);font-size:12px;text-decoration:none}
+.report-toc a:hover,.report-toc a:focus{background:var(--blue-bg);color:var(--blue)}
+h2{scroll-margin-top:72px}
+
+.kicker{
+  font-size:12px;
+  font-weight:500;
+  color:var(--muted);
+  margin-bottom:4px;
+  text-transform:none;
+}
+
+.chart{
+  background:var(--card);
+  border:0.5px solid var(--line);
+  border-radius:12px;
+  padding:14px 16px 12px;
+  margin:12px 0;
+}
+.chart-title{font-size:12px;font-weight:500;color:var(--muted);margin:0 0 10px}
+.bar-row{
+  display:grid;
+  grid-template-columns:112px 58px minmax(160px,1fr);
+  align-items:center;
+  gap:10px;
+  margin:6px 0;
+}
+.bar-row .lbl{font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row .val{font-size:12.5px;font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
+.bar-row .val.pos{color:var(--green)}.bar-row .val.neg{color:var(--red)}
+.bar-track{position:relative;height:18px;background:#f1f0ec;border-radius:999px;overflow:hidden}
+.bar-track::after{content:"";position:absolute;left:var(--zero,50%);top:0;bottom:0;width:1px;background:var(--line-strong)}
+.bar-track .b{position:absolute;top:3px;bottom:3px;border-radius:999px}
+.bar-track .b.pos{left:var(--zero,50%);background:var(--green)}
+.bar-track .b.neg{right:calc(100% - var(--zero,50%));background:var(--red)}
+.bar-track .b[style*="left"]{right:auto}
+
+.rsi{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rsi i{display:block;width:46px;height:6px;border-radius:999px;background:#edece8;position:relative;overflow:hidden}
+.rsi i b{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--muted)}
+.rsi.hot{color:var(--red);font-weight:500}.rsi.hot i b{background:var(--red)}
+.rsi.cold{color:var(--green);font-weight:500}.rsi.cold i b{background:var(--green)}
+
+.ma{white-space:nowrap;font-size:11.5px;font-weight:500}
+.ma b{display:inline-flex;align-items:center;gap:2px;margin-right:7px;color:var(--muted);font-weight:500}
+.ma b.up i{color:var(--green)}.ma b.dn i{color:var(--red)}
+.ma i{font-style:normal;font-size:12px}
+
+.pct{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.pct i{display:block;width:72px;height:8px;border-radius:999px;background:#edece8;position:relative;overflow:hidden}
+.pct i b{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--blue)}
+.pct em{font-style:normal;font-variant-numeric:tabular-nums;font-weight:500;min-width:52px;text-align:right}
+
+.atr{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:500}
+.atr i{display:inline-flex;gap:2px}
+.atr i b{width:6px;height:12px;border-radius:2px;background:#e8e6df}
+.atr.l1 i b:nth-child(-n+1),.atr.l2 i b:nth-child(-n+2){background:var(--amber)}
+.atr.l3 i b:nth-child(-n+3),.atr.l4 i b:nth-child(-n+4){background:var(--red)}
+.atr.l3,.atr.l4{color:var(--red)}
+
+/* New quiet flat report system. New templates and the 2026-07-10 weekly sample use this class. */
+body.flat-report{
+  margin:0;
+  overflow-x:hidden;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;
+  font-size:14px;
+  font-weight:400;
+  line-height:1.62;
+}
+.flat-report .wrap{max-width:1180px;margin:0 auto;padding:34px 18px 58px}
+.flat-report header{
+  margin:0 0 20px;
+  padding:4px 0 0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+}
+.flat-report .eyebrow{
+  margin:0 0 6px;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:400;
+  text-transform:none;
+}
+.flat-report h1{
+  margin:0;
+  color:var(--ink);
+  font-size:30px;
+  line-height:1.25;
+  font-weight:500;
+}
+.flat-report h2{
+  margin:0 0 8px;
+  color:var(--ink);
+  font-size:20px;
+  line-height:1.35;
+  font-weight:500;
+}
+.flat-report h3{
+  margin:20px 0 8px;
+  color:var(--ink);
+  font-size:15px;
+  line-height:1.35;
+  font-weight:500;
+}
+.flat-report p{margin:8px 0}
+.flat-report .muted,.flat-report .note{color:var(--muted)}
+.flat-report .note{font-size:12px}
+.flat-report section{min-width:0;margin:0 0 24px}
+.flat-report .status-pills,.flat-report .badges{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0}
+.flat-report .badge,.flat-report .pill,.flat-report .result-badge{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  border-radius:999px;
+  padding:2px 9px;
+  margin:0;
+  font-size:11.5px;
+  font-weight:500;
+  line-height:1.45;
+}
+.flat-report .green,.flat-report .badge.green,.flat-report .pill.green,.flat-report .result-hit{color:var(--green);background:var(--green-bg)}
+.flat-report .red,.flat-report .badge.red,.flat-report .pill.red,.flat-report .result-miss{color:var(--red);background:var(--red-bg)}
+.flat-report .amber,.flat-report .badge.amber,.flat-report .pill.amber,.flat-report .result-partial{color:var(--amber);background:var(--amber-bg)}
+.flat-report .blue,.flat-report .badge.blue,.flat-report .pill.blue{color:var(--blue);background:var(--blue-bg)}
+.flat-report .grey,.flat-report .badge.grey,.flat-report .pill.grey,.flat-report .result-not-triggered{color:var(--grey);background:var(--grey-bg)}
+
+.flat-report .grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin:18px 0 24px;
+}
+.flat-report .card{
+  min-width:0;
+  background:#f2f1ec;
+  border:0;
+  border-radius:12px;
+  padding:13px 14px;
+}
+.flat-report .card>span,.flat-report .card .label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  font-weight:400;
+}
+.flat-report .card strong,.flat-report .card .value{
+  display:block;
+  margin-top:4px;
+  color:var(--ink);
+  font-size:20px;
+  line-height:1.3;
+  font-weight:500;
+  font-variant-numeric:tabular-nums;
+}
+.flat-report .card .value.up,.flat-report .card strong.up{color:var(--green)}
+.flat-report .card .value.dn,.flat-report .card strong.dn{color:var(--red)}
+.flat-report .card small,.flat-report .card .footnote{
+  display:block;
+  margin-top:4px;
+  color:var(--muted);
+  font-size:11.5px;
+  font-weight:400;
+}
+
+.flat-report .panel,.flat-report .table-scroll,.flat-report .checks,.flat-report .action-directive,.flat-report .trigger-box{
+  background:var(--card);
+  border:0.5px solid var(--line);
+  border-radius:12px;
+}
+.flat-report .panel{padding:16px}
+.flat-report .table-scroll{
+  width:100%;
+  overflow-x:auto;
+  margin:12px 0;
+  -webkit-overflow-scrolling:touch;
+}
+.flat-report table{
+  width:100%;
+  border-collapse:collapse;
+  border-spacing:0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  overflow:visible;
+  margin:0;
+  font-size:12.75px;
+  table-layout:fixed;
+}
+.flat-report th,.flat-report td{
+  padding:8px 12px;
+  border-bottom:0.5px solid var(--line);
+  text-align:left;
+  vertical-align:middle;
+  overflow-wrap:break-word;
+  line-height:1.45;
+  font-weight:400;
+}
+.flat-report thead th{
+  color:var(--muted);
+  background:transparent;
+  border-bottom:1px solid var(--line-strong);
+  font-size:11.5px;
+  font-weight:500;
+  white-space:nowrap;
+}
+.flat-report tbody tr:last-child td{border-bottom:0}
+.flat-report tbody tr:hover td{background:transparent}
+.flat-report th.num,.flat-report td.num{text-align:right}
+.flat-report .ma-table.report-cols-7{min-width:960px}
+.flat-report .ma-table.report-cols-7 th{width:auto}
+.flat-report .ma-table.report-cols-7 th:nth-child(1){width:8%}
+.flat-report .ma-table.report-cols-7 th:nth-child(2),
+.flat-report .ma-table.report-cols-7 th:nth-child(3),
+.flat-report .ma-table.report-cols-7 th:nth-child(4){width:9%}
+.flat-report .ma-table.report-cols-7 th:nth-child(5){width:24%}
+.flat-report .ma-table.report-cols-7 th:nth-child(6){width:8%}
+.flat-report .ma-table.report-cols-7 th:nth-child(7){width:33%}
+.flat-report .ma-table.report-cols-8{min-width:1080px}
+.flat-report .ma-table.report-cols-8 th{width:auto}
+.flat-report .ma-table.report-cols-8 th:nth-child(1){width:8%}
+.flat-report .ma-table.report-cols-8 th:nth-child(2),
+.flat-report .ma-table.report-cols-8 th:nth-child(3),
+.flat-report .ma-table.report-cols-8 th:nth-child(4),
+.flat-report .ma-table.report-cols-8 th:nth-child(5){width:8%}
+.flat-report .ma-table.report-cols-8 th:nth-child(6){width:22%}
+.flat-report .ma-table.report-cols-8 th:nth-child(7){width:8%}
+.flat-report .ma-table.report-cols-8 th:nth-child(8){width:30%}
+.flat-report ol{padding-left:22px;margin:8px 0}
+.flat-report li{margin:7px 0}
+
+.flat-report .callout,.flat-report .section-conclusion{
+  margin:12px 0 18px;
+  padding:12px 14px;
+  border:0;
+  border-radius:12px;
+  background:var(--blue-bg);
+  color:var(--blue);
+}
+.flat-report .callout.warn,.flat-report .section-conclusion.warn{background:var(--amber-bg);color:var(--amber)}
+.flat-report .callout.risk,.flat-report .section-conclusion.risk{background:var(--red-bg);color:var(--red)}
+.flat-report .callout.ok,.flat-report .section-conclusion.ok{background:var(--green-bg);color:var(--green)}
+.flat-report .section-summary{
+  margin:10px 0 16px;
+  color:var(--ink);
+}
+.flat-report .checks{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  overflow:hidden;
+}
+.flat-report .check{
+  padding:12px;
+  border-right:0.5px solid var(--line);
+  border-bottom:0.5px solid var(--line);
+}
+.flat-report .check:nth-child(4n){border-right:0}
+.flat-report .check:nth-last-child(-n+4){border-bottom:0}
+.flat-report .check>span{display:block;color:var(--muted);font-size:12px}
+.flat-report .check strong{display:block;margin-top:4px;font-size:13px;font-weight:500}
+.flat-report .check.low strong{color:var(--green)}
+.flat-report .check.mid strong{color:var(--amber)}
+.flat-report .check.high strong{color:var(--red)}
+
+.flat-report .action-directive{
+  padding:13px 15px;
+  margin-top:18px;
+}
+.flat-report .ad-label{
+  display:block;
+  color:var(--amber);
+  font-size:12px;
+  font-weight:500;
+  text-transform:none;
+  margin-bottom:7px;
+}
+.flat-report .ad-list{list-style:none;padding:0;margin:0}
+.flat-report .ad-list li{position:relative;padding-left:22px;margin:6px 0}
+.flat-report .ad-list li::before{position:absolute;left:0;top:0;font-weight:500}
+.flat-report .ad-primary::before{content:"●";color:var(--amber)}
+.flat-report .ad-secondary::before,.flat-report .ad-condition::before{content:"●";color:var(--amber)}
+.flat-report .ad-watch::before{content:"●";color:var(--blue)}
+.flat-report .ad-avoid{color:var(--muted)}
+.flat-report .ad-avoid::before{content:"✓";color:var(--red)}
+.flat-report .ad-invalidate{
+  padding-top:8px;
+  border-top:0.5px solid var(--line);
+  margin-top:8px;
+  color:var(--red);
+  font-size:12.5px;
+  font-style:normal;
+}
+.flat-report .ad-invalidate::before{content:none}
+.flat-report .ad-invalidate .ad-bullet,.flat-report .ad-invalidate strong{color:var(--red);font-weight:500}
+
+.flat-report .regime-triggers{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin:12px 0 24px;
+}
+.flat-report .trigger-box{padding:14px 16px}
+.flat-report .trigger-upgrade{background:var(--green-bg);color:var(--green);border-color:transparent}
+.flat-report .trigger-downgrade{background:var(--red-bg);color:var(--red);border-color:transparent}
+.flat-report .tb-header{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.flat-report .tb-arrow,.flat-report .tb-label{font-size:14px;font-weight:500}
+.flat-report .tb-sub,.flat-report .tb-rule{font-size:11.5px;color:inherit;opacity:.74}
+.flat-report .tb-rule{margin:0 0 8px;font-weight:400}
+.flat-report .tb-list{list-style:none;padding:0;margin:0}
+.flat-report .tb-list li{position:relative;padding:5px 0 5px 16px;border-bottom:0.5px solid rgba(20,20,19,.08);font-size:13px}
+.flat-report .tb-list li:last-child{border-bottom:0}
+.flat-report .tb-list li::before{content:"→";position:absolute;left:0;font-weight:500}
+
+.flat-report .hitbar{
+  display:flex;
+  height:12px;
+  border-radius:999px;
+  overflow:hidden;
+  margin:12px 0 6px;
+  max-width:520px;
+  background:var(--grey-bg);
+}
+.flat-report .hitbar i{display:block;height:100%}
+.flat-report .hitbar .h{background:var(--green)}
+.flat-report .hitbar .p{background:var(--amber)}
+.flat-report .hitbar .m{background:var(--red)}
+.flat-report .hitbar .n{background:var(--grey)}
+.flat-report .hitbar-legend{font-size:12px;color:var(--muted)}
+.flat-report .hitbar-legend b{color:var(--ink);font-weight:500}
+.flat-report .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin:0 4px 0 10px;vertical-align:1px}
+.flat-report .dot.h{background:var(--green)}.flat-report .dot.p{background:var(--amber)}.flat-report .dot.m{background:var(--red)}.flat-report .dot.n{background:var(--grey)}
+
+.flat-report .sources{font-size:12px;color:var(--muted)}
+.flat-report .playbook-intro{color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:12px}
+
+@media(max-width:900px){
+  .flat-report .grid,.flat-report .checks{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flat-report .check:nth-child(2n){border-right:0}
+  .flat-report .check:nth-child(4n){border-right:0}
+  .flat-report .check:nth-last-child(-n+4){border-bottom:0.5px solid var(--line)}
+  .flat-report .check:nth-last-child(-n+2){border-bottom:0}
+}
+@media(max-width:760px){
+  .flat-report .wrap{padding:22px 12px 44px}
+  .flat-report h1{font-size:25px}
+  .flat-report .grid,.flat-report .checks,.flat-report .regime-triggers{grid-template-columns:1fr}
+  .flat-report .check{border-right:0}
+  .flat-report .check:nth-last-child(-n+2){border-bottom:0.5px solid var(--line)}
+  .flat-report .check:last-child{border-bottom:0}
+  .flat-report .table-scroll table{min-width:760px}
+  .bar-row{grid-template-columns:88px 54px minmax(140px,1fr)}
+}
+
+
+body[data-report-type="postmarket"] table{table-layout:auto}
+.standalone-score{margin:8px 0 12px}
+.flat-report .table-scroll table{min-width:760px}
+.flat-report .index-summary-table{min-width:1040px;table-layout:fixed!important}
+.flat-report .index-summary-table th:nth-child(1),
+.flat-report .index-summary-table td:nth-child(1){width:15%;white-space:nowrap}
+.flat-report .index-summary-table th:nth-child(2),
+.flat-report .index-summary-table td:nth-child(2){width:12%;text-align:right;white-space:nowrap}
+.flat-report .index-summary-table th:nth-child(3),
+.flat-report .index-summary-table td:nth-child(3){width:9%;text-align:right;white-space:nowrap}
+.flat-report .index-summary-table th:nth-child(4),
+.flat-report .index-summary-table td:nth-child(4){width:9%;text-align:right;white-space:nowrap}
+.flat-report .index-summary-table th:nth-child(5),
+.flat-report .index-summary-table td:nth-child(5){width:19%;text-align:center;white-space:nowrap}
+.flat-report .index-summary-table th:nth-child(6),
+.flat-report .index-summary-table td:nth-child(6){width:12%;text-align:right;white-space:nowrap}
+.flat-report .index-summary-table th:nth-child(7),
+.flat-report .index-summary-table td:nth-child(7){width:24%;text-align:left}
+.flat-report .index-summary-table .ma{display:inline-flex;justify-content:center;gap:8px;min-width:148px}
+.flat-report .index-summary-table .ma b{margin-right:0}
+.flat-report .index-summary-table .rsi{justify-content:flex-end}
+.flat-report .index-summary-table .rsi i{width:42px}
+.flat-report .sector-summary-table{min-width:900px;table-layout:fixed!important}
+.flat-report .sector-summary-table th:nth-child(1),
+.flat-report .sector-summary-table td:nth-child(1){width:12%;white-space:nowrap;font-weight:500}
+.flat-report .sector-summary-table th:nth-child(2),
+.flat-report .sector-summary-table td:nth-child(2),
+.flat-report .sector-summary-table th:nth-child(3),
+.flat-report .sector-summary-table td:nth-child(3),
+.flat-report .sector-summary-table th:nth-child(4),
+.flat-report .sector-summary-table td:nth-child(4){width:10%;text-align:right;white-space:nowrap}
+.flat-report .sector-summary-table th:nth-child(5),
+.flat-report .sector-summary-table td:nth-child(5){width:14%;text-align:right;white-space:nowrap}
+.flat-report .sector-summary-table th:nth-child(6),
+.flat-report .sector-summary-table td:nth-child(6){width:44%;text-align:left}
+.flat-report .sector-summary-table .rsi{justify-content:flex-end}
+.flat-report .sector-summary-table .rsi i{width:42px}
+.flat-report .breadth-summary-table{min-width:940px;table-layout:fixed!important}
+.flat-report .breadth-summary-table th:nth-child(1),
+.flat-report .breadth-summary-table td:nth-child(1){width:22%;white-space:nowrap;font-weight:500}
+.flat-report .breadth-summary-table th:nth-child(2),
+.flat-report .breadth-summary-table td:nth-child(2){width:18%;text-align:right;white-space:nowrap}
+.flat-report .breadth-summary-table th:nth-child(3),
+.flat-report .breadth-summary-table td:nth-child(3){width:30%;text-align:left}
+.flat-report .breadth-summary-table th:nth-child(4),
+.flat-report .breadth-summary-table td:nth-child(4){width:30%;text-align:left}
+.flat-report .breadth-summary-table .pct{justify-content:flex-end}
+.flat-report .breadth-summary-table .pct i{width:82px}
+.flat-report .breadth-summary-table .pct em{min-width:58px}
+.flat-report .breadth-ratio{display:inline-flex;justify-content:flex-end;min-width:3.8em;padding:2px 7px;border-radius:6px;font-weight:500;font-variant-numeric:tabular-nums}
+.flat-report .breadth-ratio-warn{color:var(--amber);background:var(--amber-bg)}
+.flat-report .breadth-ratio-ok{color:var(--green);background:var(--green-bg)}
+.flat-report .atr-summary-table{min-width:980px;table-layout:fixed!important}
+.flat-report .atr-summary-table th:nth-child(1),
+.flat-report .atr-summary-table td:nth-child(1){width:14%;white-space:nowrap;font-weight:500}
+.flat-report .atr-summary-table th:nth-child(2),
+.flat-report .atr-summary-table td:nth-child(2),
+.flat-report .atr-summary-table th:nth-child(3),
+.flat-report .atr-summary-table td:nth-child(3),
+.flat-report .atr-summary-table th:nth-child(4),
+.flat-report .atr-summary-table td:nth-child(4){width:11%;text-align:right;white-space:nowrap}
+.flat-report .atr-summary-table th:nth-child(5),
+.flat-report .atr-summary-table td:nth-child(5){width:15%;text-align:right;white-space:nowrap}
+.flat-report .atr-summary-table th:nth-child(6),
+.flat-report .atr-summary-table td:nth-child(6){width:13%;text-align:left;white-space:nowrap}
+.flat-report .atr-summary-table th:nth-child(7),
+.flat-report .atr-summary-table td:nth-child(7){width:25%;text-align:left}
+.flat-report .atr-summary-table .atr{justify-content:flex-end}
+.flat-report .macro-asset-table{min-width:980px;table-layout:fixed!important}
+.flat-report .macro-asset-table th:nth-child(1),
+.flat-report .macro-asset-table td:nth-child(1){width:14%;white-space:nowrap;font-weight:500}
+.flat-report .macro-asset-table th:nth-child(2),
+.flat-report .macro-asset-table td:nth-child(2){width:10%;text-align:right;white-space:nowrap}
+.flat-report .macro-asset-table th:nth-child(3),
+.flat-report .macro-asset-table td:nth-child(3){width:9%;text-align:right;white-space:nowrap}
+.flat-report .macro-asset-table th:nth-child(4),
+.flat-report .macro-asset-table td:nth-child(4){width:10%;text-align:right;white-space:nowrap}
+.flat-report .macro-asset-table th:nth-child(5),
+.flat-report .macro-asset-table td:nth-child(5){width:12%;text-align:right;white-space:nowrap}
+.flat-report .macro-asset-table th:nth-child(6),
+.flat-report .macro-asset-table td:nth-child(6){width:45%;text-align:left;line-height:1.48}
+.flat-report .event-recon-table{min-width:1080px;table-layout:fixed!important}
+.flat-report .event-recon-table th:nth-child(1),
+.flat-report .event-recon-table td:nth-child(1){width:16%;white-space:nowrap;font-weight:500}
+.flat-report .event-recon-table th:nth-child(2),
+.flat-report .event-recon-table td:nth-child(2){width:27%;text-align:left}
+.flat-report .event-recon-table th:nth-child(3),
+.flat-report .event-recon-table td:nth-child(3){width:18%;text-align:left}
+.flat-report .event-recon-table th:nth-child(4),
+.flat-report .event-recon-table td:nth-child(4){width:15%;text-align:left}
+.flat-report .event-recon-table th:nth-child(5),
+.flat-report .event-recon-table td:nth-child(5){width:24%;text-align:left}
+.flat-report .event-recon-table td{vertical-align:top;line-height:1.48}
+.flat-report .event-recon-table .result-badge{white-space:nowrap}
+.flat-report .recon-table{min-width:1040px;table-layout:fixed}
+.flat-report .recon-table th:nth-child(1),
+.flat-report .recon-table td:nth-child(1){width:11%}
+.flat-report .recon-table th:nth-child(2),
+.flat-report .recon-table td:nth-child(2){width:24%}
+.flat-report .recon-table th:nth-child(3),
+.flat-report .recon-table td:nth-child(3){width:28%}
+.flat-report .recon-table th:nth-child(4),
+.flat-report .recon-table td:nth-child(4){width:11%;text-align:center}
+.flat-report .recon-table th:nth-child(5),
+.flat-report .recon-table td:nth-child(5){width:26%}
+.flat-report .recon-table td{vertical-align:top;text-align:left}
+.flat-report .recon-table td:first-child{font-weight:500;color:var(--ink);white-space:nowrap}
+.flat-report .recon-table .result-cell{padding-left:8px;padding-right:8px;text-align:center;white-space:nowrap}
+.flat-report .recon-table .result-badge{justify-content:center;min-width:66px}
+.flat-report .qa-summary-table{min-width:900px;table-layout:fixed!important}
+.flat-report .qa-summary-table th:nth-child(1),
+.flat-report .qa-summary-table td:nth-child(1){width:18%;white-space:nowrap;font-weight:500}
+.flat-report .qa-summary-table th:nth-child(2),
+.flat-report .qa-summary-table td:nth-child(2){width:48%;text-align:left}
+.flat-report .qa-summary-table th:nth-child(3),
+.flat-report .qa-summary-table td:nth-child(3){width:34%;text-align:left}
+.flat-report .qa-summary-table td{vertical-align:top;line-height:1.48}
+.flat-report .sources{display:block;margin-top:18px}
+.flat-report code{
+  padding:1px 5px;
+  border-radius:6px;
+  background:#f2f1ec;
+  color:var(--ink);
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.92em;
+}
+</style>
+</head>
+<body class="flat-report" data-report-type="postmarket">
+  <main class="wrap">
+<header>
+  <div class="eyebrow">US postmarket reconciliation · 2026-07-22</div>
+  <h1>油價與長端利率壓住高 beta，SPY 守線但 QQQ 未修復；盤後財報把風險留到隔日</h1>
+  <p class="muted">資料截至 2026-07-22 美股收盤；Market、Thematic Sectors、Maket breath 與 FX 參考使用者 Google Sheets，7/22 收盤價格與技術值以長橋 CLI 日線快照交叉驗證。</p>
+
+  <div class="hitbar" role="img" aria-label="盤前判斷對帳：7 命中 2 部分觸發 0 失誤 2 未觸發">
+    <i class="h" style="width:63.64%"></i>
+    <i class="p" style="width:18.18%"></i>
+    <i class="m" style="width:0.00%"></i>
+    <i class="n" style="width:18.18%"></i>
+  </div>
+  <div class="hitbar-legend">盤前判斷對帳：<span class="dot h"></span><b>7</b> 命中<span class="dot p"></span><b>2</b> 部分觸發<span class="dot m"></span><b>0</b> 失誤<span class="dot n"></span><b>2</b> 未觸發</div>
+  <div class="status-pills"><span class="badge amber">中等風險</span><span class="badge green">SPY 守線</span><span class="badge amber">QQQ／SMH 未修復</span><span class="badge blue">長橋 CLI 71／71</span></div>
+</header>
+<section class="grid" aria-label="收盤摘要">
+<div class="card"><span>SPY／QQQ</span><strong>守線 / 未修復</strong><p class="note">SPY 守 20／50MA，QQQ 仍低於短中期均線。</p></div>
+<div class="card"><span>USO</span><strong>+2.20%</strong><p class="note">油價代理強，但未收盤站穩風險線。</p></div>
+<div class="card"><span>Stockbee 5D／10D</span><strong>0.91 / 0.92</strong><p class="note">廣度修復退回中性偏弱。</p></div>
+<div class="card"><span>結論</span><strong>觀望 / 等回踩</strong><p class="note">不升級為可追多。</p></div>
+</section>
+<section class="panel">
+<p>防守判斷命中，但不是全面 risk-off。長橋 CLI 顯示 S&amp;P 500 -0.14%、Nasdaq -0.57%、IWM -0.93%、Dow 幾乎持平；VIX 收 16.64，沒有恐慌。</p>
+<p>SPY 守住 20／50MA，QQQ 與 SMH 仍未收復 20／50MA。大盤核心倉可保留，但科技趨勢未升級。</p>
+<p>油價與長端利率是主壓力。長橋 USO +2.20%、盤中高 132.91；新聞端顯示 WTI/Brent 同步走強，10 年債殖利率約 4.657%，20 年債標售高收益 5.163% 且小幅 tail。</p>
+<p>廣度沒有跟上。Google Sheet <code>Maket breath</code> 顯示 SPX &gt;20MA 45.52、NDX &gt;20MA 32.03；Stockbee 4% 上漲／下跌由 473／132 轉為 164／242，5D ratio 由 1.00 降至 0.91，中期強弱股重新轉弱。</p>
+<p>盤後財報風險被正確標記。GOOGL beat 但 capex 上修引發盤後賣壓，TSLA 盈利 miss 盤後下跌，隔夜科技風險沒有解除。</p>
+</section>
+<section><div class="kicker">Core takeaways</div><h2>收盤核心結論</h2>
+<ol>
+<li>本日是 <code>defensive/reflation-led chop</code>，不是乾淨 risk-on。指數表面跌幅不大，但 Nasdaq、IWM、ARKK、軟體與高 beta 成長偏弱；能源、公用事業、原物料與黃金較強。</li>
+<li>盤前「中等風險｜晶片回吐、油價突破」判斷方向正確，但晶片本身並未崩壞。SMH 收 +0.48%，仍低於 20／50MA；AMD、NVDA 撐住，MU、INTC、AMAT、LRCX、KLAC 回落，屬內部分化。</li>
+<li>QQQ 未完成任何升級門檻。QQQ 收 705.35，低於昨收 708.97、20MA 714.25、50MA 719.17；因此不能因盤中反彈或 SMH 收紅就提高科技 beta。</li>
+<li>再通膨壓力命中，但 USO 週度上緣沒有收盤站穩。長橋 USO 盤中高 132.91，高於盤前風險線 132.41，收 131.68；新聞端 WTI/Brent 仍大漲，表示油價主線未消失，但追價突破倉應更嚴格。</li>
+<li>廣度從「短線修復接近確認」退回「中期偏弱」。Google Sheet <code>Maket breath</code> 顯示 SPX &gt;20MA 45.52、NDX &gt;20MA 32.03，短線 MA breadth 轉弱；T2108 51.44 仍在中性上方，但 25%+ 季度強股 1156 低於 25%- 弱股 1183，5D/10D ratio 0.91/0.92，不支持激進追多。</li>
+<li>明日風險重點不只宏觀，也包括 AI capex 容忍度。GOOGL 和 TSLA 盤後反應說明：財報 beat 不足以抵銷資本支出、毛利率與自由現金流壓力。</li>
+</ol>
+<p class="section-summary">本段結論：盤前要求「守風險」是對的；收盤結果不是恐慌，而是高油價、高殖利率、財報前後壓縮高 beta 的盤。交易結論維持 <code>觀望 / 等回踩</code>，不升級為可追多。</p>
+</section>
+<section><div class="kicker">Reconciliation</div><h2>盤前主判斷對帳</h2>
+<div class="table-scroll"><table class="recon-table">
+<thead><tr>
+<th>段落</th>
+<th>盤前行動／判斷</th>
+<th>收盤事實</th>
+<th>對帳</th>
+<th>下次修正</th>
+</tr></thead><tbody>
+<tr>
+<td>中等風險</td>
+<td>晶片回吐、油價突破、財報前先守風險。</td>
+<td>S&amp;P 500 -0.14%、Nasdaq -0.57%、IWM -0.93%；長橋 USO +2.20%，新聞端 WTI/Brent 同步走強；GOOGL/TSLA 盤後承壓。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>中等風險定義有效：不是空頭日，但不適合提高總 beta。</td>
+</tr>
+<tr>
+<td>SPY 防守線</td>
+<td>SPY 守住 744.98／743.80 才保留核心倉。</td>
+<td>SPY 收 747.41，高於 20MA 745.67 與 50MA 745.08。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>SPY 守線但緩衝薄，下一日若跌回 745 下方，修復失敗。</td>
+</tr>
+<tr>
+<td>QQQ 升級線</td>
+<td>先收回 708.97，再看 714.67／718.83。</td>
+<td>QQQ 收 705.35，低於昨收與 20／50MA。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>科技未修復，不能用 SPY 守線替代 QQQ 升級。</td>
+</tr>
+<tr>
+<td>SMH 晶片線</td>
+<td>未收回 598.40／601.63 前不升級趨勢。</td>
+<td>SMH 收 586.91，+0.48%，但仍低於 20MA 599.88 與 50MA 598.80。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>晶片有承接但不是趨勢反轉；設備鏈仍需同步。</td>
+</tr>
+<tr>
+<td>晶片擴散</td>
+<td>MU／SNDK／設備鏈至少三項同步站回 VWAP 才確認。</td>
+<td>SMH 收紅，但 MU -1.17%、INTC -2.68%、AMAT -1.88%、LRCX -0.84%、KLAC -1.32%；AMD +1.45%、NVDA +2.30%。</td>
+<td class="result-cell"><span class="result-badge result-partial">部分觸發</span></td>
+<td>改成收盤擴散條件：SMH + 記憶體 + 設備鏈三者同向，才提高半導體倉位。</td>
+</tr>
+<tr>
+<td>油價突破</td>
+<td>USO &gt;132.41 是減長久期訊號，但不追價。</td>
+<td>長橋 USO 盤中 132.91、收 131.68；新聞端油價仍強。</td>
+<td class="result-cell"><span class="result-badge result-partial">部分觸發</span></td>
+<td>USO 線需用「收盤站穩」判斷突破；但原油強勢仍壓估值。</td>
+</tr>
+<tr>
+<td>EIA 劇本</td>
+<td>EIA Actual 高於預期且 USO &lt;132.41，油價突破失敗，減能源突破倉。</td>
+<td>EIA 原油庫存 +2.011M，明顯高於 -1.25M/-1.50M 預期；USO 收 131.68 低於 132.41。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>庫存利空被地緣風險抵銷，能源不追但也不能直接反手空。</td>
+</tr>
+<tr>
+<td>廣度確認</td>
+<td>NDX 兩項廣度 &gt;50%、Stockbee 5D ratio 嚴格高於 1 才轉攻擊。</td>
+<td>Google Sheet <code>Maket breath</code>：NDX &gt;20MA 32.03、NDX &gt;50MA 46.60；Stockbee 5D ratio 0.91、10D ratio 0.92；4% 上漲／下跌 164／242。</td>
+<td class="result-cell"><span class="result-badge result-not-triggered">未觸發</span></td>
+<td>廣度未確認，維持中性偏防守。</td>
+</tr>
+<tr>
+<td>宏觀風險</td>
+<td>US10Y &gt;4.65% 或 VIX &gt;20 時降低 QQQ/SMH/高估值軟體。</td>
+<td>10Y 約 4.657%，VIX 16.64；IGV -3.05%、NOW -6.47%、PLTR -6.10%。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>利率條件觸發已足以壓高估值，VIX 不必同步恐慌。</td>
+</tr>
+<tr>
+<td>盤後財報</td>
+<td>GOOGL／TSLA／IBM／NOW／TXN 財報前降低隔夜槓桿。</td>
+<td>GOOGL beat 但因 capex 上修盤後下跌；TSLA 盈利 miss 盤後跌約 3%-4%；NOW 正股收 -6.47%。</td>
+<td class="result-cell"><span class="result-badge result-hit">命中</span></td>
+<td>財報日繼續同時看數字、指引、capex/FCF 與盤後價格。</td>
+</tr>
+<tr>
+<td>反向升級</td>
+<td>QQQ &gt;718.83、SMH &gt;601.63、NDX 兩項廣度 &gt;50% 才提高科技曝險。</td>
+<td>QQQ、SMH 均未過線；Google Sheet <code>Maket breath</code> 顯示 NDX &gt;20MA 32.03、&gt;50MA 46.60，廣度未確認。</td>
+<td class="result-cell"><span class="result-badge result-not-triggered">未觸發</span></td>
+<td>保留原門檻，不因單一半導體紅盤升級。</td>
+</tr>
+</tbody></table></div>
+<p class="section-summary">本段結論：盤前最大的價值是把「SPY 可守」與「QQQ/SMH 未修復」拆開，並避免在財報前擴大隔夜槓桿。需要修正的是 USO 風險線要更明確使用收盤確認，因為庫存利空與地緣風險會同時存在。</p>
+</section>
+<section><div class="kicker">Major ETF technicals</div><h2>指數與風格收盤</h2>
+<div class="table-scroll"><table class="index-summary-table">
+<thead><tr>
+<th>ETF／指數</th>
+<th class="num">最新</th>
+<th class="num">日變化</th>
+<th class="num">5日</th>
+<th>Above MA（20/50/200）</th>
+<th class="num">RSI</th>
+<th>判斷</th>
+</tr></thead><tbody>
+<tr>
+<td>S&amp;P 500</td>
+<td class="num">7,498.96</td>
+<td class="num">-0.14%</td>
+<td class="num">-0.97%</td>
+<td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:52%"></b></i>51.50</span></td>
+<td>大盤橫盤，守住均線但動能薄。</td>
+</tr>
+<tr>
+<td>VOO</td>
+<td class="num">687.03</td>
+<td class="num">-0.12%</td>
+<td class="num">-0.98%</td>
+<td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:52%"></b></i>51.60</span></td>
+<td>S&amp;P 500 ETF 仍守 20/50MA，但緩衝薄。</td>
+</tr>
+<tr>
+<td>Nasdaq Composite</td>
+<td class="num">25,690.90</td>
+<td class="num">-0.57%</td>
+<td class="num">-2.20%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:45%"></b></i>44.71</span></td>
+<td>科技仍弱，未確認修復。</td>
+</tr>
+<tr>
+<td>Dow Jones</td>
+<td class="num">52,218.58</td>
+<td class="num">-0.01%</td>
+<td class="num">-0.84%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:49%"></b></i>48.67</span></td>
+<td>價值相對穩。</td>
+</tr>
+<tr>
+<td>SPY</td>
+<td class="num">747.41</td>
+<td class="num">-0.12%</td>
+<td class="num">-0.98%</td>
+<td style="text-align:center"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:52%"></b></i>51.52</span></td>
+<td>核心倉可守，但離均線太近。</td>
+</tr>
+<tr>
+<td>QQQ</td>
+<td class="num">705.35</td>
+<td class="num">-0.51%</td>
+<td class="num">-1.73%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:41%"></b></i>41.43</span></td>
+<td>升級失敗。</td>
+</tr>
+<tr>
+<td>QQQE</td>
+<td class="num">117.30</td>
+<td class="num">-0.65%</td>
+<td class="num">-1.20%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:33%"></b></i>33.16</span></td>
+<td>等權 Nasdaq 更弱，集中風險未解除。</td>
+</tr>
+<tr>
+<td>RSP</td>
+<td class="num">212.70</td>
+<td class="num">-0.03%</td>
+<td class="num">-0.13%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.26</span></td>
+<td>等權大盤穩於 QQQ。</td>
+</tr>
+<tr>
+<td>IWM</td>
+<td class="num">293.79</td>
+<td class="num">-0.93%</td>
+<td class="num">-0.67%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:40%"></b></i>40.38</span></td>
+<td>小盤未延續廣度修復。</td>
+</tr>
+<tr>
+<td>DIA</td>
+<td class="num">521.47</td>
+<td class="num">-0.01%</td>
+<td class="num">-0.85%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:49%"></b></i>48.57</span></td>
+<td>道指相對防守。</td>
+</tr>
+<tr>
+<td>SMH</td>
+<td class="num">586.91</td>
+<td class="num">+0.48%</td>
+<td class="num">-0.65%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:42%"></b></i>41.89</span></td>
+<td>半導體有承接但未反轉。</td>
+</tr>
+<tr>
+<td>VIX</td>
+<td class="num">16.64</td>
+<td class="num dn-ok">-2.40%</td>
+<td class="num">+6.19%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="dn">200<i>▼</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:50%"></b></i>50.19</span></td>
+<td>無恐慌，風險來自利率與油。</td>
+</tr>
+<tr>
+<td>ARKK</td>
+<td class="num">76.03</td>
+<td class="num">-2.14%</td>
+<td class="num">-4.48%</td>
+<td style="text-align:center"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="dn">200<i>▼</i></b></span></td>
+<td class="num"><span class="rsi"><i><b style="width:36%"></b></i>36.46</span></td>
+<td>高 beta 成長弱。</td>
+</tr>
+</tbody></table></div>
+<p class="section-summary">本段結論：SPY/VOO 守住 20/50MA，QQQ/QQQE/SMH 仍在 20/50MA 下方。這是典型「指數沒有壞，但科技不可追」的收盤。</p>
+</section>
+<section><div class="kicker">Sector and thematic ETF</div><h2>板塊與主題 ETF</h2>
+<div class="chart">
+  <div class="chart-title">板塊／主題 ETF 日變化</div>
+  <div class="bar-row"><span class="lbl">XLU</span><span class="val pos">+2.25%</span><span class="bar-track" style="--zero:50%"><span class="b pos" style="width:18%"></span></span></div>
+  <div class="bar-row"><span class="lbl">COPX</span><span class="val pos">+2.24%</span><span class="bar-track" style="--zero:50%"><span class="b pos" style="width:18%"></span></span></div>
+  <div class="bar-row"><span class="lbl">XOP</span><span class="val pos">+1.59%</span><span class="bar-track" style="--zero:50%"><span class="b pos" style="width:13%"></span></span></div>
+  <div class="bar-row"><span class="lbl">ARKK</span><span class="val neg">-2.14%</span><span class="bar-track" style="--zero:50%"><span class="b neg" style="width:17%"></span></span></div>
+  <div class="bar-row"><span class="lbl">IGV</span><span class="val neg">-3.05%</span><span class="bar-track" style="--zero:50%"><span class="b neg" style="width:24%"></span></span></div>
+</div>
+<h3>S&amp;P 500 產業 ETF</h3>
+<div class="table-scroll"><table class="sector-summary-table">
+<thead><tr>
+<th>ETF</th>
+<th class="num">日變化</th>
+<th class="num">5日</th>
+<th class="num">1月</th>
+<th class="num">RSI</th>
+<th>判斷</th>
+</tr></thead><tbody>
+<tr>
+<td>XLE</td>
+<td class="num">+1.20%</td>
+<td class="num">+4.78%</td>
+<td class="num">+9.51%</td>
+<td class="num"><span class="rsi hot"><i><b style="width:85%"></b></i>85.38</span></td>
+<td>能源過熱但仍主導，受油價支持。</td>
+</tr>
+<tr>
+<td>XLU</td>
+<td class="num">+2.25%</td>
+<td class="num">+1.57%</td>
+<td class="num">+2.71%</td>
+<td class="num"><span class="rsi"><i><b style="width:61%"></b></i>60.90</span></td>
+<td>防守承接明顯。</td>
+</tr>
+<tr>
+<td>XLB</td>
+<td class="num">+1.44%</td>
+<td class="num">+0.63%</td>
+<td class="num">-1.55%</td>
+<td class="num"><span class="rsi"><i><b style="width:48%"></b></i>48.37</span></td>
+<td>原物料短線跟隨商品反彈。</td>
+</tr>
+<tr>
+<td>XLP</td>
+<td class="num">+0.38%</td>
+<td class="num">+1.09%</td>
+<td class="num">+2.68%</td>
+<td class="num"><span class="rsi"><i><b style="width:54%"></b></i>54.49</span></td>
+<td>必需消費穩定。</td>
+</tr>
+<tr>
+<td>XLI</td>
+<td class="num">+0.11%</td>
+<td class="num">-0.67%</td>
+<td class="num">-1.62%</td>
+<td class="num"><span class="rsi"><i><b style="width:34%"></b></i>33.55</span></td>
+<td>工業反彈不足。</td>
+</tr>
+<tr>
+<td>XLF</td>
+<td class="num">-0.11%</td>
+<td class="num">-0.90%</td>
+<td class="num">+4.38%</td>
+<td class="num"><span class="rsi"><i><b style="width:62%"></b></i>62.33</span></td>
+<td>金融中期仍強，但當日平淡。</td>
+</tr>
+<tr>
+<td>XLRE</td>
+<td class="num">-0.42%</td>
+<td class="num">+1.01%</td>
+<td class="num">+2.25%</td>
+<td class="num"><span class="rsi"><i><b style="width:59%"></b></i>59.37</span></td>
+<td>房地產受利率限制。</td>
+</tr>
+<tr>
+<td>XLV</td>
+<td class="num">-0.51%</td>
+<td class="num">+0.72%</td>
+<td class="num">+6.24%</td>
+<td class="num"><span class="rsi"><i><b style="width:50%"></b></i>49.77</span></td>
+<td>醫療月線仍強，當日回吐。</td>
+</tr>
+<tr>
+<td>XLY</td>
+<td class="num">-0.74%</td>
+<td class="num">-2.55%</td>
+<td class="num">-0.80%</td>
+<td class="num"><span class="rsi"><i><b style="width:34%"></b></i>34.50</span></td>
+<td>消費成長偏弱。</td>
+</tr>
+<tr>
+<td>XLK</td>
+<td class="num">-0.28%</td>
+<td class="num">-0.72%</td>
+<td class="num">-6.18%</td>
+<td class="num"><span class="rsi"><i><b style="width:43%"></b></i>43.24</span></td>
+<td>科技未修復。</td>
+</tr>
+<tr>
+<td>XLC</td>
+<td class="num">-0.75%</td>
+<td class="num">-3.69%</td>
+<td class="num">+2.19%</td>
+<td class="num"><span class="rsi"><i><b style="width:48%"></b></i>47.73</span></td>
+<td>通訊服務跌破 20/50/200MA，財報前承壓。</td>
+</tr>
+</tbody></table></div>
+<h3>主題 ETF</h3>
+<div class="table-scroll"><table class="sector-summary-table">
+<thead><tr>
+<th>ETF</th>
+<th class="num">日變化</th>
+<th class="num">5日</th>
+<th class="num">1月</th>
+<th class="num">RSI</th>
+<th>判斷</th>
+</tr></thead><tbody>
+<tr>
+<td>XOP</td>
+<td class="num">+1.59%</td>
+<td class="num">+7.12%</td>
+<td class="num">+14.00%</td>
+<td class="num"><span class="rsi hot"><i><b style="width:84%"></b></i>84.29</span></td>
+<td>油氣勘探強勢過熱。</td>
+</tr>
+<tr>
+<td>OIH</td>
+<td class="num">+1.30%</td>
+<td class="num">+1.68%</td>
+<td class="num">-0.11%</td>
+<td class="num"><span class="rsi hot"><i><b style="width:74%"></b></i>73.57</span></td>
+<td>油服短線強，但仍低於 50MA。</td>
+</tr>
+<tr>
+<td>SMH</td>
+<td class="num">+0.48%</td>
+<td class="num">-0.65%</td>
+<td class="num">-12.26%</td>
+<td class="num"><span class="rsi"><i><b style="width:42%"></b></i>41.89</span></td>
+<td>晶片承接但月線仍弱。</td>
+</tr>
+<tr>
+<td>AIQ</td>
+<td class="num">-1.41%</td>
+<td class="num">-1.60%</td>
+<td class="num">-10.36%</td>
+<td class="num"><span class="rsi"><i><b style="width:40%"></b></i>39.67</span></td>
+<td>AI 主題仍承壓。</td>
+</tr>
+<tr>
+<td>IGV</td>
+<td class="num">-3.05%</td>
+<td class="num">-5.24%</td>
+<td class="num">+1.96%</td>
+<td class="num"><span class="rsi"><i><b style="width:34%"></b></i>33.93</span></td>
+<td>軟體明顯弱於晶片。</td>
+</tr>
+<tr>
+<td>CIBR</td>
+<td class="num">-1.38%</td>
+<td class="num">-4.04%</td>
+<td class="num">+6.88%</td>
+<td class="num"><span class="rsi"><i><b style="width:45%"></b></i>45.10</span></td>
+<td>網安短線回落。</td>
+</tr>
+<tr>
+<td>ARKK</td>
+<td class="num">-2.14%</td>
+<td class="num">-4.48%</td>
+<td class="num">-3.06%</td>
+<td class="num"><span class="rsi"><i><b style="width:36%"></b></i>36.46</span></td>
+<td>高 beta 成長降溫。</td>
+</tr>
+<tr>
+<td>WGMI</td>
+<td class="num">+1.87%</td>
+<td class="num">+7.85%</td>
+<td class="num">-20.59%</td>
+<td class="num"><span class="rsi"><i><b style="width:48%"></b></i>47.88</span></td>
+<td>加密礦股反彈但結構仍弱。</td>
+</tr>
+<tr>
+<td>IBIT</td>
+<td class="num">-0.88%</td>
+<td class="num">+1.44%</td>
+<td class="num">+2.30%</td>
+<td class="num"><span class="rsi"><i><b style="width:69%"></b></i>69.02</span></td>
+<td>BTC 代理高位震盪。</td>
+</tr>
+<tr>
+<td>XBI</td>
+<td class="num">-1.55%</td>
+<td class="num">-2.63%</td>
+<td class="num">+4.28%</td>
+<td class="num"><span class="rsi"><i><b style="width:44%"></b></i>43.68</span></td>
+<td>生技回吐但月線仍正。</td>
+</tr>
+<tr>
+<td>IBB</td>
+<td class="num">-1.22%</td>
+<td class="num">-1.53%</td>
+<td class="num">+5.65%</td>
+<td class="num"><span class="rsi"><i><b style="width:45%"></b></i>44.91</span></td>
+<td>大型生技降溫。</td>
+</tr>
+<tr>
+<td>IHI</td>
+<td class="num">-1.08%</td>
+<td class="num">-0.90%</td>
+<td class="num">+2.21%</td>
+<td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.49</span></td>
+<td>醫療器材偏弱。</td>
+</tr>
+<tr>
+<td>XHB</td>
+<td class="num">+0.93%</td>
+<td class="num">-1.84%</td>
+<td class="num">-2.03%</td>
+<td class="num"><span class="rsi"><i><b style="width:36%"></b></i>35.92</span></td>
+<td>房屋建築日內反彈，趨勢仍不足。</td>
+</tr>
+<tr>
+<td>ITB</td>
+<td class="num">+0.54%</td>
+<td class="num">-2.55%</td>
+<td class="num">-1.95%</td>
+<td class="num"><span class="rsi"><i><b style="width:34%"></b></i>33.83</span></td>
+<td>建築鏈仍在弱勢區。</td>
+</tr>
+<tr>
+<td>COPX</td>
+<td class="num">+2.24%</td>
+<td class="num">+3.53%</td>
+<td class="num">-5.77%</td>
+<td class="num"><span class="rsi"><i><b style="width:58%"></b></i>57.65</span></td>
+<td>銅礦短線受商品支持。</td>
+</tr>
+<tr>
+<td>URA</td>
+<td class="num">+1.79%</td>
+<td class="num">+0.17%</td>
+<td class="num">-12.46%</td>
+<td class="num"><span class="rsi"><i><b style="width:41%"></b></i>41.15</span></td>
+<td>鈾礦跌深修復。</td>
+</tr>
+<tr>
+<td>LIT</td>
+<td class="num">-0.12%</td>
+<td class="num">-2.90%</td>
+<td class="num">-16.43%</td>
+<td class="num"><span class="rsi cold"><i><b style="width:24%"></b></i>24.18</span></td>
+<td>鋰電弱勢延續。</td>
+</tr>
+<tr>
+<td>UFO</td>
+<td class="num">-0.57%</td>
+<td class="num">-3.57%</td>
+<td class="num">-10.20%</td>
+<td class="num"><span class="rsi cold"><i><b style="width:17%"></b></i>17.29</span></td>
+<td>太空主題極弱。</td>
+</tr>
+</tbody></table></div>
+<p>板塊小結：領先是能源、公用事業、原物料、黃金與銅礦；落後是軟體、高 beta 成長、AI 主題、鋰電與太空。晶片沒有像盤前那樣崩，但也沒有足夠擴散來抵銷 QQQ/軟體弱勢。</p>
+</section>
+<section><div class="kicker">Market breadth</div><h2>市場廣度與 Stockbee</h2>
+<div class="table-scroll"><table class="breadth-summary-table">
+<thead><tr>
+<th>指標</th>
+<th class="num">最新</th>
+<th>1個月趨勢</th>
+<th>判斷</th>
+</tr></thead><tbody>
+<tr>
+<td>S&amp;P 500 &gt; 20MA</td>
+<td><span class="pct"><i><b style="width:45.52%"></b></i><em>45.52%</em></span></td>
+<td>7/21 48.90 → 7/22 45.52，下降</td>
+<td>Google Sheet <code>Maket breath</code> 已更新；短線 breadth 低於 50。</td>
+</tr>
+<tr>
+<td>S&amp;P 500 &gt; 50MA</td>
+<td><span class="pct"><i><b style="width:62.22%"></b></i><em>62.22%</em></span></td>
+<td>7/21 59.24 → 7/22 62.22，上升</td>
+<td>中期 breadth 仍健康，與短線轉弱分歧。</td>
+</tr>
+<tr>
+<td>Nasdaq 100 &gt; 20MA</td>
+<td><span class="pct"><i><b style="width:32.03%"></b></i><em>32.03%</em></span></td>
+<td>7/21 47.54 → 7/22 32.03，明顯下降</td>
+<td>科技短線 breadth 失速，未確認 QQQ 修復。</td>
+</tr>
+<tr>
+<td>Nasdaq 100 &gt; 50MA</td>
+<td><span class="pct"><i><b style="width:46.60%"></b></i><em>46.60%</em></span></td>
+<td>7/21 43.68 → 7/22 46.60，小幅上升但低於 50</td>
+<td>中期仍未回到攻擊門檻。</td>
+</tr>
+<tr>
+<td>Russell 2000 &gt; 20MA</td>
+<td><span class="pct"><i><b style="width:41.16%"></b></i><em>41.16%</em></span></td>
+<td>7/21 60.63 → 7/22 41.16，明顯下降</td>
+<td>小盤短線修復沒有延續。</td>
+</tr>
+<tr>
+<td>Russell 2000 &gt; 50MA</td>
+<td><span class="pct"><i><b style="width:60.55%"></b></i><em>60.55%</em></span></td>
+<td>7/21 62.68 → 7/22 60.55，小幅下降</td>
+<td>中期廣度尚可，但短線轉弱。</td>
+</tr>
+<tr>
+<td>T2108</td>
+<td><span class="pct"><i><b style="width:51.44%"></b></i><em>51.44%</em></span></td>
+<td>6/22 44.10 → 7/22 51.44，區間震盪上升</td>
+<td>高於 50，但不是強勢擴張。</td>
+</tr>
+<tr>
+<td>5日 breadth ratio</td>
+<td class="num"><span class="breadth-ratio breadth-ratio-warn">0.91</span></td>
+<td>6/22 1.33 → 7/22 0.91，下降</td>
+<td>短線不適合激進追多。</td>
+</tr>
+<tr>
+<td>10日 breadth ratio</td>
+<td class="num"><span class="breadth-ratio breadth-ratio-warn">0.92</span></td>
+<td>6/22 1.47 → 7/22 0.92，下降</td>
+<td>中短線動能偏弱。</td>
+</tr>
+<tr>
+<td>上漲4%+股票數</td>
+<td class="num">164</td>
+<td>7/21 473 → 7/22 164，放緩</td>
+<td>單日買盤擴散消退。</td>
+</tr>
+<tr>
+<td>下跌4%+股票數</td>
+<td class="num">242</td>
+<td>7/21 132 → 7/22 242，上升</td>
+<td>賣壓重新高於買盤。</td>
+</tr>
+</tbody></table></div>
+<p>Stockbee 讀法：</p>
+<ol>
+<li>MA Breadth：Google Sheet <code>Maket breath</code> 顯示 SPX &gt;20MA 45.52、NDX &gt;20MA 32.03、IWM &gt;20MA 41.16；短線 breadth 同步轉弱。</li>
+<li>Primary Breadth：25%+ Quarter 1156，25%- Quarter 1183，強股重新低於弱股，從 7/21 的短暫轉多退回偏空。</li>
+<li>10 Day Ratio：0.92，低於 1 但高於 0.5，代表中短線不是空頭極端，卻不支持追多。</li>
+<li>4% plus/down Daily：164／242，買盤回到普通區，賣壓略高於買盤。</li>
+<li>50% plus/down Month：23／38，50%+ 仍高於 20，表示部分強勢股仍偏熱；50%- 也高於 20，顯示兩端分化擴大。</li>
+<li>34/13 Bull/Bear：1670／1609，略偏多，但優勢不大；T2108 51.44 只給中性確認。</li>
+<li>交易結論：中期偏弱、短線中性偏防守。若指數上漲但 5D/10D ratio 不回 1 以上，應視為廣度背離。</li>
+</ol>
+<p class="section-summary">本段結論：7/21 的廣度修復沒有延續。這使盤前「廣度未確認前不轉攻擊」完全成立。</p>
+</section>
+<section><div class="kicker">50MA ATR extension</div><h2>50MA ATR 延伸</h2>
+<div class="table-scroll"><table class="atr-summary-table">
+<thead><tr>
+<th>指標</th>
+<th class="num">價格</th>
+<th class="num">50MA</th>
+<th class="num">ATR(14)</th>
+<th class="num">距50MA ATR</th>
+<th>趨勢</th>
+<th>判斷</th>
+</tr></thead><tbody>
+<tr>
+<td>S&amp;P 500</td>
+<td class="num">7,498.96</td>
+<td class="num">7,471.88</td>
+<td class="num">70.18</td>
+<td class="num"><span class="atr l1"><i><b></b><b></b><b></b><b></b></i>+0.39</span></td>
+<td>橫盤震盪</td>
+<td>高於 50MA，但緩衝不足 0.5 ATR。</td>
+</tr>
+<tr>
+<td>SPY</td>
+<td class="num">747.41</td>
+<td class="num">745.08</td>
+<td class="num">7.05</td>
+<td class="num"><span class="atr l1"><i><b></b><b></b><b></b><b></b></i>+0.33</span></td>
+<td>橫盤震盪</td>
+<td>守線成立，仍不夠強。</td>
+</tr>
+<tr>
+<td>QQQ</td>
+<td class="num">705.35</td>
+<td class="num">719.17</td>
+<td class="num">13.79</td>
+<td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>-1.00</span></td>
+<td>下降</td>
+<td>低於 50MA 約 1 ATR，科技仍弱。</td>
+</tr>
+<tr>
+<td>DIA</td>
+<td class="num">521.47</td>
+<td class="num">513.76</td>
+<td class="num">5.06</td>
+<td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>+1.52</span></td>
+<td>橫盤偏強</td>
+<td>價值/防守相對穩。</td>
+</tr>
+<tr>
+<td>IWM</td>
+<td class="num">293.79</td>
+<td class="num">290.88</td>
+<td class="num">4.12</td>
+<td class="num"><span class="atr l1"><i><b></b><b></b><b></b><b></b></i>+0.71</span></td>
+<td>橫盤震盪</td>
+<td>小盤守 50MA，但日內回吐。</td>
+</tr>
+</tbody></table></div>
+<p class="section-summary">本段結論：SPY 與 IWM 仍有 50MA 緩衝，QQQ 是核心弱點。若隔日 GOOGL/TSLA 壓力使 QQQ 繼續低於 50MA，科技倉位不升級。</p>
+</section>
+<section><div class="kicker">Macro / FX / Commodities</div><h2>主要外匯與商品期貨</h2>
+<div class="table-scroll"><table class="macro-asset-table">
+<thead><tr>
+<th>資產</th>
+<th class="num">最新</th>
+<th class="num">日變化</th>
+<th class="num">5日/短線</th>
+<th class="num">1個月趨勢</th>
+<th>對美股含義</th>
+</tr></thead><tbody>
+<tr>
+<td>DXY</td>
+<td class="num">101.49</td>
+<td class="num">-0.04%</td>
+<td class="num">+0.75%</td>
+<td class="num">+0.46%</td>
+<td>美元回到 101 上方，接近但未越過盤前 102 風險線。</td>
+</tr>
+<tr>
+<td>EUR/USD</td>
+<td class="num">1.1375</td>
+<td class="num">-0.13%</td>
+<td class="num">-0.83%</td>
+<td class="num">-0.45%</td>
+<td>歐元回落，美元壓力邊際升溫。</td>
+</tr>
+<tr>
+<td>GBP/USD</td>
+<td class="num">1.3320</td>
+<td class="num">-0.39%</td>
+<td class="num">-1.63%</td>
+<td class="num">+0.55%</td>
+<td>英鎊短線走弱，風險偏好不構成支撐。</td>
+</tr>
+<tr>
+<td>USD/JPY</td>
+<td class="num">163.90</td>
+<td class="num">+0.43%</td>
+<td class="num">+1.13%</td>
+<td class="num">+1.44%</td>
+<td>JPY carry 壓力仍在，對長久期成長股不是順風。</td>
+</tr>
+<tr>
+<td>USO</td>
+<td class="num">131.68</td>
+<td class="num">+2.20%</td>
+<td class="num">+8.49%</td>
+<td class="num">+16.85%</td>
+<td>原油代理仍是最強再通膨訊號，但未收盤站穩 132.41 風險線。</td>
+</tr>
+<tr>
+<td>GLD</td>
+<td class="num">379.12</td>
+<td class="num">+1.15%</td>
+<td class="num">+1.82%</td>
+<td class="num">-1.42%</td>
+<td>黃金短線反彈，但月線仍偏弱，避險需求存在但不是主導。</td>
+</tr>
+<tr>
+<td>SLV</td>
+<td class="num">53.92</td>
+<td class="num">+1.58%</td>
+<td class="num">+3.28%</td>
+<td class="num">-8.47%</td>
+<td>白銀短線反彈，月線仍弱，不能單獨解讀為商品全面擴張。</td>
+</tr>
+<tr>
+<td>CPER</td>
+<td class="num">39.25</td>
+<td class="num">-0.71%</td>
+<td class="num">+1.60%</td>
+<td class="num">+1.13%</td>
+<td>銅短中線小幅偏強，但當日沒有同步確認油價突破。</td>
+</tr>
+<tr>
+<td>IBIT</td>
+<td class="num">37.34</td>
+<td class="num">-0.88%</td>
+<td class="num">+1.44%</td>
+<td class="num">+2.30%</td>
+<td>加密代理不是本日主導風險，僅作高 beta 旁證。</td>
+</tr>
+</tbody></table></div>
+<p class="section-summary">本段結論：FX 參考 Google Sheet <code>Macro</code>，DXY 與主要 FX 不再缺席；商品 ETF 使用 7/22 長橋日線快照，避免 live sheet 更新後覆蓋收盤日。核心訊號是美元偏強、USD/JPY 上行、USO 5 日與 1 月仍擴張；GLD/SLV 只是短線反彈，CPER 小幅偏強但未主導風險。這仍指向再通膨/利率壓力，不支持無條件提高科技估值曝險。</p>
+</section>
+<section><div class="kicker">Events and earnings</div><h2>宏觀數據與財報對帳</h2>
+<div class="table-scroll"><table class="event-recon-table">
+<thead><tr>
+<th>事件</th>
+<th class="num">Actual／收盤事實</th>
+<th class="num">Forecast／盤前假設</th>
+<th class="num">Previous</th>
+<th>判斷</th>
+</tr></thead><tbody>
+<tr>
+<td>EIA 原油庫存</td>
+<td>+2.011M</td>
+<td>約 -1.25M 至 -1.50M</td>
+<td>-1.693M</td>
+<td>庫存利空油價，但地緣風險使 WTI/Brent 仍收高。</td>
+</tr>
+<tr>
+<td>20 年期公債標售</td>
+<td>高收益 5.163%，tail +0.5bp，Bid/Cover 2.64x</td>
+<td><span class="result-badge result-not-triggered">無一致預期</span></td>
+<td>前次 4.927%，2.75x</td>
+<td>需求偏軟，長端壓力未解除。</td>
+</tr>
+<tr>
+<td>2 年債殖利率</td>
+<td class="num">約 4.301%</td>
+<td>盤前高位</td>
+<td>前值附近</td>
+<td>短端升至逾一年高位，Fed hike odds 上升。</td>
+</tr>
+<tr>
+<td>10 年債殖利率</td>
+<td class="num">約 4.657%</td>
+<td>盤前觀察 4.65%</td>
+<td class="num">約 4.63%</td>
+<td>觸及盤前風險線，高估值壓力成立。</td>
+</tr>
+<tr>
+<td>30 年債殖利率</td>
+<td class="num">約 5.146%</td>
+<td>高位</td>
+<td>高位</td>
+<td>長端期限溢價壓力延續。</td>
+</tr>
+<tr>
+<td>AT&amp;T</td>
+<td>T +3.50%</td>
+<td>財報反應看價格</td>
+<td><span class="result-badge result-not-triggered">不適用</span></td>
+<td>強財報被價格確認。</td>
+</tr>
+<tr>
+<td>GE Vernova</td>
+<td>GEV -8.69%</td>
+<td>避免抄 GEV 缺口</td>
+<td><span class="result-badge result-not-triggered">不適用</span></td>
+<td>盤前「不因 headline 抄底」命中。</td>
+</tr>
+<tr>
+<td>Alphabet</td>
+<td>GOOGL 正股 -1.46%；盤後因 capex/FCF 擔憂下跌約 3%-5%</td>
+<td>財報前降低隔夜槓桿</td>
+<td><span class="result-badge result-not-triggered">不適用</span></td>
+<td>Beat 不等於股價上漲，AI capex 容忍度下降。</td>
+</tr>
+<tr>
+<td>Tesla</td>
+<td>TSLA 正股 -1.30%；盤後盈利 miss 下跌約 3%-4%</td>
+<td>財報前降低隔夜槓桿</td>
+<td><span class="result-badge result-not-triggered">不適用</span></td>
+<td>盈利與毛利壓力直接觸發賣壓。</td>
+</tr>
+</tbody></table></div>
+<p class="section-summary">本段結論：EIA 沒有把油價打下來，因為主導變數是地緣風險；債券標售與殖利率則把估值壓力具體化。財報端再次證明必須對帳「數字、指引/capex、自由現金流、價格」四層。</p>
+</section>
+<section><div class="kicker">Next session</div><h2>下一交易日計畫</h2>
+<ol>
+<li>QQQ 防守線：705.35 昨收是第一線；若跌破並延伸向 700/696，科技風險升級。收回 714.25/719.17 前不加總 beta。</li>
+<li>SPY 核心線：守 745.67/745.08 才維持核心倉；跌回 20/50MA 下方，7/21 修復失效。</li>
+<li>SMH 升級線：收回 598.80/599.88，再觀察 MU、SNDK、AMAT、LRCX、KLAC 是否同步轉強；否則只是單日承接。</li>
+<li>油價風險線：USO 132.41 仍是長橋收盤確認線；若新聞端原油續漲但 USO 不站穩，能源追價只做持倉管理，不新增突破倉。</li>
+<li>利率風險線：10Y 若維持 4.65% 上方、TLT 繼續下行，降低高估值軟體與無盈利成長股。</li>
+<li>財報隔夜線：GOOGL/TSLA 盤後若拖累 Nasdaq futures，先觀察 QQQ 是否守 700，不急著接刀。</li>
+<li>廣度確認：Google Sheet <code>Maket breath</code> 需看到 NDX &gt;20MA、&gt;50MA 同時回 50 以上，且 Stockbee 5D/10D ratio 需重回 1 以上；若 T2108 高於 50 但 4% 上漲家數不擴大，仍視為中性。</li>
+</ol>
+<p class="section-summary">本段結論：下一交易日的重點是財報後 Nasdaq 是否把盤後壓力轉成現貨破位，以及油價/10Y 是否繼續擴張。交易結論維持 <code>觀望 / 等回踩</code>，只有 SPY 守線、QQQ 收回 20MA、Stockbee ratio 回 1 以上，才改為中性偏攻擊。</p>
+</section>
+<section><div class="kicker">Cross-validation</div><h2>交叉驗證總結</h2>
+<p>互相確認：Nasdaq、QQQ、IGV、ARKK、TSLA/GOOGL 盤後風險與 Stockbee 轉弱，共同確認高 beta 不適合追多；油價、20 年債標售、10Y 上行與 TLT 下跌，共同確認再通膨/利率壓力。</p>
+<p>互相分歧：VIX 收 16.64 並未恐慌，SPY 仍守 20/50MA，SMH 也收紅；因此不能把本日判成全面風險崩壞。更精準的定義是「防守與再通膨主導的震盪盤」。</p>
+</section>
+<section><div class="kicker">Quality assurance</div><h2>QA 審查</h2>
+<div class="table-scroll"><table class="qa-summary-table">
+<thead><tr>
+<th>檢查項目</th>
+<th>QA 結果</th>
+<th>處理</th>
+</tr></thead><tbody>
+<tr>
+<td>對帳計數</td>
+<td>盤前主判斷共 11 項，7 命中 + 2 部分觸發 + 0 失誤 + 2 未觸發，與頁首一致。</td>
+<td>通過</td>
+</tr>
+<tr>
+<td>已刪欄目</td>
+<td>已確認前次要求刪除的事件風險章節不再出現；主要外匯與商品期貨也未保留多餘的中介說明欄。</td>
+<td>通過</td>
+</tr>
+<tr>
+<td>USO 數值一致性</td>
+<td>QA 發現 Google Sheet live <code>Macro</code> 已滾到 2026-07-23，會造成 USO 140.xx 與正文 131.68 衝突。</td>
+<td>商品 ETF 改用 7/22 長橋日線快照；油價風險線維持 132.41 收盤確認。</td>
+</tr>
+<tr>
+<td>Google Sheet 時點</td>
+<td>QA 時 <code>Macro</code> / <code>Market</code> 已顯示長橋更新日期 2026-07-23，不適合覆蓋 2026-07-22 收盤復盤。</td>
+<td>保留 Google Sheets 作廣度、板塊、FX 參考；7/22 收盤價與技術值以本地快照為準。</td>
+</tr>
+<tr>
+<td>來源與限制</td>
+<td>財報、EIA、20 年債標售與收盤背景均有來源。</td>
+<td>通過</td>
+</tr>
+</tbody></table></div>
+<p class="muted">資料限制：本報告以使用者 Google Sheets 為主表來源之一，但 Google Sheets 為 live 表；QA 時 <code>Macro</code> / <code>Market</code> 已更新至 2026-07-23，因此不以當前 live 值覆蓋 2026-07-22 收盤復盤。</p>
+<p class="muted">資料來源：使用者指定報告 <a href="https://sintszkay.github.io/market-reports/reports/2026-07-21-postmarket-recap.html">2026-07-21 盤後對賬</a> 與 <a href="https://sintszkay.github.io/market-reports/reports/2026-07-22-premarket-update.html">2026-07-22 盤前監控</a>；使用者 Google Sheets <a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit?gid=0#gid=0">Market Breadth / Market / Thematic Sectors / Macro / Maket breath</a>；長橋 CLI <code>kline history --adjust none</code> 的 2026-07-22 日線快照；<a href="https://apnews.com/article/87e0cd1ef1994f0fcbfb8f025064f64f">AP 7/22 美股收盤</a>；<a href="https://tradingeconomics.com/united-states/crude-oil-stocks-change">Trading Economics EIA 原油庫存</a>；<a href="https://legacy.newsquawk.com/headlines/us-sells-usd-13bln-of-20year-bonds-tail-0-5bps-22-07-2026">Newsquawk 20 年債標售</a>；<a href="https://www.marketwatch.com/livecoverage/stock-market-today-dow-s-p-500-nasdaq-alphabet-tesla-earnings-oil-prices-us-iran-11-nights-strikes/card/s-p-500-and-nasdaq-close-lower-dow-ends-nearly-unchanged-as-iran-conflict-pushes-up-oil-and-bond-yields-alphabet-and-tesla-earnings-loom-g2W1gsJ9d6IOgs9zN2aY">MarketWatch 7/22 收盤與油價/財報背景</a>；<a href="https://live.euronext.com/en/financial-news/google-increases-capex-forecast-again-after-cloud-driven-earnings-beat">Alphabet 盤後 capex 反應</a>；<a href="https://www.theguardian.com/technology/2026/jul/22/tesla-profits-earnings">Tesla 盤後財報反應</a>。</p>
+<p>本報告不構成投資建議。</p>
+</section>
+  </main>
+<script>
+document.querySelectorAll('.num, .trend').forEach((el)=>{
+  const text = el.textContent.trim();
+  if (/^\+/.test(text)) el.classList.add('up');
+  if (/^-/.test(text)) el.classList.add('dn');
+});
+</script>
+<script src="report-runtime.js?v=20260717-flat-2"></script>
+</body>
+</html>

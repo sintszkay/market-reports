@@ -3,6 +3,7 @@
 
 const fs = require("node:fs");
 const path = require("node:path");
+const { validateReportHtml } = require("./report_rules");
 
 const MOJIBAKE_PATTERN = /[�]|锛|鐩|閹|馃|鈥|瑷|鍫|绲|妯|鍍|铏|褰|瀵|绋|绶|婊|妾|棰|闋|瑕栬|鍙嶅悜|璩囨枡|鐩ゅ|鍫卞|妯℃澘|閸/g;
 const MISSING_VALUES = new Set(["", "—", "-", "–", "#N/A", "N/A", "NA", "null", "undefined"]);
@@ -229,6 +230,9 @@ function validateWeeklyBreadthSynthesis(html, errors) {
 function validateReport(file) {
   const html = fs.readFileSync(file, "utf8");
   const errors = [];
+  if (/<body\b[^>]*data-report-type=["']postmarket["']/i.test(html)) {
+    errors.push(...validateReportHtml(html, { reportType: "postmarket" }));
+  }
   validateVisibleText(html, errors);
   validateAssets(html, errors);
   validateDangerousTableClasses(html, errors);

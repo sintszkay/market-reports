@@ -1,0 +1,43 @@
+{
+  "date": "2026-07-23",
+  "type": "postmarket-reconciliation",
+  "reconciliation": {
+    "hit": 6,
+    "partial": 1,
+    "miss": 0,
+    "not_triggered": 2
+  },
+  "benchmarks": {
+    "SPX": {
+      "close": 7408.3,
+      "change_pct": -1.21
+    },
+    "NASDAQ": {
+      "close": 25137.69,
+      "change_pct": -2.15
+    },
+    "DOW": {
+      "close": 51711.65,
+      "change_pct": -0.97
+    },
+    "RUSSELL_2000": {
+      "close": 2940.16,
+      "change_pct": -0.67
+    }
+  },
+  "stockbee": {
+    "date": "2026-07-23",
+    "up_4pct": 137,
+    "down_4pct": 319,
+    "ratio_5d": 0.97,
+    "ratio_10d": 0.8,
+    "t2108": 46.66
+  },
+  "source_dates": {
+    "Market": "2026-07-23 close",
+    "Thematic Sectors": "2026-07-23 close",
+    "Macro": "2026-07-23 close",
+    "Maket breath": "2026-07-22 latest row",
+    "Stockbee": "2026-07-23"
+  }
+}

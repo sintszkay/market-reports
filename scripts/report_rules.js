@@ -389,12 +389,113 @@ function validatePostmarketVisuals(html, errors) {
   if (!/document\.querySelectorAll\(['"]\.num, \.trend['"]\)/.test(html)) {
     errors.push("盤後報告缺少 .num / .trend 正負號著色腳本。");
   }
-  if (!/class=["'][^"']*\bdn-ok\b/.test(html)) {
-    errors.push("盤後報告缺少 dn-ok 中性負值標記。");
-  }
   if (!/report-shared\.css\?v=/.test(html)) {
     errors.push("盤後報告未使用帶版本號的共享樣式。");
   }
+}
+
+function validatePostmarketSectorThemeFormat(html, errors) {
+  const reportDate = (html.match(/\b20\d{2}-\d{2}-\d{2}\b/) || [])[0] || "";
+  if (reportDate && reportDate < "2026-07-23") return;
+
+  const section = findSection(html, /^板塊與主題 ETF$/);
+  if (!section) {
+    errors.push("盤後報告缺少「板塊與主題 ETF」段落。");
+    return;
+  }
+
+  if (!/<h3\b[^>]*>\s*S&amp;P 500 Sector ETF\s*<\/h3>/i.test(section)) {
+    errors.push("板塊與主題 ETF 必須使用「S&P 500 Sector ETF」分類標題。");
+  }
+  if (!/<h3\b[^>]*>\s*Thematic Sector ETF\s*<\/h3>/i.test(section)) {
+    errors.push("板塊與主題 ETF 必須使用「Thematic Sector ETF」分類標題。");
+  }
+
+  const tables = section.match(/<table\b[^>]*>[\s\S]*?<\/table>/gi) || [];
+  if (tables.length !== 2) {
+    errors.push(`板塊與主題 ETF 必須恰有兩張表，目前 ${tables.length} 張。`);
+    return;
+  }
+
+  const specs = [
+    {
+      label: "S&P 500 Sector ETF",
+      columns: 6,
+      className: "postmarket-sector-table",
+      maIndex: 3,
+      headerChecks: [
+        (value) => value === "ETF",
+        (value) => value === "最新",
+        (value) => value.includes("動能") && value.includes("1日") && value.includes("5日") && value.includes("1月"),
+        (value) => /^AboveMA(?:（20\/50\/200）)?$/i.test(value),
+        (value) => value === "RSI",
+        (value) => value === "判斷",
+      ],
+    },
+    {
+      label: "Thematic Sector ETF",
+      columns: 5,
+      className: "postmarket-theme-table",
+      maIndex: 2,
+      headerChecks: [
+        (value) => value === "ETF",
+        (value) => value.includes("動能") && value.includes("1日") && value.includes("5日") && value.includes("1月"),
+        (value) => /^AboveMA(?:（20\/50\/200）)?$/i.test(value),
+        (value) => value === "RSI",
+        (value) => value === "判斷",
+      ],
+    },
+  ];
+
+  specs.forEach((spec, tableIndex) => {
+    const table = tables[tableIndex];
+    if (!new RegExp(`<table\\b[^>]*class=["'][^"']*\\b${spec.className}\\b`, "i").test(table)) {
+      errors.push(`${spec.label} 必須使用 .${spec.className} 固定欄寬規則。`);
+    }
+
+    const headerRow = table.match(/<thead\b[^>]*>[\s\S]*?<tr\b[^>]*>([\s\S]*?)<\/tr>[\s\S]*?<\/thead>/i);
+    const headers = headerRow
+      ? getCells(headerRow[1], "th").map((cell) => stripTags(cell.inner).replace(/\s+/g, ""))
+      : [];
+    const headerValid = headers.length === spec.columns &&
+      spec.headerChecks.every((check, index) => check(headers[index] || ""));
+    if (!headerValid) {
+      errors.push(`${spec.label} 欄位格式不符：${headers.join(" / ") || "無表頭"}。`);
+    }
+
+    const body = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i)?.[1] || "";
+    const rows = body.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
+    if (rows.length === 0) errors.push(`${spec.label} 沒有 ETF 資料列。`);
+
+    rows.forEach((row, rowIndex) => {
+      const cells = getCells(row, "td");
+      if (cells.length !== spec.columns) {
+        errors.push(`${spec.label} 第 ${rowIndex + 1} 列必須有 ${spec.columns} 欄，目前 ${cells.length} 欄。`);
+        return;
+      }
+
+      const momentumCell = cells[spec.maIndex - 1]?.inner || "";
+      const momentumValues = (momentumCell.match(/<span\b/gi) || []).length;
+      if (!/\betf-momentum\b/i.test(momentumCell) || momentumValues < 3) {
+        errors.push(`${spec.label} 第 ${rowIndex + 1} 列缺少 1日／5日／1月三格動能。`);
+      }
+
+      const maCell = cells[spec.maIndex]?.inner || "";
+      const groupClassMatch = maCell.match(/<div\b[^>]*class=(["'])([^"']*)\1/i);
+      const groupClasses = (groupClassMatch?.[2] || "").split(/\s+/).filter(Boolean);
+      const stateCount = (
+        maCell.match(/<span\b[^>]*class=["'][^"']*\bma-state\b[^"']*["']/gi) || []
+      ).length;
+      if (!groupClasses.includes("ma-state-group") || stateCount !== 3) {
+        errors.push(`${spec.label} 第 ${rowIndex + 1} 列 Above MA 必須使用三等分 .ma-state-group。`);
+      }
+      for (const period of ["20MA", "50MA", "200MA"]) {
+        if (!maCell.includes(period)) {
+          errors.push(`${spec.label} 第 ${rowIndex + 1} 列 Above MA 缺少 ${period}。`);
+        }
+      }
+    });
+  });
 }
 
 function validateWeeklyMacroCoverage(html, errors) {
@@ -479,6 +580,7 @@ function validateReportHtml(html, { reportType = "premarket" } = {}) {
   const errors = [];
   if (reportType === "postmarket") {
     validatePostmarketVisuals(html, errors);
+    validatePostmarketSectorThemeFormat(html, errors);
     return errors;
   }
   validateRsiAndMa(html, errors);

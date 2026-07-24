@@ -84,6 +84,24 @@ span.rsi-cold{background:var(--green-bg);color:var(--green)}
 .ma-period{color:var(--muted);font-size:12.5px;font-weight:500}
 .ma-arrow{font-size:14px;line-height:1;font-weight:500}
 .ma-separator{display:inline-block;width:2px;color:var(--muted);text-align:center}
+.ma-state-group{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(64px,1fr));
+  align-items:center;
+  width:100%;
+  min-width:210px;
+}
+.ma-state-group .ma-state{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  width:auto;
+  min-width:0;
+  white-space:nowrap;
+}
+.ma-state-group .ma-period{display:inline-block;min-width:42px;text-align:right}
+.ma-state-group .ma-arrow{display:inline-block;width:12px;text-align:center}
 
 .symbol-legend{
   margin:10px 0 16px;
@@ -476,6 +494,15 @@ body.flat-report{
   padding-left:6px;
   padding-right:6px;
 }
+.flat-report .postmarket-sector-table{min-width:1040px;table-layout:fixed}
+.flat-report .postmarket-sector-table th:nth-child(1){width:8%}
+.flat-report .postmarket-sector-table th:nth-child(2){width:9%}
+.flat-report .postmarket-sector-table th:nth-child(3){width:25%}
+.flat-report .postmarket-sector-table th:nth-child(4){width:23%;text-align:center}
+.flat-report .postmarket-sector-table th:nth-child(5){width:9%}
+.flat-report .postmarket-sector-table th:nth-child(6){width:26%}
+.flat-report .postmarket-sector-table .ma-cell,
+.flat-report .postmarket-theme-table .ma-cell{text-align:center;white-space:nowrap}
 .flat-report .etf-judgment{
   color:var(--ink);
   font-size:12px;

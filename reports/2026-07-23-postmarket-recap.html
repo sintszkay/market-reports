@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2026-07-23｜美股盤後對帳</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260723-postmarket">
+  <style>
+    .flat-report .recon-table{min-width:1080px;table-layout:fixed}
+    .flat-report .recon-table th:nth-child(1){width:12%}
+    .flat-report .recon-table th:nth-child(2){width:23%}
+    .flat-report .recon-table th:nth-child(3){width:27%}
+    .flat-report .recon-table th:nth-child(4){width:11%;text-align:center}
+    .flat-report .recon-table th:nth-child(5){width:27%}
+    .flat-report .recon-table td:nth-child(4){text-align:center;vertical-align:middle}
+    .flat-report .index-summary-table{min-width:1040px;table-layout:fixed}
+    .flat-report .index-summary-table th:nth-child(1){width:8%}
+    .flat-report .index-summary-table th:nth-child(2){width:9%}
+    .flat-report .index-summary-table th:nth-child(3),
+    .flat-report .index-summary-table th:nth-child(4),
+    .flat-report .index-summary-table th:nth-child(5){width:8%}
+    .flat-report .index-summary-table th:nth-child(6){width:18%;text-align:center}
+    .flat-report .index-summary-table th:nth-child(7){width:10%}
+    .flat-report .index-summary-table th:nth-child(8){width:31%}
+    .flat-report .sector-summary-table{min-width:1040px;table-layout:fixed}
+    .flat-report .sector-summary-table th:nth-child(1){width:8%}
+    .flat-report .sector-summary-table th:nth-child(2){width:9%}
+    .flat-report .sector-summary-table th:nth-child(3){width:25%}
+    .flat-report .sector-summary-table th:nth-child(4){width:23%;text-align:center}
+    .flat-report .sector-summary-table th:nth-child(5){width:9%}
+    .flat-report .sector-summary-table th:nth-child(6){width:26%}
+    .flat-report .ma-state-group{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(64px,1fr));
+      align-items:center;
+      width:100%;
+      min-width:210px;
+    }
+    .flat-report .ma-state-group .ma-state{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+      width:auto;
+      min-width:0;
+      white-space:nowrap;
+    }
+    .flat-report .ma-state-group .ma-period{display:inline-block;min-width:42px;text-align:right}
+    .flat-report .ma-state-group .ma-arrow{display:inline-block;width:12px;text-align:center}
+    .flat-report .breadth-summary-table{min-width:860px;table-layout:fixed}
+    .flat-report .breadth-summary-table th:nth-child(1){width:25%}
+    .flat-report .breadth-summary-table th:nth-child(2){width:19%}
+    .flat-report .breadth-summary-table th:nth-child(3){width:27%}
+    .flat-report .breadth-summary-table th:nth-child(4){width:29%}
+    .flat-report .atr-summary-table{min-width:900px;table-layout:fixed}
+    .flat-report .atr-summary-table th:nth-child(1){width:8%}
+    .flat-report .atr-summary-table th:nth-child(2),
+    .flat-report .atr-summary-table th:nth-child(3),
+    .flat-report .atr-summary-table th:nth-child(4),
+    .flat-report .atr-summary-table th:nth-child(5){width:11%}
+    .flat-report .atr-summary-table th:nth-child(6){width:14%}
+    .flat-report .atr-summary-table th:nth-child(7){width:34%}
+    .flat-report .macro-asset-table{min-width:880px;table-layout:fixed}
+    .flat-report .macro-asset-table th:nth-child(1){width:12%}
+    .flat-report .macro-asset-table th:nth-child(2),
+    .flat-report .macro-asset-table th:nth-child(3),
+    .flat-report .macro-asset-table th:nth-child(4),
+    .flat-report .macro-asset-table th:nth-child(5){width:11%}
+    .flat-report .macro-asset-table th:nth-child(6){width:44%}
+    .flat-report .event-recon-table{min-width:920px;table-layout:fixed}
+    .flat-report .event-recon-table th:nth-child(1){width:19%}
+    .flat-report .event-recon-table th:nth-child(2){width:21%}
+    .flat-report .event-recon-table th:nth-child(3){width:18%}
+    .flat-report .event-recon-table th:nth-child(4){width:16%}
+    .flat-report .event-recon-table th:nth-child(5){width:26%}
+    .flat-report small{color:var(--muted);font-size:11.5px}
+    .flat-report .num-pair{white-space:nowrap;font-variant-numeric:tabular-nums}
+    .flat-report .source-line{font-size:12px;color:var(--muted)}
+    .flat-report code{color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+    @media (max-width:720px){
+      .flat-report h1{font-size:25px}
+      .flat-report .grid{grid-template-columns:1fr 1fr}
+      .flat-report .card strong{font-size:17px}
+    }
+  </style>
+</head>
+<body class="flat-report" data-report-type="postmarket">
+  <main class="wrap">
+    <header>
+      <div class="eyebrow">US postmarket reconciliation · 2026-07-23</div>
+      <h1>權重科技財報缺口擴大，油價與殖利率再施壓；防守判斷命中，廣度尚未恐慌</h1>
+      <p class="muted">資料截至 2026-07-23 美股收盤；7/23 價格採使用者主表的長橋更新，廣度採 Stockbee 最新列。</p>
+      <div class="hitbar" role="img" aria-label="盤前判斷對帳：6 命中 1 部分觸發 0 失誤 2 未觸發">
+        <i class="h" style="width:66.67%"></i>
+        <i class="p" style="width:11.11%"></i>
+        <i class="m" style="width:0%"></i>
+        <i class="n" style="width:22.22%"></i>
+      </div>
+      <div class="hitbar-legend">盤前判斷對帳：<span class="dot h"></span><b>6</b> 命中<span class="dot p"></span><b>1</b> 部分觸發<span class="dot m"></span><b>0</b> 失誤<span class="dot n"></span><b>2</b> 未觸發</div>
+      <div class="status-pills">
+        <span class="badge red">高風險延續</span>
+        <span class="badge red">SPY／QQQ 失守 20／50MA</span>
+        <span class="badge amber">Stockbee 偏空未恐慌</span>
+        <span class="badge green">INTC 盤後 +10%</span>
+      </div>
+    </header>
+
+    <section class="grid" aria-label="收盤摘要">
+      <div class="card"><span>SPX／Nasdaq</span><strong class="dn">-1.21% / -2.15%</strong><p class="note">成長權重主導下跌。</p></div>
+      <div class="card"><span>GOOGL／TSLA</span><strong class="dn">-7.13% / -14.52%</strong><p class="note">財報缺口沒有收斂。</p></div>
+      <div class="card"><span>Stockbee 5D／10D</span><strong>0.97 / 0.80</strong><p class="note">短中線廣度仍低於 1。</p></div>
+      <div class="card"><span>結論</span><strong>防守 / 不追反彈</strong><p class="note">等均線、油價與廣度同步改善。</p></div>
+    </section>
+
+    <section class="panel">
+      <p>收盤是 <code>growth-led risk-off with defensive rotation</code>。S&amp;P 500 收 7,408.30（-1.21%）、Nasdaq 25,137.69（-2.15%）、Dow 51,711.65（-0.97%）、Russell 2000 2,940.16（-0.67%）。</p>
+      <p>下跌高度集中在權重科技。GOOGL -7.13%、TSLA -14.52%，帶動 XLC -3.50%、XLY -4.61%；RSP 只跌 -0.37%，XLI、XLV、XLU、XLE 逆勢收紅。</p>
+      <p>盤前要求降低科技 beta 正確。SPY、QQQ、QQQE、SMH 均收在 20／50MA 下方；SPYG -1.72%，明顯弱於 SPYV -0.66%。</p>
+      <p>外部壓力沒有消失。USO +5.93% 並站到週度 +1SD 上方，Brent 結算約 100.69 美元；美國 10 年債殖利率升至 4.71%。VIX 收 18.70，雖升溫但尚未越過 20。</p>
+      <p>Stockbee 顯示 4% 上漲／下跌 137／319，5D／10D ratio 0.97／0.80，T2108 46.66；屬廣度惡化而非恐慌性清算。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Core takeaways</div>
+      <h2>收盤核心結論</h2>
+      <ol>
+        <li>高風險盤前定位命中。QQQ／SMH 未收復均線，GOOGL／TSLA 缺口擴大，科技 beta 沒有獲得抄底確認。</li>
+        <li>這不是全面 risk-off。RSP、IWM 相對抗跌，XLI +1.73%、XLV +1.26%、XLU +0.57%、XLE +0.30%，資金轉向工業、醫療、公用事業與能源。</li>
+        <li>成長／價值分歧擴大。SPYG -1.72% 對 SPYV -0.66%，SPY -1.23% 對 RSP -0.37%，代表權重與高估值壓力大於整體市場壓力。</li>
+        <li>油價主線延續，但能源股票沒有全面擴散。USO +5.93%，XLE 僅 +0.30%，XOP／OIH 反而收低，因此仍是「持有相對強勢、不追跳空」。</li>
+        <li>廣度確認失敗。Stockbee 5D／10D 都低於 1，4% 下跌家數是上漲家數的 2.3 倍，Primary Breadth 與 34／13 Bull-Bear 同步偏空。</li>
+        <li>INTC 盤後財報提供正面例外：營收與調整後 EPS 優於預期，延長交易約 +10%；但要等隔日 SMH 與設備鏈同步確認，不能直接把單股利多外推成科技反轉。</li>
+      </ol>
+      <p class="section-summary">本段結論：盤前「先守風險」完全成立；收盤應定義為權重科技主導的風險下降，加上防守板塊輪動。操作維持 <code>防守 / 不追反彈</code>。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Reconciliation</div>
+      <h2>盤前主判斷對帳</h2>
+      <div class="table-scroll">
+        <table class="recon-table">
+          <thead><tr><th>段落</th><th>盤前行動／判斷</th><th>收盤事實</th><th>對帳</th><th>下次修正</th></tr></thead>
+          <tbody><tr><td>高風險／防守</td><td>權重科技財報低開、油價跳升，開盤前先降低總 beta。</td><td>S&amp;P 500 -1.21%、Nasdaq -2.15%；SPY、QQQ 均跌破 20／50MA，USO +5.93%。</td><td class="result-cell"><span class="result-badge result-hit">命中</span></td><td>高風險定義有效；收盤仍是防守輪動，不是恐慌式全面出逃。</td></tr>
+<tr><td>SPY 50MA</td><td>SPY 跌破 745.08 時降低核心倉風險。</td><td>SPY 收 738.18，低於更新後 50MA 約 745.05，距離約 -1.09 ATR。</td><td class="result-cell"><span class="result-badge result-hit">命中</span></td><td>下一次要用收盤是否重返 50MA 判斷修復，不把盤中反彈當成守線。</td></tr>
+<tr><td>QQQ／SMH</td><td>未收回 20MA 前不提高科技與晶片曝險。</td><td>QQQ 收 691.96，低於 20MA 717.25／50MA 716.99；SMH 收 580.17，仍低於 20／50MA。</td><td class="result-cell"><span class="result-badge result-hit">命中</span></td><td>維持科技低於基準，等兩者同步收復短中期均線。</td></tr>
+<tr><td>GOOGL／TSLA 缺口</td><td>缺口未收窄前不抄底，先看開盤承接。</td><td>GOOGL 收 -7.13%、TSLA -14.52%；XLC -3.50%、XLY -4.61%，缺口壓力擴大。</td><td class="result-cell"><span class="result-badge result-hit">命中</span></td><td>財報後先對帳價格，再看 AI capex、毛利與自由現金流敘事。</td></tr>
+<tr><td>油價／能源</td><td>能源只持有不追價；USO 跳空若延續，壓縮長久期科技。</td><td>USO 收 139.49、+5.93%，高於週度 +1SD 132.41；但 XLE 僅 +0.30%，XOP／OIH 分別 -0.50%／-1.40%。</td><td class="result-cell"><span class="result-badge result-hit">命中</span></td><td>油價風險命中，但能源股擴散不足；不追所有週期股。</td></tr>
+<tr><td>廣度確認</td><td>Stockbee 5D／10D ratio 回 1 以上，且科技 MA breadth 改善才轉攻擊。</td><td>7/23 Stockbee 5D／10D 為 0.97／0.80，4% 上漲／下跌 137／319，T2108 降至 46.66。</td><td class="result-cell"><span class="result-badge result-hit">命中</span></td><td>廣度仍偏空；MA breadth 主表最新停在 7/22，須等更新後再判讀。</td></tr>
+<tr><td>VIX &gt;20</td><td>VIX 現貨高於 20 時再降低成長股與小盤曝險。</td><td>VIX 收 18.70、+12.38%，波動升溫但未越過 20。</td><td class="result-cell"><span class="result-badge result-not-triggered">未觸發</span></td><td>保留 20 門檻；本日壓力主要來自油價、利率與權重科技。</td></tr>
+<tr><td>INTC 盤後事件</td><td>SMH 未收回 20MA 時，避免在 INTC 財報前放大無保護單股風險。</td><td>SMH 正股仍弱；INTC 財報優於預期並在延長交易上漲約 10%。</td><td class="result-cell"><span class="result-badge result-partial">部分觸發</span></td><td>風險管理有效，但事件方向偏多；需等隔日 SMH／設備鏈價格確認。</td></tr>
+<tr><td>反向失效條件</td><td>QQQ／SMH 收回 20MA、GOOGL／TSLA 缺口收斂、USO 回吐，才降低防守。</td><td>三項均未成立：科技未過線、缺口擴大、USO 續漲。</td><td class="result-cell"><span class="result-badge result-not-triggered">未觸發</span></td><td>維持防守，直到至少兩項同步改善。</td></tr></tbody>
+        </table>
+      </div>
+      <p class="section-summary">本段結論：6 項命中、1 項部分觸發、0 項失誤、2 項未觸發。最重要的是沒有把財報低開當成可直接承接，也沒有因能源走強而提高整體風險。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Major ETF technicals</div>
+      <h2>指數與風格收盤</h2>
+      <div class="table-scroll">
+        <table class="index-summary-table">
+          <thead><tr><th>ETF</th><th class="num">最新</th><th class="num">1日</th><th class="num">5日</th><th class="num">1月</th><th>Above MA（20/50/200）</th><th class="num">RSI</th><th>判斷</th></tr></thead>
+          <tbody><tr><td>VOO</td><td class="num">678.61</td><td class="num">-1.23%</td><td class="num">-1.67%</td><td class="num">+0.34%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>44.53</span></td><td>與 SPY 同步跌破 20／50MA，核心大盤轉入防守。</td></tr>
+<tr><td>SPY</td><td class="num">738.18</td><td class="num">-1.23%</td><td class="num">-1.67%</td><td class="num">+0.63%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>44.71</span></td><td>跌破 20／50MA；核心指數由守線轉為防守。</td></tr>
+<tr><td>QQQ</td><td class="num">691.96</td><td class="num">-1.90%</td><td class="num">-0.48%</td><td class="num">-2.63%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>46.71</span></td><td>權重科技財報壓力延續，未完成任何升級。</td></tr>
+<tr><td>QQQE</td><td class="num">116.17</td><td class="num">-0.96%</td><td class="num">-0.54%</td><td class="num">-2.11%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>45.22</span></td><td>等權 Nasdaq 也弱，科技壓力不只集中在兩檔權重股。</td></tr>
+<tr><td>RSP</td><td class="num">211.92</td><td class="num">-0.37%</td><td class="num">-0.68%</td><td class="num">+0.73%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:53%"></b></i>52.94</span></td><td>明顯優於 SPY，顯示防守輪動而非全面撤退。</td></tr>
+<tr><td>DIA</td><td class="num">516.26</td><td class="num">-1.00%</td><td class="num">-0.87%</td><td class="num">-0.44%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:53%"></b></i>53.27</span></td><td>守 50／200MA，價值與工業股提供相對支撐。</td></tr>
+<tr><td>IWM</td><td class="num">292.09</td><td class="num">-0.58%</td><td class="num">-0.66%</td><td class="num">-1.55%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:50%"></b></i>49.86</span></td><td>跌幅小於 SPY／QQQ，但短線動能仍不足。</td></tr>
+<tr><td>SPYG</td><td class="num">115.65</td><td class="num">-1.72%</td><td class="num">-1.97%</td><td class="num">-0.03%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>45.24</span></td><td>成長風格承壓。</td></tr>
+<tr><td>SPYV</td><td class="num">61.39</td><td class="num">-0.66%</td><td class="num">-1.37%</td><td class="num">+1.37%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>46.61</span></td><td>價值相對勝出，仍保留中期均線結構。</td></tr>
+<tr><td>IJT</td><td class="num">171.73</td><td class="num">-0.25%</td><td class="num">-1.35%</td><td class="num">+0.66%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:38%"></b></i>38.03</span></td><td>小型成長相對抗跌，但 RSI 偏弱。</td></tr>
+<tr><td>SMH</td><td class="num">580.17</td><td class="num">-1.10%</td><td class="num">+1.98%</td><td class="num">-6.70%</td><td class="ma-cell"><span class="ma"><b class="dn">20<i>▼</i></b><b class="dn">50<i>▼</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.00</span></td><td>未收回 20／50MA；INTC 盤後利多尚待隔日確認。</td></tr>
+<tr><td>VIX</td><td class="num">18.70</td><td class="num">+12.38%</td><td class="num">+11.78%</td><td class="num">+1.41%</td><td class="ma-cell"><span class="ma"><b class="up">20<i>▲</i></b><b class="up">50<i>▲</i></b><b class="up">200<i>▲</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:53%"></b></i>53.24</span></td><td>波動升溫但未越過 20，尚非恐慌性清算。</td></tr>
+<tr><td>VIXY</td><td class="num">21.78</td><td class="num">+5.12%</td><td class="num">+0.60%</td><td class="num">-4.93%</td><td class="ma-cell"><span class="ma"><b class="up">20<i>▲</i></b><b class="dn">50<i>▼</i></b><b class="dn">200<i>▼</i></b></span></td><td class="num"><span class="rsi"><i><b style="width:43%"></b></i>42.54</span></td><td>波動代理升溫；VIX 現貨 18.70，尚未越過 20。</td></tr></tbody>
+        </table>
+      </div>
+      <p class="section-summary">本段結論：SPY／QQQ／QQQE／SMH 同在 20／50MA 下方；RSP、DIA、IWM、SPYV 仍守 50／200MA。這是成長領跌、等權與價值相對防守的結構。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Sector and thematic ETF</div>
+      <h2>板塊與主題 ETF</h2>
+      <div class="chart">
+        <div class="chart-title">7/23 板塊日變化</div>
+        <div class="bar-row"><span class="lbl">XLI</span><span class="val pos">+1.73%</span><span class="bar-track" style="--zero:50%"><span class="b pos" style="width:17%"></span></span></div>
+        <div class="bar-row"><span class="lbl">XLV</span><span class="val pos">+1.26%</span><span class="bar-track" style="--zero:50%"><span class="b pos" style="width:12%"></span></span></div>
+        <div class="bar-row"><span class="lbl">XLC</span><span class="val neg">-3.50%</span><span class="bar-track" style="--zero:50%"><span class="b neg" style="width:34%"></span></span></div>
+        <div class="bar-row"><span class="lbl">XLY</span><span class="val neg">-4.61%</span><span class="bar-track" style="--zero:50%"><span class="b neg" style="width:45%"></span></span></div>
+      </div>
+
+      <h3>S&amp;P 500 Sector ETF</h3>
+      <div class="table-scroll">
+        <table class="sector-summary-table postmarket-sector-table">
+          <thead><tr><th>ETF</th><th class="num">最新</th><th class="etf-momentum-head"><span>動能</span><div><small>1日</small><small>5日</small><small>1月</small></div></th><th class="ma-heading">Above MA</th><th class="num">RSI</th><th>判斷</th></tr></thead>
+          <tbody><tr><td class="etf-symbol">XLE</td><td class="num">59.38</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+0.30%</strong></span><span><strong class="up">+4.14%</strong></span><span><strong class="up">+9.03%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi hot"><i><b style="width:85%"></b></i>85.00</span></td><td>能源過熱；油價強但板塊未全面跟漲。</td></tr>
+<tr><td class="etf-symbol">XLU</td><td class="num">46.19</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+0.57%</strong></span><span><strong class="up">+1.58%</strong></span><span><strong class="up">+2.49%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:55%"></b></i>54.68</span></td><td>公用事業承接防守資金。</td></tr>
+<tr><td class="etf-symbol">XLRE</td><td class="num">44.95</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.13%</strong></span><span><strong class="dn">-1.12%</strong></span><span><strong class="up">+0.69%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:53%"></b></i>53.38</span></td><td>結構完整，但當日沒有明顯避險溢價。</td></tr>
+<tr><td class="etf-symbol">XLF</td><td class="num">55.83</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.39%</strong></span><span><strong class="dn">-1.62%</strong></span><span><strong class="up">+3.62%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:52%"></b></i>52.32</span></td><td>守住中期趨勢。</td></tr>
+<tr><td class="etf-symbol">XLK</td><td class="num">178.45</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.01%</strong></span><span><strong class="up">+0.52%</strong></span><span><strong class="dn">-3.12%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.06</span></td><td>科技三線下方，趨勢未修復。</td></tr>
+<tr><td class="etf-symbol">XLV</td><td class="num">161.44</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+1.26%</strong></span><span><strong class="dn">-0.22%</strong></span><span><strong class="up">+6.08%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>44.64</span></td><td>醫療領漲，防守輪動明確。</td></tr>
+<tr><td class="etf-symbol">XLI</td><td class="num">181.94</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+1.73%</strong></span><span><strong class="up">+0.99%</strong></span><span><strong class="up">+2.13%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:44%"></b></i>43.94</span></td><td>工業領漲，LMT／RTX 提供支撐。</td></tr>
+<tr><td class="etf-symbol">XLP</td><td class="num">83.21</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.39%</strong></span><span><strong class="dn">-3.03%</strong></span><span><strong class="dn">-0.61%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:42%"></b></i>42.26</span></td><td>必需消費未能承接防守資金。</td></tr>
+<tr><td class="etf-symbol">XLC</td><td class="num">105.38</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-3.50%</strong></span><span><strong class="dn">-6.45%</strong></span><span><strong class="dn">-1.76%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:36%"></b></i>36.46</span></td><td>Alphabet 拖累，跌破主要均線。</td></tr>
+<tr><td class="etf-symbol">XLB</td><td class="num">50.29</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.04%</strong></span><span><strong class="dn">-1.18%</strong></span><span><strong class="dn">-1.14%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:35%"></b></i>34.81</span></td><td>原物料未跟隨油價。</td></tr>
+<tr><td class="etf-symbol">XLY</td><td class="num">108.76</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-4.61%</strong></span><span><strong class="dn">-7.31%</strong></span><span><strong class="dn">-4.40%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi cold"><i><b style="width:26%"></b></i>26.00</span></td><td>Tesla 拖累且跌破週度 -2SD，屬最弱板塊。</td></tr></tbody>
+        </table>
+      </div>
+
+      <h3>Thematic Sector ETF</h3>
+      <div class="table-scroll etf-table-scroll">
+        <table class="etf-overview-table report-data-table report-cols-5 postmarket-theme-table">
+          <thead><tr><th>ETF</th><th class="etf-momentum-head"><span>動能</span><div><small>1日</small><small>5日</small><small>1月</small></div></th><th class="ma-heading">Above MA</th><th class="num">RSI</th><th>判斷</th></tr></thead>
+          <tbody><tr><td class="etf-symbol">XOP</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.50%</strong></span><span><strong class="up">+5.57%</strong></span><span><strong class="up">+13.30%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi hot"><i><b style="width:82%"></b></i>82.00</span></td><td>油氣生產仍過熱，當日未跟上原油跳升。</td></tr>
+<tr><td class="etf-symbol">OIH</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.40%</strong></span><span><strong class="up">+1.58%</strong></span><span><strong class="dn">-0.40%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:68%"></b></i>68.00</span></td><td>油服回落，能源追價擴散不足。</td></tr>
+<tr><td class="etf-symbol">IBIT</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.85%</strong></span><span><strong class="up">+0.71%</strong></span><span><strong class="up">+3.80%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:60%"></b></i>60.00</span></td><td>加密代理回落，高 beta 沒有避險效果。</td></tr>
+<tr><td class="etf-symbol">WGMI</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+1.90%</strong></span><span><strong class="up">+21.09%</strong></span><span><strong class="dn">-17.90%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:58%"></b></i>58.00</span></td><td>礦企逆勢反彈，但月線仍弱。</td></tr>
+<tr><td class="etf-symbol">COPX</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-2.00%</strong></span><span><strong class="up">+4.97%</strong></span><span><strong class="dn">-1.40%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-up"><span class="ma-period">20MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:53%"></b></i>53.00</span></td><td>銅礦下跌，商品並非全面 risk-on。</td></tr>
+<tr><td class="etf-symbol">KRE</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.60%</strong></span><span><strong class="dn">-3.55%</strong></span><span><strong class="up">+2.80%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:51%"></b></i>51.00</span></td><td>區域銀行守中期均線。</td></tr>
+<tr><td class="etf-symbol">SMH</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.10%</strong></span><span><strong class="up">+1.98%</strong></span><span><strong class="dn">-6.70%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:47%"></b></i>47.00</span></td><td>晶片仍在修復區，未因 INTC 盤後利多立即升級。</td></tr>
+<tr><td class="etf-symbol">GLD</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-2.00%</strong></span><span><strong class="up">+1.80%</strong></span><span><strong class="dn">-1.50%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:45%"></b></i>45.00</span></td><td>殖利率與美元壓力使黃金回落。</td></tr>
+<tr><td class="etf-symbol">CIBR</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.80%</strong></span><span><strong class="dn">-4.54%</strong></span><span><strong class="up">+4.20%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:42%"></b></i>42.00</span></td><td>資安回落，但中期結構尚在。</td></tr>
+<tr><td class="etf-symbol">AIQ</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.30%</strong></span><span><strong class="up">+0.08%</strong></span><span><strong class="dn">-6.30%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:42%"></b></i>42.00</span></td><td>AI 主題月線弱，估值壓力延續。</td></tr>
+<tr><td class="etf-symbol">URA</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+0.40%</strong></span><span><strong class="up">+5.17%</strong></span><span><strong class="dn">-9.80%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:42%"></b></i>42.00</span></td><td>鈾礦小幅反彈，趨勢仍弱。</td></tr>
+<tr><td class="etf-symbol">SLV</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-3.45%</strong></span><span><strong class="up">+3.31%</strong></span><span><strong class="dn">-11.63%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:41%"></b></i>41.00</span></td><td>白銀跌幅擴大，貴金屬同步承壓。</td></tr>
+<tr><td class="etf-symbol">TAN</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-1.60%</strong></span><span><strong class="dn">-2.44%</strong></span><span><strong class="dn">-9.80%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:38%"></b></i>38.00</span></td><td>太陽能維持弱勢。</td></tr>
+<tr><td class="etf-symbol">IBB</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+1.10%</strong></span><span><strong class="dn">-0.24%</strong></span><span><strong class="up">+6.10%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:38%"></b></i>38.00</span></td><td>生技逆勢上漲，防守成長相對強。</td></tr>
+<tr><td class="etf-symbol">IHI</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+0.10%</strong></span><span><strong class="dn">-5.25%</strong></span><span><strong class="up">+0.70%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:37%"></b></i>37.00</span></td><td>醫材持平，未跟足 XLV。</td></tr>
+<tr><td class="etf-symbol">XBI</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="up">+0.10%</strong></span><span><strong class="up">+0.15%</strong></span><span><strong class="up">+3.50%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-up"><span class="ma-period">200MA</span><span class="ma-arrow">▲</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:37%"></b></i>37.00</span></td><td>生技相對抗跌。</td></tr>
+<tr><td class="etf-symbol">XHB</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.20%</strong></span><span><strong class="dn">-3.71%</strong></span><span><strong class="dn">-1.40%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-up"><span class="ma-period">50MA</span><span class="ma-arrow">▲</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:36%"></b></i>36.00</span></td><td>房建小跌，利率上升限制反彈。</td></tr>
+<tr><td class="etf-symbol">ARKK</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-2.90%</strong></span><span><strong class="dn">-3.71%</strong></span><span><strong class="dn">-3.70%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi"><i><b style="width:34%"></b></i>34.00</span></td><td>高 beta 成長續弱。</td></tr>
+<tr><td class="etf-symbol">ITB</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.90%</strong></span><span><strong class="dn">-5.60%</strong></span><span><strong class="dn">-2.90%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi cold"><i><b style="width:30%"></b></i>30.00</span></td><td>房建跌破主要均線。</td></tr>
+<tr><td class="etf-symbol">IGV</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-2.20%</strong></span><span><strong class="dn">-7.08%</strong></span><span><strong class="dn">-0.30%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi cold"><i><b style="width:29%"></b></i>29.00</span></td><td>軟體跌深，RSI 接近超賣。</td></tr>
+<tr><td class="etf-symbol">LIT</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="">+0.00%</strong></span><span><strong class="up">+0.20%</strong></span><span><strong class="dn">-12.00%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi cold"><i><b style="width:26%"></b></i>26.00</span></td><td>鋰電超賣但尚未反轉。</td></tr>
+<tr><td class="etf-symbol">UFO</td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="dn">-0.10%</strong></span><span><strong class="up">+0.06%</strong></span><span><strong class="dn">-9.20%</strong></span></div></td><td class="ma-cell"><div class="ma-state-group"><span class="ma-state ma-down"><span class="ma-period">20MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">50MA</span><span class="ma-arrow">▼</span></span><span class="ma-state ma-down"><span class="ma-period">200MA</span><span class="ma-arrow">▼</span></span></div></td><td class="num"><span class="rsi cold"><i><b style="width:13%"></b></i>13.00</span></td><td>太空主題極度超賣，仍缺趨勢確認。</td></tr></tbody>
+        </table>
+      </div>
+      <p class="section-summary">本段結論：領先集中在工業、醫療、公用事業與能源；最弱是可選消費、通訊、軟體與高 beta 成長。能源 ETF 本身的擴散弱於油價，不能把 USO 大漲解讀成全面週期 risk-on。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Market breadth</div>
+      <h2>市場廣度與 Stockbee</h2>
+      <div class="table-scroll">
+        <table class="breadth-summary-table">
+          <thead><tr><th>指標</th><th class="num">最新</th><th>5日趨勢</th><th>判斷</th></tr></thead>
+          <tbody><tr><td>S&amp;P 500 &gt; 20MA <small>主表最新 7/22</small></td><td><span class="pct"><i><b style="width:45.52%"></b></i><em>45.52%</em></span></td><td>7/16 64.61 → 7/22 45.52</td><td>5日趨勢明顯惡化。</td></tr>
+<tr><td>S&amp;P 500 &gt; 50MA <small>主表最新 7/22</small></td><td><span class="pct"><i><b style="width:62.22%"></b></i><em>62.22%</em></span></td><td>7/16 67.19 → 7/22 62.22</td><td>中期仍高於 50%，但未抵銷短線轉弱。</td></tr>
+<tr><td>Nasdaq 100 &gt; 20MA <small>主表最新 7/22</small></td><td><span class="pct"><i><b style="width:32.03%"></b></i><em>32.03%</em></span></td><td>7/16 49.51 → 7/22 32.03</td><td>科技短線廣度最弱。</td></tr>
+<tr><td>Nasdaq 100 &gt; 50MA <small>主表最新 7/22</small></td><td><span class="pct"><i><b style="width:46.60%"></b></i><em>46.60%</em></span></td><td>7/16 51.45 → 7/22 46.60</td><td>中期也跌回 50% 下方。</td></tr>
+<tr><td>Russell 2000 &gt; 20MA <small>主表最新 7/22</small></td><td><span class="pct"><i><b style="width:41.16%"></b></i><em>41.16%</em></span></td><td>7/16 60.26 → 7/22 41.16</td><td>小盤短線修復消退。</td></tr>
+<tr><td>Russell 2000 &gt; 50MA <small>主表最新 7/22</small></td><td><span class="pct"><i><b style="width:60.55%"></b></i><em>60.55%</em></span></td><td>7/16 64.95 → 7/22 60.55</td><td>中期仍有底盤。</td></tr>
+<tr><td>T2108 <small>Stockbee 7/23</small></td><td class="num"><span class="pct"><i><b style="width:46.66%"></b></i><em>46.66%</em></span></td><td>7/22 51.44 → 7/23 46.66</td><td>跌回 50 下方，個股中期參與度轉弱。</td></tr>
+<tr><td>5日 breadth ratio</td><td class="num"><span class="breadth-ratio breadth-ratio-warn">0.97</span></td><td>7/22 0.91 → 7/23 0.97</td><td>接近 1 但未取得多方優勢。</td></tr>
+<tr><td>10日 breadth ratio</td><td class="num"><span class="breadth-ratio breadth-ratio-warn">0.80</span></td><td>7/22 0.92 → 7/23 0.80</td><td>中短線動能繼續惡化。</td></tr>
+<tr><td>4% 上漲／下跌</td><td class="num"><span class="num-pair"><b class="up">137</b> / <b class="dn">319</b></span></td><td>7/22 164／242 → 7/23 137／319</td><td>賣壓擴大，但未達極端恐慌。</td></tr>
+<tr><td>25% 季度強股／弱股</td><td class="num"><span class="num-pair"><b>1,079</b> / <b>1,233</b></span></td><td>7/22 1,156／1,183 → 7/23 1,079／1,233</td><td>Primary Breadth 空方優勢擴大。</td></tr>
+<tr><td>34／13 Bull／Bear</td><td class="num"><span class="num-pair"><b>1,438</b> / <b>1,722</b></span></td><td>7/22 1,670／1,609 → 7/23 1,438／1,722</td><td>中期底盤由微多轉為偏空。</td></tr></tbody>
+        </table>
+      </div>
+      <ol>
+        <li>MA Breadth：主表最新仍是 7/22，SPX、NDX、IWM 的 20MA 廣度均較 7/16 下滑；NDX &gt;20MA 只有 32.03%。</li>
+        <li>Primary Breadth：7/23 的 25%+ Quarter 1,079 低於 25%- Quarter 1,233，空方優勢擴大。</li>
+        <li>10 Day Ratio：0.80，低於 1 但高於 0.5；屬中短線偏弱，未到極端超賣。</li>
+        <li>4% plus/down Daily：137／319，賣壓明顯高於買盤，但下跌家數尚未達恐慌級別。</li>
+        <li>50% plus/down Month：17／35，強勢股降溫、弱勢股增加；兩端不再同時過熱。</li>
+        <li>34／13 Bull-Bear：1,438／1,722，T2108 46.66；中期底盤轉空，但未出現全面清算。</li>
+      </ol>
+      <p class="section-summary">本段結論：5日趨勢與 7/23 Stockbee 都支持「市場廣度惡化」。結論是維持防守，不是因單日下跌直接追空。</p>
+    </section>
+
+    <section>
+      <div class="kicker">50MA ATR extension</div>
+      <h2>50MA ATR 延伸</h2>
+      <div class="table-scroll">
+        <table class="atr-summary-table">
+          <thead><tr><th>ETF</th><th class="num">價格</th><th class="num">50MA</th><th class="num">ATR(14)</th><th class="num">距50MA ATR</th><th>趨勢</th><th>判斷</th></tr></thead>
+          <tbody><tr><td>SPY</td><td class="num">738.18</td><td class="num">745.05</td><td class="num">6.31</td><td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>-1.09</span></td><td>跌破 50MA</td><td>核心防守線失守，反彈先看收復均線。</td></tr>
+<tr><td>QQQ</td><td class="num">691.96</td><td class="num">716.99</td><td class="num">13.39</td><td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>-1.87</span></td><td>下降</td><td>低於 50MA 近 2 ATR，成長風格承壓。</td></tr>
+<tr><td>QQQE</td><td class="num">116.17</td><td class="num">117.79</td><td class="num">1.41</td><td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>-1.15</span></td><td>下降</td><td>等權科技同樣低於 50MA。</td></tr>
+<tr><td>RSP</td><td class="num">211.92</td><td class="num">209.33</td><td class="num">1.89</td><td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>+1.37</span></td><td>相對強</td><td>等權大盤保留 50MA 緩衝。</td></tr>
+<tr><td>DIA</td><td class="num">516.26</td><td class="num">512.52</td><td class="num">5.12</td><td class="num"><span class="atr l1"><i><b></b><b></b><b></b><b></b></i>+0.73</span></td><td>橫盤偏強</td><td>價值／工業相對穩。</td></tr>
+<tr><td>IWM</td><td class="num">292.09</td><td class="num">290.40</td><td class="num">3.86</td><td class="num"><span class="atr l1"><i><b></b><b></b><b></b><b></b></i>+0.44</span></td><td>橫盤</td><td>小盤仍守 50MA，但緩衝有限。</td></tr>
+<tr><td>SMH</td><td class="num">580.17</td><td class="num">598.88</td><td class="num">12.90</td><td class="num"><span class="atr l2"><i><b></b><b></b><b></b><b></b></i>-1.45</span></td><td>下降</td><td>晶片低於 50MA；盤後 INTC 利多待確認。</td></tr></tbody>
+        </table>
+      </div>
+      <p class="section-summary">本段結論：QQQ 已低於 50MA 近 2 ATR，SPY 與 SMH 也失去均線緩衝；RSP、DIA、IWM 仍在 50MA 上方，說明弱勢集中於權重成長。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Macro / FX / Commodities</div>
+      <h2>主要外匯與商品期貨</h2>
+      <div class="table-scroll">
+        <table class="macro-asset-table">
+          <thead><tr><th>資產</th><th class="num">最新</th><th class="num">1日</th><th class="num">5日</th><th class="num">1月</th><th>對美股含義</th></tr></thead>
+          <tbody>
+            <tr><td>DXY</td><td class="num">101.39</td><td class="num">-0.03%</td><td class="num">+0.64%</td><td class="num">-0.01%</td><td>美元維持 101 上方，未提供明顯估值寬鬆。</td></tr>
+            <tr><td>EUR/USD</td><td class="num">1.1387</td><td class="num">-0.22%</td><td class="num">-0.50%</td><td class="num">+0.06%</td><td>歐元短線偏弱，美元壓力未解除。</td></tr>
+            <tr><td>GBP/USD</td><td class="num">1.3319</td><td class="num">-0.42%</td><td class="num">-1.18%</td><td class="num">+0.90%</td><td>英鎊續弱，風險偏好沒有外匯支撐。</td></tr>
+            <tr><td>USD/JPY</td><td class="num">163.77</td><td class="num">+0.42%</td><td class="num">+0.86%</td><td class="num">+1.35%</td><td>日圓偏弱與 carry 延續，長久期科技不是順風。</td></tr>
+            <tr><td>USO</td><td class="num">139.49</td><td class="num">+5.93%</td><td class="num">+16.92%</td><td class="num">+23.78%</td><td>站上週度 +1SD 132.41；再通膨與消費成本壓力升高。</td></tr>
+            <tr><td>GLD</td><td class="num">371.52</td><td class="num">-2.00%</td><td class="num">+1.80%</td><td class="num">-1.50%</td><td>殖利率上行壓住黃金，避險資金沒有全面湧入。</td></tr>
+            <tr><td>SLV</td><td class="num">52.06</td><td class="num">-3.45%</td><td class="num">+3.31%</td><td class="num">-11.63%</td><td>白銀回落，商品並非全面擴張。</td></tr>
+            <tr><td>CPER</td><td class="num">38.24</td><td class="num">-2.57%</td><td class="num">+0.47%</td><td class="num">-1.47%</td><td>銅價走弱，油價是單一主導商品訊號。</td></tr>
+            <tr><td>IBIT</td><td class="num">36.65</td><td class="num">-1.85%</td><td class="num">+0.71%</td><td class="num">+0.41%</td><td>加密代理回落，與高 beta 風險下降一致。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-summary">本段結論：外匯變動有限，商品端由原油單點驅動。USO 5日與1月漲幅進一步擴大，而 GLD、SLV、CPER 同日下跌；這是油價／通膨壓力，不是商品全面 risk-on。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Events and earnings</div>
+      <h2>宏觀數據與財報對帳</h2>
+      <div class="table-scroll">
+        <table class="event-recon-table">
+          <thead><tr><th>事件</th><th>Actual／收盤事實</th><th>Forecast／盤前假設</th><th>Previous</th><th>判斷</th></tr></thead>
+          <tbody>
+            <tr><td>初請失業金</td><td>187K</td><td>212K</td><td>208K</td><td>明顯低於預期，就業韌性降低 Fed 立即寬鬆的必要性。</td></tr>
+            <tr><td>續請失業金</td><td>1.796M</td><td>1.807M</td><td>1.805M</td><td>沒有顯示失業市場快速惡化，殖利率較難因就業轉弱而回落。</td></tr>
+            <tr><td>美國 2Y／10Y</td><td>4.37%／4.71%</td><td>觀察長端是否續升</td><td>4.31%／4.67%</td><td>2Y +6bp、10Y +4bp，成長估值壓力延續。</td></tr>
+            <tr><td>美國 20Y／30Y</td><td>5.20%／5.17%</td><td>長端高位</td><td>5.17%／5.15%</td><td>期限溢價仍高，TLT 沒有提供估值緩衝。</td></tr>
+            <tr><td>Brent 原油</td><td>約 100.69 美元，+7%</td><td>USO 跳空若延續則維持再通膨壓力</td><td>前收附近</td><td>油價風險線命中，航空與消費成本壓力上升。</td></tr>
+            <tr><td>Alphabet</td><td>GOOGL -7.13%</td><td>AI capex／FCF 壓力可能擴大缺口</td><td>盤前 -6.16%</td><td>缺口進一步擴大；財報 beat 無法抵銷資本支出疑慮。</td></tr>
+            <tr><td>Tesla</td><td>TSLA -14.52%</td><td>毛利與 AI／robotaxi 支出壓住高 beta</td><td>盤前 -8.69%</td><td>盤前防守判斷命中，XLY 被單一權重拖累。</td></tr>
+            <tr><td>Intel Q2</td><td>營收 16.1B；調整 EPS 0.42；盤後約 +10%</td><td>財報前避免放大無保護風險</td><td>市場 EPS 預期約 0.21</td><td>數字與 Q3 指引優於預期；對晶片鏈偏多，但需隔日價格確認。</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="section-summary">本段結論：就業、長端殖利率與油價都沒有提供估值寬鬆；GOOGL／TSLA 的價格確認盤前風險。INTC 是盤後正面例外，不能在隔日開盤前直接外推成整個半導體趨勢反轉。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Next session</div>
+      <h2>下一交易日計畫</h2>
+      <ol>
+        <li>SPY：先看能否收復更新後 50MA 約 745.05；未收復前，核心倉維持防守。</li>
+        <li>QQQ：716.99／717.25 是 50／20MA 密集區；未站回前不提高科技 beta。</li>
+        <li>SMH：先收復 50MA 約 598.88，再看 INTC 利多能否擴散到設備、記憶體與 AI 晶片。</li>
+        <li>油價：USO 139.49 已高於週度 +1SD 132.41，不追價；若跌回 132.41 下方，再評估再通膨壓力是否降級。</li>
+        <li>利率：10Y 4.71% 是估值壓力線；回到 4.67% 下方並配合 TLT 止跌，才算成長股外部環境改善。</li>
+        <li>廣度：Stockbee 5D／10D 需同回 1 以上、T2108 回 50 以上；`Maket breath` 更新到 7/23 後再確認 NDX 20／50MA 廣度。</li>
+        <li>波動：VIX 20 仍是風險升級門檻；若越過 20 且 SPY／IWM 同失去承接，再降低總 beta。</li>
+      </ol>
+      <p class="section-summary">本段結論：只有「SPY／QQQ 收復均線、USO／10Y 回落、Stockbee 廣度轉強」至少兩項同步成立，才把風險由高降到中等。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Cross-validation</div>
+      <h2>交叉驗證總結</h2>
+      <p>互相確認：SPY／QQQ／SMH 失守短中期均線、GOOGL／TSLA 缺口擴大、XLC／XLY 領跌，以及 Stockbee 4% 下跌家數與 Primary Breadth 轉弱，共同確認高 beta 風險下降。</p>
+      <p>互相分歧：RSP、IWM 相對抗跌，XLI／XLV／XLU／XLE 收紅，VIX 也未越過 20；因此更精準的定義是「權重成長領跌、資金轉向防守」，不是全面恐慌。</p>
+      <p>外部確認：USO、Brent 與美債殖利率同向上行，說明油價／再通膨與估值壓力是科技財報之外的第二條主線。</p>
+    </section>
+
+    <section>
+      <div class="kicker">Quality assurance</div>
+      <h2>QA 審查</h2>
+      <div class="table-scroll">
+        <table class="qa-summary-table">
+          <thead><tr><th>檢查項目</th><th>QA 結果</th><th>處理</th></tr></thead>
+          <tbody>
+            <tr><td>對帳計數</td><td>共 9 項：6 命中 + 1 部分觸發 + 0 失誤 + 2 未觸發，與頁首一致。</td><td>通過</td></tr>
+            <tr><td>時點一致性</td><td>Market／Macro／Thematic Sectors 為 7/23 收盤更新；Stockbee 為 7/23；`Maket breath` 最新為 7/22。</td><td>MA 廣度逐列標示日期，未冒充 7/23。</td></tr>
+            <tr><td>核心數值</td><td>SPY 738.18、QQQ 691.96、USO 139.49、Stockbee 0.97／0.80 在全文一致。</td><td>通過</td></tr>
+            <tr><td>欄目要求</td><td>已確認先前刪除的章節與多餘欄位均未重新出現。</td><td>通過</td></tr>
+            <tr><td>判斷邏輯</td><td>Risk-off 與防守輪動分開描述；VIX 未過 20，未誤判成恐慌。</td><td>通過</td></tr>
+            <tr><td>財報時點</td><td>INTC 盤後價格與正股收盤分開，未混入日間板塊報酬。</td><td>通過</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="source-line">資料限制：`Maket breath` 的 MA 廣度最新停在 7/22；其餘 7/23 收盤表格按來源日期標示。</p>
+      <p class="source-line">資料來源：使用者 Google Sheets（Market、Thematic Sectors、Macro、Maket breath、Weekly Expected Move）、<a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit?gid=1082103394#gid=1082103394">Stockbee 2026</a>、長橋日線歷史快照、<a href="https://apnews.com/article/stocks-markets-iran-trump-ai-inflation-45b9165d6c518f5bea668b6ba7a89838">AP 7/23 收盤</a>、<a href="https://www.investing.com/news/stock-market-news/us-stock-futures-edge-higher-tesla-alphabet-dip-after-q2-earnings-4807348">Reuters 7/23 收盤</a>、<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&amp;type=daily_treasury_yield_curve">U.S. Treasury</a>、<a href="https://www.intc.com/news-events/press-releases/detail/1776/intel-reports-second-quarter-2026-financial-results">Intel Q2</a>。</p>
+      <p>本報告不構成投資建議。</p>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('.num, .trend').forEach((el) => {
+      const text = el.textContent.trim();
+      if (/^\+/.test(text)) el.classList.add('up');
+      if (/^-/.test(text)) el.classList.add('dn');
+    });
+  </script>
+  <script src="report-runtime.js?v=20260723-postmarket"></script>
+</body>
+</html>

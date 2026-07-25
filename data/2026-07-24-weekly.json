@@ -1,0 +1,234 @@
+{
+  "report_title": "2026-07-24 美股一週總結",
+  "report_type": "weekly",
+  "week": "2026-07-20–2026-07-24",
+  "source_dates": {
+    "longbridge": "2026-07-24",
+    "market_watch_sheet": "2026-07-24",
+    "market_breadth_sheet": "2026-07-24",
+    "stockbee_sheet": "2026-07-24"
+  },
+  "longbridge": {
+    "success": 58,
+    "errors": []
+  },
+  "benchmarks": {
+    "SPY": {
+      "close": 738.93,
+      "five_day_pct": -0.5865812805230797,
+      "one_month_pct": 0.7760078555452354,
+      "ma20": 746.153,
+      "ma50": 745.0680000000002,
+      "ma200": 698.5427000000003,
+      "rsi14": 39.092033209680245,
+      "atr14": 7.03357142857143,
+      "extension50atr": -0.87267187976037
+    },
+    "QQQ": {
+      "close": 684.23,
+      "five_day_pct": -1.5963643162239527,
+      "one_month_pct": -3.7136584953983864,
+      "ma20": 711.713,
+      "ma50": 718.2872,
+      "ma200": 643.1729,
+      "rsi14": 33.06416220486264,
+      "atr14": 13.147857142857138,
+      "extension50atr": -2.590323246590969
+    },
+    "QQQE": {
+      "close": 115.41,
+      "five_day_pct": -1.1900684931506866,
+      "one_month_pct": -2.755308392315481,
+      "ma20": 118.96849999999999,
+      "ma50": 118.32939999999996,
+      "ma200": 107.06245000000003,
+      "rsi14": 26.132404181184597,
+      "atr14": 1.402785714285713,
+      "extension50atr": -2.081144661133438
+    },
+    "RSP": {
+      "close": 213.57,
+      "five_day_pct": 0.09373388948774597,
+      "one_month_pct": 1.5163038311626575,
+      "ma20": 213.33149999999995,
+      "ma50": 210.06080000000003,
+      "ma200": 198.9636,
+      "rsi14": 44.8150833937636,
+      "atr14": 1.9809285714285718,
+      "extension50atr": 1.7714924458226478
+    },
+    "IWM": {
+      "close": 291.17,
+      "five_day_pct": -0.9760576792273157,
+      "one_month_pct": -1.8605278236543121,
+      "ma20": 295.86199999999997,
+      "ma50": 291.19100000000003,
+      "ma200": 264.65670000000006,
+      "rsi14": 36.33792859667729,
+      "atr14": 3.907285714285706,
+      "extension50atr": -0.005374574969840421
+    },
+    "DIA": {
+      "close": 518.76,
+      "five_day_pct": -0.39361763406999817,
+      "one_month_pct": 0.046285582041205586,
+      "ma20": 523.0035,
+      "ma50": 514.5624,
+      "ma200": 489.1149499999999,
+      "rsi14": 32.54237288135583,
+      "atr14": 5.127499999999998,
+      "extension50atr": 0.8186445636274925
+    },
+    "SMH": {
+      "close": 561.19,
+      "five_day_pct": 0.8373313208632105,
+      "one_month_pct": -9.32753829250952,
+      "ma20": 594.1535,
+      "ma50": 598.8785999999999,
+      "ma200": 445.68635,
+      "rsi14": 38.79735980458396,
+      "atr14": 24.662142857142832,
+      "extension50atr": -1.528196483911137
+    },
+    ".VIX": {
+      "close": 18.58,
+      "five_day_pct": -1.0122535961641033,
+      "one_month_pct": 13.292682926829258,
+      "ma20": 17.349499999999995,
+      "ma50": 17.458,
+      "ma200": null,
+      "rsi14": 60.57624736472241,
+      "atr14": 1.9378571428571427,
+      "extension50atr": 0.5789900479174346
+    },
+    "USO": {
+      "close": 136.69,
+      "five_day_pct": 10.269441755404962,
+      "one_month_pct": 28.60099727161538,
+      "ma20": 116.713,
+      "ma50": 125.3828,
+      "ma200": 98.84799999999996,
+      "rsi14": 82.91938110749186,
+      "atr14": 5.165357142857146,
+      "extension50atr": 2.189045149692316
+    },
+    "TLT": {
+      "close": 83.25,
+      "five_day_pct": -1.5026029342167457,
+      "one_month_pct": -4.7264820325017105,
+      "ma20": 84.70050000000002,
+      "ma50": 85.08099999999999,
+      "ma200": 87.42450000000002,
+      "rsi14": 20.899470899470757,
+      "atr14": 0.5050714285714284,
+      "extension50atr": -3.6252298119077717
+    }
+  },
+  "breadth": {
+    "spx_above20": 55.06,
+    "spx_above50": 65.2,
+    "ndx_above20": 32.03,
+    "ndx_above50": 39.8,
+    "iwm_above20": 39.79,
+    "iwm_above50": 56.51,
+    "t2108": 50.95,
+    "stockbee_5d_ratio": 0.84,
+    "stockbee_10d_ratio": 0.76,
+    "up4": 139,
+    "down4": 337,
+    "worsening_score": 9,
+    "worsening_score_max": 10,
+    "worsening_level": "High",
+    "worsening_components": {
+      "SPX": 1,
+      "NDX": 2,
+      "IWM": 2,
+      "T2108": 1,
+      "Stockbee": 3
+    }
+  },
+  "cross_asset": {
+    "dxy": 101.47,
+    "us10y": 4.71
+  },
+  "vix_risk": {
+    "score": 3,
+    "score_max": 5,
+    "level": "Intermediate",
+    "components": {
+      "Above20": 0,
+      "FiveDayUp": 0,
+      "OneMonthUp": 1,
+      "Above20MA": 1,
+      "Above50MA": 1
+    }
+  },
+  "market_risk": {
+    "score": 85,
+    "score_max": 100,
+    "level": "High Risk",
+    "components": [
+      {
+        "name": "三大指數技術",
+        "raw_score": 12,
+        "raw_max": 12,
+        "weight": 20,
+        "risk_points": 20,
+        "detail": "SPY 4/4、QQQ 4/4、IWM 4/4。"
+      },
+      {
+        "name": "市場廣度",
+        "raw_score": 9,
+        "raw_max": 10,
+        "weight": 20,
+        "risk_points": 18,
+        "detail": "三大指數 5 日廣度、T2108 與 Stockbee 綜合。"
+      },
+      {
+        "name": "VIX 波動",
+        "raw_score": 3,
+        "raw_max": 5,
+        "weight": 10,
+        "risk_points": 6,
+        "detail": "VIX 未過 20，但月線向上且位於 20／50MA 上方。"
+      },
+      {
+        "name": "板塊／主題動能",
+        "raw_score": 21,
+        "raw_max": 33,
+        "weight": 15,
+        "risk_points": 10,
+        "detail": "5 日下跌、低於 20MA、RSI<50 中至少兩項成立即列弱勢。"
+      },
+      {
+        "name": "50MA ATR 延伸",
+        "raw_score": 8,
+        "raw_max": 14,
+        "weight": 10,
+        "risk_points": 6,
+        "detail": "距 50MA 絕對值達 2 ATR 的標的占比。"
+      },
+      {
+        "name": "跨資產壓力",
+        "raw_score": 4,
+        "raw_max": 4,
+        "weight": 15,
+        "risk_points": 15,
+        "detail": "DXY、10Y、TLT 與 USO 四個利率／商品壓力訊號。"
+      },
+      {
+        "name": "宏觀／事件風險",
+        "raw_score": 3,
+        "raw_max": 3,
+        "weight": 10,
+        "risk_points": 10,
+        "detail": "下週 FOMC、PCE 與大型科技財報三項事件窗口。"
+      }
+    ]
+  },
+  "reconciliation": {
+    "triggered": 2,
+    "not_triggered": 7,
+    "misses": 0
+  }
+}

@@ -133,6 +133,57 @@ function validateTables(html, errors) {
   }
 }
 
+function hasClass(attributes, className) {
+  const match = String(attributes || "").match(/\bclass=(["'])([^"']*)\1/i);
+  if (!match) return false;
+  return match[2].split(/\s+/).includes(className);
+}
+
+function validateTableAlignment(html, errors) {
+  const tables = [...html.matchAll(/<table\b[^>]*class=(["'])([^"']*\breport-data-table\b[^"']*)\1[^>]*>[\s\S]*?<\/table>/gi)];
+  for (const tableMatch of tables) {
+    const table = tableMatch[0];
+    const section = sectionHeadingBefore(html, tableMatch.index);
+    const headerRow = table.match(/<thead\b[^>]*>[\s\S]*?<tr\b[^>]*>([\s\S]*?)<\/tr>[\s\S]*?<\/thead>/i);
+    const body = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
+    if (!headerRow || !body) continue;
+
+    const headers = getCells(headerRow[1], "th");
+    const rows = (body[1].match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || []).map((row) => getCells(row, "td"));
+    for (let index = 0; index < headers.length; index += 1) {
+      const cells = rows.map((row) => row[index]).filter(Boolean);
+      if (!cells.length) continue;
+      const numericCells = cells.filter((cell) => hasClass(cell.attributes, "num"));
+      const maCells = cells.filter((cell) => hasClass(cell.attributes, "ma-cell"));
+      const resultCells = cells.filter((cell) => hasClass(cell.attributes, "result-cell"));
+
+      if (numericCells.length >= Math.ceil(cells.length * 0.6) && !hasClass(headers[index].attributes, "num")) {
+        errors.push(`${section}: 「${headers[index].text}」內容靠右但表頭未使用 num 對齊類別。`);
+      }
+      if (hasClass(headers[index].attributes, "num") && numericCells.length !== cells.length) {
+        errors.push(`${section}: 「${headers[index].text}」表頭為 num，但有 ${cells.length - numericCells.length} 列未使用相同靠右對齊。`);
+      }
+      if (maCells.length && !hasClass(headers[index].attributes, "ma-heading")) {
+        errors.push(`${section}: 「${headers[index].text}」MA 內容置中，但表頭未使用 ma-heading。`);
+      }
+      if (resultCells.length && !hasClass(headers[index].attributes, "result-heading")) {
+        errors.push(`${section}: 「${headers[index].text}」結果內容置中，但表頭未使用 result-heading。`);
+      }
+    }
+  }
+
+  if (/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) {
+    const hasWeeklyMaRule = /\.flat-report\s+\.report-data-table\s+th\.ma-heading\s*\{[^}]*text-align\s*:\s*center/i.test(html);
+    const hasWeeklyMaCellRule = /\.flat-report\s+\.report-data-table\s+td\.ma-cell\s*\{[^}]*text-align\s*:\s*center/i.test(html);
+    if (!hasWeeklyMaRule) {
+      errors.push("Weekly report 必須提供 report-data-table 的 ma-heading 置中規則，避免共用 th 樣式覆蓋。");
+    }
+    if (!hasWeeklyMaCellRule) {
+      errors.push("Weekly report 必須提供 report-data-table 的 ma-cell 置中規則，避免共用 td 樣式覆蓋。");
+    }
+  }
+}
+
 function validateWeeklyRequiredSections(html, errors) {
   if (!/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) return;
   const visible = stripTags(stripBlocks(html));
@@ -207,6 +258,95 @@ function validateWeeklySpyBenchmark(html, errors) {
   }
 }
 
+function validateWeeklyIndexRsiOrder(html, errors) {
+  if (!/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) return;
+  const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map((match) => match[0]);
+  const indexSection = sections.find((section) => /<h2\b[^>]*>\s*美股指數與風格復盤\s*<\/h2>/i.test(section)) || "";
+  const table = indexSection.match(/<table\b[^>]*>[\s\S]*?<\/table>/i)?.[0] || "";
+  const headerRow = table.match(/<thead\b[^>]*>[\s\S]*?<tr\b[^>]*>([\s\S]*?)<\/tr>[\s\S]*?<\/thead>/i);
+  const body = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
+  if (!headerRow || !body) {
+    errors.push("Weekly report 美股指數與風格復盤缺少可驗證的 RSI 表格。");
+    return;
+  }
+
+  const headers = getCells(headerRow[1], "th");
+  const rsiIndex = headers.findIndex((header) => /^RSI$/i.test(header.text));
+  if (rsiIndex < 0) {
+    errors.push("Weekly report 美股指數與風格復盤缺少 RSI 欄。");
+    return;
+  }
+
+  const rows = body[1].match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
+  const rsiValues = rows.map((row) => {
+    const cell = getCells(row, "td")[rsiIndex];
+    const match = cell?.text.match(/-?\d+(?:\.\d+)?/);
+    return match ? Number(match[0]) : Number.NaN;
+  });
+  if (rsiValues.some((value) => !Number.isFinite(value))) {
+    errors.push("Weekly report 美股指數與風格復盤含不可解析的 RSI 值。");
+    return;
+  }
+  for (let index = 1; index < rsiValues.length; index += 1) {
+    if (rsiValues[index] > rsiValues[index - 1]) {
+      errors.push(`Weekly report 美股指數與風格復盤必須按 RSI 由高至低排列；第 ${index + 1} 列發生逆序。`);
+      return;
+    }
+  }
+}
+
+function validateWeeklyVixScore(html, errors) {
+  if (!/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) return;
+  const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map((match) => match[0]);
+  const indexSection = sections.find((section) => /<h2\b[^>]*>\s*美股指數與風格復盤\s*<\/h2>/i.test(section)) || "";
+  const table = indexSection.match(/<table\b[^>]*>[\s\S]*?<\/table>/i)?.[0] || "";
+  const headerRow = table.match(/<thead\b[^>]*>[\s\S]*?<tr\b[^>]*>([\s\S]*?)<\/tr>[\s\S]*?<\/thead>/i);
+  const body = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
+  if (!headerRow || !body) {
+    errors.push("Weekly VIX scoring requires the index/style table.");
+    return;
+  }
+
+  const headers = getCells(headerRow[1], "th");
+  const latestIndex = headers.findIndex((header) => header.text === "最新");
+  const fiveDayIndex = headers.findIndex((header) => header.text === "5日");
+  const oneMonthIndex = headers.findIndex((header) => header.text === "1月");
+  const maIndex = headers.findIndex((header) => /20\/50\/200MA/i.test(header.text));
+  const rows = (body[1].match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || []).map((row) => getCells(row, "td"));
+  const vixRow = rows.find((row) => row[0]?.text === "VIX");
+  if (!vixRow || [latestIndex, fiveDayIndex, oneMonthIndex, maIndex].some((index) => index < 0)) {
+    errors.push("Weekly VIX scoring cannot locate all required VIX inputs.");
+    return;
+  }
+
+  const close = Number(vixRow[latestIndex].text.replace("%", ""));
+  const fiveDay = Number(vixRow[fiveDayIndex].text.replace("%", ""));
+  const oneMonth = Number(vixRow[oneMonthIndex].text.replace("%", ""));
+  const maHtml = vixRow[maIndex].html;
+  const maStates = Object.fromEntries(
+    [...maHtml.matchAll(/<span\b[^>]*class=["'][^"']*\bma-state\s+(ma-up|ma-down|ma-na)\b[^"']*["'][^>]*>\s*<span\b[^>]*class=["'][^"']*\bma-period\b[^"']*["'][^>]*>\s*(\d+)MA\s*<\/span>/gi)]
+      .map((match) => [Number(match[2]), match[1]])
+  );
+  const above20 = maStates[20] === "ma-up";
+  const above50 = maStates[50] === "ma-up";
+  if (![close, fiveDay, oneMonth].every(Number.isFinite)) {
+    errors.push("Weekly VIX scoring contains an unparseable price or return.");
+    return;
+  }
+
+  const expectedScore = Number(close > 20) + Number(fiveDay > 0) + Number(oneMonth > 0) + Number(above20) + Number(above50);
+  const expectedLevel = expectedScore >= 4 ? "High" : expectedScore >= 2 ? "Intermediate" : "Low";
+  const visible = stripTags(stripBlocks(html));
+  const scoreMatch = visible.match(/VIX >20\s*\/\s*VIX spike\s*\/\s*波動升溫\s*(Low|Intermediate|High)\s*VIX 波動分數\s*(\d+)\s*\/\s*5/i);
+  if (!scoreMatch) {
+    errors.push("Weekly correction checklist must display the computed VIX score out of 5.");
+    return;
+  }
+  if (Number(scoreMatch[2]) !== expectedScore || scoreMatch[1] !== expectedLevel) {
+    errors.push(`Weekly VIX score mismatch: expected ${expectedScore}/5 ${expectedLevel}, found ${scoreMatch[2]}/5 ${scoreMatch[1]}.`);
+  }
+}
+
 function validateWeeklyBreadthSynthesis(html, errors) {
   if (!/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) return;
   const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map((match) => match[0]);
@@ -225,6 +365,104 @@ function validateWeeklyBreadthSynthesis(html, errors) {
   for (const label of requiredSynthesis) {
     if (!synthesisText.includes(label)) errors.push(`Weekly breadth conclusion must synthesize ${label}, not summarize Stockbee alone.`);
   }
+
+  const table = breadthSection.match(/<table\b[^>]*>[\s\S]*?<\/table>/i)?.[0] || "";
+  const body = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
+  if (!body) {
+    errors.push("Weekly breadth scoring requires a readable breadth table.");
+    return;
+  }
+  const rows = (body[1].match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || []).map((row) => getCells(row, "td"));
+  const rowMap = new Map(rows.filter((row) => row.length >= 3).map((row) => [row[0].text, row]));
+  let expectedScore = 0;
+  for (const label of ["SPX >20MA", "SPX >50MA", "NDX >20MA", "NDX >50MA", "IWM >20MA", "IWM >50MA", "T2108"]) {
+    const transition = rowMap.get(label)?.[2]?.text.match(/(-?\d+(?:\.\d+)?)%?\s*→\s*(-?\d+(?:\.\d+)?)%?/);
+    if (!transition) {
+      errors.push(`Weekly breadth scoring cannot parse the 5-day transition for ${label}.`);
+      return;
+    }
+    expectedScore += Number(transition[2]) < Number(transition[1]) ? 1 : 0;
+  }
+
+  const ratio5 = Number(rowMap.get("Stockbee 5D ratio")?.[1]?.text);
+  const ratio10 = Number(rowMap.get("Stockbee 10D ratio")?.[1]?.text);
+  const advanceDecline = rowMap.get("4%+ 上漲／下跌")?.[1]?.text.match(/(\d+)\s*\/\s*(\d+)/);
+  if (!Number.isFinite(ratio5) || !Number.isFinite(ratio10) || !advanceDecline) {
+    errors.push("Weekly breadth scoring cannot parse Stockbee ratios or 4% advance/decline counts.");
+    return;
+  }
+  expectedScore += ratio5 < 1 ? 1 : 0;
+  expectedScore += ratio10 < 1 ? 1 : 0;
+  expectedScore += Number(advanceDecline[2]) > Number(advanceDecline[1]) ? 1 : 0;
+
+  const visible = stripTags(stripBlocks(html));
+  const scoreMatch = visible.match(/Market breadth worsening\s*\/\s*市場廣度惡化\s*(Low|Intermediate|High)\s*5日廣度惡化分數\s*(\d+)\s*\/\s*10/i);
+  if (!scoreMatch) {
+    errors.push("Weekly correction checklist must display the computed 5-day breadth score out of 10.");
+    return;
+  }
+  const expectedLevel = expectedScore >= 7 ? "High" : expectedScore >= 4 ? "Intermediate" : "Low";
+  if (Number(scoreMatch[2]) !== expectedScore || scoreMatch[1] !== expectedLevel) {
+    errors.push(`Weekly breadth score mismatch: expected ${expectedScore}/10 ${expectedLevel}, found ${scoreMatch[2]}/10 ${scoreMatch[1]}.`);
+  }
+
+  const checklistLevels = [...html.matchAll(/<div\b[^>]*class=(["'])[^"']*\bcheck\b[^"']*\1[^>]*>[\s\S]*?<span\b[^>]*class=(["'])[^"']*\bbadge\b[^"']*\2[^>]*>\s*(Low|Intermediate|High)\s*<\/span>/gi)].map((match) => match[3]);
+  const highCount = checklistLevels.filter((level) => level === "High").length;
+  const checklistScore = visible.match(/Checklist Score：\s*(\d+)\s*\/\s*8 High/i);
+  if (checklistLevels.length !== 8 || !checklistScore || Number(checklistScore[1]) !== highCount) {
+    errors.push(`Weekly Checklist Score must equal its computed High-item count; found ${checklistLevels.length} items and ${highCount} High.`);
+  }
+}
+
+function validateWeeklyMarketRiskScore(html, errors) {
+  if (!/<body\b[^>]*data-report-type=["']weekly["']/i.test(html)) return;
+  const visible = stripTags(stripBlocks(html));
+  if (/Weekly Expected Move|Expected range review|週度預期波動|1SD 關鍵位/i.test(visible)) {
+    errors.push("Weekly Expected Move 對帳已停用，不可重新出現在週報。");
+  }
+
+  const sections = [...html.matchAll(/<section\b[^>]*>[\s\S]*?<\/section>/gi)].map((match) => match[0]);
+  const scoreSection = sections.find((section) => /<h2\b[^>]*>\s*市場量化總分\s*<\/h2>/i.test(section)) || "";
+  const table = scoreSection.match(/<table\b[^>]*class=(["'])[^"']*\bmarket-score-table\b[^"']*\1[^>]*>[\s\S]*?<\/table>/i)?.[0] || "";
+  const body = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
+  if (!scoreSection || !body) {
+    errors.push("Weekly report 必須以市場量化總分取代 Weekly Expected Move 對帳。");
+    return;
+  }
+
+  const requiredDimensions = ["三大指數技術", "市場廣度", "VIX 波動", "板塊／主題動能", "50MA ATR 延伸", "跨資產壓力", "宏觀／事件風險"];
+  const rows = (body[1].match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || []).map((row) => getCells(row, "td"));
+  const rowMap = new Map(rows.filter((row) => row.length >= 5).map((row) => [row[0].text, row]));
+  let weightedTotal = 0;
+  let weightTotal = 0;
+  for (const dimension of requiredDimensions) {
+    const row = rowMap.get(dimension);
+    const raw = row?.[1]?.text.match(/(\d+)\s*\/\s*(\d+)/);
+    const weight = row?.[2]?.text.match(/(\d+)%/);
+    const weighted = row?.[3]?.text.match(/(\d+)\s*\/\s*(\d+)/);
+    if (!raw || !weight || !weighted) {
+      errors.push(`Weekly market score cannot parse ${dimension}.`);
+      return;
+    }
+
+    const rawScore = Number(raw[1]);
+    const rawMax = Number(raw[2]);
+    const componentWeight = Number(weight[1]);
+    const riskPoints = Number(weighted[1]);
+    const riskMax = Number(weighted[2]);
+    const expectedPoints = Math.round(rawScore / rawMax * componentWeight);
+    if (rawMax <= 0 || riskMax !== componentWeight || riskPoints !== expectedPoints) {
+      errors.push(`${dimension} score mismatch: ${rawScore}/${rawMax} at ${componentWeight}% must equal ${expectedPoints}/${componentWeight}.`);
+    }
+    weightedTotal += riskPoints;
+    weightTotal += componentWeight;
+  }
+
+  const overview = stripTags(scoreSection).match(/市場風險分數\s*(\d+)\s*\/\s*100\s*(Low Risk|Intermediate Risk|High Risk)/i);
+  const expectedLevel = weightedTotal >= 60 ? "High Risk" : weightedTotal >= 35 ? "Intermediate Risk" : "Low Risk";
+  if (weightTotal !== 100 || !overview || Number(overview[1]) !== weightedTotal || overview[2] !== expectedLevel) {
+    errors.push(`Weekly market score must total 100 weight points and display ${weightedTotal}/100 ${expectedLevel}.`);
+  }
 }
 
 function validateReport(file) {
@@ -237,11 +475,15 @@ function validateReport(file) {
   validateAssets(html, errors);
   validateDangerousTableClasses(html, errors);
   validateTables(html, errors);
+  validateTableAlignment(html, errors);
   validateWeeklyRequiredSections(html, errors);
   validateWeeklyMacroCoverage(html, errors);
   validateWeeklyMomentumWindow(html, errors);
   validateWeeklySpyBenchmark(html, errors);
+  validateWeeklyIndexRsiOrder(html, errors);
+  validateWeeklyVixScore(html, errors);
   validateWeeklyBreadthSynthesis(html, errors);
+  validateWeeklyMarketRiskScore(html, errors);
   return errors;
 }
 

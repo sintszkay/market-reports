@@ -593,6 +593,13 @@ body.flat-report{
   font-weight:600;
   font-variant-numeric:tabular-nums;
 }
+.flat-report .macro-data-grid--wide-forecast{
+  grid-template-columns:minmax(0,.75fr) minmax(0,2fr) minmax(0,.75fr);
+}
+.flat-report .macro-data-grid--wide-forecast>span:nth-child(2) strong{
+  line-height:1.35;
+  white-space:normal;
+}
 .flat-report .macro-signal{text-align:center}
 .flat-report .macro-signal .badge{
   min-width:76px;

@@ -8,6 +8,7 @@ const { validateReportHtml } = require("./report_rules");
 const MOJIBAKE_PATTERN = /[�]|锛|鐩|閹|馃|鈥|瑷|鍫|绲|妯|鍍|铏|褰|瀵|绋|绶|婊|妾|棰|闋|瑕栬|鍙嶅悜|璩囨枡|鐩ゅ|鍫卞|妯℃澘|閸/g;
 const MISSING_VALUES = new Set(["", "—", "-", "–", "#N/A", "N/A", "NA", "null", "undefined"]);
 const CORE_MAJOR_ETFS = ["QQQ", "SMH", "VOO", "IWM", "RSP", "DIA", "VIX"];
+const COMPACT_MAJOR_ETFS = ["IWM", "DIA", "SPY", "QQQ"];
 
 function usage() {
   console.error("Usage: node scripts/report_qa.js <report.html> [...]");
@@ -126,9 +127,19 @@ function validateTables(html, errors) {
     }
 
     if (/大盤|Major ETF|技術面|指數/.test(section) && headers.some((cell) => /Above MA|20\/50\/200/.test(cell.text))) {
-      const present = new Set(rows.map((row) => (getCells(row, "td")[0]?.text || "").split(/\s+/)[0].toUpperCase()));
-      const missing = CORE_MAJOR_ETFS.filter((ticker) => !present.has(ticker));
+      const presentInOrder = rows.map((row) => (getCells(row, "td")[0]?.text || "").split(/\s+/)[0].toUpperCase());
+      const present = new Set(presentInOrder);
+      const compactUniverse = /data-major-universe=["']indices-4["']/i.test(table);
+      const required = compactUniverse ? COMPACT_MAJOR_ETFS : CORE_MAJOR_ETFS;
+      const missing = required.filter((ticker) => !present.has(ticker));
       if (missing.length) errors.push(`${section}: 核心 ETF 行缺失：${missing.join(", ")}`);
+      if (compactUniverse) {
+        const unexpected = presentInOrder.filter((ticker) => !COMPACT_MAJOR_ETFS.includes(ticker));
+        if (unexpected.length) errors.push(`${section}: indices-4 不應包含：${unexpected.join(", ")}`);
+        if (presentInOrder.join(",") !== COMPACT_MAJOR_ETFS.join(",")) {
+          errors.push(`${section}: indices-4 順序必須為 ${COMPACT_MAJOR_ETFS.join(" → ")}`);
+        }
+      }
     }
   }
 }

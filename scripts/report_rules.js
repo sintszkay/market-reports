@@ -188,12 +188,13 @@ function normalizeSections(html) {
     const isMajor = /大盤 ETF 技術|美股指數與風格|US 指數與風格|Major ETF/i.test(heading);
     const isRsiSorted = isMajor || /Sector\s*\/\s*Thematic|Sectors?/i.test(heading);
 
-    return sectionHtml.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, (tableHtml) =>
-      normalizeTable(tableHtml, {
+    return sectionHtml.replace(/<table\b[^>]*>[\s\S]*?<\/table>/gi, (tableHtml) => {
+      const compactMajorUniverse = /data-major-universe=["']indices-4["']/i.test(tableHtml);
+      return normalizeTable(tableHtml, {
         removeArkk: isMajor,
-        sortByRsi: isRsiSorted && isMajor,
-      })
-    );
+        sortByRsi: isRsiSorted && isMajor && !compactMajorUniverse,
+      });
+    });
   });
 }
 

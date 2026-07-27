@@ -3,6 +3,7 @@ const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
 const indexPath = path.join(root, "index.html");
+const reportsDir = path.join(root, "reports");
 const html = fs.readFileSync(indexPath, "utf8");
 
 const errors = [];
@@ -27,12 +28,32 @@ for (const href of reportHrefs) {
   if (!fs.existsSync(path.join(root, href))) errors.push(`Missing report file: ${href}`);
 }
 
-const expectedLatest = [
-  "reports/2026-07-27-premarket-update.html",
-  "reports/2026-07-24-weekly.html",
-  "reports/2026-07-24-postmarket-recap.html",
-  "reports/2026-07-24-premarket-update.html",
-];
+const typeRank = {
+  weekly: 3,
+  "postmarket-recap": 2,
+  "premarket-update": 1,
+};
+const reportFiles = fs.readdirSync(reportsDir)
+  .map((name) => {
+    const match = name.match(/^(\d{4}-\d{2}-\d{2})-(premarket-update|postmarket-recap|weekly)\.html$/);
+    return match ? { name, date: match[1], type: match[2] } : null;
+  })
+  .filter(Boolean)
+  .sort((left, right) =>
+    right.date.localeCompare(left.date) ||
+    typeRank[right.type] - typeRank[left.type]
+  );
+const reportHrefSet = new Set(reportHrefs);
+const unindexedReports = reportFiles
+  .map((report) => `reports/${report.name}`)
+  .filter((href) => !reportHrefSet.has(href));
+if (unindexedReports.length) {
+  errors.push(`Report files missing from homepage index: ${unindexedReports.join(", ")}.`);
+}
+
+const expectedLatest = reportFiles
+  .slice(0, 4)
+  .map((report) => `reports/${report.name}`);
 expectedLatest.forEach((href, index) => {
   if (reportHrefs[index] !== href) {
     errors.push(`Report position ${index + 1} should be ${href}, found ${reportHrefs[index] || "nothing"}.`);

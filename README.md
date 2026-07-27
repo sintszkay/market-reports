@@ -50,6 +50,15 @@ node scripts/apply_report_rules.js --type premarket --write reports/2026-06-30-p
 
 Every new report is a local draft first. Commit/push only after the user reviews the local HTML and explicitly confirms publication.
 
+Every report publication must maintain the GitHub Pages homepage in the same commit:
+
+- add the new report card to the top of `index.html`;
+- point the `最新報告` button to the new report;
+- refresh the homepage status strip and `report-count`;
+- run `node scripts/qa_index.js` before committing.
+
+`scripts/qa_index.js` automatically discovers the newest dated report under `reports/`, requires every report file to appear in the homepage index, and blocks publication when the newest report is not the first card. Never push a new report without its homepage update.
+
 Every new report must pass both the structural validator and the QA gate before asking for publication confirmation:
 
 ```powershell

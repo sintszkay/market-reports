@@ -28,10 +28,10 @@ for (const href of reportHrefs) {
 }
 
 const expectedLatest = [
+  "reports/2026-07-27-premarket-update.html",
   "reports/2026-07-24-weekly.html",
   "reports/2026-07-24-postmarket-recap.html",
   "reports/2026-07-24-premarket-update.html",
-  "reports/2026-07-23-postmarket-recap.html",
 ];
 expectedLatest.forEach((href, index) => {
   if (reportHrefs[index] !== href) {

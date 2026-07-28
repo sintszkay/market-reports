@@ -128,7 +128,16 @@ function renderIndexRows(rows = []) {
 
 function renderSectorRows(rows = []) {
   return rows.map(function (row) {
-    return `<tr><td>${escapeHtml(row.label)}</td><td class="num">${escapeHtml(row.daily_display ?? row.daily)}</td><td class="num">${escapeHtml(row.five_day)}</td><td class="num">${escapeHtml(row.one_month)}</td><td class="num">${renderRsi(row.rsi)}</td><td>${escapeHtml(row.judgment)}</td></tr>`;
+    const states = row.ma || {};
+    const maStates = [20, 50, 200].map(function (period) {
+      const isUp = Boolean(states[period] ?? states[String(period)]);
+      return `<span class="ma-state ${isUp ? "ma-up" : "ma-down"}"><span class="ma-period">${period}MA</span><span class="ma-arrow">${isUp ? "▲" : "▼"}</span></span>`;
+    }).join("");
+    const daily = escapeHtml(row.daily_display ?? row.daily);
+    const fiveDay = escapeHtml(row.five_day);
+    const oneMonth = escapeHtml(row.one_month);
+    const tone = (value) => /^\+/.test(value) ? "up" : /^-/.test(value) ? "dn" : "";
+    return `<tr><td class="etf-symbol"><strong>${escapeHtml(row.label)}</strong></td><td class="etf-momentum-cell"><div class="etf-momentum"><span><strong class="${tone(daily)}">${daily}</strong></span><span><strong class="${tone(fiveDay)}">${fiveDay}</strong></span><span><strong class="${tone(oneMonth)}">${oneMonth}</strong></span></div></td><td class="ma-cell"><span class="ma-state-group">${maStates}</span></td><td class="num" data-rsi="${escapeHtml(row.rsi)}">${Number(row.rsi).toFixed(2)}</td><td class="etf-judgment">${escapeHtml(row.judgment)}</td></tr>`;
   }).join("\n    ");
 }
 

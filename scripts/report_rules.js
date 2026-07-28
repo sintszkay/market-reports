@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ASSET_VERSION = "20260717-flat-2";
+const ASSET_VERSION = "20260728-flat-2";
 const RUNTIME_TAG = `<script src="report-runtime.js?v=${ASSET_VERSION}"></script>`;
 const SHARED_STYLE_TAG = `<link rel="stylesheet" href="report-shared.css?v=${ASSET_VERSION}">`;
 const MA_PERIODS = ["20", "50", "200"];
@@ -254,7 +254,7 @@ function validateRsiAndMa(html, errors) {
       if (!headerRow) continue;
       const headers = getCells(headerRow[1], "th").map((cell) => stripTags(cell.inner));
       const rsiIndex = headers.findIndex((header) => /^RSI$/i.test(header));
-      const maIndex = headers.findIndex((header) => /Above MA/i.test(header));
+      const maIndex = headers.findIndex((header) => /Above MA|20\/50\/200MA/i.test(header));
       const rows = table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i);
       const rowList = rows ? rows[1].match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [] : [];
 
@@ -381,7 +381,7 @@ function validateRuntime(html, errors) {
 }
 
 function validatePostmarketVisuals(html, errors) {
-  const requiredClasses = ["hitbar", "kicker", "rsi", "pct", "atr", "ma", "chart", "bar-row", "bar-track"];
+  const requiredClasses = ["hitbar", "kicker", "rsi", "pct", "ma", "chart", "bar-row", "bar-track"];
   for (const className of requiredClasses) {
     if (!new RegExp(`class=["'][^"']*\\b${className}\\b`).test(html)) {
       errors.push(`盤後報告缺少視覺元件 .${className}。`);
@@ -405,11 +405,11 @@ function validatePostmarketSectorThemeFormat(html, errors) {
     return;
   }
 
-  if (!/<h3\b[^>]*>\s*S&amp;P 500 Sector ETF\s*<\/h3>/i.test(section)) {
-    errors.push("板塊與主題 ETF 必須使用「S&P 500 Sector ETF」分類標題。");
+  if (!/<h3\b[^>]*>\s*Sector Dashboard\s*<\/h3>/i.test(section)) {
+    errors.push("板塊與主題 ETF 必須使用「Sector Dashboard」分類標題。");
   }
-  if (!/<h3\b[^>]*>\s*Thematic Sector ETF\s*<\/h3>/i.test(section)) {
-    errors.push("板塊與主題 ETF 必須使用「Thematic Sector ETF」分類標題。");
+  if (!/<h3\b[^>]*>\s*Thematic Sectors(?:（含 SPY 基準）)?\s*<\/h3>/i.test(section)) {
+    errors.push("板塊與主題 ETF 必須使用「Thematic Sectors」分類標題。");
   }
 
   const tables = section.match(/<table\b[^>]*>[\s\S]*?<\/table>/gi) || [];
@@ -420,28 +420,27 @@ function validatePostmarketSectorThemeFormat(html, errors) {
 
   const specs = [
     {
-      label: "S&P 500 Sector ETF",
-      columns: 6,
+      label: "Sector Dashboard",
+      columns: 5,
       className: "postmarket-sector-table",
-      maIndex: 3,
+      maIndex: 2,
       headerChecks: [
         (value) => value === "ETF",
-        (value) => value === "最新",
         (value) => value.includes("動能") && value.includes("1日") && value.includes("5日") && value.includes("1月"),
-        (value) => /^AboveMA(?:（20\/50\/200）)?$/i.test(value),
+        (value) => /^(?:AboveMA(?:（20\/50\/200）)?|20\/50\/200MA)$/i.test(value),
         (value) => value === "RSI",
         (value) => value === "判斷",
       ],
     },
     {
-      label: "Thematic Sector ETF",
+      label: "Thematic Sectors",
       columns: 5,
       className: "postmarket-theme-table",
       maIndex: 2,
       headerChecks: [
         (value) => value === "ETF",
         (value) => value.includes("動能") && value.includes("1日") && value.includes("5日") && value.includes("1月"),
-        (value) => /^AboveMA(?:（20\/50\/200）)?$/i.test(value),
+        (value) => /^(?:AboveMA(?:（20\/50\/200）)?|20\/50\/200MA)$/i.test(value),
         (value) => value === "RSI",
         (value) => value === "判斷",
       ],
@@ -482,10 +481,10 @@ function validatePostmarketSectorThemeFormat(html, errors) {
       }
 
       const maCell = cells[spec.maIndex]?.inner || "";
-      const groupClassMatch = maCell.match(/<div\b[^>]*class=(["'])([^"']*)\1/i);
+      const groupClassMatch = maCell.match(/<(?:div|span)\b[^>]*class=(["'])([^"']*)\1/i);
       const groupClasses = (groupClassMatch?.[2] || "").split(/\s+/).filter(Boolean);
       const stateCount = (
-        maCell.match(/<span\b[^>]*class=["'][^"']*\bma-state\b[^"']*["']/gi) || []
+        maCell.match(/<span\b[^>]*class=["'][^"']*\bma-state\s[^"']*["']/gi) || []
       ).length;
       if (!groupClasses.includes("ma-state-group") || stateCount !== 3) {
         errors.push(`${spec.label} 第 ${rowIndex + 1} 列 Above MA 必須使用三等分 .ma-state-group。`);
@@ -577,6 +576,60 @@ function validateWeeklyBreadthSynthesis(html, errors) {
   }
 }
 
+function validateThematicUniverse(html, errors) {
+  const reportDate = (html.match(/\b20\d{2}-\d{2}-\d{2}\b/) || [])[0] || "";
+  if (reportDate && reportDate < "2026-07-28") return;
+
+  const table = (html.match(/<table\b[^>]*data-etf-universe=["']thematic-complete["'][^>]*>[\s\S]*?<\/table>/i) || [])[0] || "";
+  if (!table) {
+    errors.push("Thematic Sector ETF QA: missing the complete-universe contract.");
+    return;
+  }
+
+  const startTag = (table.match(/^<table\b[^>]*>/i) || [])[0] || "";
+  const sourceCount = Number((startTag.match(/data-source-count=["'](\d+)["']/i) || [])[1]);
+  const reportCount = Number((startTag.match(/data-report-count=["'](\d+)["']/i) || [])[1]);
+  const benchmark = (startTag.match(/data-benchmark=["']([A-Z]+)["']/i) || [])[1] || "";
+  if (!Number.isInteger(sourceCount) || !Number.isInteger(reportCount) || reportCount !== sourceCount + 1) {
+    errors.push("Thematic Sector ETF QA: report rows must equal the full source universe plus one benchmark.");
+  }
+  if (benchmark !== "SPY") errors.push("Thematic Sector ETF QA: SPY must be the benchmark.");
+  if (!/data-sort=["']rsi-desc["']/i.test(startTag)) {
+    errors.push("Thematic Sector ETF QA: table must declare descending RSI order.");
+  }
+
+  const headerRow = table.match(/<thead\b[^>]*>[\s\S]*?<tr\b[^>]*>([\s\S]*?)<\/tr>[\s\S]*?<\/thead>/i);
+  const headers = headerRow ? getCells(headerRow[1], "th").map((cell) => stripTags(cell.inner)) : [];
+  const tickerIndex = headers.findIndex((header) => header === "ETF");
+  const rsiIndex = headers.findIndex((header) => /^RSI$/i.test(header));
+  const tbody = (table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i) || [])[1] || "";
+  const rows = tbody.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
+  if (rows.length !== reportCount) {
+    errors.push(`Thematic Sector ETF QA: expected ${reportCount} rows, found ${rows.length}.`);
+  }
+
+  const tickers = [];
+  const rsiValues = [];
+  rows.forEach((row) => {
+    const cells = getCells(row, "td");
+    const ticker = cells[tickerIndex] ? stripTags(cells[tickerIndex].inner).match(/^[A-Z]+/)?.[0] : null;
+    const rsi = cells[rsiIndex] ? Number(stripTags(cells[rsiIndex].inner)) : Number.NaN;
+    if (ticker) tickers.push(ticker);
+    rsiValues.push(rsi);
+  });
+  if (new Set(tickers).size !== rows.length) {
+    errors.push("Thematic Sector ETF QA: duplicate or invalid ticker rows detected.");
+  }
+  if (tickers.filter((ticker) => ticker === benchmark).length !== 1) {
+    errors.push("Thematic Sector ETF QA: SPY must appear exactly once.");
+  }
+  if (rsiValues.some((value) => !Number.isFinite(value))) {
+    errors.push("Thematic Sector ETF QA: every row must contain a numeric RSI.");
+  } else if (!rsiValues.every((value, index) => index === 0 || rsiValues[index - 1] >= value)) {
+    errors.push("Thematic Sector ETF QA: RSI is not sorted in descending order.");
+  }
+}
+
 function validateReportHtml(html, { reportType = "premarket" } = {}) {
   const errors = [];
   if (reportType === "postmarket") {
@@ -588,7 +641,10 @@ function validateReportHtml(html, { reportType = "premarket" } = {}) {
   validateQqqTiers(html, errors);
   validateTriggers(html, errors);
   validateRuntime(html, errors);
-  if (reportType === "premarket") validateMovers(html, errors);
+  if (reportType === "premarket") {
+    validateMovers(html, errors);
+    validateThematicUniverse(html, errors);
+  }
   if (reportType === "weekly") {
     validateWeeklyMacroCoverage(html, errors);
     validateWeeklyMomentumWindow(html, errors);

@@ -49,6 +49,14 @@ a{color:var(--blue)}
 .report-data-table th.num,.report-data-table td.num{text-align:right}
 .report-data-table th:not(.num):not(:last-child),.report-data-table td:not(.num):not(:last-child){text-align:left}
 .report-data-table th:last-child,.report-data-table td:last-child{padding-left:18px}
+.flat-report .macro-review-table{min-width:920px;table-layout:fixed}
+.flat-report .macro-review-table th:nth-child(1){width:26%}
+.flat-report .macro-review-table th:nth-child(2),
+.flat-report .macro-review-table th:nth-child(3){width:10%}
+.flat-report .macro-review-table th:nth-child(4){width:17%}
+.flat-report .macro-review-table th:nth-child(5){width:37%}
+.flat-report .macro-review-table th:first-child,
+.flat-report .macro-review-table td:first-child{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 
 .mover-state-table th:nth-child(1){width:8%}.mover-state-table th:nth-child(2){width:9%}.mover-state-table th:nth-child(3){width:8%}.mover-state-table th:nth-child(4){width:11%}.mover-state-table th:nth-child(5){width:20%}.mover-state-table th:nth-child(6){width:22%}.mover-state-table th:nth-child(7){width:22%}
 .etf-position-table th:nth-child(1){width:14%}.etf-position-table th:nth-child(2){width:10%}.etf-position-table th:nth-child(3){width:10%}.etf-position-table th:nth-child(4){width:10%}.etf-position-table th:nth-child(5){width:8%}.etf-position-table th:nth-child(6){width:13%}.etf-position-table th:nth-child(7){width:35%}
@@ -252,6 +260,7 @@ body.flat-report{
   font-weight:500;
   line-height:1.45;
 }
+.flat-report .result-badge{white-space:nowrap;overflow-wrap:normal;word-break:keep-all}
 .flat-report .green,.flat-report .badge.green,.flat-report .pill.green,.flat-report .result-hit{color:var(--green);background:var(--green-bg)}
 .flat-report .red,.flat-report .badge.red,.flat-report .pill.red,.flat-report .result-miss{color:var(--red);background:var(--red-bg)}
 .flat-report .amber,.flat-report .badge.amber,.flat-report .pill.amber,.flat-report .result-partial{color:var(--amber);background:var(--amber-bg)}
@@ -859,6 +868,14 @@ body.flat-report{
 .flat-report .hitbar-legend b{color:var(--ink);font-weight:500}
 .flat-report .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin:0 4px 0 10px;vertical-align:1px}
 .flat-report .dot.h{background:var(--green)}.flat-report .dot.p{background:var(--amber)}.flat-report .dot.m{background:var(--red)}.flat-report .dot.n{background:var(--grey)}
+.flat-report .recon-table{min-width:1080px;table-layout:fixed}
+.flat-report .recon-table th:nth-child(1){width:11%}
+.flat-report .recon-table th:nth-child(2){width:27%}
+.flat-report .recon-table th:nth-child(3){width:31%}
+.flat-report .recon-table th:nth-child(4){width:8%}
+.flat-report .recon-table th:nth-child(5){width:23%}
+.flat-report .recon-table th:nth-child(4),
+.flat-report .recon-table td:nth-child(4){text-align:center;white-space:nowrap}
 
 .flat-report .sources{font-size:12px;color:var(--muted)}
 .flat-report .playbook-intro{color:var(--muted);font-size:13px;line-height:1.5;margin-bottom:12px}

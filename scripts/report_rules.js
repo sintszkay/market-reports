@@ -341,7 +341,7 @@ function validateQqqTiers(html, errors) {
     const text = stripTags(block);
     const qqqLevel = text.match(/QQQ[^0-9]{0,30}(\d{3}(?:\.\d+)?)/i)?.[1];
     if (!qqqLevel) continue;
-    if (/(?:>|<|≥|≤|收回|突破|失守)/.test(text) && !/(?:20MA|50MA|\\+1SD|VWAP)/i.test(text)) {
+    if (/(?:>|<|≥|≤|收回|突破|失守)/.test(text) && !/(?:20MA|50MA|(?:\+|-)?1SD|VWAP)/i.test(text)) {
       errors.push(`QQQ 觸發價缺少 20MA / +1SD 等級標籤：${text}`);
     }
     if (/恢復.*(?:標準|科技配置)|初步 re-engage/i.test(text)) {
@@ -635,6 +635,7 @@ function validateReportHtml(html, { reportType = "premarket" } = {}) {
   if (reportType === "postmarket") {
     validatePostmarketVisuals(html, errors);
     validatePostmarketSectorThemeFormat(html, errors);
+    validateThematicUniverse(html, errors);
     return errors;
   }
   validateRsiAndMa(html, errors);

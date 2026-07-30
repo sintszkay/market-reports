@@ -37,7 +37,8 @@ const allText = `${html}\n${JSON.stringify(data)}`;
 
 const checks = {
   reportDate: data.report_title === "2026-07-30｜美股盤前監控",
-  localDraft: /2026-07-30 美股盤前本地草稿/.test(data.cross_validation_summary),
+  publicationDisclosure: /2026-07-30 美股盤前監控/.test(data.cross_validation_summary)
+    && !/本地草稿|尚未推送/.test(data.cross_validation_summary),
   technicalAsOf: data.technical_as_of === "2026-07-29",
   longbridgeComplete: quoteSource.length === 96
     && new Set(quoteSource.map((row) => row.ticker)).size === 96

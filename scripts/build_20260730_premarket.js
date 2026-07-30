@@ -422,7 +422,7 @@ const data = {
     `<a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">Federal Reserve：7/29 FOMC 聲明與記者會</a>；` +
     `<a href="https://www.kiplinger.com/investing/stocks/17494/next-week-earnings-calendar-stocks">Kiplinger：MSFT／AAPL 共識預期</a>；` +
     `<a href="https://www.investing.com/equities/amazon-com-inc-earnings">Investing.com：AMZN 財報共識</a>。</p>` +
-    `<p class="source-note">本報告為 2026-07-30 美股盤前本地草稿，不構成投資建議。SHY／IEF／TLT 盤前數據均來自長橋；AAPL／AMZN 尚未公布，Actual 明確標示待公布，未預先判定 Beat／Miss。</p>`,
+    `<p class="source-note">本報告為 2026-07-30 美股盤前監控，不構成投資建議。SHY／IEF／TLT 盤前數據均來自長橋；AAPL／AMZN 尚未公布，Actual 明確標示待公布，未預先判定 Beat／Miss。</p>`,
 };
 
 const output = path.join(root, "data", "2026-07-30-premarket.json");

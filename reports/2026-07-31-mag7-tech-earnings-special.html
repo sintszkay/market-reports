@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="2026 年 7 月 Mag 7 與大型科技股財報季橫向復盤、價格反應因子，以及 AI 晶片、網路、記憶體、伺服器與設備公司的未公布財報預測。">
+  <title>七月大型科技財報季專題｜2026-07-31</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260731-earnings-special">
+  <style>
+    .earnings-special .lede{max-width:880px}
+    .earnings-special section{padding-top:4px}
+    .earnings-special .section-intro{max-width:900px;color:var(--muted)}
+    .earnings-special .company-cell{position:sticky;left:0;z-index:2;background:#fff}
+    .earnings-special thead .company-cell{z-index:3}
+    .earnings-special .company-cell strong,.earnings-special .company-cell small{display:block}
+    .earnings-special .company-cell strong{font-size:13.5px}
+    .earnings-special .company-cell small,.earnings-special td small{margin-top:3px;color:var(--muted);font-size:10.5px;line-height:1.35}
+    .earnings-special .company-cell .badge{margin-top:7px}
+    .earnings-special .master-table{min-width:1540px;table-layout:fixed}
+    .earnings-special .master-table th:nth-child(1){width:150px}
+    .earnings-special .master-table th:nth-child(2){width:105px}
+    .earnings-special .master-table th:nth-child(3){width:180px}
+    .earnings-special .master-table th:nth-child(4){width:220px}
+    .earnings-special .master-table th:nth-child(5){width:230px}
+    .earnings-special .master-table th:nth-child(6){width:220px}
+    .earnings-special .master-table th:nth-child(7){width:120px}
+    .earnings-special .master-table th:nth-child(8){width:210px}
+    .earnings-special .master-table th:nth-child(9){width:105px}
+    .earnings-special .master-table td{vertical-align:top}
+    .earnings-special .master-table td.num strong,.earnings-special .master-table td.num small{display:block;text-align:right}
+    .earnings-special .signal-head{height:25px;margin-bottom:5px}
+    .score-gauge{display:flex;align-items:center;justify-content:flex-end;gap:7px;white-space:nowrap}
+    .score-gauge i{position:relative;width:62px;height:7px;overflow:hidden;border-radius:999px;background:#edece8}
+    .score-gauge i b{position:absolute;inset:0 auto 0 0;border-radius:999px;background:var(--blue)}
+    .score-gauge.green i b{background:var(--green)}.score-gauge.amber i b{background:var(--amber)}.score-gauge.red i b{background:var(--red)}
+    .score-gauge em{min-width:24px;color:var(--ink);font-style:normal;font-weight:500;text-align:right}
+    .score-table{min-width:920px}
+    .score-table th:nth-child(1){width:7%}.score-table th:nth-child(2){width:17%}
+    .score-table th:nth-child(3),.score-table th:nth-child(4),.score-table th:nth-child(5),.score-table th:nth-child(6){width:12%}
+    .score-table th:nth-child(7){width:17%}.score-table th:nth-child(8){width:11%}
+    .score-table td:nth-child(2) strong,.score-table td:nth-child(2) small{display:block}
+    .rank-cell{text-align:center;color:var(--muted);font-weight:500}
+    .chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .diverging-chart{margin:0}
+    .diverging-list{display:grid;gap:5px}
+    .diverging-row{display:grid;grid-template-columns:54px 66px minmax(170px,1fr);align-items:center;gap:9px}
+    .diverging-row .ticker{font-size:12px;font-weight:500}
+    .diverging-row .num{font-size:11.5px}
+    .diverging-track{position:relative;height:16px;background:#f1f0ec;border-radius:999px;overflow:hidden}
+    .diverging-track:after{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--line-strong)}
+    .diverging-track i{position:absolute;top:3px;bottom:3px;border-radius:999px}
+    .diverging-track .positive{background:var(--green)}.diverging-track .negative{background:var(--red)}
+    .chart-note{margin:9px 0 0;color:var(--muted);font-size:11.5px}
+    .scatter-figure{margin:12px 0;padding:14px 16px 12px;border:0.5px solid var(--line);border-radius:12px;background:#fff}
+    .scatter-figure figcaption{display:flex;justify-content:space-between;gap:16px;margin-bottom:8px}
+    .scatter-figure figcaption span,.scatter-figure p{color:var(--muted);font-size:12px}
+    .scatter-figure svg{display:block;width:100%;height:auto}
+    .quad{opacity:.42}.quad-good{fill:var(--green-bg)}.quad-discount{fill:var(--amber-bg)}
+    .gridline{stroke:#e7e6e0;stroke-width:1}.axis-zero{stroke:#9b9a94;stroke-width:1.3}.threshold{stroke:#9b9a94;stroke-width:1;stroke-dasharray:5 5}
+    .axis-label{fill:#87867f;font-size:11px}.axis-title{fill:#4f4e49;font-size:12px;font-weight:500}
+    .quad-label{font-size:11px;font-weight:500}.quad-label.good{fill:var(--green)}.quad-label.discount{fill:var(--amber)}
+    .scatter-point{stroke:#fff;stroke-width:2}.point-mag{fill:var(--blue)}.point-ai{fill:var(--green)}.point-tech{fill:var(--amber)}
+    .point-label{fill:#34332f;font-size:11px;font-weight:500}
+    .scatter-legend{display:flex;flex-wrap:wrap;gap:14px;margin:4px 0;color:var(--muted);font-size:11.5px}
+    .scatter-legend span{display:flex;align-items:center;gap:5px}.scatter-legend i{width:9px;height:9px;border-radius:50%}
+    .factor-list{margin:12px 0;border-top:1px solid var(--line-strong)}
+    .factor-row{display:grid;grid-template-columns:210px 155px 170px minmax(260px,1fr);align-items:center;gap:16px;padding:14px 2px;border-bottom:0.5px solid var(--line)}
+    .factor-name span,.factor-side span{display:block;color:var(--muted);font-size:11px}
+    .factor-name strong{display:block;margin-top:2px;font-size:20px}.factor-name strong.blue{color:var(--blue)}.factor-name strong.green{color:var(--green)}
+    .factor-side strong{display:block;margin-top:2px;font-size:16px;font-variant-numeric:tabular-nums}
+    .factor-side.positive strong{color:var(--green)}.factor-side.negative strong{color:var(--red)}
+    .factor-row p{margin:0;color:var(--muted);font-size:12px}
+    .pair-list{margin:12px 0;border-top:1px solid var(--line-strong)}
+    .pair-row{display:grid;grid-template-columns:190px minmax(0,1fr) 42px minmax(0,1fr);gap:16px;align-items:center;padding:16px 0;border-bottom:0.5px solid var(--line)}
+    .pair-title span,.pair-title strong{display:block}.pair-title span{color:var(--muted);font-size:11px}.pair-title strong{margin-top:3px;font-size:13px}
+    .pair-company div{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .pair-company b{font-size:15px}.pair-company em{font-style:normal;font-weight:500}
+    .pair-company p{margin:4px 0 0;color:var(--muted);font-size:12px}
+    .pair-vs{text-align:center;color:var(--muted);font-size:10px;font-weight:500}
+    .subsection-title{margin:22px 0 8px;font-size:18px}
+    .subsection-title:first-of-type{margin-top:10px}
+    .forecast-table{min-width:1480px;table-layout:fixed}
+    .forecast-table th:nth-child(1){width:205px}.forecast-table th:nth-child(2){width:105px}.forecast-table th:nth-child(3){width:230px}
+    .forecast-table th:nth-child(4){width:230px}.forecast-table th:nth-child(5){width:210px}.forecast-table th:nth-child(6){width:245px}.forecast-table th:nth-child(7){width:245px}
+    .forecast-table td{vertical-align:top}
+    .hardware-scenario-table{min-width:1220px;table-layout:fixed}
+    .hardware-scenario-table th:nth-child(1){width:210px}.hardware-scenario-table th:nth-child(2){width:200px}
+    .hardware-scenario-table th:nth-child(3),.hardware-scenario-table th:nth-child(4),.hardware-scenario-table th:nth-child(5){width:270px}
+    .hardware-scenario-table td{vertical-align:top}
+    .hardware-scenario-table td>strong,.hardware-scenario-table td>small{display:block}
+    .hardware-scenario-table td>small{margin-top:5px}
+    .mini-ma-group{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));min-width:205px}
+    .mini-ma{display:block;text-align:center;font-size:10.5px;white-space:nowrap}.mini-ma.ma-ok{color:var(--green)}.mini-ma.ma-bad{color:var(--red)}
+    .forecast-table .ma-cell small{display:block;margin-top:5px;text-align:center}
+    .forecast-company{padding:19px 0;border-top:1px solid var(--line-strong)}
+    .forecast-head{display:grid;grid-template-columns:230px minmax(0,1fr);gap:24px;align-items:start}
+    .forecast-head span{display:block;color:var(--muted);font-size:11px}.forecast-head h3{margin:3px 0 0;font-size:18px}
+    .forecast-head p{margin:0;color:var(--muted)}
+    .scenario-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+    .scenario{min-height:104px;padding:13px 14px;border:0.5px solid var(--line);border-top-width:3px;border-radius:8px;background:#fff}
+    .scenario span,.scenario strong{display:block}.scenario span{font-size:11px;font-weight:500}.scenario strong{margin-top:6px;font-size:12px;line-height:1.55}
+    .scenario.bull{border-top-color:var(--green)}.scenario.bull span{color:var(--green)}
+    .scenario.base{border-top-color:var(--blue)}.scenario.base span{color:var(--blue)}
+    .scenario.bear{border-top-color:var(--red)}.scenario.bear span{color:var(--red)}
+    .method-note{padding:12px 14px;border-left:3px solid var(--blue);background:#f2f1ec;color:var(--muted);font-size:12px}
+    .qa-table td:nth-child(2),.qa-table th:nth-child(2){text-align:center}
+    @media(max-width:860px){
+      .chart-grid,.scenario-grid{grid-template-columns:1fr}
+      .factor-row{grid-template-columns:1fr 1fr}.factor-row p{grid-column:1/-1}
+      .pair-row{grid-template-columns:1fr}.pair-vs{display:none}
+      .forecast-head{grid-template-columns:1fr;gap:7px}
+    }
+    @media(max-width:620px){
+      .earnings-special .company-cell{position:static}
+      .factor-row{grid-template-columns:1fr}.factor-row p{grid-column:auto}
+      .scatter-figure{padding:9px}.scatter-figure figcaption{display:block}.scatter-figure figcaption span{display:block;margin-top:4px}
+      .point-label,.axis-label,.quad-label{font-size:9px}
+      .diverging-row{grid-template-columns:48px 62px minmax(150px,1fr)}
+    }
+  </style>
+</head>
+<body class="flat-report earnings-special" data-report-type="special">
+<main class="wrap">
+  <header>
+    <div class="eyebrow">July 2026 earnings season · special report</div>
+    <h1>七月大型科技財報季：市場不再只獎勵增長，而是獎勵「增長 × 指引 × 現金流」</h1>
+    <p class="muted lede">已公布樣本涵蓋 6 家 Mag 7 成員與 5 家大型科技／AI 供應鏈公司；未公布預測另納入 3 家核心 AI 公司與 7 家 AI 硬件公司。價格截至 7/30 收盤，AAPL／AMZN 使用同日盤後長橋報價。</p>
+    <div class="status-pills">
+      <span class="badge blue">已公布 11 家</span>
+      <span class="badge green">正反應 5 家</span>
+      <span class="badge red">負反應 6 家</span>
+      <span class="badge amber">NVDA 8/26 待公布</span>
+      <span class="badge blue">AI 硬件預測 7 家</span>
+    </div>
+  </header>
+
+  <nav class="report-toc" aria-label="專題目錄">
+    <span class="toc-label">目錄</span>
+    <a href="#takeaways">核心結論</a>
+    <a href="#comparison">橫向對比</a>
+    <a href="#mag6-score">Mag 6 排名</a>
+    <a href="#market-reaction">市場反應</a>
+    <a href="#factors">反饋因子</a>
+    <a href="#pending">未公布預測</a>
+    <a href="#qa">QA</a>
+  </nav>
+
+  <section class="grid" aria-label="財報季摘要">
+    <div class="card"><span>Mag 6 財報品質首位</span><strong>MSFT · 93</strong><small>Azure +43%，RPO +84%</small></div>
+    <div class="card"><span>Mag 6 最大正反應</span><strong class="up">MSFT +15.51%</strong><small>雲端加速與指引同步確認</small></div>
+    <div class="card"><span>全樣本最大預期差</span><strong class="up">LRCX +17.98%</strong><small>財報前 5 日約 -20.97%</small></div>
+    <div class="card"><span>營收增速 vs 反應</span><strong>r = 0.01</strong><small>營收增長本身幾乎無解釋力</small></div>
+  </section>
+
+  <section id="takeaways">
+    <div class="kicker">Answer first</div>
+    <h2>五個核心結論</h2>
+    <ol>
+      <li><strong>市場不再為「AI」三個字無條件買單。</strong>MSFT、AMZN、LRCX 獲得正反饋，因為核心業務加速可直接對應收入或訂單；META、GOOGL 則被要求先證明高 Capex 能轉成現金流。</li>
+      <li><strong>下一季指引是本輪最強分水嶺。</strong>強指引組平均反應 <span class="up">+8.35%</span>，弱指引組平均 <span class="dn">-9.02%</span>，兩組相差 17.37 個百分點。</li>
+      <li><strong>營收增速單獨看幾乎無效。</strong>11 家樣本的營收同比增速與財報後反應相關係數約 0.01；TSLA、META 高增長仍下跌，IBM 低增長卻接近中性。</li>
+      <li><strong>FCF 正負不能脫離期間與預期差。</strong>GOOGL 是 Q2 單季首次轉負約 $5.9B，並再次上修 Capex；AMZN 是 TTM 流出 $7.6B，但 TTM 營運現金流仍增長 33%、AWS 經營利潤增長約 63%。兩者不能只看一個負號。</li>
+      <li><strong>未公布公司的門檻已被抬高，而且供應鏈分化會更大。</strong>NVDA、AMD、PLTR 都需要 Beat 之外的 Raise；ANET／AVGO 看 AI 網路與客製晶片，DELL 看 AI 伺服器收入能否保住毛利，MU／AMAT 則要用下一季指引確認 HBM 與設備週期。</li>
+    </ol>
+    <p class="section-summary"><strong>一句話：</strong>本輪市場支付的是「可驗證的 AI 變現與前瞻可見度」，不是單季 headline Beat。</p>
+  </section>
+
+  <section id="comparison">
+    <div class="kicker">Aligned earnings matrix</div>
+    <h2>已公布財報橫向對比</h2>
+    <p class="section-intro">所有公司統一對齊營收增長、盈利口徑、核心 KPI、前瞻指引、現金流／利潤率與價格反應。品質分數滿分 100：增長 30、核心業務 25、盈利／現金流 25、指引 20。</p>
+    <div class="table-scroll">
+      <table class="master-table">
+        <thead><tr>
+          <th class="company-cell">公司／財季</th>
+          <th class="num">營收增長</th>
+          <th>盈利口徑</th>
+          <th>核心業務</th>
+          <th>指引／Capex</th>
+          <th>利潤率／現金流</th>
+          <th class="num">品質分數</th>
+          <th class="num">財報後反應</th>
+          <th class="num">7月漲跌</th>
+        </tr></thead>
+        <tbody><tr>
+      <td class="company-cell"><strong>MSFT</strong><small>Microsoft · FY2026 Q4</small><span class="badge blue">Mag 6</span></td>
+      <td class="num"><strong>+18%</strong><small>$90.0B</small></td>
+      <td>EPS $4.81，年增 32%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>Azure +43%；Microsoft Cloud $59.3B、+27%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>Commercial RPO +84% 至 $678B，後續收入可見度顯著提高</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>經營利潤 $40.6B、+18%，高資本開支仍由利潤增長覆盖</td>
+      <td class="num"><span class="score-gauge green"><i><b style="width:93%"></b></i><em>93</em></span></td>
+      <td class="num up"><strong>+15.51%</strong><small>2026-07-30 · 正式收盤反應</small><small>雲端加速與訂單可見度同時確認，AI 投資被視為可變現</small></td>
+      <td class="num up">+20.93%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>AMZN</strong><small>Amazon · 2026 Q2</small><span class="badge blue">Mag 6</span></td>
+      <td class="num"><strong>+20%</strong><small>$200.6B</small></td>
+      <td>經營利潤 $27.5B、+43%；GAAP EPS $5.75 含投資收益</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>AWS $42.2B、+37%，重新加速</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>下一季營收指引 $197B-$202B；2026 Capex 由約 $200B 提高至 $220B，但公司稱現有產能仍不足以滿足需求</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>TTM 自由現金流 -$7.6B，但 TTM 營運現金流 +33% 至 $161.4B；AWS 經營利潤 +63%</td>
+      <td class="num"><span class="score-gauge blue"><i><b style="width:80%"></b></i><em>80</em></span></td>
+      <td class="num up"><strong>+9.53%</strong><small>2026-07-30 AH · 盤後初步反應</small><small>AWS 由 28% 加速至 37%、盈利同步擴張，負 FCF 又是 TTM 口徑；盤後市場先交易超預期增長</small></td>
+      <td class="num dn">-1.19%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>GOOGL</strong><small>Alphabet · 2026 Q2</small><span class="badge blue">Mag 6</span></td>
+      <td class="num"><strong>+24%</strong><small>$119.8B</small></td>
+      <td>GAAP EPS $9.11，受約 $98B 股權投資收益扭曲</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>Google Cloud +82% 至 $24.8B；Search +17%</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>2026 Capex 由 $180B-$190B 上調至 $195B-$205B，管理層並預告 2027 仍將顯著增加</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>Q2 單季自由現金流約 -$5.9B、首次轉負；連續第二季未回購，盈利亦受股權投資收益扭曲</td>
+      <td class="num"><span class="score-gauge blue"><i><b style="width:78%"></b></i><em>78</em></span></td>
+      <td class="num dn"><strong>-7.13%</strong><small>2026-07-23 · 正式收盤反應</small><small>Cloud 很強；市場懲罰的是首次單季現金消耗、Capex 再上修與後續融資／股東回報壓力</small></td>
+      <td class="num dn">-6.63%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>AAPL</strong><small>Apple · FY2026 Q3</small><span class="badge blue">Mag 6</span></td>
+      <td class="num"><strong>+16%</strong><small>$109.4B</small></td>
+      <td>EPS $2.02，年增 29%</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>iPhone、Mac、Services 均創 6 月季紀錄</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>未给出硬性季度指引；關稅退款令 EPS 增厚約 $0.11</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>毛利率 50.1%，但約 2 个百分点來自一次性關稅退款</td>
+      <td class="num"><span class="score-gauge blue"><i><b style="width:70%"></b></i><em>70</em></span></td>
+      <td class="num dn"><strong>-6.33%</strong><small>2026-07-30 AH · 盤後初步反應</small><small>数字 Beat 不足以抵消一次性退款與後續成本疑虑</small></td>
+      <td class="num up">+15.23%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>META</strong><small>Meta · 2026 Q2</small><span class="badge blue">Mag 6</span></td>
+      <td class="num"><strong>+28%</strong><small>$60.8B</small></td>
+      <td>EPS $6.18、年减 13%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>广告收入保持高增長，但成本同比增加 55%</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>Q3 營收指引中点 $62.5B，低於當時市場預期</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>Capex $31.1B；季度自由現金流僅 $0.8B</td>
+      <td class="num"><span class="score-gauge amber"><i><b style="width:58%"></b></i><em>58</em></span></td>
+      <td class="num dn"><strong>-7.95%</strong><small>2026-07-30 · 正式收盤反應</small><small>收入仍強，但利潤、現金流與下一季指引同時轉弱</small></td>
+      <td class="num dn">-4.31%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>TSLA</strong><small>Tesla · 2026 Q2</small><span class="badge blue">Mag 6</span></td>
+      <td class="num"><strong>+26%</strong><small>$28.2B</small></td>
+      <td>GAAP EPS $0.32，低於公司汇总共识 $0.36</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>交付量 480,126 辆，但汽车业务利潤质量偏弱</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>2026 Capex 預计超过 $25B</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>經營利潤率約 1.4%，增長未轉化為利潤</td>
+      <td class="num"><span class="score-gauge red"><i><b style="width:40%"></b></i><em>40</em></span></td>
+      <td class="num dn"><strong>-14.52%</strong><small>2026-07-23 · 正式收盤反應</small><small>市場惩罚低利潤率與高投入，而不是只看營收/交付增長</small></td>
+      <td class="num dn">-26.57%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>TSM</strong><small>TSMC · 2026 Q2</small><span class="badge green">AI 供應鏈</span></td>
+      <td class="num"><strong>+34%</strong><small>NT$1.27T / US$40.2B</small></td>
+      <td>EPS NT$27.25，年增 77%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>7nm 及以下占晶圆收入 77%；AI 先进制程需求強</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>Q3 營收指引 $44.6B-$45.8B，毛利率 65%-67%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>毛利率 67.7%、經營利潤率 60.3%</td>
+      <td class="num"><span class="score-gauge green"><i><b style="width:95%"></b></i><em>95</em></span></td>
+      <td class="num dn"><strong>-2.32%</strong><small>2026-07-16 · 正式收盤反應</small><small>財報強但股价未確認，顯示半導体估值/宏观折价仍在</small></td>
+      <td class="num dn">-15.55%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>LRCX</strong><small>Lam Research · FY2026 Q4</small><span class="badge green">AI 供應鏈</span></td>
+      <td class="num"><strong>+30%</strong><small>$6.72B</small></td>
+      <td>Non-GAAP EPS $1.82，年增約 37%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>AI、HBM 與先进制程設備需求推動收入創新高</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>结果與後續需求评论均高於市場財報前低預期</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>毛利率約 51.7%，利潤率同步扩张</td>
+      <td class="num"><span class="score-gauge green"><i><b style="width:94%"></b></i><em>94</em></span></td>
+      <td class="num up"><strong>+17.98%</strong><small>2026-07-30 · 正式收盤反應</small><small>財報強且財報前 5 日跌幅深，形成最大預期差修复</small></td>
+      <td class="num dn">-31.29%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>ASML</strong><small>ASML · 2026 Q2</small><span class="badge green">AI 供應鏈</span></td>
+      <td class="num"><strong>+21%</strong><small>€9.33B</small></td>
+      <td>EPS €7.59；淨利潤 €2.92B</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>装机基础管理收入 €2.76B；客戶扩产承诺增強</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>全年營收指引上調至 €43B-€45B，毛利率 54%-56%</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>季度毛利率 54.0%，高於原指引</td>
+      <td class="num"><span class="score-gauge green"><i><b style="width:92%"></b></i><em>92</em></span></td>
+      <td class="num up"><strong>+2.23%</strong><small>2026-07-15 · 正式收盤反應</small><small>Beat + Raise 获得即时正反馈，但後續仍受半導体板块回撤拖累</small></td>
+      <td class="num dn">-16.99%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>NFLX</strong><small>Netflix · 2026 Q2</small><span class="badge amber">大型科技</span></td>
+      <td class="num"><strong>+13%</strong><small>$12.56B</small></td>
+      <td>EPS $0.80，略高於預期 $0.79</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>广告與订阅继續增長，但營收略低於市場預期</td>
+      <td><div class="signal-head"><span class="badge red">弱</span></div>下一季增長約 12%，低於市場約 13% 的預期</td>
+      <td><div class="signal-head"><span class="badge green">強</span></div>淨利潤約 $3.4B，盈利质量稳定</td>
+      <td class="num"><span class="score-gauge amber"><i><b style="width:58%"></b></i><em>58</em></span></td>
+      <td class="num dn"><strong>-7.26%</strong><small>2026-07-17 · 正式收盤反應</small><small>轻微營收 Miss 與增速指引放缓，被高估值放大</small></td>
+      <td class="num up">+2.48%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>IBM</strong><small>IBM · 2026 Q2</small><span class="badge amber">大型科技</span></td>
+      <td class="num"><strong>+1%</strong><small>$17.2B</small></td>
+      <td>Non-GAAP EPS $2.93，年增 5%</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>Software +5%；Red Hat +11%；Infrastructure -7%</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>全年固定汇率營收增長預期 4%-5%</td>
+      <td><div class="signal-head"><span class="badge amber">混合</span></div>季度自由現金流 $2.5B，年减 $0.3B</td>
+      <td class="num"><span class="score-gauge red"><i><b style="width:45%"></b></i><em>45</em></span></td>
+      <td class="num up"><strong>+0.43%</strong><small>2026-07-23 · 正式收盤反應</small><small>低增長被稳定現金流與全年目標托住，股价反應接近中性</small></td>
+      <td class="num dn">-21.15%</td>
+    </tr></tbody>
+      </table>
+    </div>
+    <p class="section-summary"><strong>讀表重點：</strong>TSM／ASML 的基本面分數很高，但價格沒有持續確認；這不是財報數字錯，而是估值、板塊風險與預期門檻仍在作用。分數與股價反應必須分開看。</p>
+  </section>
+
+  <section id="mag6-score">
+    <div class="kicker">Magnificent Seven reported members</div>
+    <h2>Mag 6 財報品質排名</h2>
+    <div class="table-scroll">
+      <table class="report-data-table score-table">
+        <thead><tr>
+          <th>排名</th>
+          <th>公司</th>
+          <th class="num">增長</th>
+          <th class="num">核心業務</th>
+          <th class="num">盈利／現金</th>
+          <th class="num">指引</th>
+          <th class="num">總分</th>
+          <th class="num">財報反應</th>
+        </tr></thead>
+        <tbody><tr>
+    <td class="rank-cell">1</td>
+    <td><strong>MSFT</strong><small>Microsoft</small></td>
+    <td class="num">27 / 30</td>
+    <td class="num">25 / 25</td>
+    <td class="num">22 / 25</td>
+    <td class="num">19 / 20</td>
+    <td class="num"><span class="score-gauge green"><i><b style="width:93%"></b></i><em>93</em></span></td>
+    <td class="num up">+15.51%</td>
+  </tr><tr>
+    <td class="rank-cell">2</td>
+    <td><strong>AMZN</strong><small>Amazon</small></td>
+    <td class="num">27 / 30</td>
+    <td class="num">24 / 25</td>
+    <td class="num">13 / 25</td>
+    <td class="num">16 / 20</td>
+    <td class="num"><span class="score-gauge blue"><i><b style="width:80%"></b></i><em>80</em></span></td>
+    <td class="num up">+9.53%</td>
+  </tr><tr>
+    <td class="rank-cell">3</td>
+    <td><strong>GOOGL</strong><small>Alphabet</small></td>
+    <td class="num">27 / 30</td>
+    <td class="num">25 / 25</td>
+    <td class="num">10 / 25</td>
+    <td class="num">16 / 20</td>
+    <td class="num"><span class="score-gauge blue"><i><b style="width:78%"></b></i><em>78</em></span></td>
+    <td class="num dn">-7.13%</td>
+  </tr><tr>
+    <td class="rank-cell">4</td>
+    <td><strong>AAPL</strong><small>Apple</small></td>
+    <td class="num">24 / 30</td>
+    <td class="num">17 / 25</td>
+    <td class="num">19 / 25</td>
+    <td class="num">10 / 20</td>
+    <td class="num"><span class="score-gauge blue"><i><b style="width:70%"></b></i><em>70</em></span></td>
+    <td class="num dn">-6.33%</td>
+  </tr><tr>
+    <td class="rank-cell">5</td>
+    <td><strong>META</strong><small>Meta</small></td>
+    <td class="num">25 / 30</td>
+    <td class="num">21 / 25</td>
+    <td class="num">5 / 25</td>
+    <td class="num">7 / 20</td>
+    <td class="num"><span class="score-gauge amber"><i><b style="width:58%"></b></i><em>58</em></span></td>
+    <td class="num dn">-7.95%</td>
+  </tr><tr>
+    <td class="rank-cell">6</td>
+    <td><strong>TSLA</strong><small>Tesla</small></td>
+    <td class="num">20 / 30</td>
+    <td class="num">13 / 25</td>
+    <td class="num">3 / 25</td>
+    <td class="num">4 / 20</td>
+    <td class="num"><span class="score-gauge red"><i><b style="width:40%"></b></i><em>40</em></span></td>
+    <td class="num dn">-14.52%</td>
+  </tr></tbody>
+      </table>
+    </div>
+    <div class="callout"><strong>排名解讀：</strong>MSFT 是唯一在核心加速、前瞻訂單、盈利質量與市場反應四個層面同時獲確認的 Mag 7 成員；AMZN 居次，但自由現金流仍是下一季必須對賬的缺口。</div>
+  </section>
+
+  <section id="market-reaction">
+    <div class="kicker">Price paid versus fundamentals delivered</div>
+    <h2>市場支付了什麼？</h2>
+    <div class="chart-grid">
+      <figure class="chart diverging-chart">
+    <figcaption class="chart-title">財報後第一個可交易時段反應</figcaption>
+    <div class="diverging-list">
+      <div class="diverging-row">
+          <span class="ticker">LRCX</span>
+          <span class="num up">+17.98%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:48%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">MSFT</span>
+          <span class="num up">+15.51%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:41.39959682822308%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">AMZN</span>
+          <span class="num up">+9.53%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:25.450786105468232%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">ASML</span>
+          <span class="num up">+2.23%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:5.95860943105882%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">IBM</span>
+          <span class="num up">+0.43%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:1.5%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">TSM</span>
+          <span class="num dn">-2.32%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:6.199026097762783%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">AAPL</span>
+          <span class="num dn">-6.33%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:16.893217854633484%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">GOOGL</span>
+          <span class="num dn">-7.13%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:19.04255481801428%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">NFLX</span>
+          <span class="num dn">-7.26%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:19.39047974221961%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">META</span>
+          <span class="num dn">-7.95%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:21.23570908469903%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">TSLA</span>
+          <span class="num dn">-14.52%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:38.775045335024984%"></i></span>
+        </div>
+    </div>
+    <p class="chart-note">AAPL／AMZN 為 7/30 盤後；其餘為下一個正式交易時段。</p>
+  </figure>
+      <figure class="chart diverging-chart">
+    <figcaption class="chart-title">7 月至 7/30 收盤累計表現</figcaption>
+    <div class="diverging-list">
+      <div class="diverging-row">
+          <span class="ticker">MSFT</span>
+          <span class="num up">+20.93%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:32.10524327982759%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">AAPL</span>
+          <span class="num up">+15.23%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:23.35999970805384%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">NFLX</span>
+          <span class="num up">+2.48%</span>
+          <span class="diverging-track"><i class="positive" style="left:50%;width:3.802273325818775%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">AMZN</span>
+          <span class="num dn">-1.19%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:1.8276359127947344%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">META</span>
+          <span class="num dn">-4.31%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:6.605824531025082%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">GOOGL</span>
+          <span class="num dn">-6.63%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:10.176108762616963%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">TSM</span>
+          <span class="num dn">-15.55%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:23.84987931052158%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">ASML</span>
+          <span class="num dn">-16.99%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:26.058783207723774%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">IBM</span>
+          <span class="num dn">-21.15%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:32.436609793015236%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">TSLA</span>
+          <span class="num dn">-26.57%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:40.751776118917846%"></i></span>
+        </div><div class="diverging-row">
+          <span class="ticker">LRCX</span>
+          <span class="num dn">-31.29%</span>
+          <span class="diverging-track"><i class="negative" style="right:50%;width:48%"></i></span>
+        </div>
+    </div>
+    <p class="chart-note">7 月漲跌使用 6/30 收盤至 7/30 收盤，未把 AAPL／AMZN 盤後價格併入月度報酬。</p>
+  </figure>
+    </div>
+    <figure class="scatter-figure">
+    <figcaption><strong>財報品質分數 × 財報後反應</strong><span>右上：品質與價格同時確認；右下：好財報但市場不買單</span></figcaption>
+    <svg viewBox="0 0 1000 520" role="img" aria-label="11 家大型科技公司財報品質分數與財報後股價反應散點圖">
+      <rect x="626.9230769230769" y="38" width="343.0769230769231" height="211" class="quad quad-good"></rect>
+      <rect x="626.9230769230769" y="249" width="343.0769230769231" height="211" class="quad quad-discount"></rect>
+      <line x1="78" y1="460" x2="970" y2="460" class="gridline"></line><text x="66" y="464" text-anchor="end" class="axis-label">-20%</text><line x1="78" y1="354.5" x2="970" y2="354.5" class="gridline"></line><text x="66" y="358.5" text-anchor="end" class="axis-label">-10%</text><line x1="78" y1="249" x2="970" y2="249" class="axis-zero"></line><text x="66" y="253" text-anchor="end" class="axis-label">0%</text><line x1="78" y1="143.5" x2="970" y2="143.5" class="gridline"></line><text x="66" y="147.5" text-anchor="end" class="axis-label">+10%</text><line x1="78" y1="38" x2="970" y2="38" class="gridline"></line><text x="66" y="42" text-anchor="end" class="axis-label">+20%</text>
+      <line x1="146.6153846153846" y1="38" x2="146.6153846153846" y2="460" class="gridline"></line><text x="146.6153846153846" y="484" text-anchor="middle" class="axis-label">40</text><line x1="283.84615384615387" y1="38" x2="283.84615384615387" y2="460" class="gridline"></line><text x="283.84615384615387" y="484" text-anchor="middle" class="axis-label">50</text><line x1="421.0769230769231" y1="38" x2="421.0769230769231" y2="460" class="gridline"></line><text x="421.0769230769231" y="484" text-anchor="middle" class="axis-label">60</text><line x1="558.3076923076923" y1="38" x2="558.3076923076923" y2="460" class="gridline"></line><text x="558.3076923076923" y="484" text-anchor="middle" class="axis-label">70</text><line x1="695.5384615384615" y1="38" x2="695.5384615384615" y2="460" class="gridline"></line><text x="695.5384615384615" y="484" text-anchor="middle" class="axis-label">80</text><line x1="832.7692307692307" y1="38" x2="832.7692307692307" y2="460" class="gridline"></line><text x="832.7692307692307" y="484" text-anchor="middle" class="axis-label">90</text><line x1="970" y1="38" x2="970" y2="460" class="gridline"></line><text x="970" y="484" text-anchor="middle" class="axis-label">100</text>
+      <line x1="626.9230769230769" y1="38" x2="626.9230769230769" y2="460" class="threshold"></line>
+      <text x="970" y="508" text-anchor="end" class="axis-title">財報品質分數（0–100）</text>
+      <text x="78" y="26" class="axis-title">財報後反應</text>
+      <text x="654.3692307692309" y="56" class="quad-label good">品質與價格確認</text>
+      <text x="654.3692307692309" y="446" class="quad-label discount">基本面強、估值/預期差未確認</text>
+      <g>
+          <circle cx="558.3076923076923" cy="315.7558108148637" r="7" class="scatter-point point-mag"></circle>
+          <text x="550.3076923076923" y="303.7558108148637" class="point-label">AAPL</text>
+        </g><g>
+          <circle cx="873.9384615384616" cy="85.40395350028172" r="7" class="scatter-point point-mag"></circle>
+          <text x="825.9384615384616" y="103.40395350028172" class="point-label">MSFT</text>
+        </g><g>
+          <circle cx="668.0923076923077" cy="324.249203425999" r="7" class="scatter-point point-mag"></circle>
+          <text x="676.0923076923077" y="340.249203425999" class="point-label">GOOGL</text>
+        </g><g>
+          <circle cx="695.5384615384615" cy="148.42781316348209" r="7" class="scatter-point point-mag"></circle>
+          <text x="703.5384615384615" y="139.42781316348209" class="point-label">AMZN</text>
+        </g><g>
+          <circle cx="393.63076923076926" cy="332.9157459742833" r="7" class="scatter-point point-mag"></circle>
+          <text x="401.63076923076926" y="350.9157459742833" class="point-label">META</text>
+        </g><g>
+          <circle cx="146.6153846153846" cy="402.2247800860939" r="7" class="scatter-point point-mag"></circle>
+          <text x="154.6153846153846" y="419.2247800860939" class="point-label">TSLA</text>
+        </g><g>
+          <circle cx="901.3846153846155" cy="273.4962811099457" r="7" class="scatter-point point-ai"></circle>
+          <text x="863.3846153846155" y="291.4962811099457" class="point-label">TSM</text>
+        </g><g>
+          <circle cx="860.2153846153847" cy="225.45375751841596" r="7" class="scatter-point point-ai"></circle>
+          <text x="818.2153846153847" y="213.45375751841596" class="point-label">ASML</text>
+        </g><g>
+          <circle cx="393.63076923076926" cy="325.62407531943495" r="7" class="scatter-point point-tech"></circle>
+          <text x="341.63076923076926" y="313.62407531943495" class="point-label">NFLX</text>
+        </g><g>
+          <circle cx="215.23076923076923" cy="244.488166399378" r="7" class="scatter-point point-tech"></circle>
+          <text x="223.23076923076923" y="234.488166399378" class="point-label">IBM</text>
+        </g><g>
+          <circle cx="887.6615384615385" cy="59.32157717455908" r="7" class="scatter-point point-ai"></circle>
+          <text x="843.6615384615385" y="44.32157717455908" class="point-label">LRCX</text>
+        </g>
+    </svg>
+    <div class="scatter-legend"><span><i class="point-mag"></i>Mag 6</span><span><i class="point-ai"></i>AI 供應鏈</span><span><i class="point-tech"></i>大型科技</span></div>
+    <p>品質分數只衡量當季增長、核心 KPI、盈利/現金流與指引，不包含股價反應。AAPL／AMZN 為盤後初步報價，其餘為完整正式交易時段，跨時間窗比較只能作方向觀察。</p>
+  </figure>
+  </section>
+
+  <section id="factors">
+    <div class="kicker">Descriptive factor attribution</div>
+    <h2>市場對財報有反饋的因子</h2>
+    <div class="factor-list">
+      <div class="factor-row">
+    <div class="factor-name"><span>前瞻指引</span><strong class="green">+17.37pp</strong></div>
+    <div class="factor-side positive"><span>正向組平均反應</span><strong>+8.35%</strong></div>
+    <div class="factor-side negative"><span>弱／混合組平均反應</span><strong>-9.02%</strong></div>
+    <p>強組：MSFT、TSM、ASML、LRCX；弱組：AAPL、META、TSLA、NFLX。</p>
+  </div>
+      <div class="factor-row">
+    <div class="factor-name"><span>核心業務加速</span><strong class="green">+10.90pp</strong></div>
+    <div class="factor-side positive"><span>正向組平均反應</span><strong>+3.98%</strong></div>
+    <div class="factor-side negative"><span>弱／混合組平均反應</span><strong>-6.92%</strong></div>
+    <p>雲端、AI 訂單或先進製程加速，比 headline 營收增速更能解釋反應。</p>
+  </div>
+      <div class="factor-row">
+    <div class="factor-name"><span>利潤率／現金流</span><strong class="blue">+10.25pp</strong></div>
+    <div class="factor-side positive"><span>正向組平均反應</span><strong>+5.23%</strong></div>
+    <div class="factor-side negative"><span>弱／混合組平均反應</span><strong>-5.02%</strong></div>
+    <p>高 Capex 不是原罪；無法同時守住利潤率或自由現金流才會被折價。</p>
+  </div>
+      <div class="factor-row">
+        <div class="factor-name"><span>營收增速線性相關</span><strong class="blue">r = 0.01</strong></div>
+        <div class="factor-side"><span>樣本數</span><strong>11 家</strong></div>
+        <div class="factor-side"><span>解讀</span><strong>接近 0</strong></div>
+        <p>營收增長只是一個輸入，無法單獨決定價格。跨產業、樣本小，結果只作本輪財報季描述性歸因。</p>
+      </div>
+    </div>
+    <div class="pair-list">
+      <div class="pair-row">
+    <div class="pair-title"><span>同為 AI Capex</span><strong>變現可見度勝過支出規模</strong></div>
+    <div class="pair-company">
+      <div><b>MSFT</b><em class="up">+15.51%</em></div>
+      <p>雲端加速與訂單可見度同時確認，AI 投資被視為可變現</p>
+    </div>
+    <div class="pair-vs">VS</div>
+    <div class="pair-company">
+      <div><b>META</b><em class="dn">-7.95%</em></div>
+      <p>收入仍強，但利潤、現金流與下一季指引同時轉弱</p>
+    </div>
+  </div>
+      <div class="pair-row">
+    <div class="pair-title"><span>同為雲端加速／FCF 轉負</span><strong>反應差在期間口徑與預期變化，不是雲增速高低</strong></div>
+    <div class="pair-company">
+      <div><b>AMZN</b><em class="up">+9.53%</em></div>
+      <p>AWS 由 28% 加速至 37%、盈利同步擴張，負 FCF 又是 TTM 口徑；盤後市場先交易超預期增長</p>
+    </div>
+    <div class="pair-vs">VS</div>
+    <div class="pair-company">
+      <div><b>GOOGL</b><em class="dn">-7.13%</em></div>
+      <p>Cloud 很強；市場懲罰的是首次單季現金消耗、Capex 再上修與後續融資／股東回報壓力</p>
+    </div>
+  </div>
+      <div class="pair-row">
+    <div class="pair-title"><span>同為高增長</span><strong>一次性盈利與低利潤率都被折價</strong></div>
+    <div class="pair-company">
+      <div><b>AAPL</b><em class="dn">-6.33%</em></div>
+      <p>数字 Beat 不足以抵消一次性退款與後續成本疑虑</p>
+    </div>
+    <div class="pair-vs">VS</div>
+    <div class="pair-company">
+      <div><b>TSLA</b><em class="dn">-14.52%</em></div>
+      <p>市場惩罚低利潤率與高投入，而不是只看營收/交付增長</p>
+    </div>
+  </div>
+      <div class="pair-row">
+    <div class="pair-title"><span>同為 AI 設備鏈</span><strong>財報前定位與板塊折價改變反應</strong></div>
+    <div class="pair-company">
+      <div><b>LRCX</b><em class="up">+17.98%</em></div>
+      <p>財報強且財報前 5 日跌幅深，形成最大預期差修复</p>
+    </div>
+    <div class="pair-vs">VS</div>
+    <div class="pair-company">
+      <div><b>TSM</b><em class="dn">-2.32%</em></div>
+      <p>財報強但股价未確認，顯示半導体估值/宏观折价仍在</p>
+    </div>
+  </div>
+    </div>
+    <h3 class="subsection-title">GOOGL 與 AMZN：同為 FCF 轉負，為何反應相反？</h3>
+    <div class="table-scroll">
+      <table class="report-data-table report-cols-4">
+        <thead><tr><th>比較項目</th><th>GOOGL</th><th>AMZN</th><th>市場解讀</th></tr></thead>
+        <tbody>
+          <tr><td>FCF 期間</td><td>Q2 單季約 -$5.9B，首次出現季度現金消耗。</td><td>過去 12 個月約 -$7.6B；同期營運現金流仍 +33% 至 $161.4B。</td><td>兩個負值不是同一期間；GOOGL 是新的季度拐點，AMZN 是累計 Capex 結果。</td></tr>
+          <tr><td>雲端變現</td><td>Google Cloud +82%，Backlog 達 $514B，需求非常強。</td><td>AWS 由 +28% 加速至 +37%；AWS 經營利潤由 $10.2B 升至 $16.6B。</td><td>兩家雲端都強；AMZN 同時交出明確的增速加速度與絕對利潤擴張。</td></tr>
+          <tr><td>Capex／資金訊號</td><td>全年 Capex 由 $180B-$190B 再升至 $195B-$205B，並預告 2027 繼續增加；連續第二季未回購。</td><td>全年 Capex 由約 $200B 升至 $220B，但營運現金流仍增長，公司稱現有產能不足以滿足已見需求。</td><td>市場把 GOOGL 解讀為資金壓力升級；AMZN 暫被解讀為用已確認需求支持擴產。</td></tr>
+          <tr><td>價格時間窗</td><td>7/23 完整正式交易時段 <span class="dn">-7.13%</span>。</td><td>7/30 盤後初步報價 <span class="up">+9.53%</span>。</td><td>兩個反應方向確實相反，但時間窗不一致；AMZN 必須待下一正式收盤再定案。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>修正後結論：</strong>不能說市場單純「容忍 AMZN 的負 FCF、卻不容忍 GOOGL」。更準確的說法是：市場交易的是負 FCF 的<strong>新舊程度、期間口徑、Capex surprise、盈利轉化與反應時間窗</strong>。GOOGL 的現金流與資金政策出現新負面拐點；AMZN 的盤後價格則先交易 AWS 超預期加速，但尚未經過完整正式交易日驗證。</div>
+    <p class="method-note"><strong>方法限制：</strong>描述性樣本归因；Strong/Weak 由公司披露的指引、核心 KPI 及利潤率/自由現金流方向分類，不代表統計顯著性。 財報後反應亦可能受同日宏觀、板塊波動及財報前倉位影響，不能視為單因果迴歸。</p>
+  </section>
+
+  <section id="pending">
+    <div class="kicker">Not yet reported</div>
+    <h2>未公布財報公司：基準預測與反應門檻</h2>
+    <p class="section-intro">以下不是把未來當成已知，而是把本輪已公布樣本的定價規則轉成可對賬門檻。公司原始指引、本文基準預測與價格反應條件分欄呈現；只有公司已公告的財報日才標記「官方」。</p>
+    <h3 class="subsection-title">核心 AI 計算與軟體</h3>
+    <div class="table-scroll">
+      <table class="forecast-table">
+        <thead><tr>
+          <th>公司／日期</th>
+          <th class="num">7/30／7月</th>
+          <th class="ma-heading">20/50/200MA · RSI</th>
+          <th>公司原始基準</th>
+          <th>本報告基準預測</th>
+          <th>正面反應門檻</th>
+          <th>負面反應門檻</th>
+        </tr></thead>
+        <tbody><tr>
+      <td class="company-cell"><strong>NVDA</strong><small>NVIDIA</small><small>2026-08-26 AMC</small></td>
+      <td class="num"><strong>$195.04</strong><small class="dn">-2.52% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 43.08</small></td>
+      <td>公司 Q2 FY2027 營收指引 $91.0B ±2%，Non-GAAP 毛利率 75.0% ±0.5pct</td>
+      <td>營收 $93B-$95B；數據中心約 $86B-$89B；毛利率 74.8%-75.3%</td>
+      <td>下一季營收指引不低於 $104B，且毛利率仍接近 75%</td>
+      <td>本季營收低於 $91B，或下一季指引低於 $100B／毛利率跌破 74.5%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>AMD</strong><small>AMD</small><small>2026-08-04 AMC</small></td>
+      <td class="num"><strong>$485.39</strong><small class="dn">-16.44% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 46.51</small></td>
+      <td>公司 Q2 營收指引 $11.2B ±$0.3B，Non-GAAP 毛利率約 56%</td>
+      <td>營收 $11.3B-$11.6B；毛利率 56.0%-56.5%；數據中心继續主導</td>
+      <td>Q3 營收指引 ≥$12.3B，毛利率 ≥56.5%，并確認 MI450/Helios 放量</td>
+      <td>本季營收 &lt; $11.2B，或 Q3 指引 &lt; $12.0B</td>
+    </tr><tr>
+      <td class="company-cell"><strong>PLTR</strong><small>Palantir</small><small>2026-08-03 AMC</small></td>
+      <td class="num"><strong>$122.26</strong><small class="up">+4.79% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-bad">200MA ▼</span></div><small>RSI 43.32</small></td>
+      <td>公司 Q2 營收指引 $1.797B-$1.801B，調整後經營利潤 $1.063B-$1.067B</td>
+      <td>營收 $1.84B-$1.89B；調整後經營利潤率約 59%-60%</td>
+      <td>全年營收指引上調至約 $7.9B 以上，美国商业收入目標同步上修</td>
+      <td>營收僅貼近原指引，或 2026 全年目標未明顯提高</td>
+    </tr></tbody>
+      </table>
+    </div>
+    <article class="forecast-company">
+      <div class="forecast-head">
+        <div><span>2026-08-26 AMC</span><h3>NVDA｜NVIDIA</h3></div>
+        <p>上游讀穿偏正面：TSMC／ASML／LRCX 均確認 AI 產能需求，MSFT／AMZN 的雲端需求亦加速；真正門檻是下一季指引與 75% 毛利率能否並存。</p>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario bull"><span>多頭情境 · 30%</span><strong>營收 ≥$96B、下一季 ≥$106B；估計反應 +8% 至 +15%</strong></div>
+        <div class="scenario base"><span>基準情境 · 55%</span><strong>營收 $93B-$95B、下一季 $100B-$104B；估計反應 -3% 至 +5%</strong></div>
+        <div class="scenario bear"><span>空頭情境 · 15%</span><strong>營收 &lt; $91B 或毛利率/指引明顯轉弱；估計反應 -10% 至 -18%</strong></div>
+      </div>
+    </article><article class="forecast-company">
+      <div class="forecast-head">
+        <div><span>2026-08-04 AMC</span><h3>AMD｜AMD</h3></div>
+        <p>股價 7/30 單日已上漲 13.0%，財報前預期被快速拉高；只 Beat 本季指引可能不夠，Q3 MI450／Helios 放量才是定價核心。</p>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario bull"><span>多頭情境 · 30%</span><strong>明顯 Beat 且 Q3 指引 ≥$12.5B；估計反應 +8% 至 +15%</strong></div>
+        <div class="scenario base"><span>基準情境 · 50%</span><strong>小幅 Beat、指引大致符合；估計反應 -3% 至 +5%</strong></div>
+        <div class="scenario bear"><span>空頭情境 · 20%</span><strong>數據中心/指引低於门槛；估計反應 -10% 至 -18%</strong></div>
+      </div>
+    </article><article class="forecast-company">
+      <div class="forecast-head">
+        <div><span>2026-08-03 AMC</span><h3>PLTR｜Palantir</h3></div>
+        <p>Q1 已做到 85% 營收增長與 60% 調整後經營利潤率，財報門檻極高；即使 Beat，若全年指引上修幅度有限，估值仍可能壓過基本面。</p>
+      </div>
+      <div class="scenario-grid">
+        <div class="scenario bull"><span>多頭情境 · 25%</span><strong>營收 ≥$1.90B 且全年指引強上調；估計反應 +10% 至 +18%</strong></div>
+        <div class="scenario base"><span>基準情境 · 45%</span><strong>營收 $1.84B-$1.89B、温和上調；估計反應 -5% 至 +5%</strong></div>
+        <div class="scenario bear"><span>空頭情境 · 30%</span><strong>Beat 幅度不足以覆盖估值门槛；估計反應 -15% 至 -25%</strong></div>
+      </div>
+    </article>
+    <div class="callout warn"><strong>預測結論：</strong>三家公司共同的風險是「數字很好但不夠好」。NVDA 最重要的是下一季 $104B 左右的指引門檻與 75% 毛利率；AMD 要看 Q3 MI450／Helios 放量；PLTR 要用全年指引上修幅度跨過估值門檻。</div>
+
+    <h3 class="subsection-title">AI 硬件擴展組</h3>
+    <p class="section-intro">這一組覆蓋 AI 資本開支的七個直接讀穿：乙太網路、製程設備、資料中心網路、客製 XPU／光互連、客製 ASIC、AI 伺服器與 HBM。ANET、AMAT、DELL 的日期已由公司確認；其餘僅列預估窗口。</p>
+    <div class="table-scroll">
+      <table class="forecast-table">
+        <thead><tr>
+          <th>公司／日期</th>
+          <th class="num">7/30／7月</th>
+          <th class="ma-heading">20/50/200MA · RSI</th>
+          <th>公司原始基準</th>
+          <th>本報告基準預測</th>
+          <th>正面反應門檻</th>
+          <th>負面反應門檻</th>
+        </tr></thead>
+        <tbody><tr>
+      <td class="company-cell"><strong>ANET</strong><small>Arista Networks · AI 乙太網路交換器</small><small>2026-08-04 AMC（官方）</small></td>
+      <td class="num"><strong>$171.02</strong><small class="up">+0.67% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-ok">50MA ▲</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 50.85</small></td>
+      <td>公司 Q2 營收指引約 $2.80B，Non-GAAP 經營利潤率 46%-47%，EPS 約 $0.88</td>
+      <td>營收 $2.84B-$2.90B；經營利潤率 46.5%-47.5%；Q3 指引約 $3.0B-$3.1B</td>
+      <td>Q3 營收指引 ≥$3.10B、利潤率 ≥47%，並確認 AI 網路客戶與產品組合擴張</td>
+      <td>本季營收 &lt; $2.80B，或 Q3 指引 &lt; $2.95B／利潤率 &lt;46%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>AMAT</strong><small>Applied Materials · 晶圓製造與先進封裝設備</small><small>2026-08-13 AMC（官方）</small></td>
+      <td class="num"><strong>$501.77</strong><small class="dn">-30.60% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 44.42</small></td>
+      <td>公司 Q3 營收指引 $8.95B ±$0.50B，Non-GAAP EPS $3.36 ±$0.20</td>
+      <td>營收 $9.00B-$9.25B；EPS $3.40-$3.55；DRAM／先進封裝維持主要增量</td>
+      <td>下一季營收指引 ≥$9.40B，且 DRAM、先進封裝與服務收入同步增長</td>
+      <td>本季營收 &lt; $8.90B，或下一季指引 &lt; $9.00B／EPS &lt; $3.30</td>
+    </tr><tr>
+      <td class="company-cell"><strong>CSCO</strong><small>Cisco · AI 網路與資料中心交換器</small><small>預估 2026-08 中旬 AMC</small></td>
+      <td class="num"><strong>$113.56</strong><small class="dn">-3.32% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 48.13</small></td>
+      <td>公司 Q4 營收指引 $16.7B-$16.9B，Non-GAAP 毛利率 65.5%-66.5%，EPS $1.16-$1.18</td>
+      <td>營收 $16.9B-$17.1B；EPS $1.18-$1.21；毛利率 66.0%-66.5%</td>
+      <td>營收 ≥$16.9B、毛利率 ≥66%，且 FY2027 指引確認 AI 訂單可持續轉為收入</td>
+      <td>營收 &lt; $16.7B、毛利率 &lt;65.5%，或 FY2027 AI 收入展望明顯減速</td>
+    </tr><tr>
+      <td class="company-cell"><strong>MRVL</strong><small>Marvell · 客製 XPU、光互連與交換晶片</small><small>預估 2026-08 下旬 AMC</small></td>
+      <td class="num"><strong>$183.30</strong><small class="dn">-38.47% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 40.00</small></td>
+      <td>公司 Q2 FY2027 營收指引 $2.70B ±5%，Non-GAAP 毛利率 58.25%-59.25%，EPS $0.93 ±$0.05</td>
+      <td>營收 $2.73B-$2.80B；毛利率 58.7%-59.3%；EPS $0.94-$0.98</td>
+      <td>Q3 營收指引 ≥$3.05B，且客製 XPU、800G／1.6T 光互連增長再加速</td>
+      <td>本季營收 &lt; $2.65B，或 Q3 指引 &lt; $2.90B／毛利率 &lt;58%</td>
+    </tr><tr>
+      <td class="company-cell"><strong>AVGO</strong><small>Broadcom · 客製 AI ASIC 與網路晶片</small><small>預估 2026-09 上旬 AMC</small></td>
+      <td class="num"><strong>$387.84</strong><small class="up">+2.67% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-ok">20MA ▲</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 50.89</small></td>
+      <td>公司 Q3 營收指引約 $29.4B；AI 半導體收入約 $16.0B；調整後 EBITDA 利潤率約 68%</td>
+      <td>營收 $29.6B-$30.2B；AI 半導體 $16.2B-$16.8B；EBITDA 利潤率約 68%</td>
+      <td>本季營收 ≥$30.0B、AI 半導體 ≥$16.5B，且 Q4 營收指引 ≥$34.0B</td>
+      <td>本季營收 &lt; $29.4B，或 AI 半導體 &lt; $16.0B／Q4 指引 &lt; $33.0B</td>
+    </tr><tr>
+      <td class="company-cell"><strong>DELL</strong><small>Dell Technologies · AI 伺服器與整機交付</small><small>2026-09-03 AMC（官方）</small></td>
+      <td class="num"><strong>$404.81</strong><small class="dn">-6.18% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-ok">50MA ▲</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 49.65</small></td>
+      <td>公司 Q2 FY2027 營收指引 $44.0B-$45.0B、Non-GAAP EPS $4.80；全年 AI 伺服器收入約 $60B</td>
+      <td>營收 $44.5B-$45.2B；EPS $4.80-$5.00；AI 伺服器收入約 $15B-$17B</td>
+      <td>全年營收指引中點升至 ≥$170B、AI 伺服器目標 &gt;$60B，且毛利率不再下滑</td>
+      <td>本季營收 &lt; $44.0B，或全年 AI 伺服器目標未上修且毛利率續壓縮</td>
+    </tr><tr>
+      <td class="company-cell"><strong>MU</strong><small>Micron · HBM／DRAM 記憶體</small><small>預估 2026-09 下旬 AMC</small></td>
+      <td class="num"><strong>$874.66</strong><small class="dn">-24.23% 7月</small></td>
+      <td class="ma-cell"><div class="mini-ma-group"><span class="mini-ma ma-bad">20MA ▼</span><span class="mini-ma ma-bad">50MA ▼</span><span class="mini-ma ma-ok">200MA ▲</span></div><small>RSI 46.61</small></td>
+      <td>公司 Q4 FY2026 營收指引 $50.0B ±$1.0B，毛利率約 86%，Non-GAAP EPS $31.00 ±$1.00</td>
+      <td>營收 $50.5B-$51.5B；毛利率 85.5%-86.5%；EPS $31.0-$32.5</td>
+      <td>營收 &gt;$51.0B、毛利率 ≥86%，且下一季指引再創高並確認 HBM4 放量</td>
+      <td>營收 &lt; $49.0B、毛利率 &lt;84.5%，或 HBM4 出貨／價格展望轉弱</td>
+    </tr></tbody>
+      </table>
+    </div>
+
+    <h3 class="subsection-title">AI 硬件情境反應矩陣</h3>
+    <div class="table-scroll">
+      <table class="hardware-scenario-table">
+        <thead><tr>
+          <th>公司／角色</th>
+          <th>財報前定位</th>
+          <th>多頭情境</th>
+          <th>基準情境</th>
+          <th>空頭情境</th>
+        </tr></thead>
+        <tbody><tr>
+      <td class="company-cell"><strong>ANET</strong><small>AI 乙太網路交換器</small><small>2026-08-04 AMC（官方）</small></td>
+      <td><strong>中性整理</strong><small>7月 +0.67%；站上 2/3 條均線；RSI 50.85</small></td>
+      <td><strong class="up">30%</strong><small>Q2 明顯 Beat、Q3 指引 ≥$3.10B；估計反應 +8% 至 +14%</small></td>
+      <td><strong>50%</strong><small>Q2 小幅 Beat、Q3 約 $3.0B；估計反應 -4% 至 +5%</small></td>
+      <td><strong class="dn">20%</strong><small>指引或利潤率未跨過門檻；估計反應 -10% 至 -18%</small></td>
+    </tr><tr>
+      <td class="company-cell"><strong>AMAT</strong><small>晶圓製造與先進封裝設備</small><small>2026-08-13 AMC（官方）</small></td>
+      <td><strong>深度回撤／低預期</strong><small>7月 -30.60%；站上 1/3 條均線；RSI 44.42</small></td>
+      <td><strong class="up">25%</strong><small>Beat 且下一季指引 ≥$9.40B；估計反應 +7% 至 +12%</small></td>
+      <td><strong>55%</strong><small>落在基準預測、指引溫和提高；估計反應 -4% 至 +4%</small></td>
+      <td><strong class="dn">20%</strong><small>收入或設備需求指引轉弱；估計反應 -10% 至 -16%</small></td>
+    </tr><tr>
+      <td class="company-cell"><strong>CSCO</strong><small>AI 網路與資料中心交換器</small><small>預估 2026-08 中旬 AMC</small></td>
+      <td><strong>中性整理</strong><small>7月 -3.32%；站上 1/3 條均線；RSI 48.13</small></td>
+      <td><strong class="up">20%</strong><small>高端 Beat 且 FY2027 AI 目標續升；估計反應 +5% 至 +9%</small></td>
+      <td><strong>60%</strong><small>符合指引、AI 訂單轉化正常；估計反應 -3% 至 +4%</small></td>
+      <td><strong class="dn">20%</strong><small>毛利率或新年度指引轉弱；估計反應 -8% 至 -13%</small></td>
+    </tr><tr>
+      <td class="company-cell"><strong>MRVL</strong><small>客製 XPU、光互連與交換晶片</small><small>預估 2026-08 下旬 AMC</small></td>
+      <td><strong>深度回撤／低預期</strong><small>7月 -38.47%；站上 1/3 條均線；RSI 40.00</small></td>
+      <td><strong class="up">30%</strong><small>Beat 且 Q3 指引 ≥$3.05B；估計反應 +9% 至 +16%</small></td>
+      <td><strong>45%</strong><small>小幅 Beat、增長軌跡未變；估計反應 -4% 至 +6%</small></td>
+      <td><strong class="dn">25%</strong><small>Q3 指引或毛利率不及門檻；估計反應 -12% 至 -20%</small></td>
+    </tr><tr>
+      <td class="company-cell"><strong>AVGO</strong><small>客製 AI ASIC 與網路晶片</small><small>預估 2026-09 上旬 AMC</small></td>
+      <td><strong>中性整理</strong><small>7月 +2.67%；站上 2/3 條均線；RSI 50.89</small></td>
+      <td><strong class="up">30%</strong><small>AI 與總營收雙 Beat、Q4 ≥$34.0B；估計反應 +8% 至 +14%</small></td>
+      <td><strong>50%</strong><small>小幅 Beat、Q4 約 $33B-$34B；估計反應 -4% 至 +5%</small></td>
+      <td><strong class="dn">20%</strong><small>AI 收入或 Q4 指引未跨門檻；估計反應 -10% 至 -18%</small></td>
+    </tr><tr>
+      <td class="company-cell"><strong>DELL</strong><small>AI 伺服器與整機交付</small><small>2026-09-03 AMC（官方）</small></td>
+      <td><strong>回撤／門檻下降</strong><small>7月 -6.18%；站上 2/3 條均線；RSI 49.65</small></td>
+      <td><strong class="up">25%</strong><small>AI 伺服器與全年指引同步上修；估計反應 +8% 至 +14%</small></td>
+      <td><strong>50%</strong><small>符合指引、AI 伺服器目標維持；估計反應 -4% 至 +5%</small></td>
+      <td><strong class="dn">25%</strong><small>收入 Miss 或 AI 低毛利稀釋加劇；估計反應 -12% 至 -20%</small></td>
+    </tr><tr>
+      <td class="company-cell"><strong>MU</strong><small>HBM／DRAM 記憶體</small><small>預估 2026-09 下旬 AMC</small></td>
+      <td><strong>深度回撤／低預期</strong><small>7月 -24.23%；站上 1/3 條均線；RSI 46.61</small></td>
+      <td><strong class="up">30%</strong><small>高端 Beat 且下一季再 Raise；估計反應 +8% 至 +15%</small></td>
+      <td><strong>50%</strong><small>符合高指引、毛利率守穩；估計反應 -5% 至 +5%</small></td>
+      <td><strong class="dn">20%</strong><small>記憶體價格或 HBM 指引降溫；估計反應 -12% 至 -20%</small></td>
+    </tr></tbody>
+      </table>
+    </div>
+    <div class="callout"><strong>硬件組讀法：</strong>ANET 是 8/4 最早的 AI 網路驗證；AMAT／CSCO 接著檢查設備與網路訂單；MRVL、AVGO 驗證客製 XPU／ASIC；DELL 檢查 AI 伺服器收入能否保住毛利；MU 則驗證 HBM 供需與價格週期。AMAT、MU、MRVL 的 7 月深度回撤降低了 headline Beat 的門檻，但若下一季指引再下修，低預期本身不會形成保護。</div>
+  </section>
+
+  <section>
+    <div class="kicker">Portfolio read-through</div>
+    <h2>對 8 月交易的讀穿</h2>
+    <div class="table-scroll">
+      <table class="report-data-table report-cols-4">
+        <thead><tr><th>主線</th><th>7 月證據</th><th>8 月確認條件</th><th>失效訊號</th></tr></thead>
+        <tbody>
+          <tr><td>雲端／AI 平台</td><td>MSFT、AMZN 正反應；GOOGL、META 被現金流折價。</td><td>收入加速與 RPO／Backlog 上修同時出現。</td><td>Capex 上修但核心 KPI 不再加速。</td></tr>
+          <tr><td>AI 晶片／硬件</td><td>TSM、ASML、LRCX 基本面一致強；待公布組延伸至網路、HBM、客製晶片與伺服器。</td><td>NVDA／AMD 指引跨門檻，ANET／AVGO／MRVL 訂單加速，DELL／MU 守住毛利。</td><td>設備或 HBM 指引降溫、AI 伺服器收入增長但毛利持續稀釋。</td></tr>
+          <tr><td>消費科技</td><td>AAPL headline Beat 仍下跌；TSLA 增長未轉化為利潤。</td><td>成本壓力下降、毛利率與單位經濟改善。</td><td>一次性收益掩蓋核心盈利，或需求靠降價維持。</td></tr>
+          <tr><td>高估值軟體</td><td>PLTR 財報門檻由增長轉向「增長 + 利潤 + 大幅 Raise」。</td><td>全年指引顯著上修且現金流率不退。</td><td>僅貼近公司原指引，估值先於基本面調整。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="qa">
+    <div class="kicker">Quality assurance</div>
+    <h2>QA 審查</h2>
+    <div class="table-scroll">
+      <table class="report-data-table report-cols-3 qa-table">
+        <thead><tr><th>檢查項目</th><th>QA 結果</th><th>處理</th></tr></thead>
+        <tbody>
+          <tr><td>NVDA 狀態</td><td><span class="badge green">PASS</span></td><td>未納入已公布排名；只出現在 8/26 情境預測。</td></tr>
+          <tr><td>橫向欄位一致性</td><td><span class="badge green">PASS</span></td><td>11 家公司均具營收、盈利、核心 KPI、指引、現金流、分數與價格反應。</td></tr>
+          <tr><td>AI 硬件覆蓋</td><td><span class="badge green">PASS</span></td><td>新增 7 家，涵蓋網路、設備、客製 XPU／ASIC、AI 伺服器與 HBM。</td></tr>
+          <tr><td>長橋價格</td><td><span class="badge green">PASS</span></td><td>11 家專題公司、10 家待公布公司與 3 個基準均成功取得未復權日線；AAPL／AMZN 盤後報價成功。</td></tr>
+          <tr><td>財報反應時段</td><td><span class="badge green">PASS</span></td><td>BMO 使用同日收盤，AMC 使用下一交易日；AAPL／AMZN 使用 7/30 盤後並明示為初步反應，不與正式收盤作等時段比較。</td></tr>
+          <tr><td>FCF 期間口徑</td><td><span class="badge green">PASS</span></td><td>GOOGL 為 Q2 單季約 -$5.9B；AMZN 為 TTM 約 -$7.6B，已分開標示。</td></tr>
+          <tr><td>日期口徑</td><td><span class="badge green">PASS</span></td><td>月度報酬截至 7/30 正式收盤；不假設 7/31 尚未完成的交易結果。</td></tr>
+          <tr><td>因子歸因</td><td><span class="badge amber">描述性</span></td><td>11 家小樣本、跨產業；已標注不代表統計顯著或單因果。</td></tr>
+          <tr><td>預測與事實分離</td><td><span class="badge green">PASS</span></td><td>公司原始指引、本報告預測與價格情境分欄；未正式公告的日期明示為預估窗口。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sources">
+    <strong>主要來源：</strong>
+    <a href="https://www.apple.com/newsroom/2026/07/apple-reports-third-quarter-results/">Apple</a>；
+    <a href="https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast">Microsoft</a>；
+    <a href="https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q2-2026/">Alphabet</a>；
+    <a href="https://ir.aboutamazon.com/news-release/news-release-details/2026/Amazon-com-Announces-Second-Quarter-Results/default.aspx">Amazon</a>；
+    <a href="https://www.semafor.com/article/07/23/2026/alphabets-free-cash-flow-turns-negative">Semafor／Alphabet FCF</a>；
+    <a href="https://apnews.com/article/amazon-second-quarter-earnings-cloud-b4ce02b4666a35b8975823c5c22072ee">AP／Amazon 財報反應</a>；
+    <a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx">Meta</a>；
+    <a href="https://ir.tesla.com/press-release/tesla-releases-second-quarter-2026-financial-results">Tesla</a>；
+    <a href="https://pr.tsmc.com/chinese/news/3326">TSMC</a>；
+    <a href="https://www.sec.gov/Archives/edgar/data/937966/000162828026048235/form6-kquarterlyfilings.htm">ASML SEC 6-K</a>；
+    <a href="https://newsroom.ibm.com/2026-07-22-IBM-RELEASES-SECOND-QUARTER-RESULTS">IBM</a>；
+    <a href="https://investor.lamresearch.com/quarterly-results">Lam Research</a>；
+    <a href="https://apnews.com/article/netflix-earnings-results-profit-6a02a255f46c66f9f8ec512d09eaa545">AP／Netflix</a>；
+    <a href="https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-first-quarter-fiscal-2027">NVIDIA</a>；
+    <a href="https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results">AMD</a>；
+    <a href="https://investors.palantir.com/files/Palantir%20-%20Q1%202026%20Business%20Update.pdf">Palantir</a>；
+    <a href="https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2026/Arista-Networks-Inc--Reports-First-Quarter-2026-Financial-Results/default.aspx">Arista</a>；
+    <a href="https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-announces-second-quarter-2026-results">Applied Materials</a>；
+    <a href="https://investor.cisco.com/news/news-details/2026/CISCO-REPORTS-THIRD-QUARTER-EARNINGS/default.aspx">Cisco</a>；
+    <a href="https://investor.marvell.com/news-events/press-releases/detail/1023/marvell-technology-inc-reports-first-quarter-of-fiscal-year-2027-financial-results">Marvell</a>；
+    <a href="https://investors.broadcom.com/news-releases/news-release-details/broadcom-inc-announces-second-quarter-fiscal-year-2026-financial">Broadcom</a>；
+    <a href="https://investors.delltechnologies.com/news-releases/news-release-details/dell-technologies-delivers-first-quarter-fiscal-2027-financial">Dell</a>；
+    <a href="https://investors.micron.com/node/50671">Micron</a>；
+    <span>長橋 CLI：kline history --adjust none 與 AAPL／AMZN post_market</span>
+    <p class="source-note"><strong>資料限制：</strong>本文截至 2026-07-30 收盤／盤後；7 月最後一個交易日 7/31 尚未納入，因此 AAPL／AMZN 僅為盤後初步反應。ANET、AMAT、DELL 的下一次財報日由公司確認；AVGO、CSCO、MRVL、MU 僅使用預估窗口，待公司公告後更新。預測情境為模型假設，不構成投資建議。</p>
+  </section>
+</main>
+<script src="report-runtime.js?v=20260731-earnings-special"></script>
+</body>
+</html>

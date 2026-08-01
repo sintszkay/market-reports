@@ -1,0 +1,35 @@
+{
+  "report_title": "2026年7月美股月報｜輪動撐住大盤，長端與科技分化",
+  "report_type": "monthly",
+  "report_month": "2026-07",
+  "data_as_of": "2026-07-31",
+  "publication_state": "local-draft",
+  "market_provider": "LongBridge OpenAPI",
+  "longbridge_rows": 47,
+  "longbridge_errors": [],
+  "august_seasonality_window": "2011-2025",
+  "vix_august_seasonality": {
+    "averageReturnPct": 12.413580379351155,
+    "medianReturnPct": 3.2163742690058506,
+    "winRatePct": 60,
+    "bestReturnPct": 134.57095709570956,
+    "worstReturnPct": -29.321533923303832,
+    "averageMaxDrawdownPct": -28.055741957656526,
+    "averageMaxUpsidePct": 48.73118736881734,
+    "observations": 15
+  },
+  "scenario_probabilities": {
+    "基準：分化整理": 45,
+    "偏多：軟著陸擴散": 25,
+    "偏空：長端再定價": 20,
+    "尾端：成長失速": 10
+  },
+  "source_dates": {
+    "longbridge": "2026-07-31",
+    "vix": "2026-07-31",
+    "treasury": "2026-07-31",
+    "breadth": "2026-07-31",
+    "stockbee": "2026-07-31"
+  },
+  "output": "reports/2026-07-monthly.html"
+}

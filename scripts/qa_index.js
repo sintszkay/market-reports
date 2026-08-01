@@ -29,15 +29,18 @@ for (const href of reportHrefs) {
 }
 
 const typeRank = {
-  "mag7-tech-earnings-special": 4,
-  weekly: 3,
+  monthly: 5,
+  weekly: 4,
+  "mag7-tech-earnings-special": 3,
   "postmarket-recap": 2,
   "premarket-update": 1,
 };
 const reportFiles = fs.readdirSync(reportsDir)
   .map((name) => {
     const match = name.match(/^(\d{4}-\d{2}-\d{2})-(premarket-update|postmarket-recap|weekly|mag7-tech-earnings-special)\.html$/);
-    return match ? { name, date: match[1], type: match[2] } : null;
+    if (match) return { name, date: match[1], type: match[2] };
+    const monthly = name.match(/^(\d{4}-\d{2})-monthly\.html$/);
+    return monthly ? { name, date: `${monthly[1]}-31`, type: "monthly" } : null;
   })
   .filter(Boolean)
   .sort((left, right) =>

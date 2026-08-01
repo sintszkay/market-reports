@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><!-- DATA: report_title --></title>
+  <link rel="stylesheet" href="report-shared.css?v=20260713-flat-1">
+  <style>
+    .monthly-report .monthly-index-table,.monthly-report .monthly-seasonality-table{min-width:980px;table-layout:fixed}
+    .monthly-report .monthly-index-table th:nth-child(1){width:8%}
+    .monthly-report .monthly-index-table th:nth-child(2){width:10%}
+    .monthly-report .monthly-index-table th:nth-child(3),.monthly-report .monthly-index-table th:nth-child(4),.monthly-report .monthly-index-table th:nth-child(5){width:9%}
+    .monthly-report .monthly-index-table th:nth-child(6),.monthly-report .monthly-index-table th:nth-child(7){width:10%}
+    .monthly-report .monthly-index-table th:nth-child(8){width:35%}
+    .monthly-report .monthly-sector-table{min-width:940px;table-layout:fixed}
+    .monthly-report .monthly-sector-table th:nth-child(1){width:9%}
+    .monthly-report .monthly-sector-table th:nth-child(2),.monthly-report .monthly-sector-table th:nth-child(3),.monthly-report .monthly-sector-table th:nth-child(4),.monthly-report .monthly-sector-table th:nth-child(6){width:10%}
+    .monthly-report .monthly-sector-table th:nth-child(5){width:25%}
+    .monthly-report .monthly-sector-table th:nth-child(7){width:26%}
+    .monthly-report .monthly-theme-table{min-width:940px;table-layout:fixed}
+    .monthly-report .monthly-theme-table th:nth-child(1){width:9%}
+    .monthly-report .monthly-theme-table th:nth-child(2),.monthly-report .monthly-theme-table th:nth-child(3),.monthly-report .monthly-theme-table th:nth-child(4),.monthly-report .monthly-theme-table th:nth-child(6){width:10%}
+    .monthly-report .monthly-theme-table th:nth-child(5){width:25%}
+    .monthly-report .monthly-theme-table th:nth-child(7){width:26%}
+    .monthly-report .monthly-seasonality-table th:nth-child(1){width:8%}
+    .monthly-report .monthly-seasonality-table th:nth-child(n+2):nth-child(-n+8){width:10%}
+    .monthly-report .monthly-seasonality-table th:nth-child(9){width:22%}
+    .monthly-report .monthly-score-table{min-width:900px;table-layout:fixed}
+    .monthly-report .monthly-score-table th:nth-child(1){width:20%}
+    .monthly-report .monthly-score-table th:nth-child(2),.monthly-report .monthly-score-table th:nth-child(3),.monthly-report .monthly-score-table th:nth-child(4){width:11%}
+    .monthly-report .monthly-score-table th:nth-child(5){width:47%}
+    .monthly-report .scenario-month-table{min-width:1120px;table-layout:fixed}
+    .monthly-report .scenario-month-table th:nth-child(1){width:14%}
+    .monthly-report .scenario-month-table th:nth-child(2){width:8%}
+    .monthly-report .scenario-month-table th:nth-child(3){width:22%}
+    .monthly-report .scenario-month-table th:nth-child(4){width:22%}
+    .monthly-report .scenario-month-table th:nth-child(5){width:19%}
+    .monthly-report .scenario-month-table th:nth-child(6){width:15%}
+    .monthly-report .monitor-month-table{min-width:940px;table-layout:fixed}
+    .monthly-report .monitor-month-table th:nth-child(1){width:20%}
+    .monthly-report .monitor-month-table th:nth-child(2){width:31%}
+    .monthly-report .monitor-month-table th:nth-child(3){width:18%}
+    .monthly-report .monitor-month-table th:nth-child(4){width:31%}
+    .monthly-report .ma-indicators{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;justify-items:center;min-width:0}
+    .monthly-report .ma-state{width:auto;min-width:0;gap:3px}
+    .monthly-report .report-data-table tbody td:first-child{white-space:nowrap;word-break:keep-all}
+    .monthly-report .month-stat-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+    .monthly-report .month-stat-strip>div{padding:11px 12px;border-radius:8px;background:#f1f0ec}
+    .monthly-report .month-stat-strip span{display:block;font-size:11.5px;color:var(--muted)}
+    .monthly-report .month-stat-strip strong{display:block;margin-top:4px;font-size:17px;font-weight:500;font-variant-numeric:tabular-nums}
+    @media(max-width:760px){.monthly-report .month-stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  </style>
+</head>
+<body class="flat-report monthly-report" data-report-type="monthly"><main class="wrap">
+<header>
+  <div class="eyebrow"><!-- DATA: report_eyebrow --></div>
+  <h1><!-- DATA: report_heading --></h1>
+  <p class="muted"><!-- DATA: data_timestamp_note --></p>
+  <div class="status-pills"><!-- DATA: report_badges --></div>
+</header>
+
+<section class="grid" aria-label="月報摘要"><!-- DATA: summary_cards --></section>
+<section><h2>七月核心結論</h2><!-- DATA: core_conclusions --><!-- DATA: month_end_score --></section>
+<section><h2>主要指數月度復盤</h2><!-- DATA: major_indices --></section>
+<section><h2>波動率與回撤</h2><!-- DATA: volatility_review --></section>
+<section><h2>市場廣度月度變化</h2><!-- DATA: breadth_review --></section>
+<section><h2>板塊與主題 ETF</h2><!-- DATA: sector_chart --><!-- DATA: sector_theme_tables --></section>
+<section><h2>七月宏觀分析</h2><!-- DATA: macro_review --></section>
+<section><h2>美債、美元與跨資產</h2><!-- DATA: cross_asset_review --></section>
+<section><h2>八月季節性統計</h2><!-- DATA: seasonality_review --></section>
+<section><h2>八月情境預測與配置</h2><!-- DATA: august_scenarios --></section>
+<section><h2>八月監控清單</h2><!-- DATA: monitoring_checklist --></section>
+<section class="sources"><h2>資料來源與方法</h2><!-- DATA: sources --></section>
+</main>
+<script src="report-runtime.js?v=20260713-flat-1"></script>
+</body></html>

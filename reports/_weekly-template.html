@@ -12,6 +12,18 @@
     .weekly-monitor-table th:nth-child(2),.weekly-monitor-table td:nth-child(2){width:31%}
     .weekly-monitor-table th:nth-child(3),.weekly-monitor-table td:nth-child(3){width:16%}
     .weekly-monitor-table th:nth-child(4),.weekly-monitor-table td:nth-child(4){width:31%}
+    .weekly-etf-table{min-width:960px;table-layout:fixed}
+    .weekly-etf-table th:nth-child(1){width:8%}
+    .weekly-etf-table th:nth-child(2),.weekly-etf-table th:nth-child(3){width:8%}
+    .weekly-etf-table th:nth-child(4){width:10%}
+    .weekly-etf-table th:nth-child(5){width:24%}
+    .weekly-etf-table th:nth-child(6){width:9%}
+    .weekly-etf-table th:nth-child(7){width:33%}
+    .weekly-etf-table th,.weekly-etf-table td{padding-left:10px;padding-right:10px}
+    .weekly-etf-table tbody td:first-child{white-space:nowrap;font-weight:500}
+    .weekly-etf-table .ma-cell{text-align:center;padding-left:8px;padding-right:8px}
+    .ma-indicators{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center;justify-items:center;min-width:0}
+    .weekly-etf-table .ma-state{width:auto;min-width:0;gap:3px}
   </style>
 </head>
 <body class="flat-report" data-report-type="weekly"><main class="wrap">
@@ -47,7 +59,7 @@
   <div class="chart" aria-label="板塊動能一覽">
     <div class="chart-title">板塊動能一覽（本週／5日漲跌）</div>
     <!-- REQUIRED: 週報主圖使用本週／5日窗口；選取 5–8 檔並覆蓋標題與核心結論中的主要領漲／領跌 ETF。 -->
-    <!-- 板塊動能列由報告生成流程填入 -->
+    <!-- DATA: sector_momentum_chart -->
   </div>
   <!-- REQUIRED: S&P 500 Sector ETF 與 Thematic Sector ETF 完整表使用完全相同的七欄（ETF／5日／1月／距52週高／20/50/200MA／RSI／判斷）及 report-cols-7 排版；各包含且僅包含一個 SPY 基準，並維持 RSI 由高至低排序。 -->
   <!-- DATA: sector_thematic_weekly -->

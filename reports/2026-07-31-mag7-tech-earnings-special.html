@@ -154,9 +154,10 @@
 
   <section id="takeaways">
     <div class="kicker">Answer first</div>
-    <h2>五個核心結論</h2>
+    <h2>六個核心結論</h2>
     <ol>
       <li><strong>市場不再為「AI」三個字無條件買單。</strong>MSFT、AMZN、LRCX 獲得正反饋，因為核心業務加速可直接對應收入或訂單；META、GOOGL 則被要求先證明高 Capex 能轉成現金流。</li>
+      <li><strong>AI 資料中心對不同商業模型的相對利潤率效應相反。</strong>對 AMZN，AWS 相對低利潤率零售／物流是業務組合升級；對 MSFT、META，高折舊與算力成本會先稀釋原有高毛利軟體／廣告底座。判斷重點不是 Capex 大小，而是新增 AI 收入與原業務增效能否跑贏折舊。</li>
       <li><strong>下一季指引是本輪最強分水嶺。</strong>強指引組平均反應 <span class="up">+8.35%</span>，弱指引組平均 <span class="dn">-9.02%</span>，兩組相差 17.37 個百分點。</li>
       <li><strong>營收增速單獨看幾乎無效。</strong>11 家樣本的營收同比增速與財報後反應相關係數約 0.01；TSLA、META 高增長仍下跌，IBM 低增長卻接近中性。</li>
       <li><strong>FCF 正負不能脫離期間與預期差。</strong>GOOGL 是 Q2 單季首次轉負約 $5.9B，並再次上修 Capex；AMZN 是 TTM 流出 $7.6B，但 TTM 營運現金流仍增長 33%、AWS 經營利潤增長約 63%。兩者不能只看一個負號。</li>
@@ -561,6 +562,22 @@
         <p>營收增長只是一個輸入，無法單獨決定價格。跨產業、樣本小，結果只作本輪財報季描述性歸因。</p>
       </div>
     </div>
+    <div class="ai-margin-thesis">
+    <h3 class="subsection-title">AI 資料中心：同一筆 Capex，為何毛利方向不同？</h3>
+    <p class="section-intro">AI 基礎設施不能只用「支出越多越差」判斷。它對合併利潤率的方向，取決於新增業務相對公司原有業務的利潤率底座，以及 AI 對既有收入的提升能否覆蓋折舊、晶片、電力與網路成本。</p>
+    <div class="callout"><strong>判斷公式：</strong>合併利潤率方向 ≈ <strong>業務組合效應 ＋ AI 對原業務的增收</strong> − <strong>折舊與單位算力成本</strong>。因此，同樣擴建資料中心，對 AMZN 可能是結構性升級，對 MSFT／META 卻可能先形成相對稀釋。</div>
+    <div class="table-scroll">
+      <table class="report-data-table report-cols-4">
+        <thead><tr><th class="company-cell">公司／原有底座</th><th>AI 資料中心的相對效應</th><th>本季佐證</th><th>下一季要驗證</th></tr></thead>
+        <tbody>
+          <tr><td class="company-cell"><strong>AMZN</strong><small>零售／物流重資產、合併營業利潤率底座較低</small></td><td><span class="badge green">組合提升機會</span><br>AWS 的利潤率遠高於零售；AI 雲收入占比提高，可抬升合併營業利潤率。這裡以營業利潤率判斷，比籠統談毛利率更準確。</td><td>AWS 約占營收 21%，卻貢獻約 60% 營業利潤；收入 +37%，營業利潤由 $10.2B 升至 $16.6B。</td><td>AWS 營業利潤率、AI 產能利用率與 OCF／Capex。若利用率不足，正面組合效應仍會被負 FCF 延後。</td></tr>
+          <tr><td class="company-cell"><strong>MSFT</strong><small>Office／Windows／SaaS 原本具高毛利、低邊際分發成本</small></td><td><span class="badge amber">近端相對稀釋</span><br>AI 雲把更多 GPU、電力與折舊放進服務成本；即使毛利額增長，毛利率仍可能低於傳統軟體底座。</td><td>總毛利率約由 68.6% 降至 67.2%；季度資本設備新增由 $17.1B 升至 $35.8B，折舊攤銷亦由 $9.3B 升至 $11.0B。</td><td>Azure／Copilot 增量收入、Cloud 毛利率、RPO 轉收入速度及折舊占收入比；增長與利用率必須快過成本爬升。</td></tr>
+          <tr><td class="company-cell"><strong>META</strong><small>廣告平台增量分發成本低，原有現金轉化率高</small></td><td><span class="badge red">近端拖累最直接</span><br>推薦 AI 可提升互動與廣告定價，但訓練／推理成本與折舊立即進入成本；只有廣告增效跑贏基礎設施成本，利潤率才會守住。</td><td>季度 Capex $31.1B，折舊攤銷由 $4.34B 升至 $6.36B，FCF 僅 $0.78B；營業利潤率由 43% 降至 31%，但亦受法律與遣散費用影響，不能全歸因於 AI。</td><td>廣告價格／展示量、每位用戶變現、折舊占收入比與 FCF。若收入仍快增但利潤率續降，代表 AI 增效尚未覆蓋算力成本。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>投資含義：</strong>AMZN 的 AI 論點是「AWS mix 能否把集團利潤率向上拉」；MSFT／META 的 AI 論點則是「新增變現能否避免高毛利底座被算力成本向下拉」。因此三家公司不能用同一個 Capex／FCF 門檻評分。</div>
+    </div>
     <div class="pair-list">
       <div class="pair-row">
     <div class="pair-title"><span>同為 AI Capex</span><strong>變現可見度勝過支出規模</strong></div>
@@ -863,6 +880,7 @@
           <tr><td>長橋價格</td><td><span class="badge green">PASS</span></td><td>11 家專題公司、10 家待公布公司與 3 個基準均成功取得未復權日線；AAPL／AMZN 盤後報價成功。</td></tr>
           <tr><td>財報反應時段</td><td><span class="badge green">PASS</span></td><td>BMO 使用同日收盤，AMC 使用下一交易日；AAPL／AMZN 使用 7/30 盤後並明示為初步反應，不與正式收盤作等時段比較。</td></tr>
           <tr><td>FCF 期間口徑</td><td><span class="badge green">PASS</span></td><td>GOOGL 為 Q2 單季約 -$5.9B；AMZN 為 TTM 約 -$7.6B，已分開標示。</td></tr>
+          <tr><td>AI 資料中心相對毛利效應</td><td><span class="badge green">PASS</span></td><td>AMZN 以 AWS 組合提升檢查；MSFT／META 以高毛利底座、折舊與算力成本的相對稀釋檢查。</td></tr>
           <tr><td>日期口徑</td><td><span class="badge green">PASS</span></td><td>月度報酬截至 7/30 正式收盤；不假設 7/31 尚未完成的交易結果。</td></tr>
           <tr><td>因子歸因</td><td><span class="badge amber">描述性</span></td><td>11 家小樣本、跨產業；已標注不代表統計顯著或單因果。</td></tr>
           <tr><td>預測與事實分離</td><td><span class="badge green">PASS</span></td><td>公司原始指引、本報告預測與價格情境分欄；未正式公告的日期明示為預估窗口。</td></tr>

@@ -24,6 +24,12 @@
     .theme-special .narrative-card h3{margin:7px 0 8px;font-size:16px}
     .theme-special .narrative-card p{margin:6px 0;color:var(--muted);font-size:12.5px}
     .theme-special .narrative-card .tickers{color:var(--ink);font-weight:500}
+    .theme-special .pool-block{margin-top:22px}
+    .theme-special .pool-block h3{margin-bottom:5px;font-size:17px}
+    .theme-special .pool-block>.muted{margin:0 0 10px;font-size:12.5px}
+    .theme-special .pool-table{min-width:1510px;table-layout:fixed}
+    .theme-special .pool-table th:nth-child(1){width:82px}.theme-special .pool-table th:nth-child(2){width:130px}.theme-special .pool-table th:nth-child(3){width:90px}.theme-special .pool-table th:nth-child(4){width:90px}.theme-special .pool-table th:nth-child(5){width:100px}.theme-special .pool-table th:nth-child(6){width:145px}.theme-special .pool-table th:nth-child(7){width:245px}.theme-special .pool-table th:nth-child(8){width:310px}.theme-special .pool-table th:nth-child(9){width:260px}
+    .theme-special .pool-table td:nth-child(1),.theme-special .pool-table td:nth-child(2),.theme-special .pool-table td:nth-child(6){white-space:nowrap}
     .theme-special .radar-table{min-width:1240px;table-layout:fixed}
     .theme-special .radar-table th:nth-child(1){width:90px}.theme-special .radar-table th:nth-child(2){width:105px}.theme-special .radar-table th:nth-child(3){width:95px}.theme-special .radar-table th:nth-child(4){width:110px}.theme-special .radar-table th:nth-child(5){width:135px}.theme-special .radar-table th:nth-child(6){width:250px}.theme-special .radar-table th:nth-child(7){width:285px}.theme-special .radar-table th:nth-child(8){width:240px}
     .theme-special .scenario-table{min-width:1120px;table-layout:fixed}
@@ -53,7 +59,7 @@
       <span class="badge green">CIBR 近3月 +36.27%</span>
       <span class="badge green">XSW 近3月 +20.80%</span>
       <span class="badge amber">成分股貢獻為估算</span>
-      <span class="badge blue">成分股專題</span>
+      <span class="badge blue">四條敘事 · 32 個研究席位</span>
     </div>
   </header>
 
@@ -64,6 +70,7 @@
     <a href="#cibr">CIBR 貢獻</a>
     <a href="#xsw">XSW 拆解</a>
     <a href="#narratives">新敘事</a>
+    <a href="#pools">四條股票池</a>
     <a href="#radar">候選雷達</a>
     <a href="#scenarios">情境與門檻</a>
     <a href="#qa">QA</a>
@@ -185,32 +192,121 @@
         <span class="badge green">可信度高</span>
         <h3>1｜AI 代理身份成為新的安全控制面</h3>
         <p>代理會建立大量非人類身份、API 呼叫與短期權限；企業需要最小權限、連續認證及完整稽核。</p>
-        <p class="tickers">確認：OKTA／PANW　擴散：NTSK／S／QLYS</p>
+        <p class="tickers">確認：OKTA／PANW／CRWD　擴散：S／NTSK／QLYS／ZS／TENB</p>
         <p><strong>硬驗證：</strong>機器身份、身份威脅及 AI 安全產品帶來新增 ARR，而非只改產品名稱。</p>
       </article>
       <article class="narrative-card">
         <span class="badge green">可信度高</span>
-        <h3>2｜受監管行業需要可治理的垂直 AI</h3>
-        <p>法律、私募、銀行與保險不能直接把敏感資料交給通用模型；供應商必須同時提供資料邊界、領域語義與審計。</p>
-        <p class="tickers">核心：QTWO／INTA／TTAN　擴散：AVPT／APPF</p>
+        <h3>2｜高合規或重工作流行業需要可治理的垂直 AI</h3>
+        <p>法律、私募、銀行、保險、建築與物業管理不能只靠通用模型；供應商必須同時提供資料邊界、領域語義、審計與真正的流程執行。</p>
+        <p class="tickers">核心：QTWO／INTA／TTAN　擴散：AVPT／GWRE／NCNO／PCOR／APPF</p>
         <p><strong>硬驗證：</strong>AI 模組提高客戶增購、訂閱 ARR、淨留存與大型合約數量。</p>
       </article>
       <article class="narrative-card">
         <span class="badge blue">正在形成</span>
         <h3>3｜SASE 從網路整合升級為 AI 資料治理入口</h3>
         <p>AI 流量與資料外洩風險增加，使網路、零信任、DLP、資料主權與安全營運逐步整合。</p>
-        <p class="tickers">確認：FTNT／PANW　擴散：NTSK／NET／ZS</p>
+        <p class="tickers">確認：FTNT／PANW　擴散：NTSK／NET／ZS／CSCO／FFIV／AKAM</p>
         <p><strong>硬驗證：</strong>單一平台替換多供應商、託管服務訂單、跨區域資料主權需求。</p>
       </article>
       <article class="narrative-card">
         <span class="badge blue">正在形成</span>
         <h3>4｜可觀測性與 DevSecOps 成為 AI 生產稅</h3>
         <p>模型進入正式環境後，企業必須監控成本、延遲、資料來源、程式碼風險與代理行為。</p>
-        <p class="tickers">確認：DDOG　擴散：DT／GTLB／NOW</p>
+        <p class="tickers">確認：DDOG　擴散：GTLB／DT／ESTC／FROG／NOW／PATH／PD</p>
         <p><strong>硬驗證：</strong>雲端用量恢復、RPO 加速及 AI 監控功能出現實際付費。</p>
       </article>
     </div>
     <p class="section-summary"><strong>本段結論：</strong>四條敘事共享同一需求函數：AI 從試驗走向生產後，控制、治理、監控與執行成本同步上升。若只有產品發布、沒有 ARR／RPO／增購改善，敘事就不應升級為投資主線。</p>
+  </section>
+
+  <section id="pools">
+    <div class="kicker">Narrative stock pools</div>
+    <h2>四條敘事股票池：每條 8 檔、分清確認與擴散</h2>
+    <p class="section-intro">下列 32 個席位不是等權買入清單。主線確認股用來判斷資本開支是否延續；擴散股與早期觀察股才承擔「挖掘新敘事」功能。價格統一使用長橋前復權日線，截至 2026-07-31；「距高點」是 4/30–7/31 最高收盤價至期末的回撤。</p>
+    <div class="callout warn"><strong>閱讀規則：</strong>同一公司可以跨敘事出現，例如 PANW 同時驗證代理身份與 SASE；但兩張表的硬驗證不同。只有產品新聞、沒有 ARR／RPO／增購或指引改善，不升級為主線。</div>
+
+    <div class="pool-block">
+      <h3>1｜AI 代理身份與非人類身份控制面</h3>
+      <p class="muted">研究鏈：代理註冊 → 最小權限 → 行為偵測 → 稽核與自動修復。先看身份與端點龍頭是否創造新預算，再看二線曝險管理公司能否取得增量 ARR。</p>
+      <div class="table-scroll">
+        <table class="report-data-table pool-table">
+          <thead><tr><th>股票</th><th>樣本／層級</th><th class="num">近3月</th><th class="num">7月</th><th class="num">距高點</th><th>RSI／均線</th><th>敘事位置</th><th>下一個硬驗證</th><th>淘汰／降級條件</th></tr></thead>
+          <tbody>
+            <tr><td><strong>OKTA</strong></td><td>CIBR · 確認</td><td class="num up">+92.71%</td><td class="num up">+4.02%</td><td class="num dn">-8.21%</td><td>56.65 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>把 AI 代理視為第一級非人類身份，負責註冊、授權與完整稽核。</td><td>Agent Discovery／身份治理帶來新增授權量、訂閱 ARR 或大型客戶增購。</td><td>只停留在白皮書與功能展示，身份產品增長及淨留存沒有改善。</td></tr>
+            <tr><td><strong>PANW</strong></td><td>兩者 · 確認</td><td class="num up">+85.05%</td><td class="num dn">-2.69%</td><td class="num dn">-7.49%</td><td>54.57 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>以平台化安全連接身份、端點、雲端與代理行為，是控制面整合的核心確認器。</td><td>Next-Gen Security ARR／RPO 加速，身份與 AI 安全模組出現可量化交叉銷售。</td><td>平台化折扣侵蝕增長，且跌破 50MA 後同業相對強度同步轉弱。</td></tr>
+            <tr><td><strong>CRWD</strong></td><td>兩者 · 確認</td><td class="num up">+71.27%</td><td class="num up">+0.04%</td><td class="num dn">-9.43%</td><td>54.34 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>端點遙測延伸至身份威脅與工作負載，適合驗證「身份攻擊發生在登入之後」。</td><td>身份保護模組滲透、模組數與新增 ARR 同步提升。</td><td>新模組採用率上升但 ARR／淨新增客戶未跟，顯示只是組合包裝。</td></tr>
+            <tr><td><strong>S</strong></td><td>兩者 · 擴散</td><td class="num up">+34.60%</td><td class="num up">+12.32%</td><td class="num dn">-4.32%</td><td>59.28 · <span class="up">20MA ▲／50MA ▲</span></td><td>把人類與非人類身份偵測接到端點與瀏覽器，提供較純的二線映射。</td><td>新身份組合帶動 ARR 再加速、每客戶模組數與毛利率改善。</td><td>身份產品沒有獨立採用證據，或價格跌回 50MA 且相對 CIBR 轉弱。</td></tr>
+            <tr><td><strong>NTSK</strong></td><td>XSW · 早期</td><td class="num up">+26.41%</td><td class="num up">+15.08%</td><td class="num dn">-11.77%</td><td>56.36 · <span class="up">20MA ▲／50MA ▲</span></td><td>代理安全、DLP 與 SASE 的交集；可觀察身份是否延伸成網路資料政策。</td><td>大型平台訂單、收入與 RPO／剩餘履約義務連續兩季加速。</td><td>新上市供給壓力放大，或產品聲量上升但大型客戶與 RPO 沒跟上。</td></tr>
+            <tr><td><strong>QLYS</strong></td><td>兩者 · 驗證</td><td class="num up">+66.51%</td><td class="num up">+5.28%</td><td class="num dn">-11.80%</td><td>55.33 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>把身份、資產與曝險放入同一攻擊面，偏向自動驗證與修復。</td><td>雲端代理、曝險管理產品採用推高收入增速與全年指引。</td><td>財報沒有加速，價格在高漲幅後跌破 50MA，轉為估值均值回歸。</td></tr>
+            <tr><td><strong>ZS</strong></td><td>兩者 · 擴散</td><td class="num up">+15.70%</td><td class="num up">+7.12%</td><td class="num dn">-18.09%</td><td>56.08 · <span class="up">20MA ▲／50MA ▲</span></td><td>從人員零信任擴展至代理、工作負載與非受管裝置的政策執行。</td><td>ZAgent／AI 安全功能帶來平台增購，Billings 與 RPO 同步改善。</td><td>產品發布後沒有商業轉化，或相對 CIBR 持續落後且 50MA 失守。</td></tr>
+            <tr><td><strong>TENB</strong></td><td>兩者 · 修復</td><td class="num up">+56.25%</td><td class="num dn">-11.50%</td><td class="num dn">-23.47%</td><td>45.98 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>曝險管理可補足代理身份背後的資產、設定與漏洞脈絡。</td><td>Exposure Management 平台增長、較大交易與自由現金流同步改善。</td><td>跌破 50MA，且平台增長不足以抵消傳統漏洞管理放緩。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pool-block">
+      <h3>2｜高合規或重工作流行業的可治理垂直 AI</h3>
+      <p class="muted">研究鏈：專有資料 → 行業語義 → 權限與引用 → 在核心系統內執行。銀行、保險、法律、建築與物業管理都適用，但必須看到 AI 從助理變成可計費的工作流。</p>
+      <div class="table-scroll">
+        <table class="report-data-table pool-table">
+          <thead><tr><th>股票</th><th>樣本／層級</th><th class="num">近3月</th><th class="num">7月</th><th class="num">距高點</th><th>RSI／均線</th><th>敘事位置</th><th>下一個硬驗證</th><th>淘汰／降級條件</th></tr></thead>
+          <tbody>
+            <tr><td><strong>QTWO</strong></td><td>XSW · 核心</td><td class="num up">+19.94%</td><td class="num up">+26.55%</td><td class="num">0.00%</td><td>69.69 · <span class="up">20MA ▲／50MA ▲</span></td><td>銀行核心工作流中的受治理代理，可執行營運、開發與反詐任務。</td><td>訂閱 ARR、積壓訂單、代理模組增購與大型金融機構採用。</td><td>突破後 RPO／訂閱增長沒有加速，或財報缺口完全回補。</td></tr>
+            <tr><td><strong>INTA</strong></td><td>XSW · 確認</td><td class="num up">+45.61%</td><td class="num up">+29.67%</td><td class="num">0.00%</td><td>71.26 · <span class="up">20MA ▲／50MA ▲</span></td><td>把法律、交易與專業服務資料嵌入 Celeste，直接支援知識與交易工作流。</td><td>Celeste 使用率、AI 增購、雲端 ARR 與下一財年指引。</td><td>RSI 過熱後跌破 20MA，且公司仍不提供採用或增購證據。</td></tr>
+            <tr><td><strong>TTAN</strong></td><td>XSW · 擴散</td><td class="num up">+39.69%</td><td class="num up">+17.47%</td><td class="num dn">-1.38%</td><td>60.47 · <span class="up">20MA ▲／50MA ▲</span></td><td>家居服務商的派工、報價與客戶流程，是代理執行而非只問答的場景。</td><td>AI 功能提高每客戶消費、支付滲透、淨留存與大型承包商採用。</td><td>使用量增加但平台收入及支付量沒有提升，代表功能未貨幣化。</td></tr>
+            <tr><td><strong>AVPT</strong></td><td>XSW · 擴散</td><td class="num up">+33.64%</td><td class="num up">+16.24%</td><td class="num dn">-1.59%</td><td>61.42 · <span class="up">20MA ▲／50MA ▲</span></td><td>在 Microsoft 內容與 SaaS 資料上提供權限、生命週期與合規治理。</td><td>AI 資料治理帶動 ARR、淨留存、大客戶數與產品附加率。</td><td>資料治理仍是合規維護而非 AI 增購來源，或新高後失守 50MA。</td></tr>
+            <tr><td><strong>GWRE</strong></td><td>XSW · 擴散</td><td class="num up">+9.79%</td><td class="num up">+23.48%</td><td class="num dn">-11.36%</td><td>57.25 · <span class="up">20MA ▲／50MA ▲</span></td><td>P&amp;C 保險核心系統內建承保、理賠與客服代理，兼具治理與行業資料。</td><td>ProNavigator 銷售、雲端 ARR、遷移節奏與大型保險公司新標案。</td><td>AI 只幫助雲端遷移敘事，沒有提高新銷售或訂閱擴張。</td></tr>
+            <tr><td><strong>NCNO</strong></td><td>XSW · 早期</td><td class="num up">+5.61%</td><td class="num up">+12.91%</td><td class="num dn">-1.96%</td><td>60.42 · <span class="up">20MA ▲／50MA ▲</span></td><td>銀行授信、開戶與房貸的角色型代理，具 14 年金融資料與流程脈絡。</td><td>Digital Partners 採用、訂閱增長、RPO 與大型銀行擴展。</td><td>銀行採用仍停留在試點，或 AI 投資未轉化為續約與收入。</td></tr>
+            <tr><td><strong>PCOR</strong></td><td>XSW · 早期</td><td class="num dn">-3.20%</td><td class="num up">+34.84%</td><td class="num dn">-11.80%</td><td>72.33 · <span class="up">20MA ▲／50MA ▲</span></td><td>以施工資料、圖紙與權限為基礎，代理可建立／更新 RFI、日誌及變更事件。</td><td>AI 代理帶來席位、模組增購、淨留存或專案平台用量提升。</td><td>7月反彈只來自估值修復，AI 動作量與商業指標沒有同步。</td></tr>
+            <tr><td><strong>APPF</strong></td><td>XSW · 早期</td><td class="num up">+7.84%</td><td class="num up">+12.37%</td><td class="num dn">-3.64%</td><td>56.92 · <span class="up">20MA ▲／50MA ▲</span></td><td>Realm-X 把租賃、會計與住戶營運變成可追蹤的房地產代理工作流。</td><td>收入增長、單位數、Realm-X 採用與營運效率改善持續兩季。</td><td>AI 採用只提高互動、沒有提升每單位收入或客戶留存。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pool-block">
+      <h3>3｜SASE 成為 AI 流量、資料與主權政策入口</h3>
+      <p class="muted">研究鏈：連線 → 零信任 → DLP／資料分類 → 跨雲與跨區域政策。龍頭負責證明預算存在，二線網路與邊緣公司則驗證供應商整併是否擴散。</p>
+      <div class="table-scroll">
+        <table class="report-data-table pool-table">
+          <thead><tr><th>股票</th><th>樣本／層級</th><th class="num">近3月</th><th class="num">7月</th><th class="num">距高點</th><th>RSI／均線</th><th>敘事位置</th><th>下一個硬驗證</th><th>淘汰／降級條件</th></tr></thead>
+          <tbody>
+            <tr><td><strong>FTNT</strong></td><td>兩者 · 確認</td><td class="num up">+92.09%</td><td class="num up">+5.42%</td><td class="num dn">-2.93%</td><td>60.12 · <span class="up">20MA ▲／50MA ▲</span></td><td>網路設備、安全作業系統與 SASE 整合，具平台替換與成本優勢。</td><td>安全營運 Billings、SASE 客戶、服務收入與大型交易持續加速。</td><td>高估值下 Billings 放緩，或硬體週期回落拖累平台轉型。</td></tr>
+            <tr><td><strong>PANW</strong></td><td>兩者 · 確認</td><td class="num up">+85.05%</td><td class="num dn">-2.69%</td><td class="num dn">-7.49%</td><td>54.57 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>Prisma／安全平台可把網路、雲端與資料政策收斂到單一控制層。</td><td>SASE ARR、平台化大單與多產品客戶比例提高。</td><td>平台折扣換來的合約沒有轉為長期 ARR，或 50MA 失守。</td></tr>
+            <tr><td><strong>NTSK</strong></td><td>XSW · 早期</td><td class="num up">+26.41%</td><td class="num up">+15.08%</td><td class="num dn">-11.77%</td><td>56.36 · <span class="up">20MA ▲／50MA ▲</span></td><td>雲端原生 SASE、DLP 與託管服務，最直接映射 AI 資料外洩風險。</td><td>託管 SASE、大型平台訂單、DLP 增購與 RPO 加速。</td><td>收入增長低於產品聲量，或鎖定期／供給造成趨勢破壞。</td></tr>
+            <tr><td><strong>NET</strong></td><td>CIBR · 擴散</td><td class="num up">+36.11%</td><td class="num up">+13.74%</td><td class="num dn">-1.56%</td><td>61.63 · <span class="up">20MA ▲／50MA ▲</span></td><td>全球邊緣、開發平台與零信任融合，可在 AI 流量入口執行安全政策。</td><td>大型客戶、RPO、Workers AI 與零信任產品的交叉銷售。</td><td>收入仍只由流量與開發平台驅動，安全產品沒有增量貢獻。</td></tr>
+            <tr><td><strong>ZS</strong></td><td>兩者 · 擴散</td><td class="num up">+15.70%</td><td class="num up">+7.12%</td><td class="num dn">-18.09%</td><td>56.08 · <span class="up">20MA ▲／50MA ▲</span></td><td>零信任 SASE 延伸至非受管裝置、B2B、工作負載與代理式管理。</td><td>Billings／RPO 恢復、ZAgent 商業採用與平台替換案例。</td><td>仍落後 CIBR 且財報沒有增速修復，代表整合敘事未被採購。</td></tr>
+            <tr><td><strong>CSCO</strong></td><td>CIBR · 低波動</td><td class="num up">+27.24%</td><td class="num dn">-0.88%</td><td class="num dn">-10.45%</td><td>53.01 · <span class="up">20MA ▲</span>／<span class="dn">50MA ▼</span></td><td>既有網路入口與安全訂閱交叉銷售，是企業整併供應商的低 beta 映射。</td><td>安全 ARR、訂閱占比、Splunk／網路資料整合與大客戶續約。</td><td>安全增長無法抵消核心網路放緩，或長期低於 50MA。</td></tr>
+            <tr><td><strong>FFIV</strong></td><td>CIBR · 觀察</td><td class="num up">+24.29%</td><td class="num dn">-3.22%</td><td class="num dn">-6.65%</td><td>50.24 · <span class="dn">20MA ▼</span>／<span class="up">50MA ▲</span></td><td>應用交付、API 與多雲安全可承接 AI 應用流量與政策執行。</td><td>安全軟體收入、訂閱化、API 防護與大型企業增購。</td><td>仍被視為硬體週期股，軟體與安全組合未形成更高增長。</td></tr>
+            <tr><td><strong>AKAM</strong></td><td>CIBR · 修復</td><td class="num up">+11.85%</td><td class="num dn">-2.56%</td><td class="num dn">-28.52%</td><td>44.36 · <span class="dn">20MA ▼／50MA ▼</span></td><td>邊緣與應用安全具資料入口，但價格尚未確認市場願意重估。</td><td>安全收入增速、雲端計算客戶與邊緣安全交叉銷售回升。</td><td>無法重返 50MA，且安全增長持續被 CDN 放緩抵消。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pool-block">
+      <h3>4｜可觀測性、DevSecOps 與軟體供應鏈成為 AI 生產稅</h3>
+      <p class="muted">研究鏈：生成更多程式碼 → 測試／安全與交付瓶頸 → 模型及代理監控 → 事故自動處置。這條鏈最容易被「AI 標籤」誤導，因此硬驗證必須落在用量、RPO 與付費轉化。</p>
+      <div class="table-scroll">
+        <table class="report-data-table pool-table">
+          <thead><tr><th>股票</th><th>樣本／層級</th><th class="num">近3月</th><th class="num">7月</th><th class="num">距高點</th><th>RSI／均線</th><th>敘事位置</th><th>下一個硬驗證</th><th>淘汰／降級條件</th></tr></thead>
+          <tbody>
+            <tr><td><strong>DDOG</strong></td><td>兩者 · 確認</td><td class="num up">+102.72%</td><td class="num up">+2.92%</td><td class="num dn">-3.43%</td><td>61.39 · <span class="up">20MA ▲／50MA ▲</span></td><td>直接監控 LLM、代理軌跡、品質與成本，是 AI 生產可觀測性的龍頭確認器。</td><td>Agent Observability／LLM 產品付費、雲端用量與大型客戶增購。</td><td>估值先行但用量與 RPO 沒有加速，或高位跌破 50MA。</td></tr>
+            <tr><td><strong>GTLB</strong></td><td>XSW · 擴散</td><td class="num up">+55.87%</td><td class="num up">+13.04%</td><td class="num">0.00%</td><td>61.00 · <span class="up">20MA ▲／50MA ▲</span></td><td>Duo Agent Platform 把代理放進程式碼、CI/CD、安全與合規治理全生命週期。</td><td>GitLab Credits 消耗、企業席位、RPO 與 Ultimate／AI 增購。</td><td>代理使用增加但付費 credits 與 RPO 未提升，或新高假突破。</td></tr>
+            <tr><td><strong>DT</strong></td><td>兩者 · 擴散</td><td class="num up">+22.40%</td><td class="num up">+0.93%</td><td class="num dn">-2.64%</td><td>55.36 · <span class="up">20MA ▲／50MA ▲</span></td><td>自動擷取模型、token、延遲與代理拓撲，將 AI 工作負載接到企業可觀測平台。</td><td>AI Observability 使用量、DPS 消耗、RPO 與淨留存改善。</td><td>7月續弱且 AI 功能沒有帶動消耗，僅跟隨 DDOG 估值。</td></tr>
+            <tr><td><strong>ESTC</strong></td><td>兩者 · 擴散</td><td class="num up">+41.70%</td><td class="num up">+15.38%</td><td class="num dn">-3.34%</td><td>64.52 · <span class="up">20MA ▲／50MA ▲</span></td><td>搜尋、日誌、安全與向量資料是代理檢索及生產除錯的共同底層。</td><td>Elastic Cloud 消耗、GenAI／向量工作負載與安全產品增購。</td><td>雲端消耗沒有改善，或 AI 搜尋只帶來試用、未提升收入。</td></tr>
+            <tr><td><strong>FROG</strong></td><td>兩者 · 修復</td><td class="num up">+71.81%</td><td class="num dn">-12.20%</td><td class="num dn">-18.66%</td><td>45.45 · <span class="dn">20MA ▼／50MA ▼</span></td><td>管理程式套件、模型、MCP 與代理技能，可能成為 AI 軟體供應鏈系統紀錄。</td><td>AI Catalog／安全產品訂閱、雲端收入與大型平台客戶增購。</td><td>價格無法站回 50MA，且 AI 治理沒有形成可辨識商業收入。</td></tr>
+            <tr><td><strong>NOW</strong></td><td>XSW · 平台</td><td class="num up">+25.95%</td><td class="num up">+12.04%</td><td class="num dn">-18.13%</td><td>56.47 · <span class="up">20MA ▲／50MA ▲</span></td><td>AI Agent Orchestrator 把代理接到企業案例、知識與核准流程，偏執行治理層。</td><td>Now Assist／代理工作流增購、RPO、Pro Plus 採用與大型交易。</td><td>代理只促進續約話術，沒有提高 ACV、RPO 或新產品滲透。</td></tr>
+            <tr><td><strong>PATH</strong></td><td>XSW · 早期</td><td class="num up">+23.88%</td><td class="num up">+17.39%</td><td class="num dn">-2.60%</td><td>62.37 · <span class="up">20MA ▲／50MA ▲</span></td><td>把代理決策接到 RPA 與企業系統執行，承接「從回答到完成任務」。</td><td>代理式自動化 ARR、客戶增購、平台用量與利潤率改善。</td><td>AI 產品沒有扭轉增長，或自動化座席被通用平台侵蝕。</td></tr>
+            <tr><td><strong>PD</strong></td><td>XSW · 早期</td><td class="num up">+59.10%</td><td class="num up">+9.64%</td><td class="num dn">-3.73%</td><td>58.41 · <span class="up">20MA ▲／50MA ▲</span></td><td>SRE Agent 從偵測、分診走向核准後修復，是代理進入關鍵營運的試金石。</td><td>SRE Agent 付費 credits、AIOps 附加、客戶留存與營運利潤改善。</td><td>早期存取無法轉付費，或核心事故管理流失率抵消 AI 增量。</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="section-summary"><strong>本段結論：</strong>最早期、又有價格確認的候選集中在 QTWO／AVPT／NCNO／PCOR、NTSK、GTLB／ESTC／PATH／PD；OKTA／PANW／FTNT／DDOG 則是主線確認器。FROG、AKAM 與 TENB 仍屬修復觀察，不能因題材吻合便忽略弱勢技術結構。</p>
   </section>
 
   <section id="radar">
@@ -283,6 +379,7 @@
           <tr><td>成分股分類噪音</td><td><span class="badge green">通過</span></td><td>獨立檢查 XSW 內加密基礎設施，未把其誤認為軟體主線。</td></tr>
           <tr><td>正式與估算歸因</td><td><span class="badge green">通過</span></td><td>CIBR 貢獻清楚標示為期末權重粗估，不冒充日頻正式歸因。</td></tr>
           <tr><td>敘事與基本面</td><td><span class="badge green">通過</span></td><td>每條敘事均附 ARR／RPO／增購／指引等可驗證條件。</td></tr>
+          <tr><td>四條股票池覆蓋</td><td><span class="badge green">通過</span></td><td>每條敘事均列 8 檔，共 32 個研究席位；逐檔標示層級、技術狀態、硬驗證與淘汰條件。</td></tr>
           <tr><td>價格失效門檻</td><td><span class="badge green">通過</span></td><td>列出 CIBR／XSW 的 20MA 與 50MA，並提供雙重失效條件。</td></tr>
           <tr><td>視覺與表格結構</td><td><span class="badge green">通過</span></td><td>自動結構 QA 無缺值、錯列或重複資源；使用者已開啟本地頁並確認推送。</td></tr>
         </tbody>
@@ -296,11 +393,14 @@
       <li><a href="https://open.longbridge.com" target="_blank" rel="noopener">長橋 OpenAPI</a>：CIBR、XSW、基準 ETF 與成分股的前復權日線；計算三個月收益、7月收益、RSI、均線及距階段高點。</li>
       <li><a href="https://www.ftportfolios.com/Retail/Etf/EtfHoldings.aspx?Ticker=CIBR" target="_blank" rel="noopener">First Trust：CIBR 官方持倉</a>；權重截至 2026-07-31。另參考<a href="https://www.ftportfolios.com/Commentary/Insights/2026/4/16/will-demand-for-cybersecurity-be-strengthened-or-disintermediated-by-ai" target="_blank" rel="noopener">AI 與網路安全需求分析</a>。</li>
       <li><a href="https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-software-services-etf-xsw" target="_blank" rel="noopener">State Street：XSW 官方基金資料與持倉結構</a>。</li>
+      <li><a href="https://www.okta.com/en-sg/identity-101/how-are-regulated-industries-handling-ai-agent-security/" target="_blank" rel="noopener">Okta：AI 代理與非人類身份治理</a>、<a href="https://www.sentinelone.com/press/sentinelone-unveils-new-identity-portfolio-and-strategy/" target="_blank" rel="noopener">SentinelOne：人類／非人類身份安全組合</a>及<a href="https://www.zscaler.com/press/zscaler-redefines-zero-trust-sase-ai-era" target="_blank" rel="noopener">Zscaler：AI 時代的 Zero Trust SASE</a>。</li>
       <li><a href="https://investors.intapp.com/investor-news/news-details/2026/Intapp-announces-general-availability-of-Celeste-the-expert-AI-coworker-for-professional-firms/default.aspx" target="_blank" rel="noopener">Intapp Celeste</a>及<a href="https://investors.intapp.com/investor-news/news-details/2026/Intapp-expands-strategic-partnership-with-Moodys-to-bring-counterparty-intelligence-directly-into-professional-workflows-via-Intapp-Celeste/default.aspx" target="_blank" rel="noopener">Moody’s 工作流整合</a>。</li>
       <li><a href="https://investors.q2.com/news/investor-news/news-details/2026/Q2-Launches-Q2-Assistant-Embedding-AI-Agents-Across-Banking-Operations/default.aspx" target="_blank" rel="noopener">Q2 Assistant</a>、<a href="https://investors.q2.com/news/investor-news/news-details/2026/Q2-Announces-Q2-Code-a-Governed-AI-Development-Environment-for-the-Q2-Digital-Banking-Platform-Built-with-Anthropics-Claude-Code-and-Amazon-Bedrock/default.aspx" target="_blank" rel="noopener">Q2 Code</a>與<a href="https://investors.q2.com/financials/quarterly-reports/default.aspx" target="_blank" rel="noopener">Q2 季度資料</a>。</li>
+      <li><a href="https://www.guidewire.com/products/technology/insurance-ai-from-guidewire" target="_blank" rel="noopener">Guidewire：保險 AI 與治理</a>、<a href="https://www.ncino.com/en-US" target="_blank" rel="noopener">nCino：銀行角色型代理</a>、<a href="https://www.procore.com/ai" target="_blank" rel="noopener">Procore：建築代理式工作流</a>及<a href="https://www.appfolio.com/newsroom/appfolio-deepens-agentic-ai-across-leasing-accounting-and-resident-operations" target="_blank" rel="noopener">AppFolio：物業代理式營運</a>。</li>
       <li><a href="https://investors.netskope.com/news-releases/news-release-details/netskope-and-deloitte-expand-global-partnership-deliver-managed" target="_blank" rel="noopener">Netskope／Deloitte 託管 SASE</a>、<a href="https://investors.netskope.com/news-releases/news-release-details/netskope-revolutionizes-security-and-network-operations" target="_blank" rel="noopener">AgentSkope</a>；<a href="https://investor.qualys.com/news-releases/news-release-details/qualys-announces-first-quarter-2026-financial-results" target="_blank" rel="noopener">Qualys 2026 Q1 業績</a>。</li>
+      <li><a href="https://www.datadoghq.com/blog/llm-observability-at-datadog-dashboards/" target="_blank" rel="noopener">Datadog：Agent Observability</a>、<a href="https://about.gitlab.com/press/releases/2026-01-15-gitlab-announces-duo-agent-platform-general-availability/" target="_blank" rel="noopener">GitLab Duo Agent Platform</a>、<a href="https://docs.dynatrace.com/docs/observe/dynatrace-for-ai-observability/get-started/oneagent" target="_blank" rel="noopener">Dynatrace AI Observability</a>、<a href="https://jfrog.com/" target="_blank" rel="noopener">JFrog AI 軟體供應鏈</a>及<a href="https://www.pagerduty.com/newsroom/pagerduty-operations-cloud-spring-2026-release/" target="_blank" rel="noopener">PagerDuty SRE Agent</a>。</li>
     </ul>
-    <p class="source-note"><strong>限制：</strong>XSW 為改良等權 ETF，成分與權重會調整；成分樣本以官方持倉頁與長橋／監管持倉資料交叉核對，不代表完整即時 132 檔名單。CIBR 貢獻使用 7/31 權重乘以區間收益，未納入每日再平衡與資金流，因此只可作方向判讀。本報告不構成投資建議。</p>
+    <p class="source-note"><strong>限制：</strong>XSW 為改良等權 ETF，成分與權重會調整；股票池歸屬以 7/31 官方持倉頁與長橋可得的 SEC N-PORT 快照交叉核對，其中監管快照報告期為 2026-03-31，不能當作 7/31 即時權重。CIBR 貢獻使用 7/31 權重乘以區間收益，未納入每日再平衡與資金流，因此只可作方向判讀。股票池為研究優先序，不是買入建議；本報告不構成投資建議。</p>
   </section>
 </main>
 <script src="report-runtime.js?v=20260803-cibr-xsw-special"></script>

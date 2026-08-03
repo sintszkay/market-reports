@@ -55,6 +55,7 @@ Every report publication must maintain the GitHub Pages homepage in the same com
 - add the new report card to the top of `index.html`;
 - point the `最新報告` button to the new report;
 - refresh the homepage status strip and `report-count`;
+- keep the homepage report categories working: daily reports use `*-premarket-update.html`, `*-postmarket-recap.html`, or the legacy `YYYY-MM-DD.html`; weekly reports use `*-weekly.html` or `*-weekly-expected-move.html`; monthly reports use `YYYY-MM-monthly.html`; new special reports must use `YYYY-MM-DD-<slug>-special.html`;
 - run `node scripts/qa_index.js` before committing.
 
 `scripts/qa_index.js` automatically discovers the newest dated report under `reports/`, requires every report file to appear in the homepage index, and blocks publication when the newest report is not the first card. Never push a new report without its homepage update.

@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ASSET_VERSION = "20260728-flat-2";
+const ASSET_VERSION = "20260803-flat-5";
 const RUNTIME_TAG = `<script src="report-runtime.js?v=${ASSET_VERSION}"></script>`;
 const SHARED_STYLE_TAG = `<link rel="stylesheet" href="report-shared.css?v=${ASSET_VERSION}">`;
 const MA_PERIODS = ["20", "50", "200"];
@@ -60,6 +60,8 @@ function parseMaStates(text) {
   for (const period of MA_PERIODS) {
     const direct = clean.match(new RegExp(`\\b${period}\\s*([YN])\\b`, "i"));
     if (direct) states[period] = direct[1].toUpperCase() === "Y";
+    const arrow = clean.match(new RegExp(`\\b${period}\\s*MA\\s*([▲▼])`));
+    if (arrow) states[period] = arrow[1] === "▲";
   }
 
   const grouped = /(高於|低於|上方|下方)\s*([0-9/]+)\s*MA?/g;
@@ -82,13 +84,14 @@ function parseMaStates(text) {
 }
 
 function renderMaStates(states) {
-  return MA_PERIODS.map((period) => {
+  const items = MA_PERIODS.map((period) => {
     const isUp = states[period];
     const symbol = isUp ? "▲" : "▼";
     const direction = isUp ? "上方" : "下方";
     const stateClass = isUp ? "ma-up" : "ma-down";
     return `<span class="ma-state ${stateClass}" title="${period}MA ${direction}" aria-label="${period}MA ${direction}"><span class="ma-period">${period}</span><span class="ma-arrow" aria-hidden="true">${symbol}</span></span>`;
   }).join('<span class="ma-separator" aria-hidden="true"> </span>');
+  return `<span class="ma-state-group">${items}</span>`;
 }
 
 function parseRenderedMaStates(inner) {
@@ -107,7 +110,7 @@ function normalizeTable(tableHtml, options = {}) {
 
   const headers = getCells(headerRow[1], "th").map((cell) => stripTags(cell.inner));
   const rsiIndex = headers.findIndex((header) => /^RSI$/i.test(header));
-  const maIndex = headers.findIndex((header) => /Above MA/i.test(header));
+  const maIndex = headers.findIndex((header) => /Above MA|20\/50\/200MA/i.test(header));
 
   let output = tableHtml;
   if (headers.length >= 3) {
@@ -122,7 +125,7 @@ function normalizeTable(tableHtml, options = {}) {
       `<table${addClass(attributes, "ma-table")}>`
     );
     output = replaceCell(output, "th", maIndex, ({ attributes }) =>
-      `<th${addClass(attributes, "ma-heading")}>Above MA（20/50/200）</th>`
+      `<th${addClass(attributes, "ma-heading")}>20/50/200MA</th>`
     );
   }
 
@@ -267,7 +270,7 @@ function validateRsiAndMa(html, errors) {
           }
         }
         if (maIndex >= 0 && cells[maIndex]) {
-          const badgeCount = (cells[maIndex].inner.match(/\bma-state\b/g) || []).length;
+          const badgeCount = (cells[maIndex].inner.match(/<span\b[^>]*class=(['"])[^'"]*\bma-state\s[^'"]*\1[^>]*>/gi) || []).length;
           if (badgeCount !== 3) errors.push(`${heading}: Above MA 未渲染 20/50/200 三個狀態。`);
         }
       }
@@ -576,6 +579,51 @@ function validateWeeklyBreadthSynthesis(html, errors) {
   }
 }
 
+function validatePremarketBreadthFormat(html, errors) {
+  const breadthSection = findSection(html, /^市場廣度$/);
+  if (!breadthSection) return;
+
+  const tables = breadthSection.match(/<table\b[\s\S]*?<\/table>/gi) || [];
+  if (tables.length !== 1) {
+    errors.push(`Premarket breadth must use one diagnostic table; found ${tables.length}.`);
+    return;
+  }
+  const headers = [...tables[0].matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((match) => stripTags(match[1]));
+  const expectedHeaders = ["指標", "最新", "5日趨勢", "約1月趨勢", "判斷"];
+  if (headers.join("|") !== expectedHeaders.join("|")) {
+    errors.push(`Premarket breadth must use the diagnostic layout: ${expectedHeaders.join(" / ")}.`);
+  }
+  const sectionText = stripTags(breadthSection);
+  const requiredRows = ["SPX >20MA", "SPX >50MA", "NDX >20MA", "NDX >50MA", "IWM >20MA", "IWM >50MA", "T2108", "Stockbee 5D ratio", "Stockbee 10D ratio", "4%+ 上漲／下跌"];
+  for (const label of requiredRows) {
+    if (!sectionText.includes(label)) errors.push(`Premarket breadth table is missing ${label}.`);
+  }
+  const requiredSynthesis = ["三大指數廣度", "與 Stockbee 交叉驗證", "綜合結論", "短線", "中期"];
+  for (const label of requiredSynthesis) {
+    if (!sectionText.includes(label)) errors.push(`Premarket breadth conclusion must include ${label}.`);
+  }
+}
+
+function validatePremarketFxTrendMeaning(html, errors) {
+  const section = findSection(html, /^外匯與商品$/);
+  if (!section) return;
+  const table = (section.match(/<table\b[\s\S]*?<\/table>/i) || [])[0] || "";
+  const headers = [...table.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((match) => stripTags(match[1]));
+  const requiredHeaders = ["1日", "1月", "RSI", "趨勢／RSI 含義"];
+  for (const label of requiredHeaders) {
+    if (!headers.includes(label)) errors.push(`Premarket FX/commodities table is missing ${label}.`);
+  }
+  const body = (table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i) || [])[1] || "";
+  const rows = body.match(/<tr\b[\s\S]*?<\/tr>/gi) || [];
+  for (const [index, row] of rows.entries()) {
+    const cells = [...row.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi)].map((match) => stripTags(match[1]));
+    const meaning = cells.at(-1) || "";
+    if (!/RSI\s*\d/.test(meaning) || !/(均線|MA)/.test(meaning)) {
+      errors.push(`Premarket FX/commodities row ${index + 1} must interpret trend and RSI.`);
+    }
+  }
+}
+
 function validateThematicUniverse(html, errors) {
   const reportDate = (html.match(/\b20\d{2}-\d{2}-\d{2}\b/) || [])[0] || "";
   if (reportDate && reportDate < "2026-07-28") return;
@@ -645,6 +693,8 @@ function validateReportHtml(html, { reportType = "premarket" } = {}) {
   if (reportType === "premarket") {
     validateMovers(html, errors);
     validateThematicUniverse(html, errors);
+    validatePremarketBreadthFormat(html, errors);
+    validatePremarketFxTrendMeaning(html, errors);
   }
   if (reportType === "weekly") {
     validateWeeklyMacroCoverage(html, errors);

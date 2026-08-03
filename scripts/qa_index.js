@@ -88,9 +88,8 @@ if (unindexedReports.length) {
   errors.push(`Report files missing from homepage index: ${unindexedReports.join(", ")}.`);
 }
 
-const expectedLatest = reportFiles
-  .slice(0, 4)
-  .map((report) => `reports/${report.name}`);
+const sortedReportHrefs = reportFiles.map((report) => `reports/${report.name}`);
+const expectedLatest = [latestHref, ...sortedReportHrefs.filter((href) => href !== latestHref)].slice(0, 4);
 expectedLatest.forEach((href, index) => {
   if (reportHrefs[index] !== href) {
     errors.push(`Report position ${index + 1} should be ${href}, found ${reportHrefs[index] || "nothing"}.`);

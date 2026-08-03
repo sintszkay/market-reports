@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="以鐵路、電信光纖與人工智能算力三個資本建設時期，檢驗 Porter Stansberry 對 AI 基礎設施過度投資與企業軟體價值捕獲的論點。">
+  <title>三次基礎設施狂潮：鐵路、光纖與 AI 算力｜2026-08-03</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260803-ai-capital-cycles">
+  <style>
+    .cycle-special .lede{max-width:940px}
+    .cycle-special .section-intro{max-width:980px;color:var(--muted)}
+    .cycle-special section{padding-top:4px}
+    .cycle-special td{vertical-align:top}
+    .cycle-special td small{display:block;margin-top:4px;color:var(--muted);font-size:10.8px;line-height:1.45}
+    .cycle-special .period-strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+    .cycle-special .period-card{position:relative;padding:15px 16px;border:.5px solid var(--line);border-radius:10px;background:#fff}
+    .cycle-special .period-card:before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;background:var(--line-strong)}
+    .cycle-special .period-card span{color:var(--muted);font-size:11.5px}
+    .cycle-special .period-card h3{margin:7px 0 8px;font-size:17px}
+    .cycle-special .period-card p{margin:5px 0;color:var(--muted);font-size:12.5px}
+    .cycle-special .period-card strong{color:var(--ink)}
+    .cycle-special .thesis-score{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0}
+    .cycle-special .thesis-score>div{padding:11px 12px;border-radius:8px;background:#f2f1ed}
+    .cycle-special .thesis-score span,.cycle-special .thesis-score small{display:block;color:var(--muted);font-size:11.5px}
+    .cycle-special .thesis-score strong{display:block;margin:3px 0;font-size:18px;font-variant-numeric:tabular-nums}
+    .cycle-special .comparison-table{min-width:1320px;table-layout:fixed}
+    .cycle-special .comparison-table th:nth-child(1){width:150px}.cycle-special .comparison-table th:nth-child(2),.cycle-special .comparison-table th:nth-child(3),.cycle-special .comparison-table th:nth-child(4){width:390px}
+    .cycle-special .audit-table{min-width:1120px;table-layout:fixed}
+    .cycle-special .audit-table th:nth-child(1){width:260px}.cycle-special .audit-table th:nth-child(2){width:120px}.cycle-special .audit-table th:nth-child(3){width:350px}.cycle-special .audit-table th:nth-child(4){width:390px}
+    .cycle-special .timeline-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:13px 0}
+    .cycle-special .timeline-card{padding:13px 14px;border:.5px solid var(--line);border-radius:9px;background:#fff}
+    .cycle-special .timeline-card span{display:block;color:var(--muted);font-size:11.5px}.cycle-special .timeline-card strong{display:block;margin:4px 0;font-size:15px}.cycle-special .timeline-card p{margin:4px 0;color:var(--muted);font-size:12px}
+    .cycle-special .causal-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:13px 0}
+    .cycle-special .causal-flow>div{position:relative;padding:12px 13px;border-radius:8px;background:#f2f1ed}
+    .cycle-special .causal-flow>div:not(:last-child):after{content:"→";position:absolute;right:-8px;top:50%;z-index:2;transform:translateY(-50%);color:var(--muted);font-size:15px}
+    .cycle-special .causal-flow span{display:block;color:var(--muted);font-size:10.8px}.cycle-special .causal-flow strong{display:block;margin-top:3px;font-size:12.5px}
+    .cycle-special .msft-proof{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:12px 0}
+    .cycle-special .msft-proof>div{padding:11px 12px;border-radius:8px;background:#f2f1ed}.cycle-special .msft-proof span,.cycle-special .msft-proof small{display:block;color:var(--muted);font-size:11.5px}.cycle-special .msft-proof strong{display:block;margin:4px 0;font-size:18px;font-variant-numeric:tabular-nums}
+    .cycle-special .rotation-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+    .cycle-special .rotation-chart{padding:14px 15px;border:.5px solid var(--line);border-radius:10px;background:#fff}
+    .cycle-special .rotation-chart h3{margin:0 0 3px;font-size:15px}.cycle-special .rotation-chart>p{margin:0 0 11px;color:var(--muted);font-size:11.5px}
+    .cycle-special .move-list{display:grid;gap:6px}
+    .cycle-special .move-row{display:grid;grid-template-columns:52px 64px minmax(130px,1fr);align-items:center;gap:8px}
+    .cycle-special .move-row .ticker{font-size:11.5px;font-weight:500}.cycle-special .move-row .num{text-align:right;font-size:11.5px;font-variant-numeric:tabular-nums}
+    .cycle-special .move-track{position:relative;height:13px;overflow:hidden;border-radius:999px;background:#f1f0ec}
+    .cycle-special .move-track i{position:absolute;top:2px;bottom:2px;left:0;border-radius:999px}.cycle-special .move-track i.pos{background:var(--green)}.cycle-special .move-track i.neg{background:var(--red)}
+    .cycle-special .period-detail{display:grid;grid-template-columns:180px minmax(0,1fr);gap:22px;padding:18px 0;border-top:1px solid var(--line-strong)}
+    .cycle-special .period-detail:first-of-type{margin-top:10px}
+    .cycle-special .period-label span{display:block;color:var(--muted);font-size:11.5px}.cycle-special .period-label strong{display:block;margin-top:5px;font-size:19px}
+    .cycle-special .period-body p{margin:0 0 10px}
+    .cycle-special .period-body ul{margin-top:8px}
+    .cycle-special .capture-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+    .cycle-special .capture-card{padding:14px 15px;border:.5px solid var(--line);border-radius:10px;background:#fff}
+    .cycle-special .capture-card h3{margin:4px 0 7px;font-size:15px}.cycle-special .capture-card p{margin:5px 0;color:var(--muted);font-size:12.5px}.cycle-special .capture-card .tickers{color:var(--ink);font-weight:500}
+    .cycle-special .rail-winner-table{min-width:1100px;table-layout:fixed}
+    .cycle-special .rail-winner-table th:nth-child(1){width:175px}.cycle-special .rail-winner-table th:nth-child(2){width:210px}.cycle-special .rail-winner-table th:nth-child(3){width:300px}.cycle-special .rail-winner-table th:nth-child(4){width:415px}
+    .cycle-special .moat-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:12px 0}
+    .cycle-special .moat-grid>div{padding:12px 13px;border:.5px solid var(--line);border-radius:9px;background:#fff}
+    .cycle-special .moat-grid span{display:block;color:var(--muted);font-size:11px}.cycle-special .moat-grid strong{display:block;margin:4px 0;font-size:14px}.cycle-special .moat-grid p{margin:3px 0;color:var(--muted);font-size:11.8px}
+    .cycle-special .market-table{min-width:1180px;table-layout:fixed}
+    .cycle-special .market-table th:nth-child(1){width:100px}.cycle-special .market-table th:nth-child(2){width:180px}.cycle-special .market-table th:nth-child(3),.cycle-special .market-table th:nth-child(4),.cycle-special .market-table th:nth-child(5),.cycle-special .market-table th:nth-child(6){width:105px}.cycle-special .market-table th:nth-child(7){width:375px}
+    .cycle-special .risk-table{min-width:1180px;table-layout:fixed}
+    .cycle-special .risk-table th:nth-child(1){width:195px}.cycle-special .risk-table th:nth-child(2){width:235px}.cycle-special .risk-table th:nth-child(3){width:260px}.cycle-special .risk-table th:nth-child(4){width:260px}.cycle-special .risk-table th:nth-child(5){width:230px}
+    .cycle-special .capital-table{min-width:1290px;table-layout:fixed}
+    .cycle-special .capital-table th:nth-child(1){width:125px}.cycle-special .capital-table th:nth-child(2){width:245px}.cycle-special .capital-table th:nth-child(3){width:245px}.cycle-special .capital-table th:nth-child(4){width:290px}.cycle-special .capital-table th:nth-child(5){width:385px}
+    .cycle-special .scenario-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}
+    .cycle-special .scenario{padding:14px 15px;border:.5px solid var(--line);border-top:3px solid var(--blue);border-radius:8px;background:#fff}
+    .cycle-special .scenario.bull{border-top-color:var(--green)}.cycle-special .scenario.risk{border-top-color:var(--red)}
+    .cycle-special .scenario span{display:block;color:var(--muted);font-size:11.5px}.cycle-special .scenario strong{display:block;margin:5px 0;font-size:17px}.cycle-special .scenario p{font-size:12.5px}.cycle-special .scenario ul{margin:8px 0 0;padding-left:18px;font-size:12.5px}
+    .cycle-special .monitor-table{min-width:1160px;table-layout:fixed}
+    .cycle-special .monitor-table th:nth-child(1){width:185px}.cycle-special .monitor-table th:nth-child(2){width:275px}.cycle-special .monitor-table th:nth-child(3){width:260px}.cycle-special .monitor-table th:nth-child(4){width:245px}.cycle-special .monitor-table th:nth-child(5){width:195px}
+    .cycle-special .source-note{color:var(--muted);font-size:11.5px;line-height:1.6}
+    .cycle-special .sources a{white-space:nowrap}
+    @media(max-width:820px){
+      .cycle-special .period-strip,.cycle-special .scenario-grid,.cycle-special .timeline-grid{grid-template-columns:1fr 1fr}
+      .cycle-special .thesis-score{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .cycle-special .rotation-grid,.cycle-special .capture-grid{grid-template-columns:1fr}
+      .cycle-special .period-detail{grid-template-columns:1fr;gap:8px}
+      .cycle-special .causal-flow,.cycle-special .moat-grid{grid-template-columns:1fr 1fr}.cycle-special .causal-flow>div:after{display:none}
+      .cycle-special .msft-proof{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:540px){.cycle-special .thesis-score,.cycle-special .timeline-grid,.cycle-special .causal-flow,.cycle-special .moat-grid,.cycle-special .msft-proof{grid-template-columns:1fr}}
+  </style>
+</head>
+<body class="flat-report cycle-special" data-report-type="special">
+<main class="wrap">
+  <header>
+    <div class="eyebrow">2026 年 8 月 3 日 · 深度專題研究</div>
+    <h1>三次基礎設施狂潮：鐵路、光纖與 AI 算力，誰建設、誰埋單、誰收租？</h1>
+    <p class="muted lede">本文以 Porter Stansberry〈What Everyone Missed In Leo’s Blow-Up〉為研究起點，對照美國鐵路擴張、電信光纖泡沫與當前 AI 算力建設三個時期。核心問題不是 AI 是否有用，而是技術的社會回報能否在正確時間流入出資者的現金流。</p>
+    <div class="status-pills">
+      <span class="badge blue">原文發布 2026-08-01</span>
+      <span class="badge blue">附件全文已融入</span>
+      <span class="badge green">長橋價格核驗至 2026-07-31</span>
+      <span class="badge amber">基金損失數字未經公開審計</span>
+      <span class="badge blue">情境期 2026–2030</span>
+    </div>
+  </header>
+
+  <nav class="report-toc" aria-label="專題目錄">
+    <span class="toc-label">目錄</span>
+    <a href="#answer">結論</a><a href="#audit">原文核驗</a><a href="#unwind">爆倉機制</a><a href="#three-periods">三時期</a><a href="#history">歷史機制</a><a href="#tollbooths">收費站</a><a href="#rotation">市場輪動</a><a href="#capture">價值捕獲</a><a href="#capital">資本與會計</a><a href="#scenarios">情境推演</a><a href="#monitor">監測框架</a><a href="#qa">QA</a>
+  </nav>
+
+  <section class="grid" aria-label="專題摘要">
+    <div class="card"><span>原文核心方向</span><strong class="up">大致成立</strong><small>技術成功與基建投資者回報並非同一件事。</small></div>
+    <div class="card"><span>最大修正</span><strong>不能二分</strong><small>有定價權的晶片、網路與整合雲仍可成為收費站。</small></div>
+    <div class="card"><span>7 月輪動</span><strong><span class="dn">基建 -36% 至 -55%</span></strong><small>六檔代表股 6/30–7/29；長橋未復權收盤。</small></div>
+    <div class="card"><span>同期香港軟體</span><strong class="up">+17% 至 +37%</strong><small>五檔代表股 6/30–7/29；不是單日偶然波動。</small></div>
+  </section>
+
+  <section id="answer">
+    <div class="kicker">答案先行</div>
+    <h2>真正的週期規律：需求可以爆發，供給仍可能先過量</h2>
+    <ol>
+      <li><strong>三個時期都不是「技術失敗」。</strong>鐵路降低陸運成本、光纖令頻寬近乎商品化、AI 算力可能降低認知工作成本；但共同問題是供給按遠期需求一次建成，收入卻分多年兌現。</li>
+      <li><strong>資產壽命與債務期限的錯配決定誰先出事。</strong>鐵軌與被動光纖可使用數十年；GPU 的經濟壽命更短，算力價格／效能下降更快。若以固定負債支撐快速貶值的設備，錯誤容忍度最低。</li>
+      <li><strong>原文對「買實體 AI 建設、沽企業軟體」的反駁有力，但把兩邊切得太整齊。</strong>企業軟體具資料、流程、合規與切換成本，卻仍面對席位縮減、代理定價與產品整合；反之，具稀缺 IP、互連能力、長約與低成本資金的基建公司可以保留超額回報。</li>
+      <li><strong>7 月價格已先交易「資本效率」。</strong>長橋核驗顯示資本密集代表股大跌、企業軟體反彈；這證明市場正在重估現金流期限，但尚不足以證明 AI 算力已形成永久過剩。</li>
+      <li><strong>2026–2030 最可能不是單次崩盤，而是滾動式過建。</strong>不同地區、電力節點、GPU 世代與模型需求會依次出現短缺與過剩。贏家更可能是能轉移折舊風險、鎖定利用率，或在應用層按使用量收費的平台。</li>
+    </ol>
+    <div class="callout warn"><strong>投資主結論：</strong>不要把「AI 最終會改變世界」直接等同「所有資料中心與算力供應商都能賺到資本成本以上的回報」。應同時追蹤利用率、單位算力價格、折舊、融資與下游 AI 收入，而不是只看 Capex 或訂單。</div>
+  </section>
+
+  <section id="audit">
+    <div class="kicker">原文核驗</div>
+    <h2>文章說對了甚麼，哪些地方仍需保留</h2>
+    <div class="thesis-score" aria-label="原文論點評分">
+      <div><span>歷史方向</span><strong class="up">4 / 5</strong><small>過建後由應用層收租的規律清楚。</small></div>
+      <div><span>當前輪動</span><strong class="up">5 / 5</strong><small>長橋事件窗價格高度吻合。</small></div>
+      <div><span>基建一概失利</span><strong class="dn">2 / 5</strong><small>忽略瓶頸 IP、垂直整合與長約。</small></div>
+      <div><span>軟體一概防守</span><strong class="amber">3 / 5</strong><small>切換成本存在，但席位經濟會改變。</small></div>
+      <div><span>基金損失細節</span><strong class="amber">2 / 5</strong><small>事件獲交叉確認，精確數字未審計。</small></div>
+    </div>
+    <div class="table-scroll">
+      <table class="report-data-table audit-table">
+        <thead><tr><th>原文主張</th><th>核驗</th><th>可確認證據</th><th>研究修正</th></tr></thead>
+        <tbody>
+          <tr><td>Situational Awareness 出售上市股票組合，Citadel 接手相當部分。</td><td><span class="badge green">已交叉確認</span></td><td>Axios 與西班牙財經媒體均報道組合解除與 Citadel 交易，並指基金規模曾超過 200 億美元。</td><td>原文所列「月初 450 億、月末 100 億、損失 67%、約四倍槓桿」未見審計文件，本文只標示為作者引述，不當作已驗證事實。</td></tr>
+          <tr><td>策略實質為做多 AI 實體建設、做空企業軟體。</td><td><span class="badge green">市場吻合</span></td><td>6/30–7/29，SNDK、NBIS、BE、CRWV、MU、IREN 跌 35.9%–55.3%；WDAY、ADBE、INTU、CRM、VEEV 升 17.1%–37.2%。</td><td>價格輪動不等於持倉完整重建；公開報道未提供可審核的每日持倉與對沖明細。</td></tr>
+          <tr><td>鐵路與光纖先摧毀資本、後為新應用提供廉價基礎設施。</td><td><span class="badge green">歷史支持</span></td><td>Fed 與 NBER 將 1873 恐慌連結至鐵路投資失衡；Fed 對 2001 年光纖過剩、電信槓桿與設備投資崩落有同期記錄。</td><td>兩次週期的資產壽命、融資制度與競爭結構不同，不能把結果機械套用到 GPU。</td></tr>
+          <tr><td>企業軟體擁有資料、工作流、合規與切換成本，AI 會增強而非消滅其價值。</td><td><span class="badge blue">部分成立</span></td><td>Salesforce、Adobe、Veeva 已披露 AI 產品 ARR、企業採用或垂直代理進展。</td><td>AI 亦可能減少按席位收費、壓低功能溢價並加速套件整合；護城河要以 AI 淨新增 ARR 與留存驗證。</td></tr>
+          <tr><td>AI 基建已確定形成與光纖相同的全面過剩。</td><td><span class="badge amber">尚未證明</span></td><td>Fed 2026 研究顯示 AI 投資加速可與 1990 年代相比，並明確提出過度投資風險。</td><td>微軟與亞馬遜仍披露龐大積壓需求／客戶承諾；現階段更適合定義為「過建風險上升」，而非已確認全面閒置。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-summary"><strong>本段結論：</strong>原文最有價值之處，是把討論由「AI 技術是否成功」移到「誰承擔折舊與融資風險」；最需要修正之處，是不能把所有硬體供應商視為同質，也不能把所有企業軟體視為天然收費站。</p>
+  </section>
+
+  <section id="unwind">
+    <div class="kicker">爆倉機制</div>
+    <h2>槓桿解釋速度，錯向輪動解釋損失</h2>
+    <p class="section-intro">附件把基金事件補成一條完整時間線。除 Citadel 接手部分上市股票組合、基金曾管理超過 200 億美元等媒體可交叉確認內容外，下列回報、資產與持倉總額均屬原文引用的投資人信件／知情資料，未見公開審計持倉，故只用於重建機制。</p>
+    <div class="timeline-grid">
+      <article class="timeline-card"><span>7 月初 · 原文列示</span><strong>資產接近 450 億美元</strong><p>高度集中於 AI 實體建設多頭，並以企業軟體空頭對沖；槓桿令兩邊同時逆向時快速侵蝕淨值。</p></article>
+      <article class="timeline-card"><span>7 月 24 日 · 原文列示</span><strong>上半年淨回報 +439%</strong><p>投資人信把 AI 拋售形容為加碼機會，並邀請 8 月 1 日追加資金；這反映模型在回撤後仍提高信念。</p></article>
+      <article class="timeline-card"><span>7 月 30 日盤前 · 媒體部分確認</span><strong>上市多空組合約 160 億美元</strong><p>原文稱以單一 block trade 售予 Citadel，Millennium 與 Jane Street 亦曾競標；精確總額未有公開成交明細。</p></article>
+      <article class="timeline-card"><span>7 月底 · 未經審計</span><strong>月度 -67%，年內仍 +80%</strong><p>原文稱資產縮至約 100 億美元，且約一半為 Anthropic 非流動持股；數字只作壓力測試，不列為核實 NAV。</p></article>
+    </div>
+    <div class="causal-flow" aria-label="爆倉因果鏈">
+      <div><span>第一步</span><strong>做多高 beta、資本密集的 AI 二階導數</strong></div>
+      <div><span>第二步</span><strong>做空現金流軟體，假設代理將消滅應用</strong></div>
+      <div><span>第三步</span><strong>7 月兩籃子反向運行，對沖失去防護</strong></div>
+      <div><span>第四步</span><strong>集中度與約四倍槓桿放大保證金壓力</strong></div>
+      <div><span>第五步</span><strong>被迫解除多空組合，將紙面回撤鎖定</strong></div>
+    </div>
+    <div class="callout warn"><strong>因果辨識：</strong>「錯向交易 × 槓桿 × 集中度」足以解釋基金為何快速受損；但沒有 prime-broker 流量、逐日倉位與成交對手資料，不能證明市場每一段軟體上升都由該基金回補造成。</div>
+
+    <h3>Microsoft 7 月 30 日：回補可能放大，但基本面並不普通</h3>
+    <p>長橋確認 MSFT 由 7/29 的 390.54 美元升至 7/30 的 451.10 美元，單日升 15.51%，成交量 1.102 億股。原文據此推測「tape 裡還有別的東西」，方向上可以理解為空頭回補放大；然而 Microsoft 官方財報同時披露多個超出一般 headline beat 的訊號，因此不能把漲幅主要歸因於被迫回補。</p>
+    <div class="msft-proof">
+      <div><span>季度營收</span><strong>900.07 億美元</strong><small>年增 18%；非 GAAP EPS 4.74 美元。</small></div>
+      <div><span>Azure 增速</span><strong class="up">+43%</strong><small>雲端需求本身顯著加速。</small></div>
+      <div><span>商業 RPO</span><strong class="up">6,780 億美元</strong><small>年增 84%；扣除 OpenAI 仍增 25%。</small></div>
+      <div><span>M365 Copilot</span><strong class="up">逾 3,000 萬席</strong><small>淨新增席位按季超過翻倍。</small></div>
+    </div>
+    <p>同季 Microsoft Cloud 收入 593 億美元、年增 27%；季度 Capex 410 億美元，其中約三分之二是 CPU／GPU 等短壽命資產，自由現金流 196 億美元。這組數據同時支持原文的兩個相反面向：AI 應用與長約需求確實增強，但為滿足需求付出的短壽命資本也極大。</p>
+    <p class="section-summary"><strong>本段結論：</strong>附件讓事件由「槓桿太高」進一步變成可研究的多空錯配；但 Microsoft 個案反而說明原文不能只用回補解釋價格，因為應用層變現、雲端積壓需求與算力 Capex 在同一家公司同時成立。</p>
+  </section>
+
+  <section id="three-periods">
+    <div class="kicker">三時期總覽</div>
+    <h2>從「鋪路」到「收租」的共同結構</h2>
+    <div class="period-strip">
+      <article class="period-card"><span>第一期 · 1865–1870 年代</span><h3>美國鐵路擴張</h3><p><strong>稀缺品：</strong>跨區運輸網絡與土地通道。</p><p><strong>融資：</strong>鐵路債券、土地補助、歐洲資本。</p><p><strong>斷裂：</strong>線路建設快於貨運需求，收益率下降，1873 年融資鏈中斷。</p></article>
+      <article class="period-card"><span>第二期 · 1996–2002</span><h3>電信與光纖建設</h3><p><strong>稀缺品：</strong>長途頻寬、互聯網骨幹與交換設備。</p><p><strong>融資：</strong>高收益債、股權、設備供應商信貸。</p><p><strong>斷裂：</strong>暗光纖與容量遠超即時流量，頻寬價格崩落，槓桿企業違約。</p></article>
+      <article class="period-card"><span>第三期 · 2023–2030</span><h3>AI 算力與資料中心</h3><p><strong>稀缺品：</strong>先進 GPU、電力、冷卻、互連與高品質資料。</p><p><strong>融資：</strong>巨頭現金流、租賃、公司債、專案融資與第二層供應商槓桿。</p><p><strong>潛在斷裂：</strong>算力價格／效能下跌快於收入，設備迭代令折舊與再融資壓力集中爆發。</p></article>
+    </div>
+    <div class="table-scroll">
+      <table class="report-data-table comparison-table">
+        <thead><tr><th>比較維度</th><th>鐵路</th><th>電信光纖</th><th>AI 算力</th></tr></thead>
+        <tbody>
+          <tr><td><strong>需求承諾</strong></td><td>人口、農業與工業擴張是真需求，但新線路的地方貨運量高度不確定。</td><td>互聯網流量高速增長是真需求，但市場把遠期流量過早折現為即時容量訂單。</td><td>模型訓練與推理需求高速增長是真需求；真正不確定的是每單位任務所需算力、付費意願與需求集中度。</td></tr>
+          <tr><td><strong>供給反應</strong></td><td>固定路線一旦動工難以收縮，平行線路導致運價競爭。</td><td>一次鋪設多芯光纖，點亮成本低；容量可在需求前大量釋放。</td><td>資料中心建設期長，但 GPU 可分批採購；不同電力節點、晶片世代與互連架構並非完全可替代。</td></tr>
+          <tr><td><strong>資產壽命</strong></td><td>路權、土建與鐵軌可使用數十年，物理壽命長。</td><td>被動光纖壽命很長，光電與交換設備較快淘汰。</td><td>土地、電力與冷卻較長；GPU／加速器經濟壽命可能只有數年，且軟硬體效率快速進步。</td></tr>
+          <tr><td><strong>融資脆弱點</strong></td><td>票息固定、建設先行；債券銷售停滯即使長期需求存在也會破產。</td><td>槓桿高、價格下降、現金流延遲；2000 年電信利息／現金流比率明顯上升。</td><td>超大雲商資產負債表較強，但租賃承諾、專案融資及第二層算力商把風險移到較弱環節。</td></tr>
+          <tr><td><strong>過建訊號</strong></td><td>每英里收入下降、平行路線競爭、未完成項目增加、債券折價。</td><td>暗光纖比例、頻寬單價暴跌、設備訂單取消、利息保障惡化。</td><td>GPU 租金下跌、利用率下降、RPO／Capex 轉弱、折舊年限延長、應收／融資增速快於收入。</td></tr>
+          <tr><td><strong>資本受損者</strong></td><td>高成本新線、過度槓桿鐵路公司與債券持有人。</td><td>長途網絡新進者、設備商與高槓桿電信股東／債權人。</td><td>沒有長約、電力優勢或專有軟體的容量轉售商；快速貶值設備的高槓桿持有人。</td></tr>
+          <tr><td><strong>後續價值捕獲</strong></td><td>以低成本取得網絡、掌握樞紐與貨運密度的整合者，以及沿線工商業。</td><td>雲端、搜尋、串流、電子商務與企業互聯網應用，利用廉價頻寬擴張。</td><td>可能是具分發、資料、工作流、標準與合規的應用；也可能是能把硬體利用率與平台收入綁定的整合雲商。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-summary"><strong>本段結論：</strong>三次建設的共同獲利難題，是資本投入集中在前、現金流實現分散在後；AI 比鐵路與被動光纖多了一層快速技術折舊，因此「訂單存在」仍不能替代對資產壽命、利用率與再融資的檢查。</p>
+  </section>
+
+  <section id="history">
+    <div class="kicker">歷史機制</div>
+    <h2>三個時期的相似性，比價格圖更重要</h2>
+    <div class="period-detail">
+      <div class="period-label"><span>第一期</span><strong>鐵路：資產沒有消失，股權先消失</strong></div>
+      <div class="period-body"><p>內戰後鐵路里程快速增加，投資者把全國市場整合的長期收益提前資本化。Fed History 對 1873 年恐慌的回顧指出，新項目超過即時需求與融資能力，回報下降；歐洲資本撤退後，依賴持續發債的建設模式斷裂。Jay Cooke 因 Northern Pacific 債券滯銷倒閉，是「好資產、錯價格、錯融資」的典型。</p><ul><li><strong>技術結果：</strong>鐵路網最終成為美國工業化骨架。</li><li><strong>資本結果：</strong>原始出資者未必等得到需求成熟；破產後的資產由低成本新持有人承接。</li><li><strong>對 AI 的提示：</strong>即使資料中心日後滿載，早期股權仍可能因再融資、稀釋或重組而失去回報。</li></ul></div>
+    </div>
+    <div class="period-detail">
+      <div class="period-label"><span>第二期</span><strong>光纖：需求預測正確，價格預測錯誤</strong></div>
+      <div class="period-body"><p>1990 年代末市場正確預見網絡流量會暴增，卻低估了供給曲線：同一管道可鋪設大量光纖，新設備又持續提高每根光纖容量。Fed 2001 年材料估計，美國長途潛在容量由 1992 年約 950 萬 channel-miles 增至 2000 年約 10 億；同時電信企業利息負擔急升。2001 年前後，暗光纖、價格下跌與融資收緊共同壓垮高槓桿新進者。</p><ul><li><strong>技術結果：</strong>廉價頻寬成為搜尋、雲端、串流與電子商務的投入品。</li><li><strong>資本結果：</strong>網絡需求增長沒有阻止 Global Crossing 等建設者進入破產程序。</li><li><strong>對 AI 的提示：</strong>「使用量上升」若伴隨單位價格下降與設備效率提升，總收入未必追上資本存量。</li></ul></div>
+    </div>
+    <div class="period-detail">
+      <div class="period-label"><span>第三期</span><strong>AI：同時有強資產負債表與弱資產負債表</strong></div>
+      <div class="period-body"><p>當前週期不同於前兩次：MSFT、AMZN、GOOGL、META 的核心業務現金流可支撐大部分建設，且雲端 RPO、客戶承諾與 AI 產品收入正在增長。但風險並未消失，而是分層：巨頭承擔自由現金流與折舊壓力，租賃／專案融資承擔固定付款，第二層算力與電力供應商承擔利用率及再融資風險。</p><ul><li><strong>更安全的一端：</strong>擁有客戶入口、軟體平台、模型與基建的垂直整合者，可把算力成本轉化為多種收入。</li><li><strong>更脆弱的一端：</strong>只提供可替代容量、客戶集中、資產快速貶值且依賴外部融資的公司。</li><li><strong>主要未知：</strong>推理需求的價格彈性，會否快到足以吸收效率提升與新增供給。</li></ul></div>
+    </div>
+    <p class="section-summary"><strong>本段結論：</strong>三個時期的共通點不是「泡沫一定破」，而是固定資本先建立、需求後兌現。差異在於 AI 資產貶值更快、最大出資者現金流更強，因而較可能出現分層重估與局部事故，而非所有參與者同時歸零。</p>
+  </section>
+
+  <section id="tollbooths">
+    <div class="kicker">收費站模型</div>
+    <h2>附件最重要的補充：不擁有軌道，也可以拿走網絡的大部分經濟價值</h2>
+    <p class="section-intro">原文以 Adams Express、American Express 與 Pullman 說明鐵路時代的另一邊：基建公司承擔土地、工程、債務與運價競爭，而在軌道上提供包裹、支付、臥鋪與客戶服務的公司，以較少增量資本取得長期現金流。這些歷史財務數字來自附件原文引用，本文把它們作為機制案例，而非已完成逐筆帳冊審計。</p>
+    <div class="table-scroll">
+      <table class="report-data-table rail-winner-table">
+        <thead><tr><th>時期／角色</th><th>誰承擔固定資本</th><th>誰搭乘網絡</th><th>價值為何轉移</th></tr></thead>
+        <tbody>
+          <tr><td><strong>鐵路建設者</strong></td><td>鐵路公司與債券投資者建路權、橋樑、車站與軌道。</td><td>Adams Express、American Express、Pullman 買運力或提供車廂／服務。</td><td>鐵路競爭令每噸英里收入下降；應用公司不負擔整張網絡，卻掌握包裹、支付、旅客與服務標準。</td></tr>
+          <tr><td><strong>光纖建設者</strong></td><td>Global Crossing、WorldCom 等投入海纜、長途光纖與交換設備。</td><td>Google、Amazon、Netflix 利用破產後的低價頻寬建立搜尋、電商與串流。</td><td>流量上升，但頻寬供給與技術效率升得更快；單位頻寬價格下降，把剩餘價值轉給應用與客戶入口。</td></tr>
+          <tr><td><strong>AI 建設者</strong></td><td>超大雲商、neocloud、資料中心、電力與晶片買家承擔 Capex、折舊及再融資。</td><td>工作流、系統紀錄、代理控制層、合規資料平台及具分發的雲端應用。</td><td>若算力商品化，低價 tokens 會降低應用成本；掌握客戶、資料與合約的公司較容易保留毛利。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="moat-grid" aria-label="企業軟體五層護城河">
+      <div><span>第一層</span><strong>身分與權限</strong><p>Active Directory、企業安全邊界及角色授權決定誰可執行代理。</p></div>
+      <div><span>第二層</span><strong>系統紀錄</strong><p>財務、客戶、藥物與人力記錄是企業與稽核共同依賴的真實來源。</p></div>
+      <div><span>第三層</span><strong>合規與稽核</strong><p>監管驗證、audit trail、資料主權與電子簽名不能只靠模型輸出替代。</p></div>
+      <div><span>第四層</span><strong>工作流與資料</strong><p>代理需要在既有流程中讀寫資料、取得批准並留下可追蹤結果。</p></div>
+      <div><span>第五層</span><strong>合約與轉換成本</strong><p>多年合約、整合與重新驗證成本，使核心系統的替換周期遠長於模型周期。</p></div>
+    </div>
+    <h3>軟體為何可以把 AI 變成加售，而不是被 AI 直接取代</h3>
+    <p>附件用兩組經濟性估算說明「軟體費用小、失敗成本大」：Veeva 每名銷售代表年費約為該員工總成本的 1%–5%；全配置 Microsoft 365 E5 加 Copilot 約為知識工作者總成本的 1%左右。這些數字屬原文估算，真正值得保留的不是精確百分比，而是決策不對稱——節省少量授權費，可能要承擔遷移、停機、稽核與監管失敗的巨大尾部風險。</p>
+    <div class="table-scroll">
+      <table class="report-data-table report-cols-4">
+        <thead><tr><th>公司</th><th>附件論點</th><th>官方可驗證進展</th><th>研究修正</th></tr></thead>
+        <tbody>
+          <tr><td>Microsoft</td><td>企業購買的是身分、文件、通訊與合規軌道，不只是程式碼。</td><td>M365 Copilot 付費席位逾 3,000 萬；商業 RPO 6,780 億美元、年增 84%。</td><td>護城河強，但 Copilot 使用增加亦壓低 M365 毛利；加售必須扣除推理成本。</td></tr>
+          <tr><td>Salesforce</td><td>既有客戶資料與流程令代理成為 CRM 上層加售。</td><td>Agentforce ARR 在 2026 年第一季達 12 億美元、年增 205%。</td><td>需分辨淨新增 ARR、套件改名與折扣換購，並監測 CRM 銷售周期延長。</td></tr>
+          <tr><td>Adobe</td><td>內容工具、格式與企業流程令生成式 AI 可嵌入既有訂閱。</td><td>AI-first ARR 超過 5 億美元，約為一年前三倍。</td><td>低估值不等於沒有顛覆；需檢查核心 Creative ARR、用量成本與競爭產品。</td></tr>
+          <tr><td>Veeva</td><td>生命科學監管記錄、驗證與 audit trail 比生成能力更難替代。</td><td>Vault CRM 大規模遷移，並把 AI agents 免費提供至 2030 年。</td><td>免費 AI 更像保護核心平台與留存的策略，不能直接證明 AI 本身已有獨立定價權。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout"><strong>原文最強洞見：</strong>企業軟體不是把人類工作包成一個按鈕，而是把身分、資料、批准、責任與監管連成可運作的制度。模型可以取代其中的任務，但要取代整條制度軌道，必須同時承擔遷移與合規責任。</div>
+    <div class="callout warn"><strong>原文仍有盲點：</strong>高轉換成本延緩顛覆，不保證永久定價權。代理可能減少席位數、把價格由 per-seat 改成 per-outcome、令客戶整合供應商，或讓新公司先從邊緣工作流切入。因此「軟體收費站」必須以留存、AI 淨新增 ARR 與毛利驗證。</div>
+    <p class="section-summary"><strong>本段結論：</strong>附件把歷史類比由「建路者失敗」補成「不擁有路者如何成功」。可移植到 AI 的不是某一家公司名稱，而是低增量資本、客戶控制、資料／標準所有權與高替換成本四項條件。</p>
+  </section>
+
+  <section id="rotation">
+    <div class="kicker">長橋市場核驗</div>
+    <h2>7 月輪動：市場在懲罰資本期限，獎勵既有現金流</h2>
+    <p class="section-intro">下列報酬以長橋未復權日線計算，起點為 2026-06-30 收盤、終點為 2026-07-29 收盤，選股對應原文列舉的主要多空籃子。這是價格事實，不代表可取得該基金完整持倉或槓桿資料。</p>
+    <div class="rotation-grid">
+      <div class="rotation-chart"><h3>AI 實體建設／容量供應</h3><p>跌幅越大，紅條越長</p><div class="move-list">
+        <div class="move-row"><span class="ticker">SNDK</span><span class="num dn">-55.32%</span><div class="move-track"><i class="neg" style="width:100%"></i></div></div>
+        <div class="move-row"><span class="ticker">NBIS</span><span class="num dn">-46.33%</span><div class="move-track"><i class="neg" style="width:84%"></i></div></div>
+        <div class="move-row"><span class="ticker">BE</span><span class="num dn">-45.90%</span><div class="move-track"><i class="neg" style="width:83%"></i></div></div>
+        <div class="move-row"><span class="ticker">CRWV</span><span class="num dn">-38.90%</span><div class="move-track"><i class="neg" style="width:70%"></i></div></div>
+        <div class="move-row"><span class="ticker">MU</span><span class="num dn">-35.97%</span><div class="move-track"><i class="neg" style="width:65%"></i></div></div>
+        <div class="move-row"><span class="ticker">IREN</span><span class="num dn">-35.91%</span><div class="move-track"><i class="neg" style="width:65%"></i></div></div>
+      </div></div>
+      <div class="rotation-chart"><h3>企業工作流／系統紀錄</h3><p>升幅越大，綠條越長</p><div class="move-list">
+        <div class="move-row"><span class="ticker">WDAY</span><span class="num up">+37.24%</span><div class="move-track"><i class="pos" style="width:100%"></i></div></div>
+        <div class="move-row"><span class="ticker">ADBE</span><span class="num up">+28.49%</span><div class="move-track"><i class="pos" style="width:77%"></i></div></div>
+        <div class="move-row"><span class="ticker">INTU</span><span class="num up">+28.20%</span><div class="move-track"><i class="pos" style="width:76%"></i></div></div>
+        <div class="move-row"><span class="ticker">CRM</span><span class="num up">+20.25%</span><div class="move-track"><i class="pos" style="width:54%"></i></div></div>
+        <div class="move-row"><span class="ticker">VEEV</span><span class="num up">+17.15%</span><div class="move-track"><i class="pos" style="width:46%"></i></div></div>
+        <div class="move-row"><span class="ticker">QQQ</span><span class="num dn">-10.14%</span><div class="move-track"><i class="neg" style="width:27%"></i></div></div>
+      </div></div>
+    </div>
+    <div class="table-scroll">
+      <table class="report-data-table market-table">
+        <thead><tr><th>股票</th><th>價值鏈位置</th><th class="num">7/31 收盤</th><th class="num">近 5 日</th><th class="num">近 6 月</th><th class="num">本益比</th><th>研究判斷</th></tr></thead>
+        <tbody>
+          <tr><td>MSFT</td><td>整合雲／軟體</td><td class="num">464.72</td><td class="num up">+21.75%</td><td class="num up">+8.48%</td><td class="num">25.80</td><td>同時控制算力、分發與企業工作流，是最接近「建路兼收費」的模式；風險在 Capex／折舊增速。</td></tr>
+          <tr><td>AMZN</td><td>整合雲／電商</td><td class="num">271.58</td><td class="num up">+17.00%</td><td class="num up">+13.49%</td><td class="num">21.65</td><td>AWS 客戶承諾支撐建設，但 2026 Capex 極高，必須以 2027–28 收入與自由現金流驗證。</td></tr>
+          <tr><td>GOOGL</td><td>整合雲／模型</td><td class="num">356.13</td><td class="num up">+11.38%</td><td class="num up">+5.50%</td><td class="num">17.84</td><td>自研晶片、搜尋分發與雲端形成閉環；若推理成本降幅轉化為更多查詢與雲收入，具吸收過建能力。</td></tr>
+          <tr><td>NVDA</td><td>晶片與軟體標準</td><td class="num">200.75</td><td class="num dn">-2.94%</td><td class="num up">+5.16%</td><td class="num">30.56</td><td>不是純容量持有人；CUDA 與生態形成瓶頸收費站，但客戶自研晶片與單位算力價格下降會壓縮週期溢價。</td></tr>
+          <tr><td>AVGO</td><td>互連／客製晶片</td><td class="num">389.28</td><td class="num up">+1.93%</td><td class="num up">+17.93%</td><td class="num">63.17</td><td>受益於網路瓶頸與客製 XPU，位置優於一般容量供應商；高估值提高訂單失速風險。</td></tr>
+          <tr><td>CRWV</td><td>算力容量</td><td class="num">71.77</td><td class="num dn">-0.15%</td><td class="num dn">-22.99%</td><td class="num">不適用</td><td>利用率、客戶集中、融資與設備殘值高度相關，是原文「資本期限錯配」最直接的觀察標的。</td></tr>
+          <tr><td>NBIS</td><td>算力容量</td><td class="num">190.41</td><td class="num up">+1.41%</td><td class="num up">+123.51%</td><td class="num">59.66</td><td>長期漲幅仍大，顯示 7 月急跌也包含去槓桿與擁擠交易；不能只用一個月判定基本面終局。</td></tr>
+          <tr><td>MU</td><td>記憶體／HBM</td><td class="num">823.03</td><td class="num dn">-10.63%</td><td class="num up">+98.49%</td><td class="num">18.42</td><td>HBM 供需緊張可延長上行期，但記憶體仍是高固定成本、價格敏感的週期環節。</td></tr>
+          <tr><td>ADBE</td><td>內容系統紀錄</td><td class="num">250.41</td><td class="num up">+11.24%</td><td class="num dn">-14.61%</td><td class="num">14.00</td><td>AI-first ARR 已有披露；真正門檻是能否抵銷核心產品價格與席位壓力，而非只看功能發布。</td></tr>
+          <tr><td>CRM</td><td>客戶資料／工作流</td><td class="num">184.02</td><td class="num up">+12.44%</td><td class="num dn">-12.88%</td><td class="num">18.79</td><td>資料與流程黏性支持代理分發，Agentforce ARR 高增長；需檢查是否為淨新增收入而非套件搬移。</td></tr>
+          <tr><td>VEEV</td><td>生命科學垂直軟體</td><td class="num">203.78</td><td class="num up">+9.42%</td><td class="num dn">-0.07%</td><td class="num">35.15</td><td>垂直資料模型、監管與工作流最難被通用代理替代；估值仍要求收入與利潤同步。</td></tr>
+          <tr><td>NOW</td><td>企業工作流</td><td class="num">111.23</td><td class="num up">+12.60%</td><td class="num dn">-4.94%</td><td class="num">69.01</td><td>可成為跨系統代理控制層，但高估值意味「AI 增量」必須進入合約與 RPO。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">口徑：事件窗報酬為 2026-06-30 至 2026-07-29 未復權收盤；7/31 快照的近 5 日、近 6 月與本益比由長橋行情接口取得。本益比為行情快照值，虧損公司標示不適用。不同時間窗只用於不同問題，不混作同一排名。</p>
+    <div class="callout"><strong>價格讀法：</strong>這輪輪動首先證明擁擠與槓桿風險已被市場定價，不能單憑跌幅推論所有算力資產都失去經濟價值；下一步必須用利用率、租金與信用利差確認是倉位解除，還是現金流假設永久下修。</div>
+  </section>
+
+  <section id="capture">
+    <div class="kicker">價值捕獲</div>
+    <h2>不是「硬體對軟體」，而是誰能把固定成本變成可重複現金流</h2>
+    <div class="capture-grid">
+      <article class="capture-card"><span class="badge green">較可能收租</span><h3>專有瓶頸與技術標準</h3><p>稀缺 IP、開發生態、互連標準與客製晶片能在建設期抽取價值，直到替代方案令稀缺性下降。</p><p class="tickers">觀察：NVDA、AVGO</p></article>
+      <article class="capture-card"><span class="badge green">較可能收租</span><h3>算力、模型與分發垂直整合</h3><p>若同時擁有雲端客戶、模型、應用入口與低成本資金，可把閒置風險在多產品間調度。</p><p class="tickers">觀察：MSFT、AMZN、GOOGL、META</p></article>
+      <article class="capture-card"><span class="badge blue">有條件收租</span><h3>系統紀錄與受監管工作流</h3><p>客戶資料、權限、審計與核心流程可成為代理執行層；前提是 AI 收入為淨新增，而非既有席位折價。</p><p class="tickers">觀察：CRM、ADBE、VEEV、NOW、INTU、WDAY</p></article>
+      <article class="capture-card"><span class="badge red">風險最高</span><h3>可替代容量與槓桿資產</h3><p>若產品主要是 GPU-hours／MW，缺乏專有軟體與客戶鎖定，價格下跌會直接穿透資產回報。</p><p class="tickers">觀察：CRWV、NBIS、IREN、部分資料中心轉型公司</p></article>
+    </div>
+    <div class="table-scroll">
+      <table class="report-data-table risk-table">
+        <thead><tr><th>判斷問題</th><th>健康答案</th><th>過建答案</th><th>可量化指標</th><th>最相關公司</th></tr></thead>
+        <tbody>
+          <tr><td>需求是否真正鎖定？</td><td>多年合約、最低消費、低取消率，客戶分散。</td><td>意向書、短約、單一大客戶，需求可隨時遷移。</td><td>RPO／Backlog、合約年限、前三大客戶占比。</td><td>MSFT、AMZN、CRWV、NBIS</td></tr>
+          <tr><td>設備是否保值？</td><td>可跨客戶調度，軟體延長經濟壽命，殘值透明。</td><td>專用化過高、世代淘汰快，二手價格急跌。</td><td>折舊年限、資產減值、二手 GPU 價格、更新周期。</td><td>NVDA、CRWV、IREN</td></tr>
+          <tr><td>Capex 能否轉成收入？</td><td>收入／RPO 增速領先或同步 Capex，利用率上升。</td><td>Capex 與租賃承諾上升，但單位收入及毛利下降。</td><td>增量收入／增量 Capex、雲端毛利、自由現金流。</td><td>MSFT、AMZN、GOOGL、META</td></tr>
+          <tr><td>誰承擔融資期限？</td><td>內部現金流為主、固定利率長債、利息保障充足。</td><td>依賴再融資、可變利率、短債長投、承諾未入表。</td><td>淨債務／EBITDA、利息保障、租賃與承諾、到期牆。</td><td>CRWV、NBIS、BE、第二層供應商</td></tr>
+          <tr><td>軟體護城河是否真實？</td><td>AI 淨新增 ARR、留存提高、用量定價、流程更深。</td><td>席位減少、AI 功能免費、套件整合令產品可替代。</td><td>AI ARR、NRR、RPO、席位／用量、毛利與銷售效率。</td><td>CRM、ADBE、VEEV、NOW、INTU、WDAY</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="section-summary"><strong>本段結論：</strong>最值得持續追蹤的不是「Capex 高就是壞」或「軟體輕資產就是好」，而是合約能否鎖定利用率、資產能否跨代／跨客戶再用，以及供應商能否把 AI 從成本中心轉為新增 ARR 與現金流。</p>
+  </section>
+
+  <section id="capital">
+    <div class="kicker">資本、折舊與表外承諾</div>
+    <h2>附件把真正的壓力點說清楚了：會計利潤不能替代現金回收</h2>
+    <p class="section-intro">原文以超大雲商、Oracle、CoreWeave 與 Meta 的專案融資說明 AI 建設如何由現金 Capex 擴展到公司債、finance lease、operating lease 與 special purpose vehicle。這個方向正確；但把管理層的耐用年限估計一概稱為「說謊」並不嚴謹。它們是公開披露、可被事後檢驗的會計估計，真正問題是經濟折舊是否快於會計折舊。</p>
+    <div class="table-scroll">
+      <table class="report-data-table capital-table">
+        <thead><tr><th>公司</th><th>官方披露的資本訊號</th><th>耐用年限／融資變化</th><th>原文支持度</th><th>研究判斷</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Microsoft</strong></td><td>FY26 Q4 Capex 410 億美元，其中約三分之二為 CPU／GPU 等短壽命資產；季度 FCF 196 億美元。</td><td>FY27 起資料中心與辦公建築由 15 年延至 25 年；租賃分類變化令 2026 Capex 預期調整至約 1,750 億美元。</td><td><span class="badge green">高度支持</span><small>短壽命設備占比與現金消耗均由公司明示。</small></td><td>需分開看建築壽命與伺服器壽命；建築延壽不等於 GPU 延壽。RPO 6,780 億美元是需求緩衝，但只有約 30% 預計一年內確認。</td></tr>
+          <tr><td><strong>Amazon</strong></td><td>公司表示 2026 年 Capex 約 2,000 億美元以上，主要支持 AWS／AI；管理層稱相當部分已有客戶承諾。</td><td>2025 年把部分伺服器／網路設備由 6 年縮至 5 年，理由是 AI／機器學習技術發展加快；折舊多 14 億美元、淨利少 10 億美元。</td><td><span class="badge green">直接支持</span><small>附件最有力的資產壽命證據。</small></td><td>這證明設備經濟壽命存在縮短風險，但 Amazon 自研晶片、雲端分發與長期客戶亦提高再利用能力。</td></tr>
+          <tr><td><strong>Meta</strong></td><td>2025 年末長期債務 587.4 億美元；尚未開始的資料中心、colocation 與網絡租賃義務約 1,037.7 億美元。</td><td>2025 年把大部分伺服器與網絡資產耐用年限延至 5.5 年，令折舊少 29.2 億美元、淨利多 25.9 億美元。</td><td><span class="badge amber">方向支持</span><small>現金承諾上升；折舊變更效果可量化。</small></td><td>變更不等於造假，但使跨公司 EPS 比較更困難。應以資產減值、實際更新周期與現金 Capex 校正。</td></tr>
+          <tr><td><strong>Oracle</strong></td><td>FY26 營運現金流 319.77 億美元、Capex 556.63 億美元，簡化 FCF 為負 236.86 億美元。</td><td>同年發行 senior notes 淨所得 427 億美元，並取得與 Capex 相關的短期融資淨額 33 億美元。</td><td><span class="badge red">融資敏感</span><small>建設明顯超過內部現金流。</small></td><td>需求可能強，但回報對未來雲端收入、租賃與再融資高度敏感；是檢查「訂單是否足以覆蓋資本成本」的核心樣本。</td></tr>
+          <tr><td><strong>第二層算力商</strong></td><td>附件列出 CRWV 等公司的高 Capex、負 FCF、高息 term loans 與客戶集中。</td><td>精確利率與淨槓桿需逐季以 10-Q／債券文件更新，不能固定使用文章截面。</td><td><span class="badge red">風險方向成立</span></td><td>這一層沒有巨頭核心業務現金流，最接近鐵路／光纖新進者；利用率只要略低於假設，股權價值便可能非線性下降。</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>三種口徑必須同時使用</h3>
+    <div class="capture-grid">
+      <article class="capture-card"><span class="badge blue">現金口徑</span><h3>現金 Capex 與自由現金流</h3><p>回答「今年實際投入多少、核心業務是否仍能自我融資」。不能因延長耐用年限而改善。</p></article>
+      <article class="capture-card"><span class="badge blue">經濟口徑</span><h3>資產壽命與單位算力價格</h3><p>回答「設備能否在淘汰前收回成本」。要用二手價、利用率、性能／美元與減值驗證。</p></article>
+      <article class="capture-card"><span class="badge blue">承諾口徑</span><h3>租賃、SPV 與未開始合約</h3><p>回答「多少未來付款尚未完整出現在本期 Capex」。需把 finance lease、operating lease 與保證承諾加回。</p></article>
+      <article class="capture-card"><span class="badge blue">收入口徑</span><h3>RPO、客戶集中與確認期限</h3><p>回答「需求是否有法律約束，何時轉為收入」。遠期 RPO 不能與即期 Capex 一比一抵銷。</p></article>
+    </div>
+    <div class="callout warn"><strong>最關鍵的會計修正：</strong>比較 AI 建設者時，應使用「現金 Capex + 新增租賃／SPV 固定承諾」觀察資本投入，再以雲端毛利與 FCF 檢查回收；EPS 因耐用年限改變而改善，只能視為確認時點變化，不能視為經濟回報自動提高。</div>
+    <p class="section-summary"><strong>本段結論：</strong>附件對資本結構的警告成立，而且 Oracle 與 Amazon／Meta 的官方文件提供了可核驗證據；需要拒絕的是道德化語言。投資判斷應回到現金、資產更新速度、合約期限與融資成本。</p>
+  </section>
+
+  <section id="scenarios">
+    <div class="kicker">2026–2030 情境推演</div>
+    <h2>三條路徑：需求吸收、滾動過建、融資事故</h2>
+    <p class="section-intro">以下機率為本報告的主觀情境權重，不是統計預測。它們用來規定「看到甚麼證據便改變判斷」，而非提供單點目標價。</p>
+    <div class="scenario-grid">
+      <article class="scenario bull"><span>情境 A · 需求吸收</span><strong>35%</strong><p>代理、企業推理與消費 AI 的價格彈性極高，利用率維持，效率提升反而擴大總用量。</p><ul><li>受益：整合雲、晶片／網路瓶頸、具 AI 分發的系統紀錄。</li><li>確認：RPO 與 AI 收入持續快於 Capex；雲端毛利穩定。</li><li>失效：GPU 租金與利用率同步下降兩季。</li></ul></article>
+      <article class="scenario"><span>情境 B · 滾動式過建</span><strong>45%</strong><p>總需求仍升，但不同地區、世代與供應商反覆出現短缺／過剩，價格與資產回報分化。</p><ul><li>受益：低成本雲商、專有互連、企業工作流；可在低價容量上擴張的應用。</li><li>承壓：高成本容量商、舊世代設備、缺乏長約的專案。</li><li>確認：Capex 維持高位但單位算力價格下降，併購／重組增加。</li></ul></article>
+      <article class="scenario risk"><span>情境 C · 融資事故</span><strong>20%</strong><p>需求增速放慢、再融資成本上升或大客戶削減承諾，引發資產減值與連鎖去槓桿。</p><ul><li>相對防守：現金流軟體、低槓桿平台、可自由選擇 Capex 節奏的巨頭。</li><li>高風險：客戶集中、短債長投、設備殘值不透明的第二層算力商。</li><li>確認：取消訂單、延後機房、契約重談、利息保障惡化。</li></ul></article>
+    </div>
+    <div class="callout"><strong>基準情境：</strong>AI 不需要像 2001 年一樣「全面崩盤」才會轉移價值。只要算力供給增速高於可付費需求、單位價格下降，應用層便可用更便宜的基礎設施提高毛利；這正是鐵路與光纖週期最重要的歷史讀穿。</div>
+  </section>
+
+  <section id="monitor">
+    <div class="kicker">持續監測框架</div>
+    <h2>每季用六組數字判斷原文是否繼續有效</h2>
+    <div class="table-scroll">
+      <table class="report-data-table monitor-table">
+        <thead><tr><th>監測軸</th><th>核心數字</th><th>支持「需求吸收」</th><th>支持「過建／事故」</th><th>更新頻率</th></tr></thead>
+        <tbody>
+          <tr><td>超大雲商資本效率</td><td>Capex、折舊、雲收入、RPO、FCF</td><td>RPO／雲收入加速，毛利與 FCF 穩定。</td><td>Capex 上修但收入減速，折舊侵蝕營業利潤。</td><td>每季財報</td></tr>
+          <tr><td>算力供需</td><td>GPU 租金、交付期、利用率、取消／延期</td><td>租金穩定、利用率高、交付仍有排隊。</td><td>租金與利用率同跌，舊卡折價加速。</td><td>每月／每季</td></tr>
+          <tr><td>電力與資料中心</td><td>已簽電力、在建 MW、預租率、併網延誤</td><td>預租率高、客戶分散、電力成為真瓶頸。</td><td>投機性項目增加，預租轉弱或合約重談。</td><td>每季</td></tr>
+          <tr><td>第二層融資</td><td>淨債務、利息保障、到期牆、租賃承諾</td><td>長債固定利率，營運現金流覆蓋建設。</td><td>短債長投、利息資本化、股權頻繁稀釋。</td><td>每季／發債時</td></tr>
+          <tr><td>企業軟體 AI 變現</td><td>AI ARR、RPO、NRR、用量、核心席位</td><td>AI 淨新增 ARR，留存與單客收入提高。</td><td>AI 免費打包，核心席位或價格下降。</td><td>每季</td></tr>
+          <tr><td>市場價格驗證</td><td>基建籃子／軟體籃子相對強弱、信用利差</td><td>基建與軟體同升，信用利差穩定。</td><td>基建股落後、信用利差擴大、軟體相對走強。</td><td>每日／每週</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn"><strong>反向訊號：</strong>若連續兩季出現「雲端 RPO 與 AI 收入快於 Capex、算力租金穩定、第二層利用率提高、企業軟體 AI ARR 反而停滯」，便應下調原文的應用層優勢，重新提高基建權重。</div>
+  </section>
+
+  <section id="qa">
+    <div class="kicker">品質檢查</div>
+    <h2>QA 審查</h2>
+    <div class="table-scroll">
+      <table class="report-data-table report-cols-3 qa-table">
+        <thead><tr><th>檢查項目</th><th>結果</th><th>處理</th></tr></thead>
+        <tbody>
+          <tr><td>三時期完整性</td><td><span class="badge green">通過</span></td><td>鐵路、電信光纖、AI 算力均包含需求、供給、資產壽命、融資、過建訊號、受損者與價值捕獲。</td></tr>
+          <tr><td>原文與事實分離</td><td><span class="badge green">通過</span></td><td>基金交易事件與精確損失／槓桿數字分開；後者明示為作者引述、未經公開審計。</td></tr>
+          <tr><td>市場輪動核驗</td><td><span class="badge green">通過</span></td><td>14 檔事件窗價格均由長橋成功取得；起訖日與未復權口徑一致。</td></tr>
+          <tr><td>時間窗標示</td><td><span class="badge green">通過</span></td><td>事件窗 6/30–7/29 與行情快照 7/31 分開標示，不把 5 日、6 月與事件窗混作一列排名。</td></tr>
+          <tr><td>歷史來源</td><td><span class="badge green">通過</span></td><td>鐵路採 Fed History／NBER；光纖採 2001 年 Fed 同期材料、Bernanke 2003 與 NY Fed。</td></tr>
+          <tr><td>附件全文融入</td><td><span class="badge green">通過</span></td><td>新增基金時間線、爆倉因果鏈、Microsoft 個案、歷史收費站、企業軟體五層護城河與 Capex／折舊分析。</td></tr>
+          <tr><td>Microsoft 歸因</td><td><span class="badge green">通過</span></td><td>長橋核驗價格與成交量；官方 FY26 Q4 核驗 Azure、RPO、Copilot、Capex 與 FCF，不把 15.51% 升幅單獨歸因於回補。</td></tr>
+          <tr><td>當前 Capex 證據</td><td><span class="badge green">通過</span></td><td>採 Microsoft FY26 Q4、Amazon／Meta／Oracle SEC；企業軟體採 Salesforce、Adobe、Veeva 官方資料。</td></tr>
+          <tr><td>耐用年限與會計</td><td><span class="badge green">通過</span></td><td>Amazon 縮短、Meta 延長及 Microsoft 建築年限／租賃分類分開處理；拒絕把披露的估計變更直接定性為造假。</td></tr>
+          <tr><td>因果限制</td><td><span class="badge amber">描述性</span></td><td>價格輪動支持文章方向，但不聲稱單一基金平倉是全部價格變動的唯一原因。</td></tr>
+          <tr><td>情境機率</td><td><span class="badge amber">主觀</span></td><td>35%／45%／20% 為決策權重，已提供可上調與失效條件，不偽裝成統計預測。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sources">
+    <strong>主要來源：</strong>
+    <a href="https://x.com/porterstansb/status/2083606266388029691">Porter Stansberry 原文</a>；
+    <a href="https://www.axios.com/2026/07/30/ai-hedge-fund-situational-awareness-citadel">Axios／基金組合交易</a>；
+    <a href="https://cincodias.elpais.com/mercados-financieros/2026-08-01/quien-es-leopold-aschenbrenner-el-prodigio-de-la-inversion-en-ia-que-acabo-perdiendo-su-fondo.html">Cinco Días／基金事件</a>；
+    <a href="https://www.federalreservehistory.org/essays/banking-panics-of-the-gilded-age">Federal Reserve History／1873 恐慌</a>；
+    <a href="https://www.nber.org/papers/w24792.pdf">NBER／鐵路投資與恐慌</a>；
+    <a href="https://www.federalreserve.gov/monetarypolicy/files/FOMC20010627material.htm">Federal Reserve／2001 光纖容量與槓桿</a>；
+    <a href="https://www.federalreserve.gov/boarddocs/speeches/2003/200304242/">Bernanke／電信過度投資</a>；
+    <a href="https://www.newyorkfed.org/newsevents/news/research/2004/rp040518">New York Fed／2001 投資崩落</a>；
+    <a href="https://www.federalreserve.gov/econres/notes/feds-notes/do-major-technology-advancements-lead-to-overinvestment-20260706.html">Federal Reserve 2026／科技投資與過建</a>；
+    <a href="https://www.microsoft.com/en-us/Investor/earnings/FY-2026-Q4/press-release-webcast">Microsoft FY26 Q4 財報</a>；
+    <a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q4">Microsoft FY26 Q4 電話會</a>；
+    <a href="https://www.aboutamazon.com/news/company-news/amazon-ceo-andy-jassy-2025-letter-to-shareholders">Amazon 股東信</a>；
+    <a href="https://www.sec.gov/Archives/edgar/data/1018724/000101872426000004/amzn-20251231.htm">Amazon 2025 10-K</a>；
+    <a href="https://www.sec.gov/Archives/edgar/data/1326801/000162828026025534/meta-12312025x10kars.htm">Meta 2025 10-K</a>；
+    <a href="https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm">Oracle FY26 10-K</a>；
+    <a href="https://investor.salesforce.com/news/news-details/2026/Salesforce-Delivers-Record-Fourth-Quarter-Fiscal-2026-Results/default.aspx">Salesforce／Agentforce</a>；
+    <a href="https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/adbe-q2fy26-transcript.pdf">Adobe FY26 Q2</a>；
+    <a href="https://ir.veeva.com/financials/quarterly-results/default.aspx?languageid=1">Veeva 財報</a>；
+    <span>使用者提供之文章全文；長橋 CLI：歷史 K 線、行情快照與技術區間。</span>
+    <p class="source-note"><strong>方法與限制：</strong>本文為歷史類比與情境研究，不是對文章的逐句背書。鐵路、光纖與 AI 的監管、會計、資產壽命及市場結構不同；歷史類比只用於辨認現金流與融資機制。基金規模、槓桿、單月精確損失與附件中的鐵路應用公司帳冊數字缺乏本報告可取得的完整公開審計底稿，均以「原文列示」處理，不納入模型計算。公司行情截至 2026-07-31 正式收盤；所有情境均不構成投資建議。</p>
+  </section>
+</main>
+<script src="report-runtime.js?v=20260803-ai-capital-cycles"></script>
+</body>
+</html>

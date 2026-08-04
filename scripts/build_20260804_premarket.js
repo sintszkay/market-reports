@@ -98,16 +98,50 @@ const checklist = [
   ['Breakout win rate down／突破勝率下降','Low','4% 上漲 579、下跌 76','5D 1.20、10D 1.13，突破延續率轉正。','low'],
   ['Theme momentum weakening／主題動能轉弱','Intermediate','SMH 1月 -7.91%，XSW +6.59%','盤前晶片急彈，但月線仍落後軟體與大盤。','mid']
 ];
-const checklistHtml = `<div class="risk-check-grid">${checklist.map(x => `<div class="risk-check-row ${x[4]}"><div class="risk-check-name">${x[0]}</div><div class="risk-check-level">${badge(x[1], x[4] === 'mid' ? 'amber' : 'green')}</div><div class="risk-check-reading"><strong>${x[2]}</strong><small>${x[3]}</small></div></div>`).join('')}</div><div class="callout warn"><strong>Checklist Score：0/8 High＝Low Risk。</strong>結構風險已由廣度改善與低 VIX 緩和，但 10:00 ET 宏觀數據與 AMD 盤後財報仍帶來高事件密度；低風險不等於可忽略價格門檻。</div>`;
+const checklistHtml = `<div class="risk-check-grid">${checklist.map(x => `<div class="risk-check-row ${x[4]}"><div class="risk-check-name">${x[0]}</div><div class="risk-check-level">${badge(x[1], x[4] === 'mid' ? 'amber' : 'green')}</div><div class="risk-check-reading"><strong>${x[2]}</strong><small>${x[3]}</small></div></div>`).join('')}</div><div class="callout warn"><strong>Checklist Score：0/8 High＝Low Risk。</strong>結構風險已由廣度改善與低 VIX 緩和；10:00 ET 宏觀數據已公布，後續重點轉為市場如何定價需求降溫，以及 AMD 盤後財報風險。</div>`;
 
 const macroEvents = table(['宏觀／財報事件','Actual','Forecast','Previous','訊號'], [
-  [td('<strong>美國貿易餘額</strong><small>08:30 ET｜六月</small>'),numTd('-73.3B'),numTd('-73.0B'),numTd('-77.6B'),td(badge('小幅 Miss','red'))],
-  [td('<strong>JOLTS 職位空缺</strong><small>10:00 ET｜六月</small>'),numTd('待公布'),numTd('7.44M'),numTd('7.59M'),td(badge('待公布','blue'))],
-  [td('<strong>工廠訂單 MoM</strong><small>10:00 ET｜六月</small>'),numTd('待公布'),numTd('+4.6%'),numTd('-1.3%'),td(badge('待公布','blue'))],
-  [td('<strong>PLTR 財報</strong><small>盤後已公布｜2026 Q2</small>'),numTd('EPS 0.41<br>營收 1.935B'),numTd('EPS 0.35<br>營收 1.80B'),numTd('EPS 0.16<br>營收 1.004B'),td(badge('Beat／Beat','green'))],
-  [td('<strong>CAT 財報</strong><small>盤前已公布｜2026 Q2</small>'),numTd('EPS 8.17<br>營收 20.543B'),numTd('EPS 6.20<br>營收 19.2B'),numTd('EPS 4.72<br>營收 16.569B'),td(badge('Beat／Beat','green'))],
-  [td('<strong>AMD 財報</strong><small>盤後｜2026 Q2</small>'),numTd('待公布'),numTd('EPS 1.61<br>營收 11.3B'),numTd('EPS 0.48<br>營收 7.69B'),td(badge('待公布','blue'))]
+  [td('<span class="macro-event"><strong>美國貿易餘額</strong><small>08:30 ET｜六月</small></span>'),numTd('-73.3B'),numTd('-73.0B'),numTd('-77.6B'),td(badge('小幅 Miss','red'))],
+  [td('<span class="macro-event"><strong>JOLTS 職位空缺</strong><small>10:00 ET｜六月</small></span>'),numTd('7.359M'),numTd('7.40M'),numTd('7.537M'),td(badge('低於預期','blue'))],
+  [td('<span class="macro-event"><strong>工廠訂單 MoM</strong><small>10:00 ET｜六月</small></span>'),numTd('-0.3%'),numTd('+0.2%'),numTd('-1.1%'),td(badge('Miss','red'))],
+  [td('<span class="macro-event"><strong>PLTR 財報</strong><small>盤後已公布｜2026 Q2</small></span>'),numTd('EPS 0.41<br>營收 1.935B'),numTd('EPS 0.35<br>營收 1.80B'),numTd('EPS 0.16<br>營收 1.004B'),td(badge('Beat／Beat','green'))],
+  [td('<span class="macro-event"><strong>CAT 財報</strong><small>盤前已公布｜2026 Q2</small></span>'),numTd('EPS 8.17<br>營收 20.543B'),numTd('EPS 6.20<br>營收 19.2B'),numTd('EPS 4.72<br>營收 16.569B'),td(badge('Beat／Beat','green'))],
+  [td('<span class="macro-event"><strong>AMD 財報</strong><small>盤後｜2026 Q2</small></span>'),numTd('待公布'),numTd('EPS 1.61<br>營收 11.3B'),numTd('EPS 0.48<br>營收 7.69B'),td(badge('待公布','blue'))]
 ], 'report-data-table macro-results-table', [1,2,3]);
+
+const priorReviewRows = [
+  [
+    td('<strong>軟體相對強於晶片</strong><small>盤前主線：XSW／IGV 相對多、SMH 相對弱。</small>'),
+    td(`XSW ${pct(close.XSW.dailyPct)}、IGV ${pct(close.IGV.dailyPct)}，均明顯領先 SMH ${pct(close.SMH.dailyPct)}。`),
+    td(badge('命中','green')),
+    td('保留板塊相對強弱框架，但需把「晶片落後」與「晶片絕對下跌」分開判斷。')
+  ],
+  [
+    td('<strong>記憶體／晶片弱勢延續</strong><small>盤前 MU、SNDK 與設備鏈同步承壓。</small>'),
+    td(`弱勢在開盤後反轉：SNDK ${pct(close.SNDK.dailyPct)}、MRVL ${pct(close.MRVL.dailyPct)}、AMD ${pct(close.AMD.dailyPct)}、MU ${pct(close.MU.dailyPct)}。`),
+    td(badge('失誤','red')),
+    td('盤前跳空弱勢不能直接外推全天；若 SNDK／MU／SMH 收回 VWAP，晶片防守必須立即取消。')
+  ],
+  [
+    td('<strong>能源風險溢價回吐</strong><small>油價急跌將壓低 XLE 與通膨尾端。</small>'),
+    td(`USO 收 ${pct(close.USO.dailyPct)}、XLE 收 ${pct(close.XLE.dailyPct)}，弱勢延續至收盤。`),
+    td(badge('命中','green')),
+    td('延續以 USO／XLE 共振確認能源風格，不用單一地緣新聞替代價格。')
+  ],
+  [
+    td('<strong>ISM 三情景框架</strong><small>原框架只涵蓋過熱、溫和與衰退三種情景。</small>'),
+    td(`ISM 55.6 高於 54.0 共識，但價格支付降至 71.1；QQQ ${pct(close.QQQ.dailyPct)}、TLT ${pct(close.TLT.dailyPct)}，形成「成長強、價格降溫」。`),
+    td(badge('失誤','red')),
+    td('改用四象限：成長強／弱 × 價格升／降；不能再把強 PMI 一律歸類為長久期利空。')
+  ],
+  [
+    td('<strong>廣度中期偏弱</strong><small>盤前 Checklist 3/8 High，等待反向訊號。</small>'),
+    td('收盤 SPX／NDX／IWM 20MA 廣度同步回升，Stockbee 5D／10D 升至 1.20／1.13，原風險降級條件成立。'),
+    td(badge('已觸發','amber')),
+    td('保留盤前風險判斷，但收盤前必須重算廣度；反向條件觸發後不得沿用早盤結論。')
+  ]
+];
+const priorPremarketReview = `<section class="prior-premarket-review"><h2>昨晚盤前判斷複盤（8/3）</h2>${table(['8/3 盤前主判斷','8/3 收盤事實','對賬','今日修正'], priorReviewRows, 'report-data-table premarket-review-table')}<div class="callout warn"><strong>對賬結果：2 命中、2 失誤、1 已觸發。</strong>主要失誤不是方向全面相反，而是把盤前晶片弱勢外推至全天，以及宏觀框架漏掉「成長強、價格降溫」象限。今日需優先執行 VWAP 反向條件，並將 ISM／JOLTS 等數據拆成成長與價格兩條軸線。</div><p class="section-summary"><strong>本段結論：</strong>軟體相對強勢與能源弱勢獲得驗證，但晶片空頭沒有延續；今日不再把盤前缺口當全天趨勢，所有板塊主線都必須接受 VWAP、廣度與跨資產反應的二次確認。</p></section>`;
 
 const major = ['IWM','DIA','SPY','QQQ'].map(t => {
   const r = close[t], p = pre[t];
@@ -142,13 +176,13 @@ const fxMeaning = r => {
   const rsi = r.rsi14 >= 70 ? `RSI ${n(r.rsi14)} 過熱` : r.rsi14 >= 55 ? `RSI ${n(r.rsi14)} 偏強` : r.rsi14 <= 45 ? `RSI ${n(r.rsi14)} 偏弱` : `RSI ${n(r.rsi14)} 中性`;
   return `${trend}；${rsi}。${r.key === 'FXY' ? '日圓過熱，留意套息交易收縮對高 beta 的壓力。' : r.key === 'USDU' ? '與 DXY 約 99.97 共同顯示美元仍低於 102 風控門檻。' : r.key === 'CL' ? '收盤趨勢與盤前 USO -2.96% 背離，先視為油價回吐。' : ''}`;
 };
-const fxRows = fxKeys.map(k => macro[k]).filter(Boolean).map(r => [td(`<strong class="ticker-nowrap">${r.key}</strong><small>${fxLabels[r.key]}</small>`),numTd(n(r.close)),numTd(pct(r.dailyPct),r.dailyPct),numTd(pct(r.oneMonthPct),r.oneMonthPct),numTd(n(r.rsi14)),td(fxMeaning(r))]);
+const fxRows = fxKeys.map(k => macro[k]).filter(Boolean).map(r => [td(`<span class="asset-pair"><strong>${r.key}</strong><small>${fxLabels[r.key]}</small></span>`),numTd(n(r.close)),numTd(pct(r.dailyPct),r.dailyPct),numTd(pct(r.oneMonthPct),r.oneMonthPct),numTd(n(r.rsi14)),td(fxMeaning(r))]);
 const fxTable = `<div class="macro-policy-overview"><div><span>DXY</span><strong>99.97</strong><small>低於 102 風控門檻</small></div><div><span>原油代理</span><strong class="dn">USO -2.96%</strong><small>盤前回吐、通膨尾端暫緩</small></div><div><span>日圓代理</span><strong class="up">FXY RSI 77.36</strong><small>過熱與套息交易風險並存</small></div></div>${table(['資產','8/3收盤','1日','1月','RSI','趨勢／RSI 含義'],fxRows,'report-data-table fx-trend-table',[1,2,3,4])}`;
 
 const bondRows = ['SHY','IEF','TLT'].map(t => {
   const p=pre[t], labels={SHY:'1–3年短債',IEF:'7–10年中債',TLT:'20年以上長債'};
   const signal=t==='TLT'?'長端小幅領先，期限壓力暫緩。':t==='IEF'?'中段承接，對政策與成長均敏感。':'短端近持平，降息定價變化有限。';
-  return [td(`<strong>${t}</strong><small>${labels[t]}</small>`),numTd(n(p.price)),numTd(pct(p.changePct),p.changePct),td(signal)];
+  return [td(`<span class="asset-pair"><strong>${t}</strong><small>${labels[t]}</small></span>`),numTd(n(p.price)),numTd(pct(p.changePct),p.changePct),td(signal)];
 });
 const bondTable = table(['ETF','盤前','變化','含義'],bondRows,'report-data-table bond-curve-table',[1,2]);
 
@@ -167,30 +201,31 @@ const expectedTable = table(['標的','盤前','+1SD','+2SD','-1SD','狀態'],ex
 
 const tradeRows = ['DIA','SPY','IWM','QQQ','SMH','XSW','USO','TLT'].map(t => {
   const r=close[t], p=pre[t] || {price:r.close, changePct:r.dailyPct};
-  const actions={DIA:'盤前接近 +2SD，不追第一段。',SPY:'守住 +1SD 757.43 才視為有效突破。',IWM:'廣度同步改善，守 296.94 可保留多頭。',QQQ:'守 +1SD 706.47，再挑戰 50MA 714.51。',SMH:'晶片領漲但月線仍弱，守 VWAP 才延續。',XSW:'軟體盤前落後晶片，留意相對強弱反轉。',USO:'盤前回吐，不逆勢抄底。',TLT:'長端僅小幅領先，等 10:00 數據確認。'};
+  const actions={DIA:'盤前接近 +2SD，不追第一段。',SPY:'守住 +1SD 757.43 才視為有效突破。',IWM:'廣度同步改善，守 296.94 可保留多頭。',QQQ:'守 +1SD 706.47，再挑戰 50MA 714.51。',SMH:'晶片領漲但月線仍弱，守 VWAP 才延續。',XSW:'軟體盤前落後晶片，留意相對強弱反轉。',USO:'盤前回吐，不逆勢抄底。',TLT:'數據低於預期，確認長端能否守住升幅。'};
   return [td(`<strong class="ticker-nowrap">${t}</strong>`),numTd(`${n(p.price)}<br>${pct(p.changePct)}`,p.changePct),numTd(n(r.ma20)),numTd(n(r.ma50)),td(ma(r),'ma-cell'),td(actions[t])];
 });
 
 const data = {
   report_title:'2026-08-04｜美股盤前監控',
   report_eyebrow:'2026-08-04｜盤前更新',
-  report_heading:'晶片領漲、軟體分化；廣度修復後等待 JOLTS 與 AMD 驗證',
+  report_heading:'JOLTS 與工廠訂單低於預期；晶片領漲但成長交易仍待驗證',
   qqq_reengage_20ma:'699.88', qqq_breakout_add_1sd:'706.47',
-  data_timestamp_note:'長橋盤前快照約截至 09:10 ET；RSI、均線、ATR、Sector Dashboard、Thematic Sectors、Macro 與市場廣度截至 8/3 收盤。VIX 採 Cboe 正式指數，DXY 由即時指數資料補足。',
-  risk_badge:'低風險結構／高事件密度｜Checklist 0/8 High、VIX 1/5',
+  data_timestamp_note:'長橋盤前快照約截至 09:10 ET；RSI、均線、ATR、Sector Dashboard、Thematic Sectors、Macro 與市場廣度截至 8/3 收盤。宏觀 Actual 已更新至 10:00 ET；VIX 採 Cboe 正式指數，DXY 由即時指數資料補足。',
+  risk_badge:'低風險結構／需求降溫｜Checklist 0/8 High、VIX 1/5',
   summary_cards:`<div class="card"><span>四大 ETF 盤前</span><strong><span class="up">DIA +1.21%</span></strong><small>QQQ +1.14%、IWM +0.52%、SPY +0.34%。</small></div><div class="card"><span>晶片領先</span><strong><span class="up">SMH +3.52%</span></strong><small>MRVL、SNDK、INTC、MU 同步反彈。</small></div><div class="card"><span>財報異動</span><strong><span class="up">PLTR +16.85%</span></strong><small>CAT +11.86%；兩者 EPS／營收雙 Beat。</small></div><div class="card"><span>跨資產</span><strong><span class="dn">USO -2.96%</span></strong><small>DXY 99.97；TLT +0.18%，長端小幅承接。</small></div>`,
   upgrade_trigger_rule:'滿足 2/3 才把低風險結構轉成進攻：突破延續、廣度擴散、宏觀與長債同向。',
   upgrade_trigger_1:'QQQ 守住 706.47 週 +1SD 並挑戰 50MA 714.51；SMH 守住 VWAP。',
-  upgrade_trigger_2:'JOLTS 不高於 7.44M、工廠訂單不高於 +4.6%，TLT 維持上漲且 DXY <102。',
+  upgrade_trigger_2:'JOLTS 7.359M、工廠訂單 -0.3% 已偏弱；TLT 維持上漲且 DXY <102，確認市場解讀為利率利多。',
   upgrade_trigger_3:'NDX >50MA 回到 50%以上，Stockbee 5D／10D 維持 1 以上。',
   downgrade_trigger_rule:'任一觸發即轉防守：突破失敗、宏觀再通膨、晶片與廣度背離。',
   downgrade_trigger_1:'QQQ／SMH 失守 VWAP，PLTR／CAT 跳空回補超過一半。',
-  downgrade_trigger_2:'JOLTS 明顯高於 7.59M 且工廠訂單強於 +4.6%，TLT 由漲轉跌。',
+  downgrade_trigger_2:'數據雖偏弱，但 TLT 由漲轉跌或 DXY 上行，表示市場改以成長風險或期限溢價解讀。',
   downgrade_trigger_3:'SPY／IWM 跌回週 +1SD 下方，且 Stockbee 5D ratio 再跌破 1。',
-  core_conclusions:`<ol><li><strong>盤前指數全面上漲，但科技內部不是齊漲。</strong>SMH +3.52% 領先，QQQ +1.14%；MSFT、AMZN、NOW、CRM 卻下跌，主線是晶片修復對軟體與消費科技的輪動。</li><li><strong>PLTR 與 CAT 是兩個有基本面支持的跳空。</strong>PLTR EPS 0.41／營收 1.935B，均高於 0.35／1.80B，並上修全年與第三季指引；CAT EPS 8.17／營收 20.543B，亦雙 Beat，三大主要事業部門同步成長。</li><li><strong>貿易逆差改善，但略差於預期。</strong>六月為 -73.3B，較修訂後前值 -77.6B 收窄，略差於 -73.0B 共識；單一數字不足以改變風格，10:00 ET 的 JOLTS 與工廠訂單更重要。</li><li><strong>10:00 ET 有兩個相反風險。</strong>JOLTS 明顯高於 7.59M 且工廠訂單強於 +4.6% 會提高再通膨與收益率壓力；JOLTS 接近或低於 7.44M、訂單溫和，較有利 TLT 與長久期資產。</li><li><strong>債券只給出溫和風險緩和，不是強烈降息交易。</strong>SHY +0.06%、IEF +0.16%、TLT +0.18%；2Y 4.25%、10Y 4.70%，10Y–2Y 為 +45bp，長端仍含較高期限溢價。</li><li><strong>廣度由弱轉強，但 NDX 中期仍差一步。</strong>SPX／NDX／IWM >20MA 分別為 58.84%／57.28%／56.60%，Stockbee 5D／10D 為 1.20／1.13；唯 NDX >50MA 49.51% 尚未站穩五成。</li></ol><p class="section-summary"><strong>本段結論：</strong>今日可交易的是「晶片修復與財報跳空」，但需要用 10:00 ET 後的 TLT、DXY、QQQ 與廣度確認；軟體權重下跌令全面科技 risk-on 尚未成立。</p>`,
+  core_conclusions:`<ol><li><strong>盤前指數全面上漲，但科技內部不是齊漲。</strong>SMH +3.52% 領先，QQQ +1.14%；MSFT、AMZN、NOW、CRM 卻下跌，主線是晶片修復對軟體與消費科技的輪動。</li><li><strong>PLTR 與 CAT 是兩個有基本面支持的跳空。</strong>PLTR EPS 0.41／營收 1.935B，均高於 0.35／1.80B，並上修全年與第三季指引；CAT EPS 8.17／營收 20.543B，亦雙 Beat，三大主要事業部門同步成長。</li><li><strong>貿易逆差改善，但略差於預期。</strong>六月為 -73.3B，較修訂後前值 -77.6B 收窄，略差於 -73.0B 共識，顯示外需與進口調整仍未形成單向風格訊號。</li><li><strong>JOLTS 與工廠訂單均低於預期。</strong>六月職位空缺 7.359M，低於 7.40M 共識及修訂後前值 7.537M；工廠訂單 -0.3%，低於 +0.2% 共識，但較修訂後前值 -1.1% 改善。耐久財 +0.5%、非耐久財 -1.2%，訊號是需求降溫而非全面崩落。</li><li><strong>數據第一讀偏利率友好，但不能直接等同 risk-on。</strong>若 TLT 守住升幅、DXY 維持 102 下方且 QQQ／SMH 不回補，市場偏向「溫和降溫」；若長債不漲且 IWM／CAT 轉弱，則是成長疑慮。</li><li><strong>廣度由弱轉強，但 NDX 中期仍差一步。</strong>SPX／NDX／IWM >20MA 分別為 58.84%／57.28%／56.60%，Stockbee 5D／10D 為 1.20／1.13；唯 NDX >50MA 49.51% 尚未站穩五成。</li></ol><p class="section-summary"><strong>本段結論：</strong>宏觀數據已由「待公布」轉為需求降溫；晶片修復與財報跳空能否延續，現在要用 TLT、DXY、QQQ、IWM 與廣度的實際反應確認。</p>`,
+  prior_premarket_review:priorPremarketReview,
   positioning_primary:'主線：SMH／MRVL／SNDK／MU 的晶片修復，只在守住 VWAP 與 QQQ +1SD 時成立。',
   positioning_secondary:'次線：PLTR／CAT 財報跳空具基本面支撐，但盤前已高延伸，等回踩而非追第一段。',
-  positioning_watch:'觀察：JOLTS 7.44M、工廠訂單 +4.6%、QQQ 706.47／714.51、DXY 102、TLT 盤前方向。',
+  positioning_watch:'觀察：JOLTS 7.359M、工廠訂單 -0.3% 公布後，TLT 是否守升幅、DXY 是否維持 102 下方，以及 QQQ 706.47／714.51。',
   positioning_invalidation:'晶片失守 VWAP、QQQ 跌回 706.47 下方且軟體未接力，盤前進攻主線失效。',
   pre_market_movers_rows:moverTableRows,
   pre_market_movers_note:'<p class="section-summary"><strong>本段結論：</strong>上漲榜集中財報股與半導體，PLTR 313.3萬股、INTC 191.5萬股、AMZN 123.5萬股、MU 119.9萬股提供較高可信度；下跌榜集中大型軟體與消費科技，證明不是全科技齊漲。</p>',
@@ -203,11 +238,11 @@ const data = {
   section_correction_checklist_condition_action:'條件：QQQ 守 +1SD 且 NDX >50MA 站上 50%，才由戰術轉結構進攻。',
   section_correction_checklist_avoid_action:'避免：把 VIX 1/5 解讀為財報與宏觀事件不會產生跳空。',
   checklist_invalidation:'若 QQQ／SMH 跳空回補、Stockbee 比率跌回 1 下方，風險立即上調。',
-  macro_premarket_background_table:`${macroEvents}<div class="callout warn"><strong>10:00 ET 情景：</strong>① JOLTS &gt;7.59M 且訂單 &gt;+4.6%：成長與通膨壓力偏強，TLT 易轉跌、QQQ 估值受壓；② JOLTS 約 7.2–7.5M、訂單接近預期：最接近溫和成長，晶片與工業可延續；③ JOLTS &lt;7.2M 且訂單弱於預期：債券受益，但 IWM／CAT 的景氣交易需降級。</div><p class="section-summary"><strong>本段結論：</strong>貿易餘額 Actual 已填正式值；JOLTS、工廠訂單與 AMD 尚未公布，維持待公布。財報以 EPS 與營收雙項明確標示 Beat／Miss，不以股價反應代替結果。</p>`,
-  section_macro_premarket_background_primary_action:'主線：10:00 ET 同時看 JOLTS、工廠訂單與 TLT／DXY 反應。',
-  section_macro_premarket_background_condition_action:'條件：數據溫和且長債不轉跌，才提高長久期與小型股風險。',
-  section_macro_premarket_background_avoid_action:'避免：用貿易逆差改善單獨判斷全面 risk-on。',
-  macro_invalidation:'JOLTS 與訂單同時過熱、TLT 轉跌且 DXY 上行，偏多宏觀情景失效。',
+  macro_premarket_background_table:`${macroEvents}<div class="callout warn"><strong>公布後解讀：</strong>JOLTS 7.359M 低於 7.40M，共識與前值同步下修；工廠訂單 -0.3% 低於 +0.2%，但較 -1.1% 前值改善。兩項合看是需求降溫，第一讀有利長債與長久期估值；不過耐久財仍增 0.5%、電腦與電子產品訂單增 3.2%，尚不足以定義為全面衰退。</div><p class="section-summary"><strong>本段結論：</strong>貿易餘額、JOLTS 與工廠訂單 Actual 均已填正式值；AMD 官方目前只有財報日程，Q2 Actual 尚未發布。財報以 EPS 與營收雙項明確標示 Beat／Miss，不以股價反應代替結果。</p>`,
+  section_macro_premarket_background_primary_action:'主線：數據已偏弱，觀察 TLT／DXY／QQQ 是定價利率利多還是成長風險。',
+  section_macro_premarket_background_condition_action:'條件：TLT 守升幅、DXY <102 且 QQQ／SMH 不回補，才提高長久期風險。',
+  section_macro_premarket_background_avoid_action:'避免：把低於預期的宏觀數字機械解讀成全面 risk-on。',
+  macro_invalidation:'TLT 未因偏弱數據受益、DXY 上行且 IWM／CAT 轉弱，溫和降溫情景失效。',
   sector_thematic_etf_tables:`<h3>S&amp;P 500 Sector ETF｜按 RSI 由高至低</h3>${techTable(sectors)}<h3>Thematic Sector ETF｜長橋 44 檔＋SPY 基準，按 RSI 由高至低</h3>${techTable(thematic).replace('<table class="report-data-table etf-technical-table">', `<table class="report-data-table etf-technical-table" data-etf-universe="thematic-complete" data-source-count="${thematicRaw.length}" data-report-count="${thematic.length}" data-benchmark="SPY" data-sort="rsi-desc">`)}<p class="section-summary"><strong>本段結論：</strong>FXI／KWEB／XSW 仍居 RSI 前列，SMH RSI 43.93 雖盤前急彈，月線 -7.91% 仍需修復；完整 45 檔保留且 SPY 僅出現一次作基準。</p>`,
   section_sector_thematic_etf_primary_action:'主線：比較 SMH 的盤前修復與 XSW／CIBR 的中期強勢。',
   section_sector_thematic_etf_condition_action:'條件：SMH 守 VWAP 且相對 XSW 持續領先，才確認領導權切換。',
@@ -234,26 +269,27 @@ const data = {
   section_fx_commodities_condition_action:'條件：DXY <102、FXY 不再加速、USO 弱而 TLT 穩。',
   section_fx_commodities_avoid_action:'避免：把日圓上漲或原油下跌單獨解讀成衰退。',
   forex_commodity_invalidation:'DXY 升破 102、FXY 再加速且 TLT 轉跌，高 beta 情景降級。',
-  treasury_fed_economic_data_table:`<div class="macro-policy-overview"><div><span>美國 2Y</span><strong>4.25%</strong><small>8/3，政策敏感端</small></div><div><span>美國 10Y</span><strong>4.70%</strong><small>10Y–2Y +45bp</small></div><div><span>美國 30Y</span><strong>5.23%</strong><small>長端期限溢價仍高</small></div><div><span>TLT 盤前</span><strong class="up">+0.18%</strong><small>長端僅溫和承接</small></div></div><h3>短債／中債／長債比較</h3>${bondTable}<div class="callout warn"><strong>利率情景：</strong>JOLTS 過熱會先推高 2Y，工廠訂單強勁則可能同時抬升 10Y／30Y；若兩項溫和且 TLT 維持領先，才代表長端期限壓力實質緩和。現有 +45bp 正斜率不能簡化成降息利多。</div>`,
-  section_treasury_fed_primary_action:'主線：比較 2Y 政策端與 10Y／30Y 長端對 10:00 數據的反應。',
+  treasury_fed_economic_data_table:`<div class="macro-policy-overview"><div><span>美國 2Y</span><strong>4.25%</strong><small>8/3，政策敏感端</small></div><div><span>美國 10Y</span><strong>4.70%</strong><small>10Y–2Y +45bp</small></div><div><span>美國 30Y</span><strong>5.23%</strong><small>長端期限溢價仍高</small></div><div><span>TLT 盤前</span><strong class="up">+0.18%</strong><small>長端僅溫和承接</small></div></div><h3>短債／中債／長債比較</h3>${bondTable}<div class="callout warn"><strong>利率解讀：</strong>JOLTS 與工廠訂單雙雙低於預期，第一讀有利 2Y／10Y 收益率回落；但 10Y–2Y 仍為 +45bp，長端期限溢價未消失。若 TLT 無法守住升幅，代表市場更重視成長風險或財政供給，而非單純增加降息交易。</div>`,
+  section_treasury_fed_primary_action:'主線：比較 2Y 政策端與 10Y／30Y 長端對偏弱數據的實際反應。',
   section_treasury_fed_condition_action:'條件：TLT 維持領先 IEF／SHY，DXY <102，長久期條件才改善。',
   section_treasury_fed_avoid_action:'避免：只看 TLT 小漲便宣布長端壓力解除。',
-  treasury_invalidation:'JOLTS／訂單過熱、TLT 轉跌且 DXY 反彈，長端緩和情景失效。',
-  trading_plan:`${table(['ETF','盤前','20MA','50MA','20/50/200MA','行動'],tradeRows,'report-data-table trading-plan-table',[1,2,3])}<h3>本週預期波動</h3>${expectedTable}<p class="section-summary"><strong>本段結論：</strong>DIA、SPY、IWM、QQQ 與 PLTR 盤前均已觸發週 +1SD；DIA 接近 +2SD。突破只代表位置，不代表可直接追價，須由 VWAP、廣度與 10:00 宏觀反應確認。</p>`,
+  treasury_invalidation:'偏弱數據公布後 TLT 仍轉跌且 DXY 反彈，長端緩和情景失效。',
+  trading_plan:`${table(['ETF','盤前','20MA','50MA','20/50/200MA','行動'],tradeRows,'report-data-table trading-plan-table',[1,2,3])}<h3>本週預期波動</h3>${expectedTable}<p class="section-summary"><strong>本段結論：</strong>DIA、SPY、IWM、QQQ 與 PLTR 盤前均已觸發週 +1SD；DIA 接近 +2SD。突破只代表位置，不代表可直接追價，須由 VWAP、廣度與宏觀數據公布後的跨資產反應確認。</p>`,
   intraday_playbook_rows:[
     ['09:30 ORB','SMH 守 VWAP、QQQ 守 706.47','晶片修復延續','保留晶片相對多；軟體弱勢作風格對照。'],
     ['09:30 ORB','PLTR／CAT 回補少於一半缺口','財報跳空有效','等回踩確認，不追第一段。'],
-    ['10:00 ET','JOLTS 7.2–7.5M、訂單接近 +4.6%','溫和成長','保留晶片／工業，觀察 TLT 不轉跌。'],
-    ['10:00 ET','JOLTS >7.59M、訂單 >+4.6%','成長與利率過熱','降低長久期與已延伸突破倉位。'],
-    ['10:00 ET','JOLTS <7.2M、訂單弱於預期','成長疑慮','提高債券，降低 IWM／CAT 景氣交易。'],
+    ['10:00 已公布','JOLTS 7.359M、工廠訂單 -0.3%','需求降溫','第一讀偏利 TLT／長久期，但等待價格確認。'],
+    ['10:00 後','TLT 守升幅、DXY <102、QQQ／SMH 不回補','溫和降溫','保留晶片與長久期，避免追高延伸股。'],
+    ['10:00 後','TLT 轉跌或 IWM／CAT 走弱','成長疑慮','降低景氣交易，不把弱數據視為自動利多。'],
     ['15:30 MOC','NDX >50MA 仍低於 50%','科技中期廣度未確認','縮減隔夜風險，AMD 財報前不加碼。']
   ].map(r => `<tr>${r.map(x => td(x)).join('')}</tr>`).join(''),
-  cross_validation_summary:`<div class="callout"><strong>盤前行情交叉：</strong>長橋顯示 SMH +3.52%，MRVL／SNDK／INTC／MU 同漲；同時 MSFT／NOW／CRM／ADBE 下跌，證明是晶片領先而非全科技齊漲。</div><div class="callout"><strong>財報交叉：</strong>PLTR 與 CAT 的盤前大漲均有 EPS／營收雙 Beat 支持；PLTR 另有指引上修，CAT 則有三大部門成長，並非只用股價猜原因。</div><div class="callout"><strong>廣度交叉：</strong>三大指數 20MA 廣度、Stockbee 5D／10D 與極端漲跌股同向改善；NDX 50MA 49.51% 是唯一中期保留。</div><div class="callout warn"><strong>VIX 口徑 QA：</strong>Google Macro 表中的「VIX」列實為 VIXY 代理，不能當正式 VIX。本報告採 Cboe VIX 指數：8/3 收 15.86、盤前約 15.59，五項分數 1/5。</div><h3>資料來源</h3><p class="sources">長橋 OpenAPI：2026-08-04 約 09:10 ET 盤前價格、成交量與新聞，及截至 2026-08-03 的 RSI／MA／ATR；<a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit">Market Watch：Sector Dashboard、Thematic Sectors、Macro、Market Breadth、Weekly Expected Move、Data QA</a>；<a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit">Stockbee 廣度工作簿</a>；<a href="https://www.bea.gov/">BEA：六月貿易餘額</a>；<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_yield_curve">美國財政部：8/3 收益率曲線</a>；<a href="https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv">Cboe：VIX 正式歷史</a>；<a href="https://longbridge.com/en/news/294762014.md">PLTR 財報摘要</a>；<a href="https://s25.q4cdn.com/358376879/files/doc_financials/2026/q2/2Q-2026-Earnings-Release-Final.pdf">CAT 官方財報</a>；<a href="https://ir.amd.com/news-events/press-releases/detail/1289/amd-to-report-fiscal-second-quarter-2026-financial-results">AMD 官方財報時間</a>。</p><p class="source-note">本報告為 2026-08-04 美股盤前本地草稿，不構成投資建議。尚未公布的宏觀與 AMD Actual 均未提前填值；發布前仍需使用者確認。</p>`,
+  cross_validation_summary:`<div class="callout"><strong>盤前行情交叉：</strong>長橋顯示 SMH +3.52%，MRVL／SNDK／INTC／MU 同漲；同時 MSFT／NOW／CRM／ADBE 下跌，證明是晶片領先而非全科技齊漲。</div><div class="callout"><strong>財報交叉：</strong>PLTR 與 CAT 的盤前大漲均有 EPS／營收雙 Beat 支持；PLTR 另有指引上修，CAT 則有三大部門成長，並非只用股價猜原因。</div><div class="callout"><strong>宏觀交叉：</strong>BLS 正式 API 顯示 JOLTS 7.359M、前值修訂至 7.537M；Census 顯示工廠訂單 -0.3%、前值修訂至 -1.1%。兩項均低於共識，與需求降溫主線一致。</div><div class="callout"><strong>廣度交叉：</strong>三大指數 20MA 廣度、Stockbee 5D／10D 與極端漲跌股同向改善；NDX 50MA 49.51% 是唯一中期保留。</div><div class="callout warn"><strong>VIX 口徑 QA：</strong>Google Macro 表中的「VIX」列實為 VIXY 代理，不能當正式 VIX。本報告採 Cboe VIX 指數：8/3 收 15.86、盤前約 15.59，五項分數 1/5。</div><h3>資料來源</h3><p class="sources">長橋 OpenAPI：2026-08-04 約 09:10 ET 盤前價格、成交量與新聞，及截至 2026-08-03 的 RSI／MA／ATR；<a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit">Market Watch：Sector Dashboard、Thematic Sectors、Macro、Market Breadth、Weekly Expected Move、Data QA</a>；<a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit">Stockbee 廣度工作簿</a>；<a href="https://www.ismworld.org/supply-management-news-and-reports/reports/ism-pmi-reports/pmi/july/">ISM：七月製造業 PMI</a>；<a href="https://www.bea.gov/news/2026/us-international-trade-goods-and-services-june-2026">BEA：六月貿易餘額</a>；<a href="https://data.bls.gov/timeseries/JTS000000000000000JOL">BLS：JOLTS 職位空缺</a>；<a href="https://www.census.gov/manufacturing/m3/prel/pdf/s-i-o.pdf">Census：六月工廠訂單</a>；<a href="https://tradingeconomics.com/united-states/job-offers">JOLTS 市場共識</a>；<a href="https://tradingeconomics.com/united-states/factory-orders">工廠訂單市場共識</a>；<a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_yield_curve">美國財政部：8/3 收益率曲線</a>；<a href="https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv">Cboe：VIX 正式歷史</a>；<a href="https://longbridge.com/en/news/294762014.md">PLTR 財報摘要</a>；<a href="https://s25.q4cdn.com/358376879/files/doc_financials/2026/q2/2Q-2026-Earnings-Release-Final.pdf">CAT 官方財報</a>；<a href="https://ir.amd.com/news-events/ir-calendar/detail/20260804-amd-fiscal-second-quarter-2026-financial-results">AMD 官方財報日程</a>。</p><p class="source-note">本報告為 2026-08-04 美股盤前本地草稿，不構成投資建議。宏觀 Actual 已更新至 10:00 ET；AMD Q2 Actual 尚未正式發布，發布前仍需使用者確認。</p>`,
   sector_momentum_chart:chartRows
 };
 
 let html = template;
 for (const [key, value] of Object.entries(data)) html = html.replaceAll(`<!-- DATA: ${key} -->`, String(value));
+html = html.replace('<!-- OPTIONAL: prior_premarket_review -->', data.prior_premarket_review || '');
 html = html.replace('<!-- 板塊動能列由報告生成流程填入 -->', chartRows);
 const unresolved = [...html.matchAll(/<!-- DATA: ([a-z0-9_]+) -->/g)].map(m => m[1]);
 if (unresolved.length) throw new Error(`未解析欄位：${unresolved.join(', ')}`);

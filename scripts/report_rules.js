@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ASSET_VERSION = "20260803-flat-5";
+const ASSET_VERSION = "20260804-flat-7";
 const RUNTIME_TAG = `<script src="report-runtime.js?v=${ASSET_VERSION}"></script>`;
 const SHARED_STYLE_TAG = `<link rel="stylesheet" href="report-shared.css?v=${ASSET_VERSION}">`;
 const MA_PERIODS = ["20", "50", "200"];
@@ -678,6 +678,32 @@ function validateThematicUniverse(html, errors) {
   }
 }
 
+function validatePremarketPriorReview(html, errors) {
+  const reportDate = (html.match(/\b20\d{2}-\d{2}-\d{2}\b/) || [])[0] || "";
+  if (!reportDate || reportDate < "2026-08-04") return;
+
+  const section = findSection(html, /^昨晚盤前判斷複盤/);
+  if (!section) {
+    errors.push("盤前報告缺少「昨晚盤前判斷複盤」段落。");
+    return;
+  }
+
+  const requiredHeaders = ["盤前主判斷", "收盤事實", "對賬", "今日修正"];
+  for (const label of requiredHeaders) {
+    if (!section.includes(label)) errors.push(`昨晚盤前複盤缺少「${label}」欄。`);
+  }
+
+  const table = (section.match(/<table\b[^>]*premarket-review-table[^>]*>[\s\S]*?<\/table>/i) || [])[0] || "";
+  const rows = ((table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i) || [])[1] || "").match(/<tr\b/gi) || [];
+  if (rows.length < 5) errors.push(`昨晚盤前複盤至少需要 5 項，目前 ${rows.length} 項。`);
+
+  const statusCount = (label) => (table.match(new RegExp(`>${label}<`, "g")) || []).length;
+  if (statusCount("命中") < 1 || statusCount("失誤") < 1 || statusCount("已觸發") < 1) {
+    errors.push("昨晚盤前複盤必須包含命中、失誤與已觸發三類結果。");
+  }
+  if (!/本段結論/.test(section)) errors.push("昨晚盤前複盤缺少本段結論。");
+}
+
 function validateReportHtml(html, { reportType = "premarket" } = {}) {
   const errors = [];
   if (reportType === "postmarket") {
@@ -695,6 +721,7 @@ function validateReportHtml(html, { reportType = "premarket" } = {}) {
     validateThematicUniverse(html, errors);
     validatePremarketBreadthFormat(html, errors);
     validatePremarketFxTrendMeaning(html, errors);
+    validatePremarketPriorReview(html, errors);
   }
   if (reportType === "weekly") {
     validateWeeklyMacroCoverage(html, errors);

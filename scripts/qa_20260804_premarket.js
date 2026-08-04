@@ -7,6 +7,7 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const WORK = path.resolve(ROOT, '..');
 const html = fs.readFileSync(path.join(ROOT, 'reports', '2026-08-04-premarket-update.html'), 'utf8');
+const css = fs.readFileSync(path.join(ROOT, 'reports', 'report-shared.css'), 'utf8');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', '2026-08-04-premarket.json'), 'utf8'));
 const closeDoc = JSON.parse(fs.readFileSync(path.join(WORK, 'postmarket_snapshot_2026-08-03.json'), 'utf8'));
 const thematicDoc = JSON.parse(fs.readFileSync(path.join(WORK, 'thematic_rsi_longport.json'), 'utf8'));
@@ -52,6 +53,18 @@ pass('ETF 名稱只顯示英文代號', !/(生技|軟體|半導體|保險|黃金
 const majorSection = section('大盤 ETF 技術');
 pass('大盤 ETF 僅四檔且順序正確', tickerOrder(majorSection).slice(0,4).join(',') === 'IWM,DIA,SPY,QQQ' && /data-major-universe="indices-4"/.test(majorSection));
 pass('MA 使用紅綠三角且同列', /ma-state-group/.test(html) && /ma-up/.test(html) && /ma-down/.test(html) && /ticker-nowrap/.test(html));
+pass('資產代號與名稱不拆行', (html.match(/class="asset-pair"/g) || []).length === 12 && css.includes('.flat-report .asset-pair{') && css.includes('white-space:nowrap'));
+pass('外匯首欄已加寬', css.includes('.flat-report .fx-trend-table{min-width:1040px') && css.includes('.flat-report .fx-trend-table th:nth-child(1){width:17%}'));
+pass('美債首欄已加寬', css.includes('.flat-report .bond-curve-table th:nth-child(1){width:22%}') && css.includes('.flat-report .bond-curve-table td:first-child{'));
+pass('宏觀事件欄使用專用版面', (html.match(/class="macro-event"/g) || []).length === 6 && css.includes('.flat-report .macro-results-table th:nth-child(1){width:26%}'));
+pass('共享樣式版本已更新', html.includes('report-shared.css?v=20260804-flat-7'));
+
+const priorReviewSection = section('昨晚盤前判斷複盤（8/3）');
+pass('昨晚盤前複盤已加入核心結論後', priorReviewSection.length > 0 && html.indexOf('昨晚盤前判斷複盤（8/3）') > html.indexOf('<h2>核心結論</h2>') && html.indexOf('昨晚盤前判斷複盤（8/3）') < html.indexOf('<h2>盤前異動</h2>'));
+pass('複盤表 5 項且版面固定', (priorReviewSection.match(/<tbody>[\s\S]*?<\/tbody>/) || [''])[0].match(/<tr>/g)?.length === 5 && /premarket-review-table/.test(priorReviewSection) && css.includes('.flat-report .premarket-review-table{min-width:980px'));
+pass('複盤包含三類對賬結果', (priorReviewSection.match(/>命中</g) || []).length === 2 && (priorReviewSection.match(/>失誤</g) || []).length === 2 && (priorReviewSection.match(/>已觸發</g) || []).length === 1);
+pass('複盤收盤數字可核對', ['XSW +2.92%','IGV +3.00%','SMH +0.91%','SNDK +6.03%','USO 收 -5.46%','XLE 收 -1.28%','ISM 55.6','價格支付降至 71.1'].every(x => priorReviewSection.includes(x)));
+pass('複盤有今日修正與小結', priorReviewSection.includes('四象限') && priorReviewSection.includes('VWAP') && priorReviewSection.includes('本段結論'));
 
 const checklistSection = section('大盤修正檢查表');
 pass('修正清單 8 項與 0/8 High', (checklistSection.match(/risk-check-row/g) || []).length === 8 && checklistSection.includes('Checklist Score：0/8 High'));
@@ -60,7 +73,9 @@ pass('VIX 五項機械計分正確', checklistSection.includes('VIX 15.59') && c
 const macroSection = section('宏觀事件與盤前背景');
 pass('宏觀表含 Actual／Forecast／Previous', ['Actual','Forecast','Previous'].every(x => macroSection.includes(`<th class="num">${x}</th>`)));
 pass('貿易餘額正式值與預期／前值', macroSection.includes('-73.3B') && macroSection.includes('-73.0B') && macroSection.includes('-77.6B'));
-pass('JOLTS 與工廠訂單未提前填 Actual', /JOLTS[\s\S]*?待公布[\s\S]*?7\.44M[\s\S]*?7\.59M/.test(macroSection) && /工廠訂單[\s\S]*?待公布[\s\S]*?\+4\.6%[\s\S]*?-1\.3%/.test(macroSection));
+pass('JOLTS 正式值與預期／修訂前值', /JOLTS[\s\S]*?7\.359M[\s\S]*?7\.40M[\s\S]*?7\.537M[\s\S]*?低於預期/.test(macroSection));
+pass('工廠訂單正式值與預期／修訂前值', /工廠訂單[\s\S]*?-0\.3%[\s\S]*?\+0\.2%[\s\S]*?-1\.1%[\s\S]*?Miss/.test(macroSection));
+pass('宏觀已公布列不再顯示待公布', !/JOLTS[\s\S]{0,500}?待公布/.test(macroSection) && !/工廠訂單[\s\S]{0,500}?待公布/.test(macroSection));
 pass('PLTR 與 CAT 雙 Beat 數字完整', macroSection.includes('EPS 0.41') && macroSection.includes('營收 1.935B') && macroSection.includes('EPS 8.17') && macroSection.includes('營收 20.543B') && (macroSection.match(/Beat／Beat/g) || []).length === 2);
 pass('AMD 維持待公布', /AMD 財報[\s\S]*?待公布[\s\S]*?EPS 1\.61[\s\S]*?營收 11\.3B/.test(macroSection));
 
@@ -80,7 +95,7 @@ const planSection = section('交易計畫');
 pass('週期望波動使用盤前價判定', planSection.includes('DIA') && planSection.includes('537.67') && planSection.includes('QQQ') && planSection.includes('708.02') && planSection.includes('PLTR') && planSection.includes('146.82'));
 pass('突破狀態按盤前價重算', (planSection.match(/突破 \+1SD/g) || []).length === 5 && !planSection.includes('突破 +2SD'));
 
-pass('資料來源連結齊全', ['bea.gov','home.treasury.gov','cdn.cboe.com','longbridge.com','q4cdn.com','ir.amd.com'].every(x => html.includes(x)));
+pass('資料來源連結齊全', ['ismworld.org','bea.gov','data.bls.gov','census.gov','tradingeconomics.com','home.treasury.gov','cdn.cboe.com','longbridge.com','q4cdn.com','ir.amd.com'].every(x => html.includes(x)));
 pass('讀者可見文字無簡體常見詞', !/(数据|报告|板块|市场|风险|财报|实际|预测|之前)/.test(html.replace(/<script[\s\S]*?<\/script>/g,'')));
 
 if (failures.length) {

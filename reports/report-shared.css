@@ -371,13 +371,58 @@ body.flat-report{
 .flat-report .ma-table.report-cols-8 th:nth-child(6){width:22%}
 .flat-report .ma-table.report-cols-8 th:nth-child(7){width:8%}
 .flat-report .ma-table.report-cols-8 th:nth-child(8){width:30%}
-.flat-report .fx-trend-table{min-width:960px;table-layout:fixed}
-.flat-report .fx-trend-table th:nth-child(1){width:8%}
+.flat-report .macro-results-table{min-width:1080px;table-layout:fixed}
+.flat-report .macro-results-table th:nth-child(1){width:26%}
+.flat-report .macro-results-table th:nth-child(2),
+.flat-report .macro-results-table th:nth-child(3),
+.flat-report .macro-results-table th:nth-child(4){width:20%}
+.flat-report .macro-results-table th:nth-child(5){width:14%}
+.flat-report .premarket-review-table{min-width:980px;table-layout:fixed}
+.flat-report .premarket-review-table th:nth-child(1){width:22%}
+.flat-report .premarket-review-table th:nth-child(2){width:31%}
+.flat-report .premarket-review-table th:nth-child(3){width:12%}
+.flat-report .premarket-review-table th:nth-child(4){width:35%}
+.flat-report .premarket-review-table th:nth-child(3),
+.flat-report .premarket-review-table td:nth-child(3){text-align:center;white-space:nowrap}
+.flat-report .asset-pair{
+  display:inline-flex;
+  align-items:baseline;
+  gap:6px;
+  max-width:100%;
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:keep-all;
+}
+.flat-report .asset-pair strong{font-weight:500}
+.flat-report .asset-pair small{
+  color:var(--muted);
+  font-size:11px;
+  white-space:nowrap;
+}
+.flat-report .fx-trend-table{min-width:1040px;table-layout:fixed}
+.flat-report .fx-trend-table th:nth-child(1){width:17%}
 .flat-report .fx-trend-table th:nth-child(2){width:10%}
 .flat-report .fx-trend-table th:nth-child(3),
 .flat-report .fx-trend-table th:nth-child(4),
 .flat-report .fx-trend-table th:nth-child(5){width:8%}
-.flat-report .fx-trend-table th:nth-child(6){width:58%}
+.flat-report .fx-trend-table th:nth-child(6){width:49%}
+.flat-report .fx-trend-table th:first-child,
+.flat-report .fx-trend-table td:first-child{
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:keep-all;
+}
+.flat-report .bond-curve-table{min-width:760px;table-layout:fixed}
+.flat-report .bond-curve-table th:nth-child(1){width:22%}
+.flat-report .bond-curve-table th:nth-child(2),
+.flat-report .bond-curve-table th:nth-child(3){width:13%}
+.flat-report .bond-curve-table th:nth-child(4){width:52%}
+.flat-report .bond-curve-table th:first-child,
+.flat-report .bond-curve-table td:first-child{
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:keep-all;
+}
 .flat-report .breadth-diagnostic-table{min-width:1040px;table-layout:fixed}
 .flat-report .breadth-diagnostic-table th:nth-child(1){width:19%}
 .flat-report .breadth-diagnostic-table th:nth-child(2){width:10%}

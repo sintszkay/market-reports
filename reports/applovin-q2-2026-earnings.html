@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AppLovin Q2 2026 · 完整分析</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans TC', sans-serif; background: #f5f4f0; color: #1a1a1a; padding: 20px; }
+.label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: #888; text-transform: uppercase; margin-bottom: 12px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-bottom: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 12px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 12px; }
+.metric { background: #fff; border-radius: 10px; padding: 14px 16px; border: 0.5px solid #e5e5e5; }
+.metric-lbl { font-size: 11px; color: #888; margin-bottom: 4px; }
+.metric-val { font-size: 22px; font-weight: 600; color: #111; line-height: 1.1; }
+.metric-sub { font-size: 11px; margin-top: 4px; }
+.card { background: #fff; border-radius: 12px; padding: 16px 18px; margin-bottom: 12px; border: 0.5px solid #e5e5e5; }
+.card-title { font-size: 13px; font-weight: 600; color: #555; margin-bottom: 12px; }
+.row { display: flex; align-items: center; justify-content: space-between; padding: 5px 0; border-bottom: 0.5px solid #f0f0f0; font-size: 13px; }
+.row:last-child { border-bottom: none; }
+.rl { color: #666; }
+.rv { font-weight: 600; color: #111; }
+.up { color: #1D9E75; }
+.down { color: #D85A30; }
+.warn { color: #BA7517; }
+.stars { color: #EF9F27; font-size: 13px; display: block; margin-bottom: 3px; }
+.slbl { font-size: 13px; font-weight: 600; }
+.ssub { font-size: 11px; color: #888; margin-top: 2px; }
+.verdict { background: #EAF3FB; border: 0.5px solid #B5D4F4; border-radius: 8px; padding: 10px 14px; font-size: 13px; color: #1A5FA5; margin-top: 10px; line-height: 1.6; }
+.risk-item { display: flex; gap: 8px; padding: 8px 0; border-bottom: 0.5px solid #f0f0f0; font-size: 12px; color: #555; align-items: flex-start; line-height: 1.5; }
+.risk-item:last-child { border-bottom: none; }
+.rdot { width: 7px; height: 7px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+.flag { background: #FCEBEB; border: 0.5px solid #F7C1C1; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #A32D2D; margin-bottom: 12px; line-height: 1.6; }
+.chart-wrap { position: relative; height: 220px; width: 100%; }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 8px; font-size: 12px; color: #666; }
+.legend span { display: flex; align-items: center; gap: 4px; }
+.legend-sq { width: 10px; height: 10px; border-radius: 2px; }
+.deep-title { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #888; margin-bottom: 5px; margin-top: 14px; }
+.deep-body { font-size: 12px; color: #555; line-height: 1.7; padding: 10px 12px; background: #f7f7f5; border-radius: 6px; border-left: 2px solid #d0d0d0; }
+.deep-body:first-of-type { margin-top: 0; }
+.abc { background: #FFFDF7; border: 0.5px solid #EADFC0; border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; }
+.abc-title { font-size: 14px; font-weight: 700; color: #6B5416; margin-bottom: 4px; }
+.abc-sub { font-size: 11px; color: #A08B54; margin-bottom: 14px; }
+.abc-lead { font-size: 14px; line-height: 1.8; color: #3a3a3a; margin-bottom: 14px; }
+.abc-lead b { color: #111; }
+.flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 8px; align-items: center; margin: 16px 0; }
+.flow-box { background: #fff; border: 0.5px solid #E5DCC4; border-radius: 10px; padding: 12px 10px; text-align: center; }
+.flow-emoji { font-size: 22px; display: block; margin-bottom: 6px; }
+.flow-h { font-size: 12px; font-weight: 600; color: #111; margin-bottom: 3px; }
+.flow-p { font-size: 11px; color: #777; line-height: 1.5; }
+.flow-arrow { font-size: 18px; color: #C4B183; text-align: center; }
+.abc-qa { border-top: 0.5px solid #EADFC0; padding-top: 12px; margin-top: 4px; }
+.abc-q { font-size: 12px; font-weight: 700; color: #6B5416; margin-top: 12px; margin-bottom: 4px; }
+.abc-q:first-child { margin-top: 0; }
+.abc-a { font-size: 12.5px; color: #555; line-height: 1.75; }
+.abc-a b { color: #111; }
+@media (max-width: 720px) {
+  .flow { grid-template-columns: 1fr; }
+  .flow-arrow { transform: rotate(90deg); }
+}
+.call-item { padding: 11px 0; border-bottom: 0.5px solid #f0f0f0; }
+.call-item:last-child { border-bottom: none; }
+.call-tag { display: inline-block; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 99px; margin-bottom: 5px; letter-spacing: 0.02em; }
+.t-key { background: #FCEBEB; color: #A32D2D; }
+.t-pos { background: #EAF3DE; color: #3B6D11; }
+.t-neu { background: #E6F1FB; color: #185FA5; }
+.t-warn { background: #FAEEDA; color: #854F0B; }
+.call-h { font-size: 12.5px; font-weight: 600; color: #111; margin-bottom: 4px; line-height: 1.5; }
+.call-b { font-size: 12px; color: #555; line-height: 1.7; }
+.call-b b { color: #111; }
+.quote { display: block; margin: 7px 0 4px; padding: 8px 11px; background: #f7f7f5; border-left: 2px solid #C4B183; border-radius: 0 5px 5px 0; font-size: 12px; color: #444; font-style: italic; line-height: 1.65; }
+.quote-src { display: block; font-style: normal; font-size: 10.5px; color: #999; margin-top: 5px; }
+
+/* 資訊分層標籤 */
+.src { display: inline-block; font-size: 9.5px; font-weight: 700; padding: 1px 5px; border-radius: 4px; margin-right: 5px; vertical-align: middle; letter-spacing: 0.02em; }
+.src-hard { background: #E6F1FB; color: #185FA5; }   /* 硬數據：財報 */
+.src-mgmt { background: #FAEEDA; color: #854F0B; }   /* 管理層主張：未驗證 */
+.src-3rd  { background: #F0E6FB; color: #6B3FA0; }   /* 第三方追蹤 */
+.src-mkt  { background: #EAF3DE; color: #3B6D11; }   /* 市場結構 */
+
+/* 證偽清單表格 */
+.vtable { width: 100%; border-collapse: collapse; font-size: 12px; }
+.vtable th { text-align: left; font-size: 10.5px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 8px; border-bottom: 1px solid #e5e5e5; }
+.vtable td { padding: 9px 8px; border-bottom: 0.5px solid #f0f0f0; vertical-align: top; line-height: 1.55; color: #444; }
+.vtable tr:last-child td { border-bottom: none; }
+.vtable b { color: #111; }
+.hot { background: #FFFBF2; }
+
+/* 事件日曆 */
+.tl { position: relative; padding-left: 20px; }
+.tl::before { content:''; position: absolute; left: 5px; top: 4px; bottom: 4px; width: 2px; background: #e8e4d8; }
+.tl-item { position: relative; padding: 0 0 14px 12px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-dot { position: absolute; left: -19px; top: 3px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; }
+.tl-date { font-size: 11px; font-weight: 700; color: #111; }
+.tl-desc { font-size: 12px; color: #555; line-height: 1.6; margin-top: 2px; }
+.tl-desc b { color: #111; }
+
+/* 情境樹 */
+.scn { border-radius: 10px; padding: 13px 15px; margin-bottom: 10px; border: 0.5px solid; }
+.scn:last-child { margin-bottom: 0; }
+.scn-bull { background: #F4FAEC; border-color: #C5E0A0; }
+.scn-base { background: #FBF8EF; border-color: #E5D9B5; }
+.scn-bear { background: #FCF0F0; border-color: #F0C5C5; }
+.scn-h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.scn-name { font-size: 13px; font-weight: 700; color: #111; }
+.scn-range { font-size: 12px; font-weight: 600; color: #555; }
+.scn-b { font-size: 12px; color: #555; line-height: 1.7; }
+.scn-b b { color: #111; }
+.scn-trigger { margin-top: 7px; padding-top: 7px; border-top: 0.5px dashed rgba(0,0,0,0.12); font-size: 11.5px; color: #666; line-height: 1.6; }
+
+/* 價格結構 */
+.lvl { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 0.5px solid #f0f0f0; font-size: 12.5px; }
+.lvl:last-child { border-bottom: none; }
+.lvl-price { width: 92px; font-weight: 700; color: #111; flex-shrink: 0; font-variant-numeric: tabular-nums; }
+.lvl-desc { color: #555; line-height: 1.5; }
+.ifthen { background: #F7F7F5; border-radius: 8px; padding: 10px 13px; margin-top: 10px; font-size: 12px; color: #444; line-height: 1.8; }
+.ifthen b { color: #111; }
+.note { font-size: 10.5px; color: #999; margin-top: 8px; line-height: 1.5; }
+
+
+/* ===== 頁籤 ===== */
+.hdr { margin-bottom: 14px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.hdr-l { min-width: 0; }
+.hdr-t { font-size: 19px; font-weight: 700; color: #111; letter-spacing: -0.01em; }
+.brand { display: flex; align-items: center; gap: 11px; background: #fff; border: 0.5px solid #e5e5e5; border-radius: 12px; padding: 9px 15px 9px 12px; flex-shrink: 0; }
+.brand-sym { height: 30px; width: auto; display: block; flex-shrink: 0; }
+.brand-word { height: 22px; width: auto; display: block; }
+@media (max-width: 640px) {
+  .hdr { flex-direction: column; gap: 10px; }
+  .brand-sym { height: 26px; }
+  .brand-word { height: 18px; }
+}
+.hdr-s { font-size: 11.5px; color: #888; margin-top: 3px; }
+.tabs { display: flex; gap: 6px; margin: 14px 0 16px; border-bottom: 1px solid #e5e5e5; }
+.tab { padding: 9px 16px; font-size: 13px; font-weight: 600; color: #999; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all .15s; user-select: none; }
+.tab:hover { color: #555; }
+.tab.on { color: #111; border-bottom-color: #534AB7; }
+.tab-sub { font-size: 10px; font-weight: 500; color: #aaa; margin-left: 5px; }
+.pane { display: none; }
+.pane.on { display: block; }
+.xref { background:#F3F1FA; border:0.5px solid #D6D0EE; border-radius:8px; padding:9px 13px; font-size:11.5px; color:#463C7A; margin-bottom:12px; line-height:1.6; }
+
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <div class="hdr-t">AppLovin Corporation · NASDAQ: APP</div>
+    <div class="hdr-s">Q2 2026（截至 2026年6月30日）· 8月5日盤後公布 · 研究 + 交易整合版</div>
+  </div>
+  <div class="brand">
+    <svg class="brand-sym" viewBox="0 0 40 38" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AppLovin">
+      <g fill="none" stroke="#111" stroke-width="1.7" stroke-linecap="round">
+        <path d="M19.4 9.6 L8.6 28.2"/>
+        <path d="M20.6 9.6 L31.4 28.2"/>
+        <path d="M12.6 24.2 H27.4"/>
+      </g>
+      <g fill="#fff" stroke="#111" stroke-width="1.7">
+        <circle cx="20" cy="7.2" r="3.6"/>
+        <circle cx="6.6" cy="30.6" r="3.6"/>
+        <circle cx="33.4" cy="30.6" r="3.6"/>
+      </g>
+    </svg>
+    <svg class="brand-word" viewBox="0 0 132 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="AppLovin">
+      <text x="0" y="18.5"
+            font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+            font-size="20" font-weight="700" letter-spacing="-0.6" fill="#111">AppLovin</text>
+    </svg>
+  </div>
+</div>
+</div>
+
+<div class="tabs">
+  <div class="tab on" onclick="tab(0,this)">研究分析<span class="tab-sub">這家公司好不好</span></div>
+  <div class="tab" onclick="tab(1,this)">交易決策<span class="tab-sub">什麼證據該做什麼</span></div>
+</div>
+
+<div class="pane on" id="p0">
+<div class="xref">📖 <b>研究版</b>：白話介紹 → 財務數據 → 電話會 Highlight → 深度解讀 → 評分 → 風險。回答「這家公司的生意本質和這季發生了什麼」。看完後切到<b>交易決策</b>頁取得可執行的 if-then。</div>
+<div class="abc">
+  <div class="abc-title">這家公司在做什麼？</div>
+  <div class="abc-sub">用最白話的方式理解 AppLovin 的生意</div>
+
+  <div class="abc-lead">
+    你手機上那些<b>免費玩</b>的小遊戲，遊戲公司要怎麼賺錢？答案是<b>放廣告</b>。<br>
+    但問題來了——賣鍋子的老闆，怎麼知道該把廣告放在哪個遊戲、給哪個玩家看？<br>
+    <b>AppLovin 就是中間那個超級聰明的「配對員」。</b>
+  </div>
+
+  <div class="flow">
+    <div class="flow-box">
+      <span class="flow-emoji">🍳</span>
+      <div class="flow-h">想打廣告的老闆</div>
+      <div class="flow-p">賣鍋子、賣衣服、<br>做遊戲的公司</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="border-color:#C4B183;background:#FDF8EC">
+      <span class="flow-emoji">🤖</span>
+      <div class="flow-h">AppLovin 的 AI（AXON）</div>
+      <div class="flow-p">在幾毫秒內判斷：<br>「這個玩家最可能想買鍋子」</div>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <span class="flow-emoji">📱</span>
+      <div class="flow-h">正在玩遊戲的人</div>
+      <div class="flow-p">看到剛好想要的廣告，<br>點下去買了</div>
+    </div>
+  </div>
+
+  <div class="abc-qa">
+    <div class="abc-q">Q：它怎麼賺錢？</div>
+    <div class="abc-a">每配對成功一次，老闆就付一筆廣告費給 AppLovin。<b>因為整個過程都是電腦自動做的，不用請一堆業務員，所以賺進來的錢有八成以上可以留下來</b>——這就是為什麼它的利潤率高達 77%（一般公司有 10-20% 就算不錯了）。</div>
+
+    <div class="abc-q">Q：為什麼它比別人厲害？</div>
+    <div class="abc-a">因為它的 AI 猜得比較準。<b>猜得準 → 老闆賺到錢 → 老闆願意花更多預算 → AI 拿到更多資料 → 猜得更準</b>。這是一個會自己越滾越大的雪球，別人很難追上。</div>
+
+    <div class="abc-q">Q：它現在想做什麼新的事？</div>
+    <div class="abc-a">以前它只幫「遊戲」配對廣告，現在想擴張到<b>電商</b>（幫賣東西的網店打廣告）。財報裡舉的例子：一家賣鍋子的品牌，一年營收從 400 萬美元衝到 1,600 萬，靠的就是在 AppLovin 上打廣告。下一步還想做金融、保險，甚至電視廣告。</div>
+
+    <div class="abc-q">Q：那這次為什麼股價大跌？</div>
+    <div class="abc-a">不是因為它變差了，而是<b>「長大的速度變慢了」</b>。它還在長，只是從一年長 59%，變成 53%，下一季預計 47%。就像一個孩子還在長高，但長高的速度沒有以前快——買股票的人原本期待更快，所以失望了。</div>
+  </div>
+</div>
+
+<div class="grid-4">
+  <div class="metric"><div class="metric-lbl">總營收</div><div class="metric-val">$19.2億</div><div class="metric-sub warn">+52.8% YoY · Miss 共識 $19.5億（-1.2%）</div></div>
+  <div class="metric"><div class="metric-lbl">GAAP EPS</div><div class="metric-val">$3.76</div><div class="metric-sub">符合共識 $3.75 · YoY +57%</div></div>
+  <div class="metric"><div class="metric-lbl">調整後 EBITDA</div><div class="metric-val">$16.1億</div><div class="metric-sub warn">83.9% 利潤率 · Miss 共識 -1.5%</div></div>
+  <div class="metric"><div class="metric-lbl">盤後股價</div><div class="metric-val">-19~21%</div><div class="metric-sub down">$422 → ~$337 · 小 miss 大反應</div></div>
+</div>
+
+<div class="flag">🚨 <b>核心矛盾：營收只 miss 1.2%，股價卻跌 19-21%——市場在懲罰什麼？</b> 52.8% 的營收增速對絕大多數公司都是夢幻數字，EPS 也達標。但股價暴跌反映三件事的疊加：① <b>Q3 指引雙雙低於共識</b>（營收 $20.7億 vs 共識 $20.8億；EBITDA $17.3億 vs 共識 $17.5億）；② <b>自由現金流利潤率從 70.1% 崩至 44.9%</b>；③ 7月13日第三方數據已顯示電商廣告增速放緩、股價當天跌超 12%。<br><br><b>但電話會給了完全不同的說法</b>：管理層稱營收 miss 純粹是<b>模型改版時程</b>（非需求或競爭）、重大升級已在季後上線且 Q3 已重新加速、FCF 下滑是<b>國際稅款與利息付款時序</b>、消費（電商）垂直支出反而比 Q4 高峰再高 28%。<b>這份財報的核心，變成一場「第三方數據 vs 管理層說法」的對賭，而 Q3 是裁判。</b></div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">營收與 YoY 增速軌跡</div>
+    <div class="legend">
+      <span><span class="legend-sq" style="background:#534AB7"></span>季度營收（$B）</span>
+      <span><span class="legend-sq" style="background:#D85A30"></span>YoY 增速（右軸）</span>
+    </div>
+    <div class="chart-wrap"><canvas id="revChart"></canvas></div>
+    <div style="font-size:11px;color:#888;margin-top:6px">增速從 Q1 的 59% 降至 Q2 的 52.8%，Q3 指引隱含約 47.3%——連續兩季減速。絕對數字仍極高，但「減速的方向」比「增速的水平」更影響估值。</div>
+  </div>
+  <div class="card">
+    <div class="card-title">關鍵營運與獲利指標</div>
+    <div class="row"><span class="rl">營業利潤率</span><span class="rv up">77.7%（上年 76.1%，+160bp）</span></div>
+    <div class="row"><span class="rl">調整後 EBITDA 利潤率</span><span class="rv warn">83.9%（Q1 為 85%）</span></div>
+    <div class="row"><span class="rl">自由現金流利潤率</span><span class="rv down">44.9%（Q1 為 70.1%）</span></div>
+    <div class="row"><span class="rl">Q1 2026 淨利率（參考）</span><span class="rv up">65.4%</span></div>
+    <div class="row"><span class="rl">TTM 淨利率（Q1 時點）</span><span class="rv up">63.5%（上年同期 55.4%）</span></div>
+    <div class="row"><span class="rl">Q1 自由現金流</span><span class="rv up">$13億</span></div>
+    <div class="row"><span class="rl">Q1 股票回購</span><span class="rv up">$10億（下跌中加碼）</span></div>
+    <div class="row"><span class="rl">新客戶首年廣告支出</span><span class="rv up">預估 &gt;$70,000</span></div>
+    <div class="row"><span class="rl">獲客回本週期</span><span class="rv up">&lt;30 天 · 流失率近零</span></div>
+  </div>
+</div>
+
+<div class="grid-3">
+  <div class="card">
+    <div class="card-title">Q2 2026 損益明細</div>
+    <div class="row"><span class="rl">總營收</span><span class="rv warn">$19.2億（+52.8%）</span></div>
+    <div class="row"><span class="rl">共識預期</span><span class="rv">$19.5億（miss 1.2%）</span></div>
+    <div class="row"><span class="rl">GAAP EPS</span><span class="rv">$3.76（共識 $3.75）</span></div>
+    <div class="row"><span class="rl">EPS YoY</span><span class="rv up">+57%（上年 $2.39）</span></div>
+    <div class="row"><span class="rl">調整後 EBITDA</span><span class="rv warn">$16.1億（共識 $16.4億）</span></div>
+    <div class="row"><span class="rl">EBITDA 利潤率</span><span class="rv warn">83.9%（指引 84-85% 下緣）</span></div>
+    <div class="row"><span class="rl">營業利潤率</span><span class="rv up">77.7%（+160bp YoY）</span></div>
+    <div class="row"><span class="rl">FCF 利潤率</span><span class="rv down">44.9%（前季 70.1%）</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Q1 2026 對照（5月7日公布）</div>
+    <div class="row"><span class="rl">Q1 營收</span><span class="rv up">$18.4億（+59% YoY）</span></div>
+    <div class="row"><span class="rl">Q1 營收 Beat 幅度</span><span class="rv up">+3.9%（共識 $17.7億）</span></div>
+    <div class="row"><span class="rl">Q1 調整 EPS</span><span class="rv up">$3.76（共識 $3.64）</span></div>
+    <div class="row"><span class="rl">Q1 持續營運淨利</span><span class="rv up">$12.1億（+109% YoY）</span></div>
+    <div class="row"><span class="rl">Q1 調整 EBITDA</span><span class="rv up">$15.6億（+66% YoY）</span></div>
+    <div class="row"><span class="rl">Q1 EBITDA 利潤率</span><span class="rv up">85%</span></div>
+    <div class="row"><span class="rl">安裝量變化</span><span class="rv warn">-18%（單次收入提升抵銷）</span></div>
+    <div class="row"><span class="rl">Apps 業務出售</span><span class="rv">2025年6月完成（聚焦廣告）</span></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Q3 指引與估值</div>
+    <div class="row"><span class="rl">Q3 營收指引</span><span class="rv warn">$20.55–20.85億（中點 $20.7億）</span></div>
+    <div class="row"><span class="rl">vs 共識</span><span class="rv down">$20.8億（指引偏低）</span></div>
+    <div class="row"><span class="rl">Q3 隱含 YoY 增速</span><span class="rv warn">+47.3%（續減速）</span></div>
+    <div class="row"><span class="rl">Q3 EBITDA 指引</span><span class="rv warn">$17.1–17.4億（共識 $17.5億）</span></div>
+    <div class="row"><span class="rl">財報前股價</span><span class="rv">~$422（YTD -37.7%）</span></div>
+    <div class="row"><span class="rl">盤後股價</span><span class="rv down">~$337（-19.3%）</span></div>
+    <div class="row"><span class="rl">52週高點</span><span class="rv">$745.61</span></div>
+    <div class="row"><span class="rl">財報前 Forward P/E</span><span class="rv">~25×（重置後接近常態廣告科技）</span></div>
+    <div class="row"><span class="rl">分析師目標均值</span><span class="rv up">$656.20（財報前）</span></div>
+    <div class="row"><span class="rl">FY26 / FY27 EPS 共識</span><span class="rv up">$15.93 / $20.89</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">📞 電話會 Highlight（8月5日 · CEO Adam Foroughi / CFO Matt Stumpf）</div>
+
+  <div class="call-item">
+    <span class="call-tag t-key">最關鍵</span>
+    <div class="call-h">CEO 罕見坦承未達標，但把原因指向「模型改版時程」而非需求</div>
+    <div class="call-b">
+      Foroughi 直接承認營收落在自家指引中點之下、調整後 EBITDA 也低於區間。他把原因歸為 Q2 期間<b>「有意義的模型升級」數量比往常少</b>——而模型升級正是驅動遊戲廣告主增加投放的隱形引擎。他強調這不是競爭壓力造成，而是 R&D 本質上不可預測。
+      <span class="quote">「我們一向以超越自己的預期來經營這門生意，而這一季我們沒有達到那個標準。重要的是，我們清楚發生了什麼事，而且問題已經被解決了。」<span class="quote-src">— Adam Foroughi，共同創辦人暨執行長</span></span>
+    </div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-pos">重要修正</span>
+    <div class="call-h">重大模型升級已在季後上線，Q3 開局已重新加速</div>
+    <div class="call-b">管理層表示一次顯著的模型強化在 Q2 結束後不久就已上線，<b>Q3 初期數據顯示投放已重新加速</b>。這是把「Q2 是時序問題、不是趨勢反轉」這個說法，交給 Q3 財報去驗證的關鍵承諾。Q3 指引隱含約 48% 年增速。</div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-pos">重要修正</span>
+    <div class="call-h">自由現金流大跌有明確解釋：國際稅款與利息付款時序，非獲利能力下滑</div>
+    <div class="call-b">
+      Q2 自由現金流 <b>$8.63億</b>。CFO Stumpf 說明現金轉換率低於常態，是因為<b>國際現金稅與利息付款的時點集中</b>，而不是公司賺錢能力改變。他表示 Q3 現金轉換率會改善，<b>全年仍將正常化至調整後 EBITDA 的約 75%</b>。<br>
+      <span style="color:#A32D2D">※ 這段直接推翻了「FCF 崩跌可能是 GPU 投入結構性上升」的市場推測——但要注意，這是管理層的說法，需要 Q3 數據來驗證。</span>
+    </div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-neu">成本結構</span>
+    <div class="call-h">每 1 美元增量營收吃掉約 0.10 美元算力成本，長期 EBITDA 利潤率守在 80% 出頭</div>
+    <div class="call-b">回應 William Blair 分析師關於算力投入是否侵蝕利潤率的提問，Stumpf 重申這條長期成立的比例關係，並說明公司<b>是以「EBITDA 絕對金額和自由現金流」來管理生意，而不是死守某個利潤率百分比</b>。只要能帶來增量營收就會繼續投算力，因此短期利潤率會有波動，長期維持在 low-80% 區間。</div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-pos">需求面</span>
+    <div class="call-h">沒有看到廣告主需求轉弱或競爭格局改變的跡象</div>
+    <div class="call-b">Foroughi 明確表示季內<b>未觀察到廣告主需求走弱</b>，競爭環境也沒有變化。佐證數據：MAX 平台的發行商收益季增雙位數，AppLovin 在發行商 waterfall 中的份額維持穩定。<b>消費（電商）垂直領域的廣告支出更比 Q4 高峰再高出 28%</b>——這對「電商成長見頂」的市場疑慮是直接反駁。</div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-warn">待突破</span>
+    <div class="call-h">生成式 AI 素材：互動式結尾卡已能高效產出，長影片仍是難關</div>
+    <div class="call-b">Foroughi 說明目前<b>已能相當有效率地自動生成互動式 end card</b>，但要穩定產出高品質的長影片素材仍在攻克中。他指出若能解決這點、或提供不需影片的替代廣告模板，<b>對小型廣告主的投放門檻會大幅下降</b>——這直接關係到 6月自助平台開放後長尾客戶的轉化效率。</div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-neu">平台動態</span>
+    <div class="call-h">Android 競爭較激烈，但雙平台都具競爭力</div>
+    <div class="call-b">回應 Evercore 分析師關於部分遊戲廣告主在 Android 投放超乎預期的觀察，Foroughi 表示 AppLovin 在 iOS 與 Android 都有競爭力，但<b>Android 市場「比較競爭激烈，因為那裡有一個非常大的競爭對手」</b>（指向 Google）。</div>
+  </div>
+
+  <div class="call-item">
+    <span class="call-tag t-pos">資產負債表</span>
+    <div class="call-h">季末現金 $30.5億、總負債 $37億，回購持續；SEC 相關事項已了結</div>
+    <div class="call-b">季末帳上現金 <b>$30.5億</b>、總債務 <b>$37億</b>，淨槓桿維持低檔。管理層在下跌過程中持續執行回購（Q1 已投入 $10億）。另外，先前懸而未決的 <b>SEC 相關事項已獲澄清了結</b>——這移除了長期壓在估值上的一項不確定性。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">深度解讀</div>
+
+  <div class="deep-title">營收只 miss 1.2%，股價跌 19-21%——「減速確認」比「未達標」更致命</div>
+  <div class="deep-body">單看數字，這份財報離「災難」很遠：營收 +52.8%、EPS +57%、營業利潤率擴張 160bp。但市場的反應機制不是看絕對水平，而是看<b>二階導數（增速的變化率）</b>。增速路徑：Q1 的 59% → Q2 的 52.8% → Q3 指引隱含 47.3%，連續兩季減速且斜率清晰。對一隻曾經享受超高倍數的成長股，「減速被官方確認」比「單季小幅未達標」的殺傷力大得多——因為它把市場的估值模型從「持續超預期」切換到「逐季遞減」。這正是 7月13日第三方數據顯示電商廣告增速放緩、股價當天跌 12% 的延續：<b>市場早已懷疑，這份財報只是把懷疑變成事實</b>。</div>
+
+  <div class="deep-title">自由現金流利潤率從 70.1% 崩至 44.9%——管理層說是時序，但需要 Q3 驗證</div>
+  <div class="deep-body">這是財報標題不會提、但影響最深的數字。FCF 利潤率單季從 70.1% 掉到 44.9%，跌幅超過 25 個百分點（Q2 FCF 金額 $8.63億）。EBITDA 利潤率只從 85% 微降至 83.9%，代表問題不在核心獲利能力，而在<b>EBITDA 到現金的轉換</b>。<br><br>電話會上 CFO Stumpf 給了明確解釋：<b>是國際現金稅與利息付款的時點集中所致，而非賺錢能力改變</b>，並承諾 Q3 轉換率改善、全年正常化至 EBITDA 的約 75%。這個說法如果成立，市場對「GPU 投入導致現金結構性惡化」的擔憂就是誤讀。<b>但這終究是管理層的說法——在 Q3 實際數字出來之前，這是一個「已被解釋但未被證實」的項目</b>。同時要並列看另一條資訊：Stumpf 說明每 1 美元增量營收會吃掉約 0.10 美元算力成本，且公司刻意以 EBITDA 金額和 FCF 管理生意、不死守利潤率百分比——這意味著算力投入本身確實在上升，只是被歸類為「換取增量營收的合理支出」。</div>
+
+  <div class="deep-title">6月平台對外開放——14年封閉系統的終結，是機會也是變數</div>
+  <div class="deep-body">6月 AppLovin Ads 正式對公眾開放自助服務，這是 14 年來第一次讓廣告主無需既有直接關係就能上平台。戰略意義極大：過去 AppLovin 的成長受限於「人工 onboarding 產能」，Q1 電話會就明確提到新廣告主導入的資源瓶頸。自助化理論上解除這個限制，讓長尾廣告主自動湧入。管理層給的單位經濟學非常漂亮：新客戶首年預估投放 &gt;$70,000、行銷獲客成本 30 天內回本、上手後流失率近零。<b>但這也帶來新的不確定性</b>：自助平台的客戶品質、詐欺風險、對 ROAS 的稀釋效應都是未知數，而且開放後的首個完整季度正好對應 Q3——這使得 Q3 財報成為驗證「自助化是加速器還是稀釋器」的關鍵節點。</div>
+
+  <div class="deep-title">電商垂直領域——成長故事的核心，也是市場最大的疑慮</div>
+  <div class="deep-body">AppLovin 的估值溢價建立在「從遊戲廣告擴張到電商」的敘事上。管理層在 Q1 給了非常有力的案例：一家鍋具品牌年營收從 $400萬 成長到 $1,600萬，並預估將達 $8,000萬，其中大部分廣告支出投在 AppLovin；4月更是消費垂直領域廣告主支出史上最大月份，超越所有 Q4 高峰月。但 7月13日的第三方產業數據顯示電商廣告成長正在放緩，直接引發 12% 單日跌幅。<br><br><b>這裡出現了關鍵的證據衝突</b>：電話會上管理層給出的數字是——消費垂直領域的廣告支出<b>比 Q4 高峰再高出 28%</b>，且明確表示未觀察到廣告主需求走弱、競爭格局也沒變化，MAX 發行商收益季增雙位數、waterfall 份額穩定。若這些數字屬實，那麼 Q2 的營收 miss 就與電商無關，而是<b>遊戲板塊的模型改版時程</b>所致（管理層的說法）。<b>投資人要判斷的是：該相信第三方追蹤數據，還是管理層揭露的內部數據？</b>Q3 財報會給答案——若電商真的放緩，Q3 的消費垂直數據會露餡；若模型改版說法成立，Q3 增速應該回到 48% 甚至更高。至於下一個垂直領域（金融科技、保險的 lead-gen）仍在測試階段，CTV 更是遠期選項——短期內沒有新引擎能接棒，這一點沒有改變。</div>
+
+  <div class="deep-title">估值重置：Forward P/E 25× → 約 20×，成長股溢價幾乎消失</div>
+  <div class="deep-body">財報前 APP 已 YTD 下跌 37.7%、距 52 週高點 $745.61 腰斬有餘，Forward P/E 約 25×——已經「接近常態化廣告科技公司」的水平。盤後再跌 19% 到 ~$337 後，以 FY26 共識 EPS $15.93 計算，Forward P/E 降至約 21×；以 FY27 共識 $20.89 計算，僅約 16×。<b>多方論點</b>：52.8% 增速配 21× 本益比的 PEG 遠低於 1、營業利潤率 77.7% 是全行業頂尖、自助平台剛開放尚未反映在數字裡、Q1 就砸 $10億 回購顯示管理層信心、分析師均值目標 $656 隱含巨大空間。<b>空方論點</b>：連兩季減速且 Q3 指引再降、FCF 轉換惡化、電商 TAM 存疑、AI 對廣告產業的顛覆性重估正在壓縮整個板塊、Muddy Waters 等空頭機構歷史上曾多次針對其數據品質發難。<b>關鍵判斷：如果 47% 增速能在 Q4 止穩，當前估值明顯偏低；如果減速延續到 30% 出頭，21× 仍不算便宜</b>。</div>
+
+  <div class="deep-title">與 SNOW、NOW、SPOT 的對照——同樣是「好業績壞反應」，但性質完全不同</div>
+  <div class="deep-body">把 APP 放進你近期分析的序列裡，可以看清「業績好但股價跌」有幾種截然不同的成因：<br><br>① <b>ServiceNow / Spotify</b>：業績全面 beat、指引小幅保守 → 純粹的<b>預期重置</b>，業務軌跡未變。<br>② <b>Johnson Controls</b>：業績 beat + 指引上調，但股價已大漲 → <b>利好出盡</b>，估值先行透支。<br>③ <b>AppLovin</b>：營收小 miss + 指引雙低 + FCF 轉換惡化 + 第三方數據早有預警 → 這是<b>成長曲線本身的斜率被質疑</b>，性質最嚴重。<br><br>差別在於：前兩類的問題出在「市場對公司的預期」，APP 的問題出在「公司對自己的預期」（指引）。當管理層自己給出低於共識的指引，市場沒有理由認為這是誤解。<b>這也是為什麼 1.2% 的營收 miss 會換來 19% 的跌幅——被重新定價的不是這一季，是未來幾年的增速曲線</b>。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">綜合評分</div>
+  <div class="grid-4" style="margin-bottom:0">
+    <div><span class="stars">★★★★☆</span><div class="slbl">盈利質量</div><div class="ssub">營業利潤率 77.7%、EBITDA 83.9% 全行業頂尖，但 FCF 轉換率從 70% 崩至 45% 是明顯瑕疵</div></div>
+    <div><span class="stars">★★★★☆</span><div class="slbl">財務健康</div><div class="ssub">Q1 FCF $13億、$10億 回購、無流動性疑慮，但現金轉換惡化需觀察是否為單季現象</div></div>
+    <div><span class="stars">★★★☆☆</span><div class="slbl">增長質量</div><div class="ssub">+52.8% 絕對值極高，但連兩季減速、Q3 指引再降、電商垂直放緩訊號已被第三方數據證實</div></div>
+    <div><span class="stars">★★★★☆</span><div class="slbl">估值合理性</div><div class="ssub">跌後 Forward P/E 約 21×（FY26）/ 16×（FY27），成長股溢價幾乎清空，但需增速止穩驗證</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">核心風險</div>
+  <div class="risk-item"><div class="rdot" style="background:#D85A30"></div><span><b>增速減速的斜率是否會加劇（最核心）</b>：59% → 52.8% → 指引 47.3%，連續兩季下滑且管理層自己確認。市場現在要判斷的是這條曲線會在 40% 附近止穩，還是繼續滑向 30% 以下。若 Q3 再度低於指引，估值模型會從「成長股」徹底切換到「成熟廣告科技」，倍數還有壓縮空間</span></div>
+  <div class="risk-item"><div class="rdot" style="background:#D85A30"></div><span><b>電商垂直的 TAM 存疑（證據互相衝突）</b>：電商是估值溢價的核心敘事。7月13日第三方產業數據顯示成長放緩並引發單日 -12%；但電話會上管理層稱消費垂直支出比 Q4 高峰再高 28%、未見需求轉弱。<b>兩邊數據直接對立，Q3 才會揭曉誰對</b>。真正的結構性風險在於：即使電商沒問題，lead-gen（金融科技、保險）仍在測試、CTV 是遠期選項，短期內沒有第三條腿能接棒</span></div>
+  <div class="risk-item"><div class="rdot" style="background:#BA7517"></div><span><b>自由現金流轉換率惡化（已解釋，未證實）</b>：FCF 利潤率單季從 70.1% 掉到 44.9%（金額 $8.63億）。CFO 歸因於國際現金稅與利息付款的時序集中，並承諾 Q3 改善、全年正常化至 EBITDA 約 75%。<b>若 Q3 未如期回升，管理層說法的可信度會連帶受損</b>——而可信度正是這檔股票目前最稀缺的資產。另需並列觀察：每 1 美元增量營收吃掉約 0.10 美元算力成本，算力投入本身確實在結構性上升</span></div>
+  <div class="risk-item"><div class="rdot" style="background:#534AB7"></div><span><b>自助平台開放後的品質風險</b>：6月首次對公眾開放後，Q3 是第一個完整季度。長尾廣告主自動湧入雖然解除 onboarding 瓶頸，但客戶品質、詐欺流量、對整體 ROAS 的稀釋效應都未經驗證。歷史上 Muddy Waters 等空頭機構曾多次針對 AppLovin 的數據與歸因方法發難，平台開放會放大這類質疑的攻擊面</span></div>
+  <div class="verdict">🎯 <b>結論：這份財報變成一場「第三方數據 vs 管理層說法」的對賭，Q3 是唯一的裁判</b> — Q2 營收 $19.2億（+52.8%）僅 miss 共識 1.2%、EPS 達標、營業利潤率擴張至 77.7%，這些數字放在任何公司身上都是優秀的。股價暴跌 19-21% 來自 Q3 指引雙低、FCF 轉換率從 70.1% 崩至 44.9%、以及 7月13日第三方數據對電商放緩的預警。<br><br><b>但電話會提供了一組完全不同的敘事</b>：Foroughi 坦承未達標（「我們沒有達到那個標準…而且問題已經被解決了」），但把原因指向 Q2 模型升級數量偏少這個 R&D 時序問題，強調重大升級已在季後上線、Q3 開局已重新加速；Stumpf 把 FCF 下滑歸因於國際稅款與利息付款時點，承諾全年回到 EBITDA 的 75%；消費垂直支出比 Q4 高峰再高 28%，MAX 發行商收益季增雙位數、waterfall 份額穩定。SEC 事項也已了結。<br><br>如果管理層說法屬實，當前 Forward P/E 約 21×（FY26）配 47%+ 增速是明顯錯殺；如果是粉飾，那 Q3 會再跌一次，且管理層可信度將永久受損。<b>核心觀察點</b>：① Q3 增速能否回到指引的 48%；② FCF 轉換率是否如承諾回升；③ 消費垂直數據能否對上第三方追蹤；④ 6月自助平台開放後首個完整季度的客戶品質與長影片素材生成的進展。<b>這是一個「賭管理層誠信與執行力」的位置，不是賭業務品質——業務品質本身沒有太多疑問。</b></div>
+</div>
+
+
+</div>
+
+<div class="pane" id="p1">
+<div class="xref">🎯 <b>交易版</b>：證偽清單 → 交叉印證 → 價格結構 → 事件日曆 → 期權定價 → 情境樹 → 反方檢核。所有「管理層主張」在此都被降級為待驗證項目，配上門檻與日期。基本面細節見<b>研究分析</b>頁。</div>
+<div class="grid-4">
+  <div class="metric"><div class="metric-lbl"><span class="src src-mkt">市</span>盤後價格</div><div class="metric-val">~$337</div><div class="metric-sub down">-19.3% · 自 $422 跳空</div></div>
+  <div class="metric"><div class="metric-lbl"><span class="src src-hard">硬</span>Q2 營收 / 增速</div><div class="metric-val">$19.2億</div><div class="metric-sub warn">+52.8% · miss 指引中點</div></div>
+  <div class="metric"><div class="metric-lbl"><span class="src src-hard">硬</span>Q3 指引隱含增速</div><div class="metric-val">~48%</div><div class="metric-sub warn">$20.55–20.85億</div></div>
+  <div class="metric"><div class="metric-lbl"><span class="src src-mkt">市</span>Forward P/E</div><div class="metric-val">21× / 16×</div><div class="metric-sub">FY26 $15.93 / FY27 $20.89 共識</div></div>
+</div>
+
+<div class="flag">📌 <b>本檔股票當前的交易本質：一場圍繞「Store Leads 兩個指標」的對賭。</b>交叉印證後發現：所謂「第三方 vs 管理層」的衝突，實際是<b>同一家數據商的增量指標（新增像素 6月 -21%）與存量指標（客戶總量週增 +2.4%）之爭</b>——增量放緩、存量仍增，兩者都是真的。行業排除法已由 Meta 廣告 +27% 提前完成：若放緩持續，是 APP 個股問題。Q3 財報（預計 11 月初）是最終裁判，但 9 月初的 8 月像素讀數會先給答案。資訊來源分四級：<span class="src src-hard">硬</span>財報硬數據 <span class="src src-mgmt">管</span>管理層主張（未驗證） <span class="src src-3rd">三</span>第三方追蹤 <span class="src src-mkt">市</span>市場結構。</div>
+
+<div class="card">
+  <div class="card-title">① 證偽清單 — 每個主張都有門檻和日期</div>
+  <table class="vtable">
+    <tr><th style="width:26%">待驗證主張</th><th style="width:30%">證偽門檻（低於即證偽）</th><th style="width:20%">驗證時點</th><th>當前狀態</th></tr>
+    <tr class="hot">
+      <td><span class="src src-mgmt">管</span><b>電商沒有放緩</b><br>「消費垂直支出比 Q4 高峰高 28%」</td>
+      <td>第三方月度追蹤數據（Sensor Tower / Appfigures / Triple Whale 類）回升；若連續兩個月續降 = 證偽</td>
+      <td><b>每月可驗</b><br>不用等財報</td>
+      <td>7/13 第三方數據與管理層說法<b>直接衝突中</b> — 這是全場最大分歧</td>
+    </tr>
+    <tr>
+      <td><span class="src src-mgmt">管</span><b>Q2 miss 是模型時程</b><br>「重大升級已上線，Q3 已重新加速」</td>
+      <td>Q3 營收 &lt; $20.55億（指引下緣）= 證偽；≥ $20.85億（上緣）= 強驗證</td>
+      <td>Q3 財報<br>（預計 11 月初）</td>
+      <td>不可提前驗證，只能等</td>
+    </tr>
+    <tr>
+      <td><span class="src src-mgmt">管</span><b>FCF 下滑是稅務時序</b><br>「全年正常化至 EBITDA 的 75%」</td>
+      <td>Q3 FCF/EBITDA &lt; 60% = 證偽；≥ 70% = 驗證中；全年達 75% = 完全驗證</td>
+      <td>Q3 財報</td>
+      <td>Q2 實際 53.6%（$8.63億 / $16.1億）</td>
+    </tr>
+    <tr>
+      <td><span class="src src-mgmt">管</span><b>自助平台是加速器</b><br>6月開放後首個完整季度</td>
+      <td>Q3 電話會若迴避揭露自助客戶數量/品質數據 = 警訊；廣告主數量顯著增長 = 驗證</td>
+      <td>Q3 財報電話會</td>
+      <td>無中間數據</td>
+    </tr>
+    <tr>
+      <td><span class="src src-3rd">三</span><b>廣告大盤沒有轉弱</b></td>
+      <td>Meta / Google 的 Q3 財報廣告收入增速——兩家是 APP 需求面的前導指標</td>
+      <td>10 月底</td>
+      <td>Q2 季內兩家廣告業務均穩健</td>
+    </tr>
+  </table>
+  <div class="note">設計原則：「管」級主張永遠不直接當事實用，只能當「待驗證的頭寸理由」。最上面反白那行是唯一能在財報之間持續更新的信號。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">①-B 交叉印證數據庫 — 每條主張的正反方證據</div>
+
+  <table class="vtable">
+    <tr><th style="width:22%">爭議點</th><th style="width:39%">看空證據</th><th>看多證據</th></tr>
+    <tr class="hot">
+      <td><b>電商是否放緩</b><br><span style="font-size:10.5px;color:#999">7/13 事件溯源</span></td>
+      <td><span class="src src-3rd">三</span>BofA（Omar Dessouky）引 <b>Store Leads</b> 數據：6月新增像素（pixel）約 <b>750 個</b>，vs 5月約 <b>950 個</b>，月減 21%。BofA 據此下修 2026 營收 -$1.3億、2027 -$2.55億，GA 廣告主年底模型從 2萬下修至 <b>1.5萬</b></td>
+      <td><span class="src src-3rd">三</span>Citigroup <b>同一天、引同一家 Store Leads</b>：截至 7/10 電商客戶總數 <b>10,471 家，週增 +2.4%</b>，重申多方觀點。<span class="src src-mgmt">管</span>電話會：消費垂直支出比 Q4 高峰高 28%<br><b style="color:#6B3FA0">→ 多空雙方用的是同一家數據商的不同指標：「新增速度」在降 vs「總量」仍在增。兩者都是真的。</b></td>
+    </tr>
+    <tr>
+      <td><b>廣告大盤（行業排除法）</b></td>
+      <td>—（無看空證據）</td>
+      <td><span class="src src-hard">硬</span>Meta Q2（7/29 已公布）：廣告收入 <b>$594億 +27% YoY 加速</b>，曝光 +14%、單價 +12%。<span class="src src-hard">硬</span>Google Q2（7/22）beat，Bernstein/Wolfe 渠道調查均稱環境強勁，World Cup 加持<br><b style="color:#3B6D11">→ 行業排除法已提前完成：大盤極強。若 APP 放緩屬實，是 APP 自身問題，不是行業。情境樹的分岔條件之一已解決。</b></td>
+    </tr>
+    <tr>
+      <td><b>Q2 揭露品質</b><br><span style="font-size:10.5px;color:#999">自助平台開放後首次書面揭露</span></td>
+      <td><span class="src src-hard">硬</span>Q2 書面材料<b>對 6月平台開放的營運數據零揭露</b>：無廣告主數量、無單客支出、無地區拆分、無電商 cohort 獨立列示（PPC Land 指出）。且本季是<b>三年來最慢的環比增速</b><br><b style="color:#A32D2D">→ 原證偽清單第四行「Q3 若迴避揭露=警訊」——這個警訊在 Q2 書面材料已經先觸發一次。</b></td>
+      <td><span class="src src-mgmt">管</span>電話會口頭給了單位經濟學（首年 &gt;$7萬/客、30天回本、近零流失）並曾提出「10萬新客 ≈ $70億首年支出」的 TAM 框架——但均為口頭框架，非本季實際披露數字</td>
+    </tr>
+    <tr>
+      <td><b>內部人行為</b></td>
+      <td><span class="src src-mkt">市</span>CEO Foroughi <b>6月賣出約 $2,530萬</b>、行政長賣出 $1,130萬——時點正好在平台開放、股價尚在 $500+ 的當月。與電話會的樂觀口徑形成對照</td>
+      <td><span class="src src-mkt">市</span>公司層面 Q1 回購 $10億、下跌中持續執行。（個人賣股可有稅務/分散等中性解釋，但金額與時點值得記錄）</td>
+    </tr>
+    <tr>
+      <td><b>賣方立場分布</b></td>
+      <td>BofA 雖維持 Buy $705 但已實際下修模型；7/13 後五連跌顯示機構在減倉</td>
+      <td><span class="src src-mkt">市</span>29/32 分析師 Buy 或以上、僅 2 Hold。BofA 稱 17× CY27 EBITDA 估值「合理」、僅遊戲板塊就能 +20%。財報前散戶情緒（Stocktwits）偏多、認為賣壓過度</td>
+    </tr>
+    <tr>
+      <td><b>最近同業競爭讀數</b></td>
+      <td><span class="src src-hard">硬</span>Unity Vector 增速 <b>+80% YoY</b>（Q1），戰略 Grow +48%，Q2 指引 +50-52%——在同一個遊戲廣告市場，遠快於 APP 的增速，暗示份額爭奪加劇。過去一個月 Unity <b>+18.8%</b> vs APP <b>-24.9%</b>，資金已在兩者之間換邊</td>
+      <td>Unity 戰略 Grow 絕對規模僅 ~$3億/季 vs APP $19億——基數差 6 倍，高增速部分是低基數效應。Foroughi 稱雙平台皆具競爭力，MAX waterfall 份額穩定</td>
+    </tr>
+  </table>
+  <div class="note">最重要的發現：所謂「第三方 vs 管理層」的對賭，實際上是 <b>Store Leads 同一家數據商的兩個指標之爭</b>（新增像素月減 21% vs 客戶總量週增 2.4%）——增量放緩、存量仍增，這不是誰說謊的問題，是「減速中的擴張」該給什麼估值的問題。行業排除法已由 Meta +27% 提前解決：問題若存在，是 APP 自身的。</div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">② 價格結構 — 缺口、關卡、失守位</div>
+    <div class="lvl"><div class="lvl-price">$745.61</div><div class="lvl-desc"><span class="src src-mkt">市</span>52 週高。距現價 +121%，短期無意義，僅作情緒錨點</div></div>
+    <div class="lvl"><div class="lvl-price">$390–422</div><div class="lvl-desc"><span class="src src-mkt">市</span><b>本次跳空缺口區</b>。財報前的支撐帶 $390–400 已失守 → 轉為第一阻力帶；回補此缺口需要「管理層說法被提前驗證」級別的催化</div></div>
+    <div class="lvl"><div class="lvl-price">~$460–520</div><div class="lvl-desc"><span class="src src-mkt">市</span>7/13 第三方數據引發的 -12% 缺口區（位置以日線圖確認）。上方兩個缺口疊加 = 任何反彈都是重壓力區</div></div>
+    <div class="lvl"><div class="lvl-price">$337</div><div class="lvl-desc"><span class="src src-mkt">市</span>盤後價。正式開盤後第一天的收盤位置比盤後價重要——觀察是否收在跳空低點之上</div></div>
+    <div class="lvl"><div class="lvl-price">$300</div><div class="lvl-desc"><span class="src src-mkt">市</span>整數心理關 + 若跌破，FY27 共識 P/E 降至 14.4×，進入「市場完全不信 FY27 EPS」的定價區</div></div>
+    <div class="ifthen">
+      <b>結構判讀：</b>財報後跳空股的典型路徑是「第 1-3 天慣性下殺 → 反彈測缺口下緣 → 方向決定」。這檔的特殊性在於：<b>下一個基本面信號（月度電商數據）會在缺口測試期間到來</b>——技術面和證偽清單第一行會在 8 月下旬~9 月交匯，那是本檔資訊密度最高的窗口。
+    </div>
+    <div class="note">※ 7/13 缺口的精確價位需用日線圖核對，此處為區間估計。</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">③ 事件日曆 — 未來 90 天</div>
+    <div class="tl">
+      <div class="tl-item"><div class="tl-dot" style="background:#D85A30"></div>
+        <div class="tl-date">8/6（今晚）</div>
+        <div class="tl-desc"><span class="src src-hard">硬</span><b>Unity Q2 財報（盤後，已確認）</b>——最直接的競爭讀數。Vector 若續 +50%+ 且電話會提到遊戲廣告份額進展，APP 的「模型時程」說法壓力加大；Unity 若也放緩，反而部分洗清 APP 的個股嫌疑。共識營收 $5.11億 / +16%</div>
+      </div>
+      <div class="tl-item"><div class="tl-dot" style="background:#D85A30"></div>
+        <div class="tl-date">8/6–8/8（本週）</div>
+        <div class="tl-desc"><span class="src src-mkt">市</span>正式開盤消化跳空。財報前 8/7 到期期權 call/put 量比 2.24:1 偏多——<b>這批看漲部位的停損與做市商對沖流是本週額外賣壓來源</b>。觀察第一天收盤 vs 盤後低點</div>
+      </div>
+      <div class="tl-item"><div class="tl-dot" style="background:#BA7517"></div>
+        <div class="tl-date">8 月下旬 – 9 月（每月循環）</div>
+        <div class="tl-desc"><span class="src src-3rd">三</span><b>Store Leads 像素/客戶數月度更新</b>——證偽清單第一行的驗證點。追蹤兩個指標：新增像素能否從 750 回升、客戶總量增速能否守住 +2%/週。若新增像素連續第三個月下滑（8月數據 9月初可見）= 情境 C 提前信號成立一半</div>
+      </div>
+      <div class="tl-item"><div class="tl-dot" style="background:#1D9E75"></div>
+        <div class="tl-date">已完成 ✓（7/22、7/29）</div>
+        <div class="tl-desc"><span class="src src-hard">硬</span>Google / Meta Q2 均已公布：<b>Meta 廣告 +27% 加速、Google beat、渠道調查強勁</b>——行業排除法提前完成。原定 10 月底的這道驗證已有答案：大盤無虞，APP 若放緩是個股問題。10 月底的 Q3 大盤數據變成「複驗」而非「初驗」</div>
+      </div>
+      <div class="tl-item"><div class="tl-dot" style="background:#D85A30"></div>
+        <div class="tl-date">11 月初（待公告）</div>
+        <div class="tl-desc"><span class="src src-hard">硬</span><b>Q3 財報 = 對賭裁判日</b>。三個數字定生死：營收 vs $20.55–20.85億、FCF/EBITDA vs 75% 路徑、消費垂直揭露 vs Store Leads 數據。<b>加一條：書面材料是否首次給出自助平台營運數據（Q2 是零揭露）</b>。財報前 IV 會再度膨脹</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">④ 期權市場定價</div>
+  <div class="grid-3" style="margin-bottom:0">
+    <div>
+      <div style="font-size:11px;color:#888;margin-bottom:4px"><span class="src src-mkt">市</span>財報前部位傾向</div>
+      <div style="font-size:15px;font-weight:600">Call/Put 2.24 : 1</div>
+      <div style="font-size:11px;color:#777;margin-top:4px;line-height:1.6">8/7 到期鏈偏多、全鏈 put/call 0.56。市場賭 beat，結果反向 → 這批部位的解除是短期技術性賣壓，通常 3-5 個交易日消化</div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:#888;margin-bottom:4px"><span class="src src-mkt">市</span>實際跳空 vs 隱含波動</div>
+      <div style="font-size:15px;font-weight:600">-19.3% 單日</div>
+      <div style="font-size:11px;color:#777;margin-top:4px;line-height:1.6">需核對財報前 straddle 定價的 expected move（通常 APP 在 ±10-13%）。若實際遠超隱含 → 期權賣方受損，gamma 對沖流延續壓力；財報後 IV crush 使「買便宜波動賭反彈」在數日內出現窗口</div>
+    </div>
+    <div>
+      <div style="font-size:11px;color:#888;margin-bottom:4px"><span class="src src-mkt">市</span>下次事件定價</div>
+      <div style="font-size:15px;font-weight:600">11 月 Q3 財報</div>
+      <div style="font-size:11px;color:#777;margin-top:4px;line-height:1.6">本檔已連續兩次財報事件出現大跳空（7/13 雖非財報但同級）。Q3 前 IV 將顯著膨脹——屆時「事件前賣波動 vs 買方向」的選擇取決於證偽清單第一行到時的讀數</div>
+    </div>
+  </div>
+  <div class="note">※ 精確 IV 與 expected move 數字需以期權鏈即時數據核對，此欄提供的是判讀框架。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">⑤ 情境樹 — 證據組合 → 定價邏輯（非目標價）</div>
+
+  <div class="scn scn-bull">
+    <div class="scn-h"><div class="scn-name">情境 A：管理層屬實（模型時程 + 稅務時序）</div><div class="scn-range">定價邏輯：FY27 $20.89 × 25–30× ≈ $520–630 區</div></div>
+    <div class="scn-b">Q3 營收回指引上緣、FCF/EBITDA 回 70%+、月度電商數據 8-9 月即回升。此時 Q2 被追認為「錯殺」，兩個缺口有回補基礎，估值從「成熟廣告科技」修復回「AI 廣告成長股」。</div>
+    <div class="scn-trigger"><b>提前信號：</b>9 月初的 8 月 Store Leads 讀數——新增像素回到 900+ 且客戶總量增速維持（最早）→ 今晚 Unity 財報若顯示遊戲廣告大盤同步強勁（次驗）→ 11 月 Q3 硬數據（終驗）。行業面已由 Meta +27% 提前背書。<b>信號出現順序本身就是加碼節奏的依據。</b></div>
+  </div>
+
+  <div class="scn scn-base">
+    <div class="scn-h"><div class="scn-name">情境 B：半真 — 模型修復了，但電商確實降溫</div><div class="scn-range">定價邏輯：增速滑向 35–40% → 18–22× on FY27 下修後 ~$18 ≈ $320–400 區</div></div>
+    <div class="scn-b">Q3 營收落在指引區間內（不上不下）、FCF 部分回升、但消費垂直增速明顯放緩、第三方數據持平。市場給「還在成長但故事縮水」的定價——大致就是現在的位置。<b>此情境下現價是合理價，缺口區是頂。</b></div>
+    <div class="scn-trigger"><b>提前信號：</b>月度數據「不再惡化但也不回升」+ Q3 電話會對消費垂直的揭露口徑變模糊（從給具體 % 變成定性描述）。</div>
+  </div>
+
+  <div class="scn scn-bear">
+    <div class="scn-h"><div class="scn-name">情境 C：粉飾 — Q3 再度 miss</div><div class="scn-range">定價邏輯：可信度崩塌 → 12–15× on 再下修 EPS ~$16 ≈ $190–240 區</div></div>
+    <div class="scn-b">連續兩季 miss 自家指引 = 管理層 forecast 能力失效，高倍數成長股的典型二次殺跌。歷史上這類「兩連 miss + 空頭機構有前科（Muddy Waters 曾多次發難）」的組合，第二跌通常比第一跌更深，因為長線持有者才在此時離場。</div>
+    <div class="scn-trigger"><b>提前信號：</b>8–10 月 Store Leads 新增像素連續兩個月續降。<b>行業排除條件已成立</b>（Meta 廣告 +27% 加速、Google beat，7月底已公布）——大盤極強，放緩若持續即是 APP 個股問題。<b>剩下的唯一條件就是像素數據，9 月初的 8 月讀數是下一個判定點。</b>另兩個加重項：CEO 6月已賣 $2,530萬（口徑與行為背離）、Q2 書面材料對平台開放零揭露（透明度警訊已觸發一次）。</div>
+  </div>
+
+  <div class="ifthen" style="margin-top:12px">
+    <b>樹的用法：</b>不是預測哪個情境會發生，而是<b>把倉位變化綁定在信號上</b>——每個情境的「提前信號」欄就是 if-then 的 if。三個情境的提前信號全部在 8 月下旬–10 月之間陸續到達，11 月財報只是最後蓋章。
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">⑥ 反方檢核 — 我現在的判讀哪裡可能錯</div>
+  <table class="vtable">
+    <tr><th style="width:38%">我方假設</th><th>可能錯在哪</th></tr>
+    <tr><td>第三方電商數據是可靠的領先指標</td><td>Store Leads 對「非公開競價平台」的覆蓋率有限；且 BofA 自己都註明 6月數據只涵蓋 GA 開放後的頭兩週、「太早下結論」。多空雙方（BofA vs Citi）引用<b>同一家數據商</b>得出相反結論，說明指標選擇比數據本身更主觀</td></tr>
+    <tr><td>CEO 賣股 $2,530萬是負面信號</td><td>個人賣股有稅務、分散、既定計劃（10b5-1）等中性解釋；6月股價 $500+ 時賣出在事後看是聰明，但不必然代表他預知 Q2 miss。單一數據點不能當定罪證據</td></tr>
+    <tr><td>兩個缺口是強阻力</td><td>APP 歷史波動極大（年化 ~45%），這檔股票回補缺口的速度在強催化下可以快到失去交易意義</td></tr>
+    <tr><td>期權偏多部位解除 = 續壓 3-5 天</td><td>若機構把 -19% 視為錯殺，第一天的承接買盤可以直接吸收對沖賣壓，「慣性下殺」不一定出現</td></tr>
+    <tr><td>Q3 是裁判</td><td>若 8-9 月月度數據就給出極端讀數（大幅回升或崩落），市場會提前定價完畢，11 月財報反而變成「已知結果的確認」，事件交易價值消失</td></tr>
+  </table>
+</div>
+
+<div class="label" style="margin-top:16px">樣板結構：①證偽清單 → ②價格結構 → ③事件日曆 → ④期權定價 → ⑤情境樹 → ⑥反方檢核 · 資訊四級標籤貫穿全檔 · 研究版（app_dashboard.html）與本檔並存使用</div>
+
+
+</div>
+
+<script>
+function tab(i, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('p' + i).classList.add('on');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+new Chart(document.getElementById('revChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Q3'25","Q4'25","Q1'26","Q2'26","Q3'26E"],
+    datasets: [
+      { label:'營收', data:[1.41, 1.66, 1.84, 1.92, 2.07],
+        backgroundColor:(c)=>c.dataIndex===3?'#534AB7':(c.dataIndex===4?'rgba(83,74,183,0.25)':'rgba(83,74,183,0.5)'),
+        borderRadius:4, barPercentage:0.5, yAxisID:'y' },
+      { type:'line', label:'YoY 增速', data:[68, 66, 59, 52.8, 47.3],
+        borderColor:'#D85A30', backgroundColor:'transparent', tension:0.3, pointRadius:3,
+        pointBackgroundColor:'#D85A30', borderWidth:1.5, borderDash:[4,3], yAxisID:'y2' }
+    ]
+  },
+  options: {
+    responsive:true, maintainAspectRatio:false,
+    plugins:{ legend:{display:false}, tooltip:{callbacks:{label:c=>c.dataset.yAxisID==='y2'?'YoY: '+c.raw+'%':'營收: $'+c.raw+'B'}}},
+    scales:{
+      x:{grid:{display:false},ticks:{font:{size:10},color:'#888'}},
+      y:{position:'left',min:0,max:2.5,grid:{color:'rgba(0,0,0,0.05)'},ticks:{font:{size:10},color:'#888',callback:v=>'$'+v+'B'}},
+      y2:{position:'right',min:0,max:80,grid:{display:false},ticks:{font:{size:10},color:'#D85A30',callback:v=>v+'%'}}
+    }
+  }
+});
+
+</script>
+</body>
+</html>

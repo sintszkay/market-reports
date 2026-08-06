@@ -11,12 +11,13 @@ const reportMatches = [...html.matchAll(/<article class="report">[\s\S]*?<a clas
 const reportHrefs = reportMatches.map((match) => match[1]);
 const latestHref = html.match(/<header class="masthead">[\s\S]*?<a class="button" href="([^"]+)">最新報告<\/a>/)?.[1];
 const statedCount = Number(html.match(/<span id="report-count">(\d+)<\/span>/)?.[1]);
-const requiredFilters = ["all", "daily", "weekly", "monthly", "special"];
+const requiredFilters = ["all", "daily", "weekly", "monthly", "special", "earnings"];
 const filterTypes = [...html.matchAll(/data-report-filter="([^"]+)"/g)].map((match) => match[1]);
 
 function reportTypeFromHref(href) {
   if (/-monthly\.html$/i.test(href)) return "monthly";
   if (/-weekly(?:-expected-move)?\.html$/i.test(href)) return "weekly";
+  if (/-earnings(?:-special)?\.html$/i.test(href)) return "earnings";
   if (/(?:-special|-nvda-gtc)\.html$/i.test(href)) return "special";
   if (/(?:-premarket-update|-postmarket-recap)\.html$/i.test(href) || /reports\/\d{4}-\d{2}-\d{2}\.html$/i.test(href)) return "daily";
   return null;
@@ -37,7 +38,7 @@ requiredFilters.slice(1).forEach((type) => {
   if (!html.includes(`id="type-count-${type}"`)) errors.push(`Missing homepage report count: ${type}.`);
 });
 
-const categoryCounts = { daily: 0, weekly: 0, monthly: 0, special: 0 };
+const categoryCounts = { daily: 0, weekly: 0, monthly: 0, special: 0, earnings: 0 };
 for (const href of reportHrefs) {
   const type = reportTypeFromHref(href);
   if (!type) errors.push(`Report cannot be classified on homepage: ${href}.`);
@@ -89,10 +90,11 @@ if (unindexedReports.length) {
 }
 
 const sortedReportHrefs = reportFiles.map((report) => `reports/${report.name}`);
+const datedHomepageHrefs = reportHrefs.filter((href) => sortedReportHrefs.includes(href));
 const expectedLatest = [latestHref, ...sortedReportHrefs.filter((href) => href !== latestHref)].slice(0, 4);
 expectedLatest.forEach((href, index) => {
-  if (reportHrefs[index] !== href) {
-    errors.push(`Report position ${index + 1} should be ${href}, found ${reportHrefs[index] || "nothing"}.`);
+  if (datedHomepageHrefs[index] !== href) {
+    errors.push(`Dated report position ${index + 1} should be ${href}, found ${datedHomepageHrefs[index] || "nothing"}.`);
   }
 });
 
@@ -114,5 +116,6 @@ if (errors.length) {
 console.log(
   `Index QA passed: ${reportHrefs.length} unique report links; ` +
   `日報 ${categoryCounts.daily}, 週報 ${categoryCounts.weekly}, ` +
-  `月報 ${categoryCounts.monthly}, 專題報告 ${categoryCounts.special}; latest ${latestHref}.`
+  `月報 ${categoryCounts.monthly}, 專題報告 ${categoryCounts.special}, ` +
+  `財報 ${categoryCounts.earnings}; latest ${latestHref}.`
 );

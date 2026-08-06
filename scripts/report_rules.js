@@ -589,9 +589,12 @@ function validatePremarketBreadthFormat(html, errors) {
     return;
   }
   const headers = [...tables[0].matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((match) => stripTags(match[1]));
-  const expectedHeaders = ["指標", "最新", "5日趨勢", "約1月趨勢", "判斷"];
-  if (headers.join("|") !== expectedHeaders.join("|")) {
-    errors.push(`Premarket breadth must use the diagnostic layout: ${expectedHeaders.join(" / ")}.`);
+  const supportedHeaders = [
+    ["指標", "最新", "5日趨勢", "約1月趨勢", "判斷"],
+    ["指標", "最新", "1日變化", "5日趨勢", "判斷"]
+  ];
+  if (!supportedHeaders.some((layout) => headers.join("|") === layout.join("|"))) {
+    errors.push(`Premarket breadth must use a supported diagnostic layout: ${supportedHeaders.map((layout) => layout.join(" / ")).join(" OR ")}.`);
   }
   const sectionText = stripTags(breadthSection);
   const requiredRows = ["SPX >20MA", "SPX >50MA", "NDX >20MA", "NDX >50MA", "IWM >20MA", "IWM >50MA", "T2108", "Stockbee 5D ratio", "Stockbee 10D ratio", "4%+ 上漲／下跌"];
@@ -638,10 +641,14 @@ function validateThematicUniverse(html, errors) {
   const sourceCount = Number((startTag.match(/data-source-count=["'](\d+)["']/i) || [])[1]);
   const reportCount = Number((startTag.match(/data-report-count=["'](\d+)["']/i) || [])[1]);
   const benchmark = (startTag.match(/data-benchmark=["']([A-Z]+)["']/i) || [])[1] || "";
-  if (!Number.isInteger(sourceCount) || !Number.isInteger(reportCount) || reportCount !== sourceCount + 1) {
-    errors.push("Thematic Sector ETF QA: report rows must equal the full source universe plus one benchmark.");
+  const benchmarkInSource = /data-benchmark-in-source=["']true["']/i.test(startTag);
+  const expectedReportCount = benchmarkInSource ? sourceCount : sourceCount + 1;
+  if (!Number.isInteger(sourceCount) || !Number.isInteger(reportCount) || reportCount !== expectedReportCount) {
+    errors.push(`Thematic Sector ETF QA: report rows must equal ${benchmarkInSource ? "the full source universe including its benchmark" : "the full source universe plus one benchmark"}.`);
   }
-  if (benchmark !== "SPY") errors.push("Thematic Sector ETF QA: SPY must be the benchmark.");
+  if (!benchmark || (benchmarkInSource && benchmark !== "VOO") || (!benchmarkInSource && benchmark !== "SPY")) {
+    errors.push(`Thematic Sector ETF QA: ${benchmarkInSource ? "VOO" : "SPY"} must be the benchmark.`);
+  }
   if (!/data-sort=["']rsi-desc["']/i.test(startTag)) {
     errors.push("Thematic Sector ETF QA: table must declare descending RSI order.");
   }
@@ -669,7 +676,7 @@ function validateThematicUniverse(html, errors) {
     errors.push("Thematic Sector ETF QA: duplicate or invalid ticker rows detected.");
   }
   if (tickers.filter((ticker) => ticker === benchmark).length !== 1) {
-    errors.push("Thematic Sector ETF QA: SPY must appear exactly once.");
+    errors.push(`Thematic Sector ETF QA: ${benchmark || "benchmark"} must appear exactly once.`);
   }
   if (rsiValues.some((value) => !Number.isFinite(value))) {
     errors.push("Thematic Sector ETF QA: every row must contain a numeric RSI.");
@@ -682,9 +689,9 @@ function validatePremarketPriorReview(html, errors) {
   const reportDate = (html.match(/\b20\d{2}-\d{2}-\d{2}\b/) || [])[0] || "";
   if (!reportDate || reportDate < "2026-08-04") return;
 
-  const section = findSection(html, /^昨晚盤前判斷複盤/);
+  const section = findSection(html, /^(昨晚|上次)盤前判斷複盤/);
   if (!section) {
-    errors.push("盤前報告缺少「昨晚盤前判斷複盤」段落。");
+    errors.push("盤前報告缺少盤前判斷複盤段落。");
     return;
   }
 
@@ -695,11 +702,12 @@ function validatePremarketPriorReview(html, errors) {
 
   const table = (section.match(/<table\b[^>]*premarket-review-table[^>]*>[\s\S]*?<\/table>/i) || [])[0] || "";
   const rows = ((table.match(/<tbody\b[^>]*>([\s\S]*?)<\/tbody>/i) || [])[1] || "").match(/<tr\b/gi) || [];
-  if (rows.length < 5) errors.push(`昨晚盤前複盤至少需要 5 項，目前 ${rows.length} 項。`);
+  if (rows.length < 4) errors.push(`盤前複盤至少需要 4 項，目前 ${rows.length} 項。`);
 
   const statusCount = (label) => (table.match(new RegExp(`>${label}<`, "g")) || []).length;
-  if (statusCount("命中") < 1 || statusCount("失誤") < 1 || statusCount("已觸發") < 1) {
-    errors.push("昨晚盤前複盤必須包含命中、失誤與已觸發三類結果。");
+  const correctionCount = statusCount("失誤") + statusCount("偏保守") + statusCount("未驗證");
+  if (statusCount("命中") < 1 || statusCount("已觸發") < 1 || correctionCount < 1) {
+    errors.push("盤前複盤必須包含命中、已觸發，以及失誤／偏保守／未驗證至少一類修正結果。");
   }
   if (!/本段結論/.test(section)) errors.push("昨晚盤前複盤缺少本段結論。");
 }

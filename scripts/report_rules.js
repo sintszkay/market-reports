@@ -543,14 +543,14 @@ function validateWeeklySpyBenchmark(html, errors) {
   if (!sectorSection) return;
 
   const tableSpecs = [
-    ["S&P 500 Sector ETF", /<h3\b[^>]*>\s*S&amp;P 500 Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
-    ["Thematic Sector ETF", /<h3\b[^>]*>\s*Thematic Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
+    ["S&P 500 Sector ETF", "SPY", /<h3\b[^>]*>\s*S&amp;P 500 Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
+    ["Thematic Sector ETF", "VOO", /<h3\b[^>]*>\s*Thematic Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
   ];
   const expectedHeaders = ["ETF", "5日", "1月", "距52週高", "20/50/200MA", "RSI", "判斷"];
-  for (const [label, pattern] of tableSpecs) {
+  for (const [label, benchmark, pattern] of tableSpecs) {
     const table = sectorSection.match(pattern)?.[0] || "";
-    const spyCount = (table.match(/<td\b[^>]*>\s*SPY\s*<\/td>/gi) || []).length;
-    if (spyCount !== 1) errors.push(`${label} must contain exactly one SPY benchmark row; found ${spyCount}.`);
+    const benchmarkCount = (table.match(new RegExp(`<td\\b[^>]*>\\s*${benchmark}\\s*<\\/td>`, "gi")) || []).length;
+    if (benchmarkCount !== 1) errors.push(`${label} must contain exactly one ${benchmark} benchmark row; found ${benchmarkCount}.`);
     const headers = [...table.matchAll(/<th\b[^>]*>([\s\S]*?)<\/th>/gi)].map((match) => stripTags(match[1]));
     if (headers.join("|") !== expectedHeaders.join("|")) {
       errors.push(`${label} must use the shared seven-column ETF layout: ${expectedHeaders.join(" / ")}.`);

@@ -1,0 +1,69 @@
+{
+  "asOf": "2026-08-07",
+  "capturedAt": "2026-08-09T16:00:00+08:00",
+  "marketWatch": {
+    "spreadsheetId": "1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE",
+    "tabs": {
+      "Sector Dashboard": {
+        "range": "A1:O41",
+        "qa": "PASS",
+        "rowsCurrent": 18,
+        "rowsExpected": 18
+      },
+      "Thematic Sectors": {
+        "range": "A1:AL70",
+        "qa": "PASS",
+        "rowsCurrent": 45,
+        "rowsExpected": 45,
+        "requiredTickers": ["BUG", "PAVE", "VOO"]
+      },
+      "Macro": {
+        "range": "A1:AF65",
+        "qa": "PASS",
+        "longbridgeRowsCurrent": 33,
+        "treasuryAsOf": "2026-08-06"
+      },
+      "Maket breath": {
+        "range": "A1:Z40",
+        "qa": "PASS"
+      },
+      "Data QA": {
+        "range": "A1:J30",
+        "qa": "PASS"
+      }
+    }
+  },
+  "stockbee": {
+    "spreadsheetId": "1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE",
+    "tab": "2026",
+    "range": "A1:P30",
+    "qa": "PASS"
+  },
+  "breadth": [
+    {"date":"2026-08-07","spx20":65.20,"spx50":65.60,"ndx20":70.58,"ndx50":52.94,"iwm20":63.83,"iwm50":62.96},
+    {"date":"2026-08-06","spx20":63.02,"spx50":64.21,"ndx20":61.76,"ndx50":51.96,"iwm20":60.45,"iwm50":60.14},
+    {"date":"2026-08-05","spx20":64.81,"spx50":66.79,"ndx20":65.04,"ndx50":56.31,"iwm20":62.60,"iwm50":62.80},
+    {"date":"2026-08-04","spx20":67.79,"spx50":68.19,"ndx20":70.87,"ndx50":60.19,"iwm20":67.46,"iwm50":64.19},
+    {"date":"2026-08-03","spx20":58.84,"spx50":64.01,"ndx20":57.28,"ndx50":49.51,"iwm20":56.60,"iwm50":60.54},
+    {"date":"2026-07-31","spx20":53.28,"spx50":62.02,"ndx20":53.39,"ndx50":47.57,"iwm20":43.93,"iwm50":52.88}
+  ],
+  "stockbeeRows": [
+    {"date":"2026-08-07","up4":510,"down4":152,"ratio5d":2.85,"ratio10d":1.64,"quarterUp25":1540,"quarterDown25":1051,"monthUp25":189,"monthDown25":123,"monthUp50":27,"monthDown50":34,"up34_13":2111,"down34_13":1308,"t2108":53.58},
+    {"date":"2026-08-06","up4":300,"down4":280,"ratio5d":2.28,"ratio10d":1.37,"quarterUp25":1410,"quarterDown25":1087,"monthUp25":127,"monthDown25":149,"monthUp50":23,"monthDown50":37,"up34_13":1972,"down34_13":1384,"t2108":52.52},
+    {"date":"2026-08-05","up4":264,"down4":210,"ratio5d":2.71,"ratio10d":1.28,"quarterUp25":1445,"quarterDown25":1080,"monthUp25":144,"monthDown25":125,"monthUp50":20,"monthDown50":34,"up34_13":2045,"down34_13":1342,"t2108":54.37},
+    {"date":"2026-08-04","up4":725,"down4":115,"ratio5d":1.82,"ratio10d":1.23,"quarterUp25":1496,"quarterDown25":1057,"monthUp25":112,"monthDown25":109,"monthUp50":19,"monthDown50":29,"up34_13":2152,"down34_13":1319,"t2108":55.76},
+    {"date":"2026-08-03","up4":579,"down4":76,"ratio5d":1.20,"ratio10d":1.13,"quarterUp25":1305,"quarterDown25":1164,"monthUp25":79,"monthDown25":162,"monthUp50":16,"monthDown50":36,"up34_13":1811,"down34_13":1481,"t2108":52.78},
+    {"date":"2026-07-31","up4":179,"down4":216,"ratio5d":0.98,"ratio10d":0.91,"quarterUp25":1171,"quarterDown25":1235,"monthUp25":74,"monthDown25":206,"monthUp50":13,"monthDown50":33,"up34_13":1500,"down34_13":1644,"t2108":47.36}
+  ],
+  "treasury": {
+    "2026-07-31": {"twoYear":4.28,"tenYear":4.75,"thirtyYear":5.27},
+    "2026-08-07": {"twoYear":4.19,"tenYear":4.65,"thirtyYear":5.19}
+  },
+  "dxy": {
+    "asOf": "2026-08-07",
+    "close": 99.54,
+    "fiveDayPct": -0.37,
+    "oneMonthPct": -1.35,
+    "source": "Investing.com historical close"
+  }
+}

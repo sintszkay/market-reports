@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const ASSET_VERSION = "20260804-flat-7";
+const ASSET_VERSION = "20260805-flat-8";
 const RUNTIME_TAG = `<script src="report-runtime.js?v=${ASSET_VERSION}"></script>`;
 const SHARED_STYLE_TAG = `<link rel="stylesheet" href="report-shared.css?v=${ASSET_VERSION}">`;
 const MA_PERIODS = ["20", "50", "200"];
@@ -375,8 +375,12 @@ function validateTriggers(html, errors) {
 }
 
 function validateRuntime(html, errors) {
-  if (!html.includes(RUNTIME_TAG)) errors.push("報告未掛載 report-runtime.js。");
-  if (!html.includes(SHARED_STYLE_TAG)) errors.push("報告未掛載 report-shared.css。");
+  if (!/<script\b[^>]*\bsrc=["']report-runtime\.js(?:\?v=[^"']+)?["'][^>]*><\/script>/i.test(html)) {
+    errors.push("報告未掛載 report-runtime.js。");
+  }
+  if (!/<link\b[^>]*\bhref=["']report-shared\.css(?:\?v=[^"']+)?["'][^>]*>/i.test(html)) {
+    errors.push("報告未掛載 report-shared.css。");
+  }
   const styleCount = (html.match(/report-shared\.css(?:\?v=[^"']*)?/gi) || []).length;
   const runtimeCount = (html.match(/report-runtime\.js(?:\?v=[^"']*)?/gi) || []).length;
   if (styleCount !== 1) errors.push(`report-shared.css 必須只載入一次，目前 ${styleCount} 次。`);

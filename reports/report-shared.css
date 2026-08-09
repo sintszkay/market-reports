@@ -384,6 +384,22 @@ body.flat-report{
 .flat-report .premarket-review-table th:nth-child(4){width:35%}
 .flat-report .premarket-review-table th:nth-child(3),
 .flat-report .premarket-review-table td:nth-child(3){text-align:center;white-space:nowrap}
+.flat-report .trading-plan-table{min-width:980px;table-layout:fixed}
+.flat-report .trading-plan-table th{width:auto}
+.flat-report .trading-plan-table th:nth-child(1){width:8%}
+.flat-report .trading-plan-table th:nth-child(2){width:12%}
+.flat-report .trading-plan-table th:nth-child(3),
+.flat-report .trading-plan-table th:nth-child(4){width:10%}
+.flat-report .trading-plan-table th:nth-child(5){width:26%}
+.flat-report .trading-plan-table th:nth-child(6){width:34%}
+.flat-report .trading-plan-table th:nth-child(1),
+.flat-report .trading-plan-table td:nth-child(1),
+.flat-report .trading-plan-table th:nth-child(2),
+.flat-report .trading-plan-table td:nth-child(2),
+.flat-report .trading-plan-table th:nth-child(3),
+.flat-report .trading-plan-table td:nth-child(3),
+.flat-report .trading-plan-table th:nth-child(4),
+.flat-report .trading-plan-table td:nth-child(4){white-space:nowrap}
 .flat-report .asset-pair{
   display:inline-flex;
   align-items:baseline;

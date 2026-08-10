@@ -1,0 +1,1210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="美股光通訊產業鏈深度分析：12 家代表公司、產業鏈位置、財務品質、估值、財報預測、催化劑與論點失效條件。" />
+  <title>光速之後｜美股光通訊產業鏈深度分析</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260810-optical-special" />
+  <style>
+    :root {
+      --bg: #f1eee7;
+      --paper: #fbfaf6;
+      --paper-glass: rgba(255,255,255,.78);
+      --ink: #102632;
+      --muted: #64747b;
+      --line: rgba(16,38,50,.13);
+      --navy: #092b3b;
+      --navy-2: #12485a;
+      --teal: #06a89b;
+      --teal-soft: #d8f1ec;
+      --blue: #347da5;
+      --blue-soft: #dcebf3;
+      --gold: #d18a2c;
+      --gold-soft: #f7e7ce;
+      --coral: #d8624d;
+      --coral-soft: #f8ded8;
+      --green: #26765f;
+      --green-soft: #dceee7;
+      --shadow: 0 24px 64px rgba(9,43,59,.10);
+      --radius: 24px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 7% 3%, rgba(6,168,155,.12), transparent 25rem),
+        radial-gradient(circle at 92% 7%, rgba(209,138,44,.12), transparent 29rem),
+        var(--bg);
+      font-family: Inter, "PingFang TC", "Microsoft JhengHei", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    button, select { font: inherit; }
+    button { cursor: pointer; }
+    section { scroll-margin-top: 84px; }
+    .shell { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 30;
+      color: #fff; background: rgba(9,43,59,.93);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(16px);
+    }
+    .topbar-inner { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; white-space: nowrap; font-weight: 800; letter-spacing: .04em; }
+    .brand-mark { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,.25); border-radius: 50%; position: relative; }
+    .brand-mark::before, .brand-mark::after { content: ""; position: absolute; left: 6px; right: 6px; height: 2px; background: #4fe0cd; transform-origin: left center; }
+    .brand-mark::before { top: 12px; transform: rotate(18deg); }
+    .brand-mark::after { top: 21px; transform: rotate(-18deg); }
+    nav { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; }
+    nav::-webkit-scrollbar { display: none; }
+    nav a { flex: 0 0 auto; color: rgba(255,255,255,.72); text-decoration: none; font-size: 13px; }
+    nav a:hover { color: #fff; }
+
+    .hero { padding: 72px 0 42px; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--teal); font-size: 12px; font-weight: 900; letter-spacing: .18em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 36px; height: 2px; background: currentColor; }
+    .hero-grid { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(330px, .65fr); gap: 52px; align-items: center; }
+    h1 { margin: 0; max-width: 850px; font-family: "Noto Serif TC", "Songti TC", "PMingLiU", serif; font-size: clamp(48px, 7.5vw, 96px); line-height: .98; letter-spacing: -.055em; font-weight: 700; }
+    h1 span { color: var(--teal); }
+    .hero-lede { margin: 28px 0 0; max-width: 770px; color: #52636b; font-size: clamp(17px, 2vw, 21px); line-height: 1.8; }
+    .hero-note { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid var(--line); background: rgba(255,255,255,.52); border-radius: 999px; padding: 7px 12px; color: #52636b; font-size: 12px; }
+
+    .signal-card { position: relative; overflow: hidden; min-height: 390px; padding: 30px; border-radius: 34px; color: #fff; background: linear-gradient(145deg, var(--navy), #0d5664); box-shadow: var(--shadow); }
+    .signal-card::before { content: ""; position: absolute; inset: -25% -45% auto 20%; height: 260px; border-radius: 50%; border: 1px solid rgba(79,224,205,.32); transform: rotate(-10deg); }
+    .signal-card::after { content: ""; position: absolute; width: 170px; height: 170px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; right: -35px; bottom: -35px; box-shadow: 0 0 0 35px rgba(255,255,255,.03), 0 0 0 70px rgba(255,255,255,.025); }
+    .signal-title { position: relative; z-index: 1; color: #6cf0de; font-size: 12px; font-weight: 900; letter-spacing: .15em; }
+    .signal-line { position: relative; z-index: 1; margin-top: 22px; font-family: "Noto Serif TC", "Songti TC", serif; font-size: 29px; line-height: 1.35; }
+    .signal-grid { position: relative; z-index: 1; margin-top: 38px; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .signal-stat { padding: 15px; border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.06); border-radius: 16px; }
+    .signal-stat b { display: block; font-size: 23px; line-height: 1.1; }
+    .signal-stat span { display: block; margin-top: 5px; color: rgba(255,255,255,.63); font-size: 11px; }
+
+    .snapshot { padding: 12px 0 72px; }
+    .snapshot-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .snapshot-item { padding: 22px; background: var(--paper-glass); border: 1px solid rgba(255,255,255,.75); border-radius: 20px; box-shadow: 0 8px 30px rgba(9,43,59,.05); }
+    .snapshot-item b { display: block; font-size: 28px; color: var(--navy); }
+    .snapshot-item span { color: var(--muted); font-size: 13px; }
+
+    .section { padding: 74px 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 82px minmax(0,1fr); gap: 26px; align-items: start; margin-bottom: 36px; }
+    .section-no { color: var(--teal); font-weight: 900; font-size: 12px; letter-spacing: .13em; line-height: 1.35; white-space: nowrap; }
+    .section-no span { display: block; color: var(--muted); font-weight: 700; letter-spacing: .08em; }
+    .section-head h2 { margin: -8px 0 0; font-family: "Noto Serif TC", "Songti TC", serif; font-size: clamp(37px,5vw,64px); line-height: 1.08; letter-spacing: -.035em; }
+    .section-head p { margin: 14px 0 0; max-width: 800px; color: var(--muted); font-size: 16px; }
+
+    .thesis-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .thesis-card { min-height: 236px; padding: 24px; border-radius: 22px; background: var(--paper); border: 1px solid rgba(255,255,255,.76); box-shadow: 0 10px 34px rgba(9,43,59,.06); }
+    .thesis-card .n { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--teal); background: var(--teal-soft); font-weight: 900; }
+    .thesis-card h3 { margin: 20px 0 9px; font-size: 19px; line-height: 1.4; }
+    .thesis-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .chain-board { padding: 24px; border-radius: 28px; background: var(--navy); color: #fff; box-shadow: var(--shadow); }
+    .chain-flow { display: grid; grid-template-columns: repeat(6,1fr); gap: 10px; }
+    .chain-node { position: relative; min-height: 170px; padding: 18px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: rgba(255,255,255,.055); }
+    .chain-node:not(:last-child)::after { content: "›"; position: absolute; right: -10px; top: 50%; z-index: 2; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; color: var(--navy); background: #5de7d5; transform: translateY(-50%); font-weight: 900; }
+    .chain-node small { color: #6cf0de; font-weight: 900; letter-spacing: .08em; }
+    .chain-node h3 { margin: 12px 0 8px; font-size: 17px; }
+    .chain-node p { margin: 0; color: rgba(255,255,255,.62); font-size: 12px; line-height: 1.55; }
+    .chain-node .names { margin-top: 14px; color: #fff; font-size: 11px; font-weight: 800; }
+    .chain-insight { margin-top: 18px; display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+    .chain-insight div { padding: 17px; border-radius: 16px; background: rgba(255,255,255,.075); }
+    .chain-insight b { display: block; color: #6cf0de; font-size: 14px; }
+    .chain-insight span { color: rgba(255,255,255,.65); font-size: 12px; }
+
+    .filters { margin: 0 0 24px 108px; display: flex; flex-wrap: wrap; gap: 9px; }
+    .filter-btn { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; color: var(--muted); background: rgba(255,255,255,.56); }
+    .filter-btn.active { color: #fff; border-color: var(--navy); background: var(--navy); }
+    .company-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .company-card { display: flex; flex-direction: column; min-height: 490px; border: 1px solid rgba(255,255,255,.82); border-radius: 26px; overflow: hidden; background: var(--paper); box-shadow: 0 12px 40px rgba(9,43,59,.07); }
+    .company-card.hidden { display: none; }
+    .company-top { padding: 24px 25px 19px; color: #fff; background: linear-gradient(135deg,var(--navy),var(--navy-2)); }
+    .company-id { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .ticker { display: inline-flex; align-items: center; gap: 8px; font-weight: 900; font-size: 13px; letter-spacing: .08em; }
+    .ticker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #5de7d5; box-shadow: 0 0 0 5px rgba(93,231,213,.13); }
+    .verdict { max-width: 250px; padding: 7px 12px; border-radius: 999px; color: #82f6e5; background: rgba(93,231,213,.09); border: 1px solid rgba(93,231,213,.18); text-align: center; font-size: 13px; line-height: 1.35; font-weight: 800; }
+    .company-top h3 { margin: 18px 0 4px; font-family: "Noto Serif TC", "Songti TC", serif; font-size: 29px; line-height: 1.1; }
+    .role { color: rgba(255,255,255,.62); font-size: 12px; }
+    .metric-strip { margin-top: 18px; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .metric-strip div { padding: 11px; background: rgba(255,255,255,.07); border-radius: 12px; }
+    .metric-strip b { display: block; font-size: 16px; }
+    .metric-strip span { color: rgba(255,255,255,.55); font-size: 10px; }
+    .company-body { display: flex; flex-direction: column; flex: 1; padding: 22px 25px 24px; }
+    .company-thesis { margin: 0; font-size: 16px; font-weight: 800; line-height: 1.55; }
+    .business-explain { margin-top: 17px; padding: 18px; border-radius: 18px; background: #e9f4f1; border: 1px solid rgba(6,168,155,.12); }
+    .business-explain h4 { margin: 0; display: flex; align-items: center; gap: 8px; color: var(--teal); font-size: 13px; letter-spacing: .05em; }
+    .business-explain h4::before { content: "白"; width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; color: #fff; background: var(--teal); font-size: 11px; }
+    .plain-summary { margin: 10px 0 15px; color: #324d57; font-size: 14px; line-height: 1.7; }
+    .business-rows { display: grid; gap: 8px; }
+    .business-row { display: grid; grid-template-columns: 64px minmax(0,1fr); gap: 9px; align-items: start; padding-top: 8px; border-top: 1px solid rgba(6,168,155,.12); }
+    .business-row b { color: var(--navy); font-size: 11px; }
+    .business-row span { color: #52676e; font-size: 12px; line-height: 1.6; }
+    .two-col { margin-top: 17px; display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+    .micro { padding: 14px; border-radius: 15px; background: #f3f2ed; }
+    .micro b { display: block; margin-bottom: 5px; color: var(--teal); font-size: 11px; letter-spacing: .08em; }
+    .micro span { color: #586970; font-size: 12px; line-height: 1.55; }
+    .card-footer { margin-top: auto; padding-top: 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; border-top: 1px solid var(--line); }
+    .valuation { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; }
+    .heat { display: flex; gap: 3px; }
+    .heat i { width: 14px; height: 5px; border-radius: 5px; background: #d9ddd9; }
+    .heat i.on { background: var(--coral); }
+    .detail-btn { border: 0; padding: 8px 11px; border-radius: 11px; color: var(--navy); background: var(--teal-soft); font-size: 11px; font-weight: 900; }
+    .company-detail { display: none; margin: 15px -2px -2px; padding: 17px; border-radius: 16px; color: #516269; background: #eef3f0; font-size: 12px; }
+    .company-detail.open { display: block; }
+    .company-detail p { margin: 0 0 10px; }
+    .company-detail p:last-child { margin-bottom: 0; }
+    .company-detail b { color: var(--ink); }
+
+    .matrix-wrap { overflow-x: auto; border-radius: 24px; background: var(--paper); box-shadow: 0 12px 40px rgba(9,43,59,.06); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 15px 16px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+    th { position: sticky; top: 65px; z-index: 2; color: rgba(255,255,255,.72); background: var(--navy); font-size: 11px; letter-spacing: .05em; }
+    td { color: #53646b; font-size: 13px; }
+    td:first-child { color: var(--ink); font-weight: 900; }
+    tr:last-child td { border-bottom: 0; }
+    .score-pill { display: inline-flex; min-width: 44px; justify-content: center; padding: 4px 8px; border-radius: 999px; color: var(--navy); background: var(--teal-soft); font-weight: 900; }
+    .score-pill.mid { background: var(--gold-soft); }
+    .score-pill.low { color: #9c3e32; background: var(--coral-soft); }
+    .legend { margin-top: 14px; color: var(--muted); font-size: 12px; }
+
+    .forecast-intro { display: grid; grid-template-columns: .8fr 1.2fr; gap: 18px; margin-bottom: 22px; }
+    .forecast-callout { padding: 25px; border-radius: 23px; color: #fff; background: linear-gradient(135deg,var(--navy),#146776); }
+    .forecast-callout b { display: block; color: #70f2e1; font-size: 12px; letter-spacing: .10em; }
+    .forecast-callout strong { display: block; margin-top: 13px; font-family: "Noto Serif TC", serif; font-size: 27px; line-height: 1.35; }
+    .forecast-callout p { margin: 13px 0 0; color: rgba(255,255,255,.66); font-size: 13px; }
+    .forecast-rule { padding: 25px; border-radius: 23px; background: var(--paper); }
+    .forecast-rule h3 { margin: 0 0 9px; font-size: 18px; }
+    .forecast-rule p { margin: 0; color: var(--muted); font-size: 14px; }
+    .forecast-table td:nth-child(4) { color: var(--teal); font-weight: 900; }
+    .forecast-table .pre { color: var(--coral); }
+
+    .expectation-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; }
+    .expect-card { padding: 23px; border-radius: 21px; border: 1px solid rgba(255,255,255,.78); background: var(--paper); }
+    .expect-card small { color: var(--teal); font-weight: 900; letter-spacing: .08em; }
+    .expect-card h3 { margin: 12px 0 8px; font-size: 19px; }
+    .expect-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .expect-card ul { margin: 14px 0 0; padding-left: 18px; color: #53646b; font-size: 12px; }
+
+    .tracker { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; }
+    .track-card { padding: 22px; border-radius: 20px; background: var(--paper); border: 1px solid rgba(255,255,255,.78); }
+    .track-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .track-title b { font-size: 16px; }
+    .status { padding: 4px 9px; border-radius: 999px; font-size: 10px; font-weight: 900; }
+    .status.green { color: var(--green); background: var(--green-soft); }
+    .status.gold { color: #9b631b; background: var(--gold-soft); }
+    .status.red { color: #a43d30; background: var(--coral-soft); }
+    .track-card p { margin: 11px 0 0; color: var(--muted); font-size: 13px; }
+
+    .calendar { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+    .event { padding: 19px; border-left: 3px solid var(--teal); border-radius: 5px 17px 17px 5px; background: var(--paper); }
+    .event time { color: var(--teal); font-weight: 900; font-size: 11px; letter-spacing: .07em; }
+    .event b { display: block; margin-top: 8px; font-size: 16px; }
+    .event span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
+
+    .sources { columns: 2; column-gap: 30px; }
+    .source { break-inside: avoid; margin: 0 0 12px; padding: 13px 15px; border-radius: 14px; background: rgba(255,255,255,.55); color: #596970; font-size: 12px; }
+    .source a { color: var(--navy); font-weight: 800; text-decoration-color: rgba(9,43,59,.22); }
+    .method { margin-top: 26px; padding: 22px; border-radius: 20px; color: #55666d; background: var(--gold-soft); font-size: 12px; }
+    .method b { color: var(--ink); }
+
+    footer { padding: 38px 0 64px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 30px; }
+    .footer-grid strong { color: var(--navy); }
+
+    @media (max-width: 1050px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .signal-card { min-height: auto; }
+      .snapshot-grid, .thesis-grid { grid-template-columns: repeat(2,1fr); }
+      .chain-flow { grid-template-columns: repeat(3,1fr); }
+      .chain-node:nth-child(3)::after { display: none; }
+      .calendar { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 780px) {
+      .shell { width: min(calc(100% - 26px), var(--max)); }
+      .topbar-inner { min-height: 58px; }
+      .brand span:last-child { display: none; }
+      nav { gap: 14px; }
+      .hero { padding-top: 48px; }
+      h1 { font-size: clamp(43px,14vw,66px); }
+      .section { padding: 58px 0; }
+      .section-head { grid-template-columns: 64px minmax(0,1fr); gap: 16px; }
+      .section-no { font-size: 10px; letter-spacing: .08em; white-space: nowrap; word-break: keep-all; }
+      .section-head h2 { font-size: clamp(34px,10vw,48px); overflow-wrap: normal; word-break: keep-all; }
+      .filters { margin-left: 0; }
+      .company-grid, .forecast-intro, .tracker { grid-template-columns: 1fr; }
+      .expectation-grid { grid-template-columns: 1fr; }
+      .sources { columns: 1; }
+      .footer-grid { display: block; }
+    }
+    @media (max-width: 560px) {
+      .snapshot-grid, .thesis-grid, .chain-insight, .calendar { grid-template-columns: 1fr; }
+      .chain-flow { grid-template-columns: 1fr; }
+      .chain-node::after { display: none !important; }
+      .metric-strip { grid-template-columns: 1fr 1fr; }
+      .metric-strip div:last-child { grid-column: 1 / -1; }
+      .two-col { grid-template-columns: 1fr; }
+      .signal-grid { grid-template-columns: 1fr 1fr; }
+      .section-head { grid-template-columns: 54px minmax(0,1fr); gap: 12px; }
+      .section-no span { display: none; }
+      th, td { padding: 12px 13px; }
+    }
+
+    /* 2026-08-10 reference skin: flat editorial market-report language */
+    :root {
+      --bg: #faf9f5;
+      --paper: #ffffff;
+      --paper-glass: #ffffff;
+      --ink: #141413;
+      --muted: #6d6c67;
+      --line: rgba(20,20,19,.11);
+      --navy: #141413;
+      --navy-2: #141413;
+      --teal: #117a69;
+      --teal-soft: #e4f3ee;
+      --blue: #386e9b;
+      --blue-soft: #e7f0f7;
+      --gold: #a66a18;
+      --gold-soft: #fbf1d9;
+      --coral: #b34a3b;
+      --coral-soft: #f8e7e3;
+      --green: #117a69;
+      --green-soft: #e4f3ee;
+      --shadow: none;
+      --radius: 10px;
+      --max: 1180px;
+    }
+
+    body {
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.62;
+    }
+    ::selection { color: #fff; background: var(--teal); }
+    section { scroll-margin-top: 76px; }
+    .shell { width: min(calc(100% - 36px), var(--max)); }
+
+    .topbar {
+      top: 0;
+      padding: 10px 0 0;
+      color: var(--ink);
+      background: rgba(250,249,245,.94);
+      border: 0;
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner {
+      min-height: 46px;
+      padding: 0 10px 0 14px;
+      gap: 18px;
+      background: rgba(255,255,255,.96);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .topbar .report-toc {
+      position: static;
+      top: auto;
+      z-index: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .brand { gap: 0; color: #4f4e4a; font-size: 11px; font-weight: 700; letter-spacing: .06em; }
+    .brand-mark { display: none; }
+    .brand span:first-of-type { color: var(--ink); }
+    .brand span:last-child { margin-left: 6px; color: var(--muted); font-weight: 500; }
+    nav { gap: 2px; }
+    nav a {
+      padding: 7px 9px;
+      color: #66645f;
+      border-radius: 7px;
+      font-size: 12px;
+      line-height: 1;
+    }
+    nav a:hover { color: var(--ink); background: #f1f0ec; }
+
+    .hero { padding: 34px 0 20px; }
+    .eyebrow {
+      display: block;
+      color: #77756f;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .09em;
+    }
+    .eyebrow::before { display: none; }
+    .hero-grid { display: block; margin-top: 12px; }
+    h1 {
+      max-width: none;
+      font-family: inherit;
+      font-size: clamp(27px, 4vw, 36px);
+      line-height: 1.24;
+      letter-spacing: -.025em;
+      font-weight: 550;
+    }
+    h1 span { color: inherit; }
+    .hero-lede {
+      max-width: 900px;
+      margin: 12px 0 0;
+      color: #5f5e59;
+      font-size: 15px;
+      line-height: 1.72;
+    }
+    .hero-note { margin-top: 14px; gap: 7px; }
+    .tag {
+      padding: 5px 10px;
+      color: #426c63;
+      background: #edf6f2;
+      border-color: rgba(17,122,105,.12);
+      border-radius: 999px;
+      font-size: 11px;
+    }
+
+    .signal-card {
+      min-height: 0;
+      margin-top: 22px;
+      padding: 20px;
+      color: var(--ink);
+      background: #fff9ea;
+      border: 1px solid rgba(166,106,24,.18);
+      border-radius: 10px;
+      box-shadow: none;
+    }
+    .signal-card::before, .signal-card::after { display: none; }
+    .signal-title { color: #8b611f; font-size: 10px; font-weight: 700; letter-spacing: .10em; }
+    .signal-line {
+      margin-top: 8px;
+      font-family: inherit;
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 600;
+    }
+    .signal-grid { margin-top: 15px; grid-template-columns: repeat(4,1fr); gap: 8px; }
+    .signal-stat {
+      padding: 11px 12px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(166,106,24,.12);
+      border-radius: 8px;
+    }
+    .signal-stat b { color: var(--teal); font-size: 18px; font-weight: 650; }
+    .signal-stat span { margin-top: 2px; color: #6d675c; font-size: 10px; }
+
+    .snapshot { padding: 0 0 42px; }
+    .snapshot-grid { gap: 10px; }
+    .snapshot-item {
+      padding: 16px;
+      background: #f3f2ee;
+      border: 1px solid rgba(20,20,19,.035);
+      border-radius: 10px;
+      box-shadow: none;
+    }
+    .snapshot-item b { color: var(--teal); font-size: 23px; font-weight: 600; letter-spacing: -.02em; }
+    .snapshot-item span { color: var(--muted); font-size: 11px; }
+
+    .section { padding: 46px 0; border-top: 1px solid var(--line); }
+    .section-head { display: block; margin-bottom: 22px; }
+    .section-no {
+      color: #7a7871;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      line-height: 1.35;
+    }
+    .section-no span { display: inline; margin-left: 7px; color: #99968f; font-weight: 500; letter-spacing: .08em; }
+    .section-head h2 {
+      margin: 8px 0 0;
+      font-family: inherit;
+      font-size: clamp(21px, 3vw, 26px);
+      line-height: 1.35;
+      letter-spacing: -.015em;
+      font-weight: 600;
+    }
+    .section-head p { max-width: 850px; margin: 7px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+    .thesis-grid { gap: 10px; }
+    .thesis-card {
+      min-height: 0;
+      padding: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: none;
+    }
+    .thesis-card .n {
+      width: auto;
+      height: auto;
+      display: inline-flex;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .thesis-card h3 { margin: 13px 0 7px; font-size: 15px; line-height: 1.45; }
+    .thesis-card p { font-size: 12px; line-height: 1.65; }
+
+    .chain-board {
+      padding: 18px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: none;
+    }
+    .chain-flow { gap: 8px; }
+    .chain-node {
+      min-height: 150px;
+      padding: 14px;
+      background: #f5f4f0;
+      border: 1px solid transparent;
+      border-radius: 8px;
+    }
+    .chain-node:not(:last-child)::after { display: none; }
+    .chain-node small { color: var(--teal); font-size: 10px; font-weight: 700; }
+    .chain-node h3 { margin: 9px 0 6px; font-size: 14px; }
+    .chain-node p { color: #6a6862; font-size: 11px; line-height: 1.55; }
+    .chain-node .names { margin-top: 10px; color: #34332f; font-size: 10px; }
+    .chain-insight { gap: 8px; }
+    .chain-insight div { padding: 13px; background: #edf6f2; border-radius: 8px; }
+    .chain-insight b { color: var(--teal); font-size: 12px; }
+    .chain-insight span { color: #5f6f69; font-size: 11px; }
+
+    .filters { margin: 0 0 18px; gap: 6px; }
+    .filter-btn {
+      min-height: 34px;
+      padding: 6px 11px;
+      color: #66645f;
+      background: #fff;
+      border-color: var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+    }
+    .filter-btn:hover { border-color: rgba(17,122,105,.38); }
+    .filter-btn:focus-visible, .detail-btn:focus-visible, nav a:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+    .filter-btn.active { color: #fff; border-color: var(--teal); background: var(--teal); }
+
+    .company-grid { gap: 12px; align-items: start; }
+    .company-card {
+      min-height: 0;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      box-shadow: none;
+    }
+    .company-card:hover { border-color: rgba(17,122,105,.28); }
+    .company-top { padding: 18px 19px 16px; color: var(--ink); background: #fff; border-bottom: 1px solid var(--line); }
+    .ticker { color: var(--teal); font-size: 11px; letter-spacing: .06em; }
+    .ticker::before { width: 6px; height: 6px; background: var(--teal); box-shadow: none; }
+    .verdict {
+      max-width: 245px;
+      padding: 5px 9px;
+      color: #316c61;
+      background: #eaf5f1;
+      border-color: rgba(17,122,105,.12);
+      font-size: 11px;
+      font-weight: 650;
+    }
+    .company-top h3 { margin: 14px 0 3px; font-family: inherit; font-size: 23px; line-height: 1.2; font-weight: 600; letter-spacing: -.015em; }
+    .role { color: var(--muted); font-size: 11px; }
+    .metric-strip { margin-top: 14px; gap: 7px; }
+    .metric-strip div { padding: 10px 11px; background: #f3f2ee; border-radius: 8px; }
+    .metric-strip b { color: var(--ink); font-size: 14px; font-weight: 600; }
+    .metric-strip span { color: var(--muted); font-size: 9px; }
+    .company-body { padding: 17px 19px 18px; }
+    .company-thesis { font-size: 14px; line-height: 1.58; }
+    .business-explain { margin-top: 13px; padding: 15px; background: #f5f4f0; border-color: rgba(20,20,19,.04); border-radius: 8px; }
+    .business-explain h4 { color: var(--teal); font-size: 11px; letter-spacing: .04em; }
+    .business-explain h4::before { display: none; }
+    .plain-summary { margin: 8px 0 12px; color: #42413d; font-size: 13px; line-height: 1.72; }
+    .business-rows { gap: 6px; }
+    .business-row { grid-template-columns: 60px minmax(0,1fr); gap: 8px; padding-top: 7px; border-color: rgba(20,20,19,.08); }
+    .business-row b { color: #4f4d48; font-size: 10px; }
+    .business-row span { color: #66645f; font-size: 11px; line-height: 1.6; }
+    .two-col { margin-top: 12px; gap: 8px; }
+    .micro { padding: 12px; background: #fff9ea; border-radius: 8px; }
+    .micro:nth-child(2) { background: #f8ece8; }
+    .micro b { margin-bottom: 4px; color: #8b611f; font-size: 10px; }
+    .micro:nth-child(2) b { color: var(--coral); }
+    .micro span { color: #66615a; font-size: 11px; line-height: 1.55; }
+    .card-footer { padding-top: 13px; border-color: var(--line); }
+    .valuation { font-size: 10px; }
+    .heat i { width: 11px; height: 4px; border-radius: 2px; }
+    .detail-btn { min-height: 32px; padding: 6px 9px; border: 1px solid rgba(17,122,105,.12); border-radius: 7px; color: var(--teal); background: #edf6f2; font-size: 10px; }
+    .detail-btn:hover { background: #e3f1ec; }
+    .company-detail { margin-top: 12px; padding: 13px; border-radius: 8px; color: #5f5e59; background: #f5f4f0; font-size: 11px; }
+
+    .matrix-wrap { background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: none; }
+    th, td { padding: 11px 12px; border-color: var(--line); }
+    th {
+      top: 57px;
+      color: #67655f;
+      background: #f3f2ee;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+    td { color: #5d5b56; font-size: 12px; }
+    td:first-child { color: var(--ink); font-weight: 650; }
+    tbody tr:hover td { background: #fbfaf7; }
+    .score-pill { min-width: 40px; padding: 3px 7px; color: var(--teal); background: var(--teal-soft); font-size: 11px; }
+    .score-pill.mid { color: #8b611f; background: var(--gold-soft); }
+    .score-pill.low { color: var(--coral); background: var(--coral-soft); }
+    .legend { color: #76746e; font-size: 11px; }
+
+    .forecast-intro { grid-template-columns: .9fr 1.1fr; gap: 10px; margin-bottom: 14px; }
+    .forecast-callout {
+      padding: 18px;
+      color: var(--ink);
+      background: #fff9ea;
+      border: 1px solid rgba(166,106,24,.16);
+      border-radius: 10px;
+    }
+    .forecast-callout b { color: #8b611f; font-size: 10px; font-weight: 700; }
+    .forecast-callout strong { margin-top: 8px; font-family: inherit; font-size: 18px; line-height: 1.45; font-weight: 600; }
+    .forecast-callout p { margin-top: 8px; color: #6d675d; font-size: 12px; }
+    .forecast-rule { padding: 18px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+    .forecast-rule h3 { margin-bottom: 7px; font-size: 15px; }
+    .forecast-rule p { font-size: 12px; line-height: 1.65; }
+
+    .expectation-grid { gap: 10px; }
+    .expect-card { padding: 17px; background: #fff; border-color: var(--line); border-radius: 10px; }
+    .expect-card small { font-size: 10px; }
+    .expect-card h3 { margin: 9px 0 6px; font-size: 15px; }
+    .expect-card p { font-size: 12px; }
+    .expect-card ul { margin-top: 10px; font-size: 11px; }
+
+    .tracker { gap: 10px; }
+    .track-card { padding: 17px; background: #fff; border-color: var(--line); border-radius: 10px; }
+    .track-title b { font-size: 14px; }
+    .status { padding: 3px 8px; font-size: 9px; }
+    .track-card p { margin-top: 8px; font-size: 12px; line-height: 1.65; }
+
+    .calendar { gap: 8px; }
+    .event { padding: 15px; border-left-width: 2px; border-radius: 2px 9px 9px 2px; background: #fff; }
+    .event time { font-size: 10px; }
+    .event b { margin-top: 6px; font-size: 14px; }
+    .event span { font-size: 10px; }
+
+    .sources { column-gap: 18px; }
+    .source { margin-bottom: 8px; padding: 11px 12px; color: #66645f; background: #f3f2ee; border-radius: 8px; font-size: 11px; }
+    .source a { color: var(--teal); font-weight: 650; text-decoration-color: rgba(17,122,105,.24); }
+    .method { margin-top: 18px; padding: 16px; color: #6a6255; background: #fff9ea; border: 1px solid rgba(166,106,24,.12); border-radius: 8px; font-size: 11px; }
+    footer { padding: 28px 0 48px; font-size: 11px; }
+    .footer-grid strong { color: var(--ink); }
+
+    @media (max-width: 1050px) {
+      .chain-flow { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 780px) {
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      .topbar { padding-top: 7px; }
+      .topbar-inner { min-height: 44px; padding-left: 11px; }
+      .brand span:last-child { display: none; }
+      nav { gap: 0; }
+      nav a { padding: 7px 8px; }
+      .hero { padding-top: 27px; }
+      h1 { font-size: 27px; }
+      .hero-lede { font-size: 14px; }
+      .section { padding: 38px 0; }
+      .section-head { display: block; }
+      .section-head h2 { font-size: 22px; word-break: normal; }
+      .section-no { font-size: 10px; }
+      .company-grid, .forecast-intro, .tracker, .expectation-grid { grid-template-columns: 1fr; }
+      .company-top h3 { font-size: 21px; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(calc(100% - 24px), var(--max)); }
+      .topbar-inner { justify-content: flex-start; overflow: hidden; }
+      .brand { display: none; }
+      nav { width: 100%; }
+      nav a { flex: 0 0 auto; min-height: 34px; display: inline-flex; align-items: center; }
+      .hero { padding: 25px 0 16px; }
+      .eyebrow { font-size: 9px; }
+      h1 { margin-top: 1px; font-size: 25px; line-height: 1.28; }
+      .hero-lede { margin-top: 9px; font-size: 13px; line-height: 1.7; }
+      .hero-note { margin-top: 11px; }
+      .tag { padding: 4px 8px; font-size: 10px; }
+      .signal-card { margin-top: 17px; padding: 15px; }
+      .signal-line { font-size: 15px; }
+      .signal-grid { grid-template-columns: repeat(2,1fr); }
+      .snapshot { padding-bottom: 34px; }
+      .snapshot-grid { grid-template-columns: repeat(2,1fr); }
+      .snapshot-item { padding: 13px; }
+      .snapshot-item b { font-size: 19px; }
+      .section { padding: 34px 0; }
+      .section-head { margin-bottom: 17px; }
+      .section-no span { display: inline; }
+      .section-head h2 { margin-top: 6px; font-size: 21px; }
+      .section-head p { font-size: 12px; }
+      .thesis-grid, .chain-insight, .calendar { grid-template-columns: 1fr; }
+      .chain-flow { grid-template-columns: 1fr; }
+      .chain-node { min-height: 0; }
+      .filters { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 3px; scrollbar-width: none; }
+      .filter-btn { flex: 0 0 auto; }
+      .company-top { padding: 16px; }
+      .company-body { padding: 15px 16px 16px; }
+      .company-id { display: block; }
+      .verdict { display: inline-flex; margin-top: 8px; max-width: none; text-align: left; }
+      .metric-strip { grid-template-columns: repeat(3,1fr); }
+      .metric-strip div:last-child { grid-column: auto; }
+      .metric-strip b { font-size: 13px; }
+      .two-col { grid-template-columns: 1fr; }
+      th, td { padding: 10px 11px; }
+      .sources { columns: 1; }
+      .footer-grid { display: block; }
+    }
+
+    /* Reading scale: larger Traditional Chinese type, Microsoft YaHei first */
+    body {
+      font-family: "Microsoft YaHei", "Microsoft YaHei UI", "微软雅黑", "PingFang TC", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.72;
+    }
+    button, select, input, textarea { font-family: inherit; }
+    .brand { font-size: 13px; }
+    nav a { font-size: 14px; }
+    .eyebrow { font-size: 12px; }
+    h1 { font-size: clamp(31px, 4.2vw, 40px); }
+    .hero-lede { font-size: 17px; }
+    .tag { font-size: 13px; }
+    .signal-title { font-size: 12px; }
+    .signal-line { font-size: 19px; }
+    .signal-stat b { font-size: 21px; }
+    .signal-stat span { font-size: 12px; }
+    .snapshot-item b { font-size: 25px; }
+    .snapshot-item span { font-size: 13px; }
+    .section-no { font-size: 12px; }
+    .section-head h2 { font-size: clamp(25px, 3.2vw, 30px); }
+    .section-head p { font-size: 15px; }
+    .thesis-card h3 { font-size: 17px; }
+    .thesis-card p { font-size: 14px; }
+    .chain-node small { font-size: 12px; }
+    .chain-node h3 { font-size: 16px; }
+    .chain-node p { font-size: 13px; }
+    .chain-node .names { font-size: 12px; }
+    .chain-insight b { font-size: 14px; }
+    .chain-insight span { font-size: 13px; }
+    .filter-btn { font-size: 14px; }
+    .ticker { font-size: 13px; }
+    .verdict { font-size: 13px; }
+    .company-top h3 { font-size: 26px; }
+    .role { font-size: 13px; }
+    .metric-strip b { font-size: 16px; }
+    .metric-strip span { font-size: 11px; }
+    .company-thesis { font-size: 16px; }
+    .business-explain h4 { font-size: 13px; }
+    .plain-summary { font-size: 15px; }
+    .business-row b { font-size: 12px; }
+    .business-row span { font-size: 13px; }
+    .micro b { font-size: 12px; }
+    .micro span { font-size: 13px; }
+    .valuation { font-size: 12px; }
+    .detail-btn { font-size: 12px; }
+    .company-detail { font-size: 13px; }
+    th {
+      position: static;
+      top: auto;
+      z-index: auto;
+      font-size: 12px;
+      vertical-align: middle;
+    }
+    td { font-size: 14px; }
+    .score-pill { font-size: 13px; }
+    .legend { font-size: 13px; }
+    .forecast-callout b { font-size: 12px; }
+    .forecast-callout strong { font-size: 21px; }
+    .forecast-callout p { font-size: 14px; }
+    .forecast-rule h3 { font-size: 17px; }
+    .forecast-rule p { font-size: 14px; }
+    .expect-card small { font-size: 12px; }
+    .expect-card h3 { font-size: 17px; }
+    .expect-card p { font-size: 14px; }
+    .expect-card ul { font-size: 13px; }
+    .track-title b { font-size: 16px; }
+    .status { font-size: 11px; }
+    .track-card p { font-size: 14px; }
+    .event time { font-size: 12px; }
+    .event b { font-size: 16px; }
+    .event span { font-size: 12px; }
+    .source { font-size: 13px; }
+    .method { font-size: 13px; }
+    footer { font-size: 12px; }
+
+    @media (max-width: 780px) {
+      h1 { font-size: 31px; }
+      .hero-lede { font-size: 16px; }
+      .section-head h2 { font-size: 26px; }
+      .section-head p { font-size: 14px; }
+      .company-top h3 { font-size: 24px; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 15px; }
+      nav a { font-size: 13px; }
+      .eyebrow { font-size: 11px; }
+      h1 { font-size: 29px; }
+      .hero-lede { font-size: 15px; }
+      .tag { font-size: 12px; }
+      .signal-line { font-size: 18px; }
+      .snapshot-item span { font-size: 12px; }
+      .section-head h2 { font-size: 25px; }
+      .section-head p { font-size: 14px; }
+      .plain-summary { font-size: 15px; }
+      .business-row span, .micro span, .company-detail { font-size: 13px; }
+      th { font-size: 12px; }
+      td { font-size: 14px; }
+    }
+
+    /* Chapter kicker: keep Chinese and English labels visibly separated */
+    .section-no {
+      display: inline-flex;
+      align-items: center;
+      width: max-content;
+      color: var(--teal);
+      line-height: 1;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .section-no span {
+      display: inline-flex;
+      align-items: center;
+      margin: 0 0 0 10px;
+      padding-left: 10px;
+      color: #8b8982;
+      border-left: 1px solid var(--line);
+      font-size: .92em;
+      font-weight: 600;
+      letter-spacing: .10em;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand"><div class="brand-mark"></div><span>光通訊產業鏈深度分析</span><span>／Market Report</span></div>
+      <nav class="report-toc" aria-label="頁面導覽">
+        <a href="#thesis">結論</a><a href="#chain">產業鏈</a><a href="#companies">公司</a><a href="#ranking">評分</a><a href="#forecast">財報預測</a><a href="#tracker">追蹤</a><a href="#sources">來源</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell">
+        <div class="eyebrow">US Optical Communications · Deep Dive · 2026.08.10</div>
+        <div class="hero-grid">
+          <div>
+            <h1>光速之後，誰留下利潤？</h1>
+            <p class="hero-lede">AI 叢集把 800G、1.6T、AEC、CPO 與高速交換推入同一條需求曲線。但「需求真實」不等於「任何價格都值得買」：真正的研究問題，是瓶頸在哪一層、現金何時回來，以及市場已經預支了多少年。</p>
+            <div class="hero-note"><span class="tag">12 家美股代表公司</span><span class="tag">6 個價值鏈環節</span><span class="tag">下一季財報基準情境</span></div>
+          </div>
+          <aside class="signal-card">
+            <div class="signal-title">ONE-LINE CONCLUSION</div>
+            <div class="signal-line">產業最強的信號在營收與毛利；最弱的信號在估值與自由現金流。</div>
+            <div class="signal-grid">
+              <div class="signal-stat"><b>12</b><span>核心公司</span></div>
+              <div class="signal-stat"><b>6</b><span>產業鏈節點</span></div>
+              <div class="signal-stat"><b>11/12</b><span>估值偏熱或極熱</span></div>
+              <div class="signal-stat"><b>3</b><span>較佳風險調整型態</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="snapshot">
+      <div class="shell snapshot-grid">
+        <div class="snapshot-item"><b>800G → 1.6T</b><span>當前最重要的模組世代切換</span></div>
+        <div class="snapshot-item"><b>銅＋光</b><span>AEC 與光模組不是零和；距離決定介質</span></div>
+        <div class="snapshot-item"><b>毛利 10%–68%</b><span>同一需求鏈，商業模型差異極大</span></div>
+        <div class="snapshot-item"><b>價格 ＞ 故事</b><span>高成長股的主要風險已轉向預期落差</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="thesis">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">01 / 結論<span>THESIS</span></div><div><h2>先把結論放在最前面</h2><p>這不是「AI 光通訊全面看多」的名單，而是按照價值捕獲、財務品質與估值門檻拆解後的研究排序。</p></div></div>
+        <div class="thesis-grid">
+          <article class="thesis-card"><div class="n">1</div><h3>需求週期是真的，而且仍在加速</h3><p>GLW、LITE、MTSI、CRDO、CIEN 的最新季度收入增速與指引同步向上，顯示並非單一公司搶單，而是光纖、交換容量、光電元件與系統共同擴張。</p></article>
+          <article class="thesis-card"><div class="n">2</div><h3>利潤最厚的不一定是光模組</h3><p>高速類比／SerDes 晶片可達約 60%–68% 毛利；交換系統亦可維持 60% 以上。製造與模組環節則更依賴良率、稼動率和週轉。</p></article>
+          <article class="thesis-card"><div class="n">3</div><h3>垂直整合既是護城河，也是現金黑洞</h3><p>自有 InP 雷射、晶圓、封裝與模組提高供應控制力，但擴產會先推高庫存與資本支出。COHR、AAOI 的損益改善必須用現金流驗證。</p></article>
+          <article class="thesis-card"><div class="n">4</div><h3>目前最大的共同風險是估值</h3><p>多數標的已按 2027–2028 年順利放量定價。現在要買的不是「成長」，而是實際成長持續超過市場已經相信的速度。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="chain">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">02 / 產業鏈<span>CHAIN</span></div><div><h2>從光源到交換機：六層價值鏈</h2><p>每一層解決不同瓶頸。投資上最關鍵的不是公司是否「沾光」，而是它掌握的是稀缺 IP、製造良率，還是容易被競爭壓低的組裝價值。</p></div></div>
+        <div class="chain-board">
+          <div class="chain-flow">
+            <div class="chain-node"><small>01</small><h3>光纖材料與雷射</h3><p>光纖預製棒、InP、VCSEL、EML、CW laser；決定傳輸介質、光源功率、良率與供應安全。</p><div class="names">GLW · COHR · LITE · MTSI · AAOI</div></div>
+            <div class="chain-node"><small>02</small><h3>類比與 DSP</h3><p>驅動器、TIA、PAM4 DSP、Retimer、SerDes；把訊號完整送過高速鏈路。</p><div class="names">MTSI · MRVL · CRDO · AVGO</div></div>
+            <div class="chain-node"><small>03</small><h3>連接、光引擎與封裝</h3><p>高密度光纖連接、耦光、矽光子、光學組件與良率管理，是實驗室走向量產的斷點。</p><div class="names">GLW · COHR · LITE · POET · FN</div></div>
+            <div class="chain-node"><small>04</small><h3>收發模組</h3><p>800G／1.6T 可插拔模組；收入彈性最大，也面臨 ASP、良率與代際切換。</p><div class="names">COHR · LITE · AAOI · FN</div></div>
+            <div class="chain-node"><small>05</small><h3>交換與傳輸</h3><p>交換 ASIC、路由平台、相干光傳輸；決定端口密度與網路利用率。</p><div class="names">AVGO · MRVL · ANET · CIEN</div></div>
+            <div class="chain-node"><small>06</small><h3>雲端客戶</h3><p>超大規模雲端、AI Lab、電信商；需求集中，議價力亦集中。</p><div class="names">主要 CSP／AI 叢集</div></div>
+          </div>
+          <div class="chain-insight">
+            <div><b>近期瓶頸</b><span>高功率雷射、先進封裝、測試與量產良率。</span></div>
+            <div><b>中期爭議</b><span>可插拔、LPO、NPO、CPO 的比例，而非單一路線全勝。</span></div>
+            <div><b>長期護城河</b><span>跨代 SerDes／DSP IP、客戶驗證、供應鏈規模與軟體生態。</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="companies">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">03 / 公司<span>COMPANIES</span></div><div><h2>十二家公司，一套分析方法</h2><p>點擊篩選產業層級，再展開公司卡查看催化劑、失效條件與估值解讀。COHR 另有完整單公司深度頁。</p></div></div>
+        <div class="filters" id="filters"></div>
+        <div class="company-grid" id="companyGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="ranking">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">04 / 評分<span>RANKING</span></div><div><h2>品質排序與估值溫度</h2><p>總分不是買賣建議；它用相同權重把「好公司」和「好價格」分開。估值分數越高代表進場容錯率越大。</p></div></div>
+        <div class="matrix-wrap"><table id="scoreTable"><thead><tr><th>公司</th><th>純度</th><th>護城河 25%</th><th>成長 25%</th><th>財務 20%</th><th>估值 20%</th><th>執行 10%</th><th>加權總分</th><th>定位</th></tr></thead><tbody>
+          <tr><td>AVGO</td><td>2.5</td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.80</span></td><td>品質核心</td></tr>
+          <tr><td>ANET</td><td>3.0</td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill mid">2.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.38</span></td><td>品質核心</td></tr>
+          <tr><td>CRDO</td><td>4.0</td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill mid">3.0</span></td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">4.25</span></td><td>高成長核心</td></tr>
+          <tr><td>GLW</td><td>3.5</td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill low">2.0</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.13</span></td><td>材料與連接核心</td></tr>
+          <tr><td>MTSI</td><td>3.5</td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill mid">2.5</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.10</span></td><td>高質成長</td></tr>
+          <tr><td>FN</td><td>4.0</td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill mid">3.5</span></td><td><span class="score-pill mid">3.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.03</span></td><td>量產核心</td></tr>
+          <tr><td>LITE</td><td>5.0</td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.0</span></td><td><span class="score-pill low">2.0</span></td><td><span class="score-pill mid">3.5</span></td><td><span class="score-pill">3.93</span></td><td>純光高成長</td></tr>
+          <tr><td>MRVL</td><td>4.0</td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">4.0</span></td><td><span class="score-pill low">1.5</span></td><td><span class="score-pill mid">3.5</span></td><td><span class="score-pill">3.70</span></td><td>平台成長</td></tr>
+          <tr><td>CIEN</td><td>4.5</td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill mid">3.5</span></td><td><span class="score-pill low">1.5</span></td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">3.53</span></td><td>系統復甦</td></tr>
+          <tr><td>COHR</td><td>5.0</td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill mid">2.5</span></td><td><span class="score-pill low">1.0</span></td><td><span class="score-pill mid">3.0</span></td><td><span class="score-pill">3.50</span></td><td>等待價格</td></tr>
+          <tr><td>AAOI</td><td>5.0</td><td><span class="score-pill mid">3.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill low">1.5</span></td><td><span class="score-pill low">1.0</span></td><td><span class="score-pill low">2.0</span></td><td><span class="score-pill">2.83</span></td><td>高風險彈性</td></tr>
+          <tr><td>POET</td><td>5.0</td><td><span class="score-pill mid">2.5</span></td><td><span class="score-pill mid">3.0</span></td><td><span class="score-pill low">1.0</span></td><td><span class="score-pill low">1.0</span></td><td><span class="score-pill low">1.5</span></td><td><span class="score-pill">1.93</span></td><td>里程碑投機</td></tr>
+        </tbody></table></div>
+        <div class="legend">評分 1–5，5 為最佳。純度是光通訊／AI 互連對公司價值的影響程度，不代表品質。估值採 2026 年 7 月下旬至 8 月上旬可得快照，價格變動可令倍數快速失真。</div>
+      </div>
+    </section>
+
+    <section class="section" id="forecast">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">05 / 預測<span>FORECAST</span></div><div><h2>下一季財報：市場真正要驗證什麼</h2><p>預測採公司指引中位數作錨，再按近期動能做小幅調整。重點不是精確猜中 EPS，而是建立「低於什麼水準就破壞論點」的可檢驗門檻。</p></div></div>
+        <div class="forecast-intro">
+          <div class="forecast-callout"><b>FORECAST PRINCIPLE</b><strong>高速成長期，營收 beat 不夠；毛利、現金與下一季斜率必須一起 beat。</strong><p>當估值已反映兩年以上增長，市場會把「符合指引」當成落後，而不是成功。</p></div>
+          <div class="forecast-rule"><h3>三層判讀法</h3><p><b>第一層：需求。</b> 800G／1.6T 出貨與資料中心收入是否加速。<br><b>第二層：品質。</b> 毛利改善是否來自良率／產品組合，而不是一次性項目。<br><b>第三層：現金。</b> 庫存與資本支出上升後，營運現金流能否跟上損益表。</p></div>
+        </div>
+        <div class="matrix-wrap forecast-table"><table><thead><tr><th>公司／季度</th><th>公司指引或前季</th><th>本報告基準預測</th><th>關鍵驗證點</th><th>論點警戒線</th></tr></thead><tbody id="forecastBody">
+          <tr><td>LITE · FY26 Q4</td><td>收入 $960M–$1.01B；EPS $2.85–3.05</td><td>收入 $995M；EPS $3.05</td><td>跨過 $1B、營益率 ≥35.5%</td><td class="pre">收入 &lt; $950M 或毛利 &lt;44%</td></tr>
+          <tr><td>COHR · FY26 Q4</td><td>收入 $1.91–2.05B；毛利 39%–41%</td><td>收入 $2.03B；毛利 40.3%；EPS $1.69</td><td>D&amp;C 增長與營運現金流轉正</td><td class="pre">FY27 Q1 指引 &lt; $2.05B</td></tr>
+          <tr><td>POET · 2026 Q2</td><td>前季收入 $0.50M；淨損 $12.3M</td><td>收入約 $0.7M；淨損 $12–15M</td><td>量產收入與訂單轉換</td><td class="pre">收入仍 &lt; $0.5M 且里程碑再延遲</td></tr>
+          <tr><td>FN · FY26 Q4</td><td>收入 $1.25–1.29B；EPS $3.72–3.87</td><td>收入 $1.285B；EPS $3.85</td><td>光通訊收入、capex 與 FCF</td><td class="pre">營益率 &lt;9.5% 或 FCF 再為負</td></tr>
+          <tr><td>MRVL · FY27 Q2</td><td>收入 $2.70B±5%；EPS $0.93±0.05</td><td>收入 $2.74B；EPS $0.95</td><td>光電／客製 XPU 同步加速</td><td class="pre">資料中心收入環比不增</td></tr>
+          <tr><td>CRDO · FY27 Q1</td><td>收入 $465–475M；毛利 67%–69%</td><td>收入 $473M；毛利 68.3%</td><td>AEC 之外的新產品貢獻</td><td class="pre">收入 &lt; $460M 或毛利 &lt;66%</td></tr>
+          <tr><td>AVGO · FY26 Q3</td><td>收入約 $29.4B；EBITDA 約 68%</td><td>收入 $29.6B；EBITDA 68.5%</td><td>AI 網路與客製晶片 bookings</td><td class="pre">AI 半導體 &lt; $15.5B</td></tr>
+          <tr><td>CIEN · FY26 Q3</td><td>收入 $1.625B±$50M；毛利 45%±0.5%</td><td>收入 $1.65B；毛利 45.2%</td><td>雲端 DCI 與光網路組合</td><td class="pre">收入 &lt; $1.55B 或毛利 &lt;43.5%</td></tr>
+          <tr><td>GLW · 2026 Q3</td><td>核心銷售 $4.9–5.0B；核心 EPS $0.85–0.89</td><td>核心銷售 $4.98B；核心 EPS $0.89</td><td>光通訊雙位數增長與 Solar 盈利改善</td><td class="pre">核心銷售 &lt; $4.9B 或光通訊環比轉負</td></tr>
+          <tr><td>MTSI · FY26 Q4</td><td>收入 $415–425M；EPS $1.97–2.03</td><td>收入 $423M；EPS $2.03</td><td>60% 毛利與訂單延續</td><td class="pre">收入 &lt; $405M 或毛利 &lt;58%</td></tr>
+          <tr><td>AAOI · 2026 Q3</td><td>收入 $255–290M；EPS $0.11–0.26</td><td>收入 $275M；EPS $0.20</td><td>800G 量產良率與毛利回升</td><td class="pre">收入 &lt; $250M 或毛利仍 &lt;29%</td></tr>
+          <tr><td>ANET · 2026 Q3</td><td>Q2 已進入約 $3B 季度</td><td>收入約 $3.20B；非 GAAP 營益率約 47%</td><td>1.6T 與 AI Ethernet 斜率</td><td class="pre">收入環比增長 &lt;3%</td></tr>
+        </tbody></table></div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">06 / 組合<span>EXPOSURE</span></div><div><h2>三種研究型曝險，不是三份買單</h2><p>單押光模組會同時承擔技術路線、客戶集中與擴產風險。更合理的觀察方式，是把不同利潤池放在一起比較。</p></div></div>
+        <div class="expectation-grid">
+          <article class="expect-card"><small>QUALITY</small><h3>品質與現金流</h3><p>AVGO · ANET · GLW · FN</p><ul><li>較成熟的護城河與現金創造</li><li>光通訊純度較低，卻較能跨技術路線</li><li>主要風險仍是估值與大客戶集中</li></ul></article>
+          <article class="expect-card"><small>PURE GROWTH</small><h3>高成長核心鏈</h3><p>MTSI · LITE · CRDO · COHR</p><ul><li>最直接受惠高速互連供需緊張</li><li>毛利模型差異大，不能只比收入增速</li><li>需要用下一季指引與自由現金流選時</li></ul></article>
+          <article class="expect-card"><small>HIGH BETA</small><h3>高彈性／高失敗率</h3><p>AAOI · POET</p><ul><li>量產成功時營運槓桿極高</li><li>良率、稀釋、客戶認證任一延遲都可重估</li><li>只適合以里程碑管理，不適合靠敘事續抱</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tracker">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">07 / 追蹤<span>TRACKER</span></div><div><h2>把故事變成可推翻的論點</h2><p>未來兩到四季只追蹤能改變結論的訊號。沒有失效條件的研究，最後只會變成替股價找理由。</p></div></div>
+        <div class="tracker">
+          <article class="track-card"><div class="track-title"><b>1.6T 是否從樣品轉成量產收入</b><span class="status green">正面</span></div><p>追蹤 LITE、COHR、AAOI、FN 的 1.6T 出貨比例與量產良率。只有認證沒有收入，不能算完成。</p></article>
+          <article class="track-card"><div class="track-title"><b>毛利擴張能否穿透到現金</b><span class="status gold">待驗證</span></div><p>COHR 與 FN 已出現資本支出壓力；若 EPS 上升但 FCF 連續兩季不改善，估值品質要下修。</p></article>
+          <article class="track-card"><div class="track-title"><b>客戶集中是否繼續上升</b><span class="status gold">待驗證</span></div><p>雲端大客戶提供快速放量，也帶來價格、取消訂單與供應商替換風險。看第二、第三客戶能否同步成長。</p></article>
+          <article class="track-card"><div class="track-title"><b>CPO／NPO 是否侵蝕既有模組池</b><span class="status green">中期機會</span></div><p>短期可插拔仍是主流；中期真正贏家應同時具備雷射、DSP／SerDes、封裝或系統整合能力。</p></article>
+          <article class="track-card"><div class="track-title"><b>庫存增速是否高於收入</b><span class="status red">風險</span></div><p>若需求真實，擴產期庫存可先升；但連續兩季存貨增速顯著快於收入，通常意味良率、交期或終端消化問題。</p></article>
+          <article class="track-card"><div class="track-title"><b>估值是否靠更遠期年份支撐</b><span class="status red">風險</span></div><p>若分析開始從 FY27 改用 FY29 才能得到合理倍數，代表市場容錯率已太低，並非基本面變得更安全。</p></article>
+          <article class="track-card"><div class="track-title"><b>GLW 長約能否轉成產能與現金</b><span class="status green">正面</span></div><p>追蹤 Amazon、NVIDIA、Meta 等長期合作帶來的光纖／連接收入、產能利用率與客戶共擔投資比例；只有公告協議而沒有收入與自由現金流，不算完成。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="calendar">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">08 / 日曆<span>CATALYSTS</span></div><div><h2>接下來的催化劑窗口</h2><p>日期以公司公告或市場資料庫於 2026-08-10 顯示為準；標記「估」者仍可能調整。</p></div></div>
+        <div class="calendar">
+          <div class="event"><time>08.11 · 估</time><b>LITE FY26 Q4</b><span>驗證近 10 億美元季度收入與 35%+ 營益率。</span></div>
+          <div class="event"><time>08.12</time><b>COHR FY26 Q4</b><span>核心是 40% 毛利、現金流與 FY27 Q1 指引。</span></div>
+          <div class="event"><time>08.12 · 估</time><b>POET Q2</b><span>不看 EPS，先看量產收入、訂單轉換與現金消耗。</span></div>
+          <div class="event"><time>08.17</time><b>FN FY26 Q4</b><span>收入 $1.25–1.29B 指引、資本支出與客戶集中。</span></div>
+          <div class="event"><time>08.27 · 估</time><b>MRVL FY27 Q2</b><span>AI bookings、光電收入與整合 Celestial AI 後的毛利。</span></div>
+          <div class="event"><time>09.02 · 估</time><b>CRDO FY27 Q1</b><span>AEC 高基數後仍需維持 67%–69% 毛利。</span></div>
+          <div class="event"><time>09.03 · 估</time><b>AVGO FY26 Q3</b><span>AI 半導體 $16B 與總收入 $29.4B 的達成度。</span></div>
+          <div class="event"><time>09.03 · 估</time><b>CIEN FY26 Q3</b><span>收入 $1.625B、45% 毛利與 FY26 $6.3B 指引。</span></div>
+          <div class="event"><time>10.27 · 估</time><b>GLW 2026 Q3</b><span>核心銷售 $4.9–5.0B、EPS $0.85–0.89，並驗證光通訊增長與 Solar 盈利改善。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sources">
+      <div class="kicker" hidden></div>
+      <div class="shell">
+        <div class="section-head"><div class="section-no">09 / 來源<span>SOURCES</span></div><div><h2>資料來源與方法</h2><p>財務資料優先採公司 IR 與 SEC；估值採 2026 年 7 月下旬可得市場快照。所有預測均為本報告基準情境，並非公司承諾。</p></div></div>
+        <div class="sources">
+          <p class="source"><a href="https://www.coherent.com/news/press-releases/third-quarter-fiscal-year-2026-results" target="_blank" rel="noreferrer">Coherent FY26 Q3 結果</a>；另見 <a href="#companies">本頁 COHR 公司卡</a>。</p>
+          <p class="source"><a href="https://investor.lumentum.com/quarterly-results/" target="_blank" rel="noreferrer">Lumentum 季度業績</a></p>
+          <p class="source"><a href="https://ir.macom.com/news-releases/news-release-details/macom-reports-fiscal-third-quarter-2026-financial-results" target="_blank" rel="noreferrer">MACOM FY26 Q3 結果</a></p>
+          <p class="source"><a href="https://appliedoptoelectronics.gcs-web.com/news-releases/news-release-details/applied-optoelectronics-reports-second-quarter-2026-results" target="_blank" rel="noreferrer">AOI 2026 Q2 結果</a></p>
+          <p class="source"><a href="https://investor.fabrinet.com/news-releases/news-release-details/fabrinet-announces-third-quarter-fiscal-year-2026-financial" target="_blank" rel="noreferrer">Fabrinet FY26 Q3 結果</a></p>
+          <p class="source"><a href="https://investor.marvell.com/news-events/press-releases/detail/1023/marvell-technology-inc-reports-first-quarter-of-fiscal-year-2027-financial-results" target="_blank" rel="noreferrer">Marvell FY27 Q1 結果</a></p>
+          <p class="source"><a href="https://www.broadcom.com/company/news/financial-releases/64371" target="_blank" rel="noreferrer">Broadcom FY26 Q2 結果</a></p>
+          <p class="source"><a href="https://investors.credosemi.com/news-events/news/news-details/2026/Credo-Technology-Group-Holding-Ltd-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Financial-Results/default.aspx" target="_blank" rel="noreferrer">Credo FY26 Q4 結果</a></p>
+          <p class="source"><a href="https://investors.arista.com/Communications/Press-Releases-and-Events/Press-Release-Detail/2026/Arista-Networks-Inc--Reports-First-Quarter-2026-Financial-Results/default.aspx" target="_blank" rel="noreferrer">Arista 2026 Q1 結果</a>與其 2026 Q2 更新。</p>
+          <p class="source"><a href="https://investor.ciena.com/news/news-details/2026/Ciena-Reports-Fiscal-Second-Quarter-2026-Financial-Results/default.aspx" target="_blank" rel="noreferrer">Ciena FY26 Q2 結果</a></p>
+          <p class="source"><a href="https://www.poet-technologies.com/news/poet-technologies-reports-first-quarter-2026-financial-results" target="_blank" rel="noreferrer">POET 2026 Q1 結果</a></p>
+          <p class="source"><a href="https://investor.corning.com/news-and-events/news/news-details/2026/Cornings-Strong-Second-Quarter-2026-Financial-Results1-Demonstrate-Progress-on-Recently-Upgraded-Springboard-Plan/default.aspx" target="_blank" rel="noreferrer">Corning 2026 Q2 結果與 Q3 指引</a>；另見 <a href="https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Upgrades-and-Extends-Springboard-Plan-Outlines-New-Phase-of-Accelerating-Growth/default.aspx" target="_blank" rel="noreferrer">Springboard 長期增長計劃</a>。</p>
+          <p class="source"><a href="https://stockanalysis.com/stocks/" target="_blank" rel="noreferrer">StockAnalysis 市值與估值快照</a>（2026 年 7 月下旬）</p>
+        </div>
+        <div class="method"><b>評分方法：</b>護城河 25%＋成長可見度 25%＋財務品質 20%＋估值容錯 20%＋執行可信度 10%。「執行」分數越高代表量產、交付與資本配置紀錄越可靠。「估值」不是目標價，而是當前價格對失誤的承受力。報告未取得即時 Longbridge 行情介面，因此市場數據使用公開來源快照；請在實際決策前刷新股價、企業價值與一致預期。</div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-grid"><div><strong>光速之後｜美股光通訊產業鏈深度分析</strong><br>資料截點：2026-08-10 · 版本 1.0</div><div>僅作研究與教育用途，不構成個人化投資建議。<br>高成長硬體股可能因指引、良率、客戶集中與估值重估而劇烈波動。</div></div></footer>
+
+  <script src="report-runtime.js?v=20260810-optical-special"></script>
+  <script>
+    const companies = [
+      {
+        ticker:'AVGO', name:'Broadcom', role:'交換 ASIC · SerDes · 光元件 · 客製 AI 晶片', layers:['晶片','系統'], verdict:'全鏈最佳變現，但不是純光通訊',
+        metrics:[['$22.19B','Q2 收入'],['$10.8B','AI 半導體'],['$10.26B','季度 FCF']],
+        thesis:'光通訊的終極價值不只在模組，而在決定整個網路架構的交換、SerDes 與客製運算平台。Broadcom 同時控制多個高毛利利潤池。',
+        plain:'把 AI 資料中心想成一座超大型城市，Broadcom 賣的是「交流道的大腦」和「替大客戶量身打造的引擎」。它的交換晶片決定大量資料要往哪裡走；SerDes（串列／解串器）負責把晶片裡的資料轉成能沿高速線路傳送的訊號；客製 ASIC 則是替 Google 等大型客戶設計專用 AI 晶片。光模組要插在這些交換晶片旁邊工作，所以 Broadcom 雖不是純光模組公司，卻能決定整條光互連的規格。',
+        sells:'交換 ASIC、SerDes／PHY、客製 AI 加速器，以及部分光學元件。',
+        buyers:'超大型雲端公司、AI Lab、交換機與路由器設備商。',
+        money:'先靠長期共同設計取得規格主導權，再從大量晶片出貨、軟體與 IP 中取得高毛利。',
+        moat:'Tomahawk／Jericho 交換、SerDes IP、客製 ASIC 與大型客戶共同設計；跨世代研發與供應鏈規模難複製。',
+        risk:'AI 收入集中於少數前沿客戶；市場已把 2027 年超大規模 AI 收入納入預期，任何斜率放慢都會放大估值壓力。',
+        catalyst:'Q3 指引約 $29.4B，AI 半導體約 $16B；若網路收入同步超預期，光互連投資週期再獲確認。',
+        break:'AI 半導體指引下修、交換晶片份額下降，或自由現金流增速明顯落後收入。',
+        valuation:'約 $1.81T；預估 P/E 約 24x', heat:4, purity:2.5, moatScore:5, growth:5, finance:5, value:4, execution:5, label:'品質核心'
+      },
+      {
+        ticker:'ANET', name:'Arista Networks', role:'AI Ethernet 交換系統 · EOS 軟體 · XPO', layers:['系統'], verdict:'系統層護城河最乾淨',
+        metrics:[['$2.71B','Q1 收入'],['+35.1%','年增'],['$1.69B','營運現金流']],
+        thesis:'Arista 把高速光介面包進可運營、可自動化的 Ethernet 平台，軟體、交換架構與客戶信任令其獲得遠高於製造商的利潤率。',
+        plain:'Arista 賣的不是一顆零件，而是一台台裝滿高速連接埠的網路交換機，加上一套叫 EOS 的作業系統。GPU 算完資料後，必須經交換機把資料送往其他 GPU、儲存設備或另一座資料中心；Arista 就像負責管理整座城市交通燈、道路規則和即時路況的平台。光模組通常是插在它的交換機前面，因此 AI 叢集的光連接數量越多，對交換平台的需求也越大。',
+        sells:'資料中心交換機、路由平台、EOS 網路軟體、維護服務及新一代 XPO 光學架構。',
+        buyers:'Meta、Microsoft 等雲端公司，以及大型企業與電信客戶。',
+        money:'硬體一次性收入加上軟體與維護；真正黏住客戶的是同一套 EOS 管理整個網路。',
+        moat:'EOS 單一映像、低延遲交換、雲端客戶共同開發與高可靠度。XPO 亦讓公司由模組採購者向光學架構定義者靠近。',
+        risk:'Meta、Microsoft 等大客戶集中；依賴主要 merchant silicon 供應商；約 45x 預估 P/E 要求持續 20%+ 增長。',
+        catalyst:'Q2 已進入首個約 $3B 季度；下一步看 1.6T 平台與 AI networking 收入目標是否繼續上修。',
+        break:'AI 網路收入增速跌破公司整體、毛利降至 60% 以下且沒有產品組合解釋，或雲端客戶自研替代加速。',
+        valuation:'約 $214B；預估 P/E 約 45x', heat:4, purity:3, moatScore:5, growth:4.5, finance:5, value:2.5, execution:5, label:'品質核心'
+      },
+      {
+        ticker:'CRDO', name:'Credo Technology', role:'AEC · Retimer · SerDes · 光 DSP／模組', layers:['晶片','模組'], verdict:'高毛利互連成長王',
+        metrics:[['$437M','Q4 收入'],['68.3%','非 GAAP 毛利'],['$1.4B','現金＋短投']],
+        thesis:'AEC 解決機架內短距離的功耗與可靠度，而 Retimer／DSP 把同一套 SerDes IP 延伸到光與銅；這是一個比單純模組更好的 68% 毛利模型。',
+        plain:'Credo 專門處理「高速訊號跑一小段路就變形」的問題。它最知名的 AEC 是主動式銅纜：外表像一條銅線，但兩端接頭裡放了晶片，會把衰弱、變形的訊號重新整理後再送出去。短距離用它通常比光纖便宜、省電；距離拉長時，公司又能賣光模組 DSP。換句話說，Credo 不押銅或光誰全勝，而是賣兩種介質都需要的訊號修復技術。',
+        sells:'AEC 主動式銅纜、Retimer、SerDes、光模組 DSP、PCIe／記憶體連接晶片。',
+        buyers:'GPU 伺服器與交換機廠、雲端資料中心、AI 系統整合商。',
+        money:'核心晶片自行設計、外包生產，毛利高；AEC 則把自家晶片連同線材一起賣，提高單條連接的收入。',
+        moat:'低功耗 SerDes、系統級診斷、AEC 量產紀錄與快速客製能力。收購 DustPhotonics 後，光互連可選性增加。',
+        risk:'客戶與產品集中、高基數後的增長持續性、DustPhotonics 整合，以及約 27x 銷售額的高預期。',
+        catalyst:'FY27 Q1 指引 $465–475M、毛利 67%–69%；新光模組與 OmniConnect 是否貢獻第二成長曲線。',
+        break:'AEC 收入連續兩季停滯、毛利跌破 63%，或第二大客戶遲遲不能放量。',
+        valuation:'約 $35.9B；預估 P/E 約 31x／P/S 約 27x', heat:5, purity:4, moatScore:4, growth:5, finance:5, value:3, execution:4, label:'高成長核心'
+      },
+      {
+        ticker:'FN', name:'Fabrinet', role:'精密光學封裝 · 模組製造 · EMS', layers:['封裝','模組'], verdict:'低技術押注的量產代理',
+        metrics:[['$1.214B','Q3 收入'],['+39.3%','年增'],['$3.72','非 GAAP EPS']],
+        thesis:'Fabrinet 不必猜哪家雷射或 DSP 勝出，只要高複雜度光模組需要高良率量產便能受惠。護城河是流程、客戶關係與泰國製造規模。',
+        plain:'Fabrinet 很像光通訊產業的高階代工廠。客戶把設計、零件規格和訂單交給它，它負責在無塵環境中完成精密組裝、光纖對準、測試和大量生產。光模組不是把幾個零件簡單鎖在一起；光路偏一點、焊接溫度不對或測試漏掉問題，都會令昂貴模組報廢。Fabrinet 的價值就是把實驗室設計穩定地做成幾十萬個合格產品。',
+        sells:'精密光學封裝、模組組裝、測試、供應鏈管理與部分工業／汽車電子製造服務。',
+        buyers:'Lumentum 等光學與網路設備品牌商；最終產品再流向雲端與電信客戶。',
+        money:'按生產量收取製造收入，靠高良率、稼動率與規模賺取約一成營業利潤，不靠自有晶片 IP。',
+        moat:'難以快速複製的光學製造 know-how、良率管理、認證與 OEM 客戶黏性；資產週轉和交付紀錄優於一般 EMS。',
+        risk:'約 12% 毛利限制上限；單一大客戶集中、擴產令 Q3 FCF 轉負，且供應瓶頸可能由訂單變成庫存。',
+        catalyst:'Q4 指引 $1.25–1.29B、EPS $3.72–3.87；重點是 capex 高峰後現金流回復。',
+        break:'收入仍增長但營業利潤率跌破 9.5%，或資本支出連續三季令 FCF 無法轉正。',
+        valuation:'約 $17.0B；預估 P/E 約 29x', heat:3, purity:4, moatScore:4, growth:4.5, finance:3.5, value:3.5, execution:5, label:'量產核心'
+      },
+      {
+        ticker:'MTSI', name:'MACOM', role:'雷射 · 驅動器 · TIA · 光類比半導體', layers:['光源','晶片'], verdict:'元件端最佳毛利結構之一',
+        metrics:[['$342M','Q3 收入'],['59.7%','調整後毛利'],['31.5%','調整後營益率']],
+        thesis:'MACOM 橫跨光、RF、微波與國防，既能吃到 800G／1.6T 光元件放量，又不完全綁定單一雲端週期；約 60% 毛利顯示定價權。',
+        plain:'MACOM 賣的是光模組和通訊設備裡面那些不起眼、但少一顆就不能工作的「高速零件」。例如雷射驅動器負責精準控制光源怎麼閃；TIA（跨阻放大器）把光電二極體收到的極弱電流放大；CDR 則把混亂的資料時鐘重新整理。它像高速訊號的工具箱，模組廠可以依不同速度與距離選用其中幾顆。公司同時做國防和微波晶片，讓收入不只依賴雲端。',
+        sells:'雷射器件、驅動器、TIA、CDR、光電二極體，以及 RF／微波與國防半導體。',
+        buyers:'光模組廠、網路設備商、電信設備商、國防與工業客戶。',
+        money:'一旦元件被設計進模組或設備，客戶通常不會輕易更換；靠高價值類比 IP 與多產品交叉銷售維持高毛利。',
+        moat:'類比設計、InP／GaAs 製程、驅動器與接收鏈完整產品線；長週期國防／工業業務提供組合穩定性。',
+        risk:'收購整合、供應端擴產、估值已預支 Q4 大幅跳升；GAAP 利潤包含投資公允價值收益，需看調整後數字。',
+        catalyst:'Q4 指引 $415–425M、毛利 60%–61%、EPS $1.97–2.03，為全鏈最強單季斜率之一。',
+        break:'Q4 低於 $405M、調整後毛利跌破 58%，或資料中心增長不能抵消其他市場疲弱。',
+        valuation:'約 $20.1B；預估 P/E 約 42x', heat:4, purity:3.5, moatScore:4.5, growth:4.5, finance:4.5, value:2.5, execution:4.5, label:'高質成長'
+      },
+      {
+        ticker:'MRVL', name:'Marvell', role:'PAM4 DSP · 交換 · 客製 XPU · 光互連', layers:['晶片','系統'], verdict:'光 DSP 與客製矽的雙槓桿',
+        metrics:[['$2.418B','Q1 收入'],['76%','資料中心佔比'],['$639M','營運現金流']],
+        thesis:'Marvell 的電光 DSP 不是孤立產品，而是與交換、客製 XPU、NPO／CPO 和 DCI 組成平台；若 AI 叢集由運算瓶頸轉向互連瓶頸，其單客戶內容價值上升。',
+        plain:'Marvell 是資料中心的「連接晶片百貨」。光模組裡的 DSP 負責把 0 和 1 編碼、校正再還原，讓資料能在光纖上高速傳送；交換晶片決定封包去哪裡；客製晶片則替雲端客戶做專用運算或連接功能。公司近年再加入 CPO／NPO 技術，目標是把光引擎放得更靠近交換晶片，減少功耗。',
+        sells:'PAM4 光 DSP、交換晶片、SerDes、客製 XPU／ASIC、儲存與 DCI 連接晶片。',
+        buyers:'雲端服務商、AI 晶片公司、光模組廠與網路設備商。',
+        money:'客製案前期收研發費，量產後靠多年晶片出貨；標準 DSP 與交換產品則靠 IP 和規模取得高毛利。',
+        moat:'高速 SerDes／DSP、客製矽共同開發、交換與儲存 IP；Celestial AI 與 XConn 擴大 scale-up 光互連選擇權。',
+        risk:'收購整合、客戶自研、資料中心集中、股權稀釋與約 19x 銷售額估值。光通訊只是大平台的一部分。',
+        catalyst:'Q2 指引約 $2.7B、非 GAAP 毛利 58.25%–59.25%、EPS $0.93±0.05。',
+        break:'資料中心收入環比轉負、毛利持續低於 58%，或 Celestial AI 投資未轉成 2027–2028 訂單。',
+        valuation:'約 $166B；預估 P/E 約 42x／P/S 約 19x', heat:5, purity:4, moatScore:4.5, growth:4.5, finance:4, value:1.5, execution:3.5, label:'平台成長'
+      },
+      {
+        ticker:'LITE', name:'Lumentum', role:'光晶片 · 雷射 · 模組 · OCS · CPO', layers:['光源','封裝','模組'], verdict:'純光元件動能最強',
+        metrics:[['$808M','Q3 收入'],['+90%','年增'],['47.9%','非 GAAP 毛利']],
+        thesis:'Lumentum 已從通訊元件週期股轉向雲端光子平台：光晶片、收發模組、光交換與 CPO 同時成長，毛利亦因稀缺元件和產品組合快速提升。',
+        plain:'Lumentum 從「產生光」一路做到「控制光」。它會製造雷射晶片和光學零件，也會把零件組成可直接插進交換機的收發模組；OCS（光路交換器）則像一面可以快速轉向的鏡子，不必先把光訊號變回電訊號，就能改變資料要走的光纖路線。這讓公司同時賺到光源、模組與新型網路架構的錢。',
+        sells:'InP 雷射與光晶片、光學元件、800G／1.6T 收發模組、OCS 與 CPO 相關產品。',
+        buyers:'雲端資料中心、AI 基礎設施商、光模組與網路設備製造商。',
+        money:'稀缺雷射和高階元件有較高毛利；完整模組與 OCS 提高每個客戶的內容價值，但也需要更多製造資本。',
+        moat:'高功率雷射、InP 光晶片、OCS 與客戶共同驗證；供應緊張期具備更強議價力和長約能力。',
+        risk:'收入與供應集中、擴產執行、ASP 正常化；約 41x 預估 P/E 和逾 $50B 市值已要求指引持續上修。',
+        catalyst:'Q4 指引 $960M–$1.01B、營益率 35%–36%、EPS $2.85–3.05；突破 $1B 季度收入是心理門檻。',
+        break:'Q4 低於 $950M、毛利回落至 44% 以下，或雲端元件與模組同時環比放慢。',
+        valuation:'約 $50.7B；預估 P/E 約 41x', heat:5, purity:5, moatScore:4.5, growth:5, finance:4, value:2, execution:3.5, label:'純光高成長'
+      },
+      {
+        ticker:'CIEN', name:'Ciena', role:'相干光傳輸 · DCI · 路由 · 網路軟體', layers:['系統'], verdict:'景氣復甦最乾淨的系統商',
+        metrics:[['$1.571B','Q2 收入'],['+39.5%','年增'],['44.9%','調整後毛利']],
+        thesis:'AI 流量不只留在機架內，也需要跨園區與長距離傳輸。Ciena 的 WaveLogic、光傳輸平台與 DCI 令其直接受惠頻寬升級和電信庫存正常化。',
+        plain:'Ciena 負責的是更長距離的資料運輸。機房裡幾公尺的連接可以用一般光模組，但資料要跨越園區、城市甚至海底光纜，就需要相干光技術：它把更多資料精密地塞進同一束光，再在另一端還原。Ciena 把自家 WaveLogic 晶片、光學設備、軟體和服務組成整套系統，像替電信商和雲端公司建造並管理資料高速公路。',
+        sells:'相干光傳輸設備、WaveLogic 光學引擎、路由交換平台、網路自動化軟體與維護服務。',
+        buyers:'電信營運商、海纜與網路批發商、雲端公司和大型企業。',
+        money:'先賣高價設備，再從軟體、擴容卡、維護與專業服務取得後續收入；客戶換系統的成本很高。',
+        moat:'相干 DSP、長距離光學系統、全球客戶認證與網路管理軟體；光網路佔 Q2 收入約 70%。',
+        risk:'仍有電信資本支出週期、供應鏈與客戶集中；當前約 45x 預估 P/E 對傳統週期設備商並不便宜。',
+        catalyst:'Q3 指引 $1.625B±$50M、毛利 45%±50bps；FY26 收入上調至 $6.3B±$0.1B。',
+        break:'Q3 低於 $1.55B、毛利跌破 43.5%，或雲端需求不能抵消電信訂單正常化。',
+        valuation:'約 $49.6B；預估 P/E 約 45x', heat:5, purity:4.5, moatScore:4, growth:4.5, finance:3.5, value:1.5, execution:4, label:'系統復甦'
+      },
+      {
+        ticker:'COHR', name:'Coherent', role:'InP／VCSEL · 雷射 · 元件 · 模組', layers:['光源','封裝','模組'], verdict:'好公司，困難價格',
+        metrics:[['$1.806B','Q3 收入'],['39.6%','非 GAAP 毛利'],['-$537M','9M 簡化 FCF']],
+        thesis:'從材料、雷射到模組的縱向整合在供應緊張時極具價值，NVIDIA 投資與長約驗證戰略地位；但庫存、capex 與估值使投資回報高度依賴完美執行。',
+        plain:'Coherent 像光電產業裡少見的「從礦到整車」公司：先做能發光的特殊材料與晶圓，再做雷射、光學元件，最後還能組成完整光模組。上游客戶可以只買它的雷射，下游客戶也能直接買整套模組。好處是供應吃緊時能自己調配關鍵零件，壞處是每一層工廠都要花錢擴產，庫存和設備投資會先吃掉現金。',
+        sells:'InP／VCSEL 材料與晶片、工業與通訊雷射、光學元件、800G／1.6T 模組及相關子系統。',
+        buyers:'光模組廠、雲端與 AI 客戶、網路設備商，以及工業、半導體設備和消費電子客戶。',
+        money:'可在材料、元件和整機多層收取收入；垂直整合提高供應控制與內容價值，但回報取決於良率和產能利用率。',
+        moat:'InP／VCSEL／EML 材料與元件平台、跨產品線製造規模、客戶認證，以及可向 CPO／OCS 延伸的技術組合。',
+        risk:'9 個月營運現金流僅約 $10M、capex 約 $547M、庫存升至約 $2.13B；高估值下任何現金轉化延遲都會被放大。',
+        catalyst:'Q4 指引中位收入 $1.98B、毛利 40%、EPS $1.62；本報告基準略高於中位數。',
+        break:'FY27 Q1 指引低於 $2.05B、毛利未守 40%，或庫存與 capex 繼續快於收入。',
+        valuation:'8/7 約 $74B；預估 P/E 約 48–69x（口徑不同）', heat:5, purity:5, moatScore:5, growth:5, finance:2.5, value:1, execution:3, label:'等待價格'
+      },
+      {
+        ticker:'GLW', name:'Corning', role:'光纖 · 光纜 · 高密度連接 · 特種玻璃', layers:['材料','封裝'], verdict:'光纖基礎設施龍頭，但不是純光通訊公司',
+        metrics:[['$4.74B','Q2 核心銷售'],['$2.07B','光通訊銷售'],['$1.42B','調整後 FCF']],
+        thesis:'Corning 掌握 AI 資料中心最底層的光纖、光纜與高密度連接。Q2 光通訊銷售增長 32%，而長期客戶協議與美國產能擴建提高需求可見度；代價是公司仍有玻璃、汽車與太陽能等非光業務。',
+        plain:'如果 Broadcom 賣的是資料交通的大腦，Corning 賣的就是道路本身。AI 資料中心需要把成千上萬顆 GPU 接在一起，每一條高速連接背後都離不開光纖、光纜、接頭和高密度配線。Corning 從特殊玻璃原料做成光纖，再把光纖包成光纜與連接組件，最後交給雲端客戶鋪進機房。公司也做 Gorilla Glass、顯示玻璃、汽車與太陽能產品，所以它不是純光股，但能用其他業務分散單一技術路線的風險。',
+        sells:'資料中心與電信用光纖、光纜、高密度連接器、配線與連接系統；另有顯示／消費電子玻璃、汽車與太陽能產品。',
+        buyers:'Amazon、Meta、NVIDIA 生態系等大型雲端與 AI 客戶，以及電信商、網路設備商與消費電子品牌。',
+        money:'靠材料配方、製程良率、長期客戶認證與大規模產能收取產品收入；長約與客戶共同承擔擴產，可降低先蓋工廠再等訂單的風險。',
+        moat:'175 年材料科學積累、光纖預製棒與拉絲製程、高密度連接產品、全球客戶認證及美國本土產能；規模與製程經驗難在短期複製。',
+        risk:'約 43x 預估 P/E 已反映多年 AI 光纖增長；非光業務可能拖慢整體，擴產亦帶來資本支出、執行與客戶集中風險。',
+        catalyst:'Q3 核心銷售指引 $4.9–5.0B、核心 EPS $0.85–0.89；重點是光通訊維持雙位數增長、Solar 盈利改善及長約開始轉成出貨。',
+        break:'Q3 核心銷售低於 $4.9B、光通訊收入環比轉負，或擴產後自由現金流與 ROIC 明顯惡化。',
+        valuation:'約 $126B；預估 P/E 約 43x（市場快照）', heat:4, purity:3.5, moatScore:5, growth:4.5, finance:4.5, value:2, execution:4.5, label:'材料與連接核心'
+      },
+      {
+        ticker:'AAOI', name:'Applied Optoelectronics', role:'雷射 · 800G／1.6T 模組 · CATV', layers:['光源','模組'], verdict:'最高營運槓桿，也最高量產風險',
+        metrics:[['$191.9M','Q2 收入'],['+86%','年增'],['27.7%','GAAP 毛利']],
+        thesis:'AAOI 的機會在於自製雷射加上美國擴產，若 800G／1.6T 良率與稼動率同步上升，約 30% 毛利模型可產生巨大營運槓桿。',
+        plain:'AAOI 的做法是自己生產雷射，再把它們裝進高速光模組。它不像 MACOM 主要賣零件，也不像 Fabrinet 只替別人代工，而是從關鍵光源一路做到貼著自己品牌出貨的模組。公司另一塊業務是有線電視網路設備。市場最關心的是新工廠能不能把 800G／1.6T 模組大量做出來，而且每做一個不再虧錢。',
+        sells:'自製雷射晶片、100G／400G／800G／1.6T 光收發模組，以及 CATV 寬頻設備。',
+        buyers:'大型雲端資料中心、交換機供應鏈與北美有線電視營運商。',
+        money:'產品單價乘以出貨量；當產量跨過固定成本門檻後利潤可快速上升，但低良率和閒置產能也會反向放大虧損。',
+        moat:'自有雷射晶圓、模組垂直整合與大型雲端客戶認證；美國產能可降低地緣供應風險。',
+        risk:'Q2 GAAP 仍虧約 $22.8M、毛利低、capex 與庫存大增、客戶集中和股本稀釋；估值已提前反映 2027 產能。',
+        catalyst:'Q3 指引 $255–290M、非 GAAP EPS $0.11–0.26；年底目標 800G／1.6T 月產能逾 65 萬件。',
+        break:'Q3 低於 $250M、毛利未回升至約 30%，或產能提升未帶來單位成本下降。',
+        valuation:'約 $7–9B；無有效 P/E／約 6–8x 2026E 銷售', heat:5, purity:5, moatScore:3.5, growth:5, finance:1.5, value:1, execution:2, label:'高風險彈性'
+      },
+      {
+        ticker:'POET', name:'POET Technologies', role:'光學中介層 · 光引擎 · 共同封裝', layers:['封裝','模組'], verdict:'技術選擇權，不是已驗證生意',
+        metrics:[['$0.50M','Q1 收入'],['-$12.3M','Q1 淨損'],['-$8.8M','營運現金流']],
+        thesis:'光學中介層若能降低耦光與封裝成本，可能在 800G／1.6T 光引擎取得位置；但目前仍處認證與初期出貨，投資論點主要是技術與訂單選擇權。',
+        plain:'POET 想解決的是光模組最麻煩的組裝問題：雷射、光纖和其他小元件必須對得非常準，傳統做法昂貴又慢。它的 Optical Interposer（光學中介層）像一塊預先挖好精密軌道的底板，讓多個光學零件能較容易放到正確位置。若客戶驗證成功，模組廠可用它降低零件數、人工與封裝成本；但現在多數項目仍在樣品、NRE 或初期訂單階段。',
+        sells:'光學中介層、光引擎、封裝設計服務、樣品與非經常性工程服務（NRE）。',
+        buyers:'光模組新創公司、網路設備合作夥伴，以及希望簡化光學封裝的模組廠。',
+        money:'短期靠工程費和樣品；真正商業化後才可能靠元件出貨、授權或合資量產抽取收入，目前模式尚未被規模驗證。',
+        moat:'晶圓級被動對準與光學整合概念具差異化，合作夥伴可縮短市場進入；但商業護城河尚未被大規模收入證明。',
+        risk:'收入基數極小、虧損與現金消耗、量產延遲、客戶品質、融資與稀釋。市值對現有收入的倍數沒有傳統分析意義。',
+        catalyst:'Q2 看 NRE／產品收入是否突破 $1M，以及 Lumilens 等訂單是否轉成可確認收入和出貨排程。',
+        break:'2026 下半年仍無連續量產收入、訂單反覆延遲，或現金消耗顯著加快而里程碑不前進。',
+        valuation:'約 $1.16B；無盈利／逾 800x TTM 銷售', heat:5, purity:5, moatScore:2.5, growth:3, finance:1, value:1, execution:1.5, label:'里程碑投機'
+      }
+    ];
+
+    const forecasts = [
+      ['LITE · FY26 Q4','收入 $960M–$1.01B；EPS $2.85–3.05','收入 $995M；EPS $3.05','跨過 $1B、營益率 ≥35.5%','收入 < $950M 或毛利 <44%'],
+      ['COHR · FY26 Q4','收入 $1.91–2.05B；毛利 39%–41%','收入 $2.03B；毛利 40.3%；EPS $1.69','D&C 增長與營運現金流轉正','FY27 Q1 指引 < $2.05B'],
+      ['POET · 2026 Q2','前季收入 $0.50M；淨損 $12.3M','收入約 $0.7M；淨損 $12–15M','量產收入與訂單轉換','收入仍 < $0.5M 且里程碑再延遲'],
+      ['FN · FY26 Q4','收入 $1.25–1.29B；EPS $3.72–3.87','收入 $1.285B；EPS $3.85','光通訊收入、capex 與 FCF','營益率 <9.5% 或 FCF 再為負'],
+      ['MRVL · FY27 Q2','收入 $2.70B±5%；EPS $0.93±0.05','收入 $2.74B；EPS $0.95','光電／客製 XPU 同步加速','資料中心收入環比不增'],
+      ['CRDO · FY27 Q1','收入 $465–475M；毛利 67%–69%','收入 $473M；毛利 68.3%','AEC 之外的新產品貢獻','收入 < $460M 或毛利 <66%'],
+      ['AVGO · FY26 Q3','收入約 $29.4B；EBITDA 約 68%','收入 $29.6B；EBITDA 68.5%','AI 網路與客製晶片 bookings','AI 半導體 < $15.5B'],
+      ['CIEN · FY26 Q3','收入 $1.625B±$50M；毛利 45%±0.5%','收入 $1.65B；毛利 45.2%','雲端 DCI 與光網路組合','收入 < $1.55B 或毛利 <43.5%'],
+      ['GLW · 2026 Q3','核心銷售 $4.9–5.0B；核心 EPS $0.85–0.89','核心銷售 $4.98B；核心 EPS $0.89','光通訊雙位數增長與 Solar 盈利改善','核心銷售 < $4.9B 或光通訊環比轉負'],
+      ['MTSI · FY26 Q4','收入 $415–425M；EPS $1.97–2.03','收入 $423M；EPS $2.03','60% 毛利與訂單延續','收入 < $405M 或毛利 <58%'],
+      ['AAOI · 2026 Q3','收入 $255–290M；EPS $0.11–0.26','收入 $275M；EPS $0.20','800G 量產良率與毛利回升','收入 < $250M 或毛利仍 <29%'],
+      ['ANET · 2026 Q3','Q2 已進入約 $3B 季度','收入約 $3.20B；非 GAAP 營益率約 47%','1.6T 與 AI Ethernet 斜率','收入環比增長 <3%']
+    ];
+
+    const layerOptions = ['全部','材料','光源','晶片','封裝','模組','系統'];
+    const filters = document.getElementById('filters');
+    const grid = document.getElementById('companyGrid');
+
+    function heatBars(n){ return `<span class="heat" aria-label="估值熱度 ${n}/5">${[1,2,3,4,5].map(i=>`<i class="${i<=n?'on':''}"></i>`).join('')}</span>`; }
+    function card(c){
+      return `<article class="company-card" data-layers="${c.layers.join(',')}">
+        <div class="company-top"><div class="company-id"><span class="ticker">${c.ticker}</span><span class="verdict">${c.verdict}</span></div><h3>${c.name}</h3><div class="role">${c.role}</div><div class="metric-strip">${c.metrics.map(m=>`<div><b>${m[0]}</b><span>${m[1]}</span></div>`).join('')}</div></div>
+        <div class="company-body"><p class="company-thesis">${c.thesis}</p>
+        <div class="business-explain"><h4>拆解生意</h4><p class="plain-summary">${c.plain}</p><div class="business-rows"><div class="business-row"><b>賣什麼</b><span>${c.sells}</span></div><div class="business-row"><b>誰會買</b><span>${c.buyers}</span></div><div class="business-row"><b>怎麼賺</b><span>${c.money}</span></div></div></div>
+        <div class="two-col"><div class="micro"><b>護城河</b><span>${c.moat}</span></div><div class="micro"><b>主要風險</b><span>${c.risk}</span></div></div>
+        <div class="card-footer"><div class="valuation">${heatBars(c.heat)}<span>${c.valuation}</span></div><button class="detail-btn" aria-expanded="false">展開判斷</button></div>
+        <div class="company-detail"><p><b>下一個催化劑：</b>${c.catalyst}</p><p><b>論點失效條件：</b>${c.break}</p></div></div></article>`;
+    }
+    grid.innerHTML = companies.map(card).join('');
+    filters.innerHTML = layerOptions.map((x,i)=>`<button class="filter-btn ${i===0?'active':''}" data-filter="${x}">${x}</button>`).join('');
+
+    filters.addEventListener('click', e => {
+      const b = e.target.closest('.filter-btn'); if(!b) return;
+      document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));
+      const f=b.dataset.filter;
+      document.querySelectorAll('.company-card').forEach(x=>x.classList.toggle('hidden', f!=='全部' && !x.dataset.layers.split(',').includes(f)));
+    });
+    grid.addEventListener('click', e => {
+      const b=e.target.closest('.detail-btn'); if(!b) return;
+      const detail=b.closest('.company-body').querySelector('.company-detail');
+      const open=detail.classList.toggle('open'); b.textContent=open?'收起判斷':'展開判斷'; b.setAttribute('aria-expanded',String(open));
+    });
+
+    function scoreClass(v){ return v>=4?'score-pill':v>=2.5?'score-pill mid':'score-pill low'; }
+    function weighted(c){ return (c.moatScore*.25+c.growth*.25+c.finance*.20+c.value*.20+c.execution*.10).toFixed(2); }
+    const sorted=[...companies].sort((a,b)=>weighted(b)-weighted(a));
+    document.querySelector('#scoreTable tbody').innerHTML=sorted.map(c=>`<tr><td>${c.ticker}</td><td>${c.purity.toFixed(1)}</td><td><span class="${scoreClass(c.moatScore)}">${c.moatScore.toFixed(1)}</span></td><td><span class="${scoreClass(c.growth)}">${c.growth.toFixed(1)}</span></td><td><span class="${scoreClass(c.finance)}">${c.finance.toFixed(1)}</span></td><td><span class="${scoreClass(c.value)}">${c.value.toFixed(1)}</span></td><td><span class="${scoreClass(c.execution)}">${c.execution.toFixed(1)}</span></td><td><span class="score-pill">${weighted(c)}</span></td><td>${c.label}</td></tr>`).join('');
+    document.getElementById('forecastBody').innerHTML=forecasts.map((r,i)=>`<tr>${r.map((x,j)=>`<td class="${j===4?'pre':''}">${x}</td>`).join('')}</tr>`).join('');
+  </script>
+</body>
+</html>

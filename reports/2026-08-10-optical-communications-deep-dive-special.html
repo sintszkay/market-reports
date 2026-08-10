@@ -783,6 +783,75 @@
       font-weight: 600;
       letter-spacing: .10em;
     }
+
+    /* External-data cross validation */
+    .evidence-lead {
+      display: grid;
+      grid-template-columns: minmax(250px,.72fr) minmax(0,1.28fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .evidence-verdict {
+      padding: 21px;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 10px;
+    }
+    .evidence-verdict small {
+      display: block;
+      color: rgba(255,255,255,.58);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .10em;
+    }
+    .evidence-verdict strong {
+      display: block;
+      margin-top: 7px;
+      color: #70d7c4;
+      font-size: 32px;
+      line-height: 1.15;
+      font-weight: 650;
+    }
+    .evidence-verdict h3 { margin: 11px 0 7px; font-size: 18px; line-height: 1.45; }
+    .evidence-verdict p { margin: 0; color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.7; }
+    .evidence-kpis { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .evidence-kpi { padding: 16px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+    .evidence-kpi b { display: block; color: var(--teal); font-size: 22px; line-height: 1.2; font-weight: 650; letter-spacing: -.02em; }
+    .evidence-kpi span { display: block; margin-top: 5px; color: var(--ink); font-size: 13px; font-weight: 650; }
+    .evidence-kpi small { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.55; }
+    .evidence-kpi a, .evidence-table a { color: var(--teal); text-decoration-color: rgba(17,122,105,.24); text-underline-offset: 2px; }
+    .evidence-reading { margin: 0 0 13px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .evidence-table table { table-layout: fixed; }
+    .evidence-table th, .evidence-table td { white-space: normal; vertical-align: top; line-height: 1.58; }
+    .evidence-table th:nth-child(1) { width: 11%; }
+    .evidence-table th:nth-child(2) { width: 24%; }
+    .evidence-table th:nth-child(3) { width: 25%; }
+    .evidence-table th:nth-child(4) { width: 13%; }
+    .evidence-table th:nth-child(5) { width: 27%; }
+    .evidence-state { display: inline-flex; padding: 3px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+    .evidence-state.strong { color: var(--green); background: var(--green-soft); }
+    .evidence-state.medium { color: #8b611f; background: var(--gold-soft); }
+    .evidence-state.split { color: var(--coral); background: var(--coral-soft); }
+    .evidence-caveat { margin-top: 12px; padding: 15px 17px; color: #6a6255; background: #fff9ea; border: 1px solid rgba(166,106,24,.14); border-radius: 8px; font-size: 13px; line-height: 1.7; }
+    .evidence-caveat b { color: var(--ink); }
+
+    @media (max-width: 780px) {
+      .evidence-lead { grid-template-columns: 1fr; }
+      .evidence-table { overflow: visible; border: 0; background: transparent; }
+      .evidence-table table, .evidence-table tbody, .evidence-table tr, .evidence-table td { display: block; width: 100%; }
+      .evidence-table thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+      .evidence-table tr { margin-bottom: 10px; padding: 13px 14px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+      .evidence-table td { display: grid; grid-template-columns: 88px minmax(0,1fr); gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+      .evidence-table td:last-child { border-bottom: 0; }
+      .evidence-table td::before { content: attr(data-label); color: #88857e; font-size: 11px; font-weight: 650; }
+      .evidence-table td:first-child { font-size: 15px; }
+    }
+    @media (max-width: 560px) {
+      .evidence-kpis { grid-template-columns: 1fr 1fr; }
+      .evidence-kpi { padding: 13px; }
+      .evidence-kpi b { font-size: 19px; }
+      .evidence-table td { grid-template-columns: 78px minmax(0,1fr); }
+    }
   </style>
 </head>
 <body>
@@ -790,7 +859,7 @@
     <div class="shell topbar-inner">
       <div class="brand"><div class="brand-mark"></div><span>光通訊產業鏈深度分析</span><span>／Market Report</span></div>
       <nav class="report-toc" aria-label="頁面導覽">
-        <a href="#thesis">結論</a><a href="#chain">產業鏈</a><a href="#companies">公司</a><a href="#ranking">評分</a><a href="#forecast">財報預測</a><a href="#tracker">追蹤</a><a href="#sources">來源</a>
+        <a href="#thesis">結論</a><a href="#evidence">外部驗證</a><a href="#chain">產業鏈</a><a href="#companies">公司</a><a href="#ranking">評分</a><a href="#forecast">財報預測</a><a href="#tracker">追蹤</a><a href="#sources">來源</a>
       </nav>
     </div>
   </header>
@@ -803,16 +872,16 @@
           <div>
             <h1>光速之後，誰留下利潤？</h1>
             <p class="hero-lede">AI 叢集把 800G、1.6T、AEC、CPO 與高速交換推入同一條需求曲線。但「需求真實」不等於「任何價格都值得買」：真正的研究問題，是瓶頸在哪一層、現金何時回來，以及市場已經預支了多少年。</p>
-            <div class="hero-note"><span class="tag">12 家美股代表公司</span><span class="tag">6 個價值鏈環節</span><span class="tag">下一季財報基準情境</span></div>
+            <div class="hero-note"><span class="tag">12 家美股代表公司</span><span class="tag">6 個價值鏈環節</span><span class="tag">外部數據交叉驗證</span><span class="tag">下一季財報基準情境</span></div>
           </div>
           <aside class="signal-card">
             <div class="signal-title">ONE-LINE CONCLUSION</div>
-            <div class="signal-line">產業最強的信號在營收與毛利；最弱的信號在估值與自由現金流。</div>
+            <div class="signal-line">外部出貨、雲端資本支出與公司財報同向；最弱的信號仍在估值與自由現金流。</div>
             <div class="signal-grid">
               <div class="signal-stat"><b>12</b><span>核心公司</span></div>
               <div class="signal-stat"><b>6</b><span>產業鏈節點</span></div>
               <div class="signal-stat"><b>11/12</b><span>估值偏熱或極熱</span></div>
-              <div class="signal-stat"><b>3</b><span>較佳風險調整型態</span></div>
+              <div class="signal-stat"><b>4.5/5</b><span>需求閉環強度</span></div>
             </div>
           </aside>
         </div>
@@ -832,7 +901,7 @@
       <div class="shell">
         <div class="section-head"><div class="section-no">01 / 結論<span>THESIS</span></div><div><h2>先把結論放在最前面</h2><p>這不是「AI 光通訊全面看多」的名單，而是按照價值捕獲、財務品質與估值門檻拆解後的研究排序。</p></div></div>
         <div class="thesis-grid">
-          <article class="thesis-card"><div class="n">1</div><h3>需求週期是真的，而且仍在加速</h3><p>GLW、LITE、MTSI、CRDO、CIEN 的最新季度收入增速與指引同步向上，顯示並非單一公司搶單，而是光纖、交換容量、光電元件與系統共同擴張。</p></article>
+          <article class="thesis-card"><div class="n">1</div><h3>需求週期是真的，而且仍在加速</h3><p>四大雲端 2026 年資本開支約 $735–760B，LightCounting 估算 Q1 光收發器／AOC 銷售增長逾 90%；再與 GLW、LITE、FN、CIEN 財報同向，已不是單一供應商搶單。</p></article>
           <article class="thesis-card"><div class="n">2</div><h3>利潤最厚的不一定是光模組</h3><p>高速類比／SerDes 晶片可達約 60%–68% 毛利；交換系統亦可維持 60% 以上。製造與模組環節則更依賴良率、稼動率和週轉。</p></article>
           <article class="thesis-card"><div class="n">3</div><h3>垂直整合既是護城河，也是現金黑洞</h3><p>自有 InP 雷射、晶圓、封裝與模組提高供應控制力，但擴產會先推高庫存與資本支出。COHR、AAOI 的損益改善必須用現金流驗證。</p></article>
           <article class="thesis-card"><div class="n">4</div><h3>目前最大的共同風險是估值</h3><p>多數標的已按 2027–2028 年順利放量定價。現在要買的不是「成長」，而是實際成長持續超過市場已經相信的速度。</p></article>
@@ -840,9 +909,74 @@
       </div>
     </section>
 
+    <section class="section" id="evidence">
+      <div class="shell">
+        <div class="section-head"><div class="section-no">02 / 驗證<span>DATA CHECK</span></div><div><h2>外部數據 × 財報：需求閉環已成立</h2><p>外部數據先回答「市場是否真的擴張」，公司財報再回答「需求流到哪一層、能否轉成毛利與現金」。只有兩邊同向，才把成長視為可投資的產業訊號。</p></div></div>
+        <div class="evidence-lead">
+          <article class="evidence-verdict">
+            <small>CLOSED-LOOP SCORE</small>
+            <strong>4.5 / 5</strong>
+            <h3>2026–2027 年高確信，2028 年後仍需續證</h3>
+            <p>資金、端口、模組、光纖與物理用電五層大致同向；扣掉半分，是因為雲端資本開支並非全部流向光學，而且電力與審批仍可能延後部署。</p>
+          </article>
+          <div class="evidence-kpis">
+            <article class="evidence-kpi"><b>$735–760B</b><span>四大雲端 2026 年資本開支</span><small>依截至 2026-08-10 的最新公開指引區間彙總；包含伺服器、建築、網路與其他基礎設施。</small></article>
+            <article class="evidence-kpi"><b>$10B / +90%</b><span>Q1 2026 光收發器與 AOC 銷售</span><small><a href="https://www.lightcounting.com/newsletter/en/june-2026-quarterly-market-update-375" target="_blank" rel="noreferrer">LightCounting 市場估算</a></small></article>
+            <article class="evidence-kpi"><b>&gt;$1B</b><span>800G 交換機單季銷售</span><small><a href="https://www.prnewswire.com/news-releases/ai-investments-shield-ethernet-data-center-switch-market-from-tariff-disruptions-shattering-sales-records-according-to-delloro-group-302473912.html" target="_blank" rel="noreferrer">Dell’Oro，2025 Q1</a></small></article>
+            <article class="evidence-kpi"><b>+17%</b><span>2025 年資料中心用電增長</span><small><a href="https://www.iea.org/news/data-centre-electricity-use-surged-in-2025-even-with-tightening-bottlenecks-driving-a-scramble-for-solutions" target="_blank" rel="noreferrer">IEA 2026 更新</a></small></article>
+          </div>
+        </div>
+        <p class="evidence-reading"><b>怎樣讀這張表：</b>「外部數據」是獨立於本報告公司的市場或物理指標；「專題已有數據」來自下方公司卡與財報預測。兩者方向一致但口徑不同，因此判斷重點是方向與鏈條位置，不把不同單位硬畫成同一比例。</p>
+        <!-- Visual omission note: metrics use incompatible units and denominators; a cross-validation matrix is more honest than a shared-axis chart. -->
+        <div class="matrix-wrap evidence-table">
+          <table>
+            <thead><tr><th>驗證層</th><th>外部數據</th><th>專題已有數據</th><th>交叉結論</th><th>仍不能證明</th></tr></thead>
+            <tbody>
+              <tr>
+                <td data-label="驗證層">資金</td>
+                <td data-label="外部數據"><a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3" target="_blank" rel="noreferrer">Microsoft 約 $190B</a>；<a href="https://live.euronext.com/en/financial-news/google-increases-capex-forecast-again-after-cloud-driven-earnings-beat" target="_blank" rel="noreferrer">Alphabet $195–205B</a>；<a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx" target="_blank" rel="noreferrer">Meta $130–145B</a>；<a href="https://apnews.com/article/b4ce02b4666a35b8975823c5c22072ee" target="_blank" rel="noreferrer">Amazon 約 $220B</a>。</td>
+                <td data-label="專題已有數據">AVGO Q2 AI 半導體收入 $10.8B；ANET Q1 收入 $2.71B、年增 35.1%。資本開支已下沉到交換、SerDes 與高速網路平台。</td>
+                <td data-label="交叉結論"><span class="evidence-state strong">強印證</span></td>
+                <td data-label="仍不能證明">雲端資本開支包含 GPU、記憶體、土地與建築；不能把全部金額當成光通信市場。</td>
+              </tr>
+              <tr>
+                <td data-label="驗證層">端口</td>
+                <td data-label="外部數據">Dell’Oro 指 2025 Q1 乙太網資料中心交換機銷售增長逾 40%，800G 超過 $1B；<a href="https://ethernetalliance.org/event/ofc-2026/" target="_blank" rel="noreferrer">OFC 2026</a> 已完成 100G 至 1.6T 多廠商互操作展示。</td>
+                <td data-label="專題已有數據">LITE 已同時供應 800G／1.6T、雷射與 OCS；FN Q3 收入年增 39.3%，並有新 datacom 專案進入爬坡。</td>
+                <td data-label="交叉結論"><span class="evidence-state strong">強印證</span></td>
+                <td data-label="仍不能證明">互操作和樣品不等於所有客戶已量產；1.6T 仍需用實際收入比例與良率驗證。</td>
+              </tr>
+              <tr>
+                <td data-label="驗證層">模組</td>
+                <td data-label="外部數據"><a href="https://www.lightcounting.com/newsletter/en/june-2026-quarterly-market-update-375" target="_blank" rel="noreferrer">LightCounting</a> 估算 2025 年光收發器及相關產品銷售 $26.8B、增長 74%；2026 Q1 約 $10B、增長逾 90%。</td>
+                <td data-label="專題已有數據">LITE Q3 收入增長 90%、毛利 47.9%；FN 增長 39.3%；COHR Q3 總收入增長 21%，方向一致但產品組合與增速不同。</td>
+                <td data-label="交叉結論"><span class="evidence-state strong">強印證</span></td>
+                <td data-label="仍不能證明">市場統計含 AOC、電信及其他光產品；單一公司增速還受份額、客戶和併購口徑影響。</td>
+              </tr>
+              <tr>
+                <td data-label="驗證層">實體網路</td>
+                <td data-label="外部數據">IEA 指 2025 年資料中心用電增長 17%；<a href="https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers" target="_blank" rel="noreferrer">美國能源部</a>估算美國資料中心用電由 2023 年 176TWh 升至 2028 年 325–580TWh。</td>
+                <td data-label="專題已有數據">GLW Q2 光通信收入增長 32%、企業網路增長 65%；CIEN Q2 收入增長 39.5%，顯示需求由機房內延伸到光纖連接與 DCI／廣域傳輸。</td>
+                <td data-label="交叉結論"><span class="evidence-state medium">中強印證</span></td>
+                <td data-label="仍不能證明">電力是整個資料中心的指標，不是光學專屬需求；電網、變電站與審批也可能令專案延遲。</td>
+              </tr>
+              <tr>
+                <td data-label="驗證層">盈利品質</td>
+                <td data-label="外部數據"><a href="https://www.lightcounting.com/newsletter/en/april-2026-market-forecast-379" target="_blank" rel="noreferrer">LightCounting</a> 估算當前光模組需求高於供應約 30%，並預期短缺在 2026 年底逐步緩解。</td>
+                <td data-label="專題已有數據">LITE 毛利升至 47.9%，但 COHR 九個月簡化 FCF 約 -$537M，FN 亦承受擴產現金壓力。相同需求不會自動產生相同股東回報。</td>
+                <td data-label="交叉結論"><span class="evidence-state split">需求強、變現分化</span></td>
+                <td data-label="仍不能證明">供應短缺可能帶來重複下單；短缺消退後，ASP、庫存和資本回報可能轉弱。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="evidence-caveat"><b>投資含義：</b>外部數據已足以確認「AI 資料中心高速光互連」而非整個傳統光通信市場進入強週期。最直接受益的是高速雷射、800G／1.6T 模組、資料中心光纖與 DCI；FTTx、無線前傳等市場不能用同一組 AI 數據外推。</div>
+      </div>
+    </section>
+
     <section class="section" id="chain">
       <div class="shell">
-        <div class="section-head"><div class="section-no">02 / 產業鏈<span>CHAIN</span></div><div><h2>從光源到交換機：六層價值鏈</h2><p>每一層解決不同瓶頸。投資上最關鍵的不是公司是否「沾光」，而是它掌握的是稀缺 IP、製造良率，還是容易被競爭壓低的組裝價值。</p></div></div>
+        <div class="section-head"><div class="section-no">03 / 產業鏈<span>CHAIN</span></div><div><h2>從光源到交換機：六層價值鏈</h2><p>每一層解決不同瓶頸。投資上最關鍵的不是公司是否「沾光」，而是它掌握的是稀缺 IP、製造良率，還是容易被競爭壓低的組裝價值。</p></div></div>
         <div class="chain-board">
           <div class="chain-flow">
             <div class="chain-node"><small>01</small><h3>光纖材料與雷射</h3><p>光纖預製棒、InP、VCSEL、EML、CW laser；決定傳輸介質、光源功率、良率與供應安全。</p><div class="names">GLW · COHR · LITE · MTSI · AAOI</div></div>
@@ -863,7 +997,7 @@
 
     <section class="section" id="companies">
       <div class="shell">
-        <div class="section-head"><div class="section-no">03 / 公司<span>COMPANIES</span></div><div><h2>十二家公司，一套分析方法</h2><p>點擊篩選產業層級，再展開公司卡查看催化劑、失效條件與估值解讀。COHR 另有完整單公司深度頁。</p></div></div>
+        <div class="section-head"><div class="section-no">04 / 公司<span>COMPANIES</span></div><div><h2>十二家公司，一套分析方法</h2><p>點擊篩選產業層級，再展開公司卡查看催化劑、失效條件與估值解讀。COHR 另有完整單公司深度頁。</p></div></div>
         <div class="filters" id="filters"></div>
         <div class="company-grid" id="companyGrid"></div>
       </div>
@@ -871,7 +1005,7 @@
 
     <section class="section" id="ranking">
       <div class="shell">
-        <div class="section-head"><div class="section-no">04 / 評分<span>RANKING</span></div><div><h2>品質排序與估值溫度</h2><p>總分不是買賣建議；它用相同權重把「好公司」和「好價格」分開。估值分數越高代表進場容錯率越大。</p></div></div>
+        <div class="section-head"><div class="section-no">05 / 評分<span>RANKING</span></div><div><h2>品質排序與估值溫度</h2><p>總分不是買賣建議；它用相同權重把「好公司」和「好價格」分開。估值分數越高代表進場容錯率越大。</p></div></div>
         <div class="matrix-wrap"><table id="scoreTable"><thead><tr><th>公司</th><th>純度</th><th>護城河 25%</th><th>成長 25%</th><th>財務 20%</th><th>估值 20%</th><th>執行 10%</th><th>加權總分</th><th>定位</th></tr></thead><tbody>
           <tr><td>AVGO</td><td>2.5</td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.0</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.80</span></td><td>品質核心</td></tr>
           <tr><td>ANET</td><td>3.0</td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill mid">2.5</span></td><td><span class="score-pill">5.0</span></td><td><span class="score-pill">4.38</span></td><td>品質核心</td></tr>
@@ -892,7 +1026,7 @@
 
     <section class="section" id="forecast">
       <div class="shell">
-        <div class="section-head"><div class="section-no">05 / 預測<span>FORECAST</span></div><div><h2>下一季財報：市場真正要驗證什麼</h2><p>預測採公司指引中位數作錨，再按近期動能做小幅調整。重點不是精確猜中 EPS，而是建立「低於什麼水準就破壞論點」的可檢驗門檻。</p></div></div>
+        <div class="section-head"><div class="section-no">06 / 預測<span>FORECAST</span></div><div><h2>下一季財報：市場真正要驗證什麼</h2><p>預測採公司指引中位數作錨，再按近期動能做小幅調整。重點不是精確猜中 EPS，而是建立「低於什麼水準就破壞論點」的可檢驗門檻。</p></div></div>
         <div class="forecast-intro">
           <div class="forecast-callout"><b>FORECAST PRINCIPLE</b><strong>高速成長期，營收 beat 不夠；毛利、現金與下一季斜率必須一起 beat。</strong><p>當估值已反映兩年以上增長，市場會把「符合指引」當成落後，而不是成功。</p></div>
           <div class="forecast-rule"><h3>三層判讀法</h3><p><b>第一層：需求。</b> 800G／1.6T 出貨與資料中心收入是否加速。<br><b>第二層：品質。</b> 毛利改善是否來自良率／產品組合，而不是一次性項目。<br><b>第三層：現金。</b> 庫存與資本支出上升後，營運現金流能否跟上損益表。</p></div>
@@ -916,7 +1050,7 @@
 
     <section class="section" id="portfolio">
       <div class="shell">
-        <div class="section-head"><div class="section-no">06 / 組合<span>EXPOSURE</span></div><div><h2>三種研究型曝險，不是三份買單</h2><p>單押光模組會同時承擔技術路線、客戶集中與擴產風險。更合理的觀察方式，是把不同利潤池放在一起比較。</p></div></div>
+        <div class="section-head"><div class="section-no">07 / 組合<span>EXPOSURE</span></div><div><h2>三種研究型曝險，不是三份買單</h2><p>單押光模組會同時承擔技術路線、客戶集中與擴產風險。更合理的觀察方式，是把不同利潤池放在一起比較。</p></div></div>
         <div class="expectation-grid">
           <article class="expect-card"><small>QUALITY</small><h3>品質與現金流</h3><p>AVGO · ANET · GLW · FN</p><ul><li>較成熟的護城河與現金創造</li><li>光通訊純度較低，卻較能跨技術路線</li><li>主要風險仍是估值與大客戶集中</li></ul></article>
           <article class="expect-card"><small>PURE GROWTH</small><h3>高成長核心鏈</h3><p>MTSI · LITE · CRDO · COHR</p><ul><li>最直接受惠高速互連供需緊張</li><li>毛利模型差異大，不能只比收入增速</li><li>需要用下一季指引與自由現金流選時</li></ul></article>
@@ -927,7 +1061,7 @@
 
     <section class="section" id="tracker">
       <div class="shell">
-        <div class="section-head"><div class="section-no">07 / 追蹤<span>TRACKER</span></div><div><h2>把故事變成可推翻的論點</h2><p>未來兩到四季只追蹤能改變結論的訊號。沒有失效條件的研究，最後只會變成替股價找理由。</p></div></div>
+        <div class="section-head"><div class="section-no">08 / 追蹤<span>TRACKER</span></div><div><h2>把故事變成可推翻的論點</h2><p>未來兩到四季只追蹤能改變結論的訊號。沒有失效條件的研究，最後只會變成替股價找理由。</p></div></div>
         <div class="tracker">
           <article class="track-card"><div class="track-title"><b>1.6T 是否從樣品轉成量產收入</b><span class="status green">正面</span></div><p>追蹤 LITE、COHR、AAOI、FN 的 1.6T 出貨比例與量產良率。只有認證沒有收入，不能算完成。</p></article>
           <article class="track-card"><div class="track-title"><b>毛利擴張能否穿透到現金</b><span class="status gold">待驗證</span></div><p>COHR 與 FN 已出現資本支出壓力；若 EPS 上升但 FCF 連續兩季不改善，估值品質要下修。</p></article>
@@ -936,13 +1070,15 @@
           <article class="track-card"><div class="track-title"><b>庫存增速是否高於收入</b><span class="status red">風險</span></div><p>若需求真實，擴產期庫存可先升；但連續兩季存貨增速顯著快於收入，通常意味良率、交期或終端消化問題。</p></article>
           <article class="track-card"><div class="track-title"><b>估值是否靠更遠期年份支撐</b><span class="status red">風險</span></div><p>若分析開始從 FY27 改用 FY29 才能得到合理倍數，代表市場容錯率已太低，並非基本面變得更安全。</p></article>
           <article class="track-card"><div class="track-title"><b>GLW 長約能否轉成產能與現金</b><span class="status green">正面</span></div><p>追蹤 Amazon、NVIDIA、Meta 等長期合作帶來的光纖／連接收入、產能利用率與客戶共擔投資比例；只有公告協議而沒有收入與自由現金流，不算完成。</p></article>
+          <article class="track-card"><div class="track-title"><b>四大雲端資本開支是否下修</b><span class="status gold">領先指標</span></div><p>目前約 $735–760B 是需求閉環的資金底座；若合計指引下修逾 10%，同時雲端收入或 backlog 放慢，應先下調全產業增長斜率。</p></article>
+          <article class="track-card"><div class="track-title"><b>外部出貨與公司收入是否脫鉤</b><span class="status red">反證</span></div><p>若市場出貨仍高增，但 LITE、FN、COHR、GLW、CIEN 中多數連續兩季低於行業，可能代表份額流失、價格壓力或重複下單，而非單純市場波動。</p></article>
         </div>
       </div>
     </section>
 
     <section class="section" id="calendar">
       <div class="shell">
-        <div class="section-head"><div class="section-no">08 / 日曆<span>CATALYSTS</span></div><div><h2>接下來的催化劑窗口</h2><p>日期以公司公告或市場資料庫於 2026-08-10 顯示為準；標記「估」者仍可能調整。</p></div></div>
+        <div class="section-head"><div class="section-no">09 / 日曆<span>CATALYSTS</span></div><div><h2>接下來的催化劑窗口</h2><p>日期以公司公告或市場資料庫於 2026-08-10 顯示為準；標記「估」者仍可能調整。</p></div></div>
         <div class="calendar">
           <div class="event"><time>08.11 · 估</time><b>LITE FY26 Q4</b><span>驗證近 10 億美元季度收入與 35%+ 營益率。</span></div>
           <div class="event"><time>08.12</time><b>COHR FY26 Q4</b><span>核心是 40% 毛利、現金流與 FY27 Q1 指引。</span></div>
@@ -960,8 +1096,12 @@
     <section class="section" id="sources">
       <div class="kicker" hidden></div>
       <div class="shell">
-        <div class="section-head"><div class="section-no">09 / 來源<span>SOURCES</span></div><div><h2>資料來源與方法</h2><p>財務資料優先採公司 IR 與 SEC；估值採 2026 年 7 月下旬可得市場快照。所有預測均為本報告基準情境，並非公司承諾。</p></div></div>
+        <div class="section-head"><div class="section-no">10 / 來源<span>SOURCES</span></div><div><h2>資料來源與方法</h2><p>公司財務資料優先採 IR 與 SEC；外部驗證採雲端公司原始披露、能源機構與專業產業研究。估值採 2026 年 7 月下旬可得市場快照，所有預測均為本報告基準情境。</p></div></div>
         <div class="sources">
+          <p class="source">雲端資本開支：<a href="https://www.microsoft.com/en-us/investor/events/fy-2026/earnings-fy-2026-q3" target="_blank" rel="noreferrer">Microsoft 2026 指引</a>、<a href="https://live.euronext.com/en/financial-news/google-increases-capex-forecast-again-after-cloud-driven-earnings-beat" target="_blank" rel="noreferrer">Alphabet 2026 Q2 更新</a>、<a href="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx" target="_blank" rel="noreferrer">Meta 2026 Q2</a>、<a href="https://apnews.com/article/b4ce02b4666a35b8975823c5c22072ee" target="_blank" rel="noreferrer">Amazon 2026 Q2 電話會更新</a>與<a href="https://www.aboutamazon.com/news/company-news/amazon-earnings-q2-2026-report" target="_blank" rel="noreferrer">官方業績</a>。</p>
+          <p class="source">光模組市場：<a href="https://www.lightcounting.com/newsletter/en/june-2026-quarterly-market-update-375" target="_blank" rel="noreferrer">LightCounting 2026 年 6 月季度更新</a>與<a href="https://www.lightcounting.com/newsletter/en/april-2026-market-forecast-379" target="_blank" rel="noreferrer">2026 年 4 月市場預測</a>。</p>
+          <p class="source">端口與標準：<a href="https://www.prnewswire.com/news-releases/ai-investments-shield-ethernet-data-center-switch-market-from-tariff-disruptions-shattering-sales-records-according-to-delloro-group-302473912.html" target="_blank" rel="noreferrer">Dell’Oro 800G 交換機數據</a>、<a href="https://ethernetalliance.org/event/ofc-2026/" target="_blank" rel="noreferrer">Ethernet Alliance OFC 2026 互操作展示</a>。</p>
+          <p class="source">物理需求：<a href="https://www.iea.org/news/data-centre-electricity-use-surged-in-2025-even-with-tightening-bottlenecks-driving-a-scramble-for-solutions" target="_blank" rel="noreferrer">IEA 2026 資料中心用電更新</a>、<a href="https://www.energy.gov/articles/doe-releases-new-report-evaluating-increase-electricity-demand-data-centers" target="_blank" rel="noreferrer">美國能源部資料中心用電報告</a>。</p>
           <p class="source"><a href="https://www.coherent.com/news/press-releases/third-quarter-fiscal-year-2026-results" target="_blank" rel="noreferrer">Coherent FY26 Q3 結果</a>；另見 <a href="#companies">本頁 COHR 公司卡</a>。</p>
           <p class="source"><a href="https://investor.lumentum.com/quarterly-results/" target="_blank" rel="noreferrer">Lumentum 季度業績</a></p>
           <p class="source"><a href="https://ir.macom.com/news-releases/news-release-details/macom-reports-fiscal-third-quarter-2026-financial-results" target="_blank" rel="noreferrer">MACOM FY26 Q3 結果</a></p>
@@ -981,7 +1121,7 @@
     </section>
   </main>
 
-  <footer><div class="shell footer-grid"><div><strong>光速之後｜美股光通訊產業鏈深度分析</strong><br>資料截點：2026-08-10 · 版本 1.0</div><div>僅作研究與教育用途，不構成個人化投資建議。<br>高成長硬體股可能因指引、良率、客戶集中與估值重估而劇烈波動。</div></div></footer>
+  <footer><div class="shell footer-grid"><div><strong>光速之後｜美股光通訊產業鏈深度分析</strong><br>資料截點：2026-08-10 · 版本 1.1</div><div>僅作研究與教育用途，不構成個人化投資建議。<br>高成長硬體股可能因指引、良率、客戶集中與估值重估而劇烈波動。</div></div></footer>
 
   <script src="report-runtime.js?v=20260810-optical-special"></script>
   <script>

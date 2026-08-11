@@ -11,10 +11,15 @@ const ROOT = path.resolve(__dirname, '..');
 const ADJUST = process.argv.includes('--adjust-forward') ? 'forward' : 'none';
 const TECHNICAL_ONLY = process.argv.includes('--technical-only');
 const QUOTES_ONLY = process.argv.includes('--quotes-only');
-const OUTPUT = path.join(ROOT, 'data', QUOTES_ONLY ? '2026-08-07-longbridge-quotes.json' : ADJUST === 'forward' ? '2026-08-07-longbridge-adjusted.json' : '2026-08-07-longbridge.json');
-const CLI = '/opt/homebrew/bin/longbridge';
-const AS_OF = '2026-08-06';
-const PREMARKET_DATE = '2026-08-07';
+const argument = (name, fallback) => {
+  const index = process.argv.indexOf(name);
+  return index >= 0 && process.argv[index + 1] ? process.argv[index + 1] : fallback;
+};
+const AS_OF = argument('--as-of', '2026-08-06');
+const PREMARKET_DATE = argument('--premarket-date', '2026-08-07');
+const REPORT_DATE = argument('--report-date', PREMARKET_DATE);
+const OUTPUT = path.join(ROOT, 'data', QUOTES_ONLY ? `${REPORT_DATE}-longbridge-quotes.json` : ADJUST === 'forward' ? `${REPORT_DATE}-longbridge-adjusted.json` : `${REPORT_DATE}-longbridge.json`);
+const CLI = process.platform === 'win32' ? 'longbridge.exe' : '/opt/homebrew/bin/longbridge';
 
 const sectors = ['SPY','XLF','XLV','XLRE','XLB','XLP','XLI','XLE','XLU','XLC','XLY','XLK'];
 const themes = [
@@ -140,7 +145,7 @@ async function retry(task, attempts = 3) {
 
 async function fetchTicker(ticker) {
   const {stdout} = await retry(() => execFileAsync(CLI, [
-    'kline','history',`${ticker}.US`,'--period','day','--start','2025-08-01','--end','2026-08-06',
+    'kline','history',`${ticker}.US`,'--period','day','--start','2025-08-01','--end',AS_OF,
     '--adjust',ADJUST,'--format','json'
   ], {maxBuffer: 10 * 1024 * 1024}), 5);
   return summarize(ticker, parseJsonArray(stdout));

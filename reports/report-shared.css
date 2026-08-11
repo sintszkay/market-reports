@@ -428,6 +428,15 @@ body.flat-report{
   overflow-wrap:normal;
   word-break:keep-all;
 }
+.flat-report .fx-trend-table-8{min-width:1160px;table-layout:fixed}
+.flat-report .fx-trend-table-8 th:nth-child(1){width:15%}
+.flat-report .fx-trend-table-8 th:nth-child(2),
+.flat-report .fx-trend-table-8 th:nth-child(3),
+.flat-report .fx-trend-table-8 th:nth-child(4),
+.flat-report .fx-trend-table-8 th:nth-child(5),
+.flat-report .fx-trend-table-8 th:nth-child(6),
+.flat-report .fx-trend-table-8 th:nth-child(7){width:8.5%}
+.flat-report .fx-trend-table-8 th:nth-child(8){width:34%}
 .flat-report .bond-curve-table{min-width:760px;table-layout:fixed}
 .flat-report .bond-curve-table th:nth-child(1){width:22%}
 .flat-report .bond-curve-table th:nth-child(2),

@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-08-13T13:30:00Z",
+  "asOf": "2026-08-13",
+  "ppi": {
+    "headlineMom": "0.0%",
+    "headlineMomForecast": "+0.2%",
+    "headlineMomPrevious": "-0.1%（修正）",
+    "headlineYoy": "4.7%",
+    "headlineYoyForecast": "4.9%",
+    "headlineYoyPrevious": "5.5%",
+    "coreMom": "+0.2%",
+    "coreMomForecast": "+0.3%",
+    "coreMomPrevious": "+0.4%（修正）",
+    "coreYoy": "4.2%",
+    "coreYoyForecast": "4.1%",
+    "coreYoyPrevious": "4.7%",
+    "exFoodEnergyTradeMom": "+0.4%",
+    "exFoodEnergyTradeMomForecast": "+0.3%",
+    "exFoodEnergyTradeMomPrevious": "+0.1%",
+    "source": "https://www.bls.gov/news.release/ppi.nr0.htm"
+  },
+  "claims": {
+    "initial": "20.9萬",
+    "initialForecast": "20.2萬",
+    "initialPrevious": "20.0萬（修正）",
+    "continuing": "177.7萬",
+    "continuingForecast": "179.4萬",
+    "continuingPrevious": "179.9萬（修正）",
+    "source": "https://apnews.com/article/ea0215d19c35367630cb637544e27748"
+  },
+  "earnings": {
+    "CSCO": {
+      "epsActual": "1.22",
+      "epsForecast": "1.17",
+      "epsPrevious": "1.06",
+      "revenueActual": "17.25B",
+      "revenueForecast": "16.84B",
+      "revenuePrevious": "15.84B",
+      "label": "Beat／Beat",
+      "tone": "green",
+      "source": "https://www.marketbeat.com/earnings/reports/2026-8-12-cisco-systems-inc-stock/"
+    },
+    "COHR": {
+      "epsActual": "1.74",
+      "epsForecast": "1.62",
+      "epsPrevious": "1.41",
+      "revenueActual": "2.05B",
+      "revenueForecast": "1.98B",
+      "revenuePrevious": "1.81B",
+      "label": "Beat／Beat",
+      "tone": "green",
+      "source": "https://www.coherent.com/news/press-releases/fourth-quarter-and-fiscal-year-2026-results"
+    }
+  },
+  "dxy": {
+    "price": 99.835,
+    "changePct": -0.175,
+    "rsi14": 41.49,
+    "ma20": 100.4523,
+    "ma50": 100.5493,
+    "source": "https://finance.yahoo.com/quote/DX-Y.NYB/history/"
+  }
+}

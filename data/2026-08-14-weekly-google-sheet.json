@@ -1,0 +1,63 @@
+{
+  "asOf": "2026-08-14",
+  "capturedAt": "2026-08-15T13:54:13+08:00",
+  "marketWatch": {
+    "spreadsheetId": "1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE",
+    "tabs": {
+      "Sector Dashboard": {
+        "qa": "REVIEW",
+        "asOf": "2026-08-14",
+        "rowsCurrent": 18,
+        "rowsExpected": 18,
+        "note": "Longbridge EOD values current; dashboard spot-check pending."
+      },
+      "Thematic Sectors": {
+        "qa": "REVIEW",
+        "asOf": "2026-08-14",
+        "rowsCurrent": 45,
+        "rowsExpected": 45,
+        "requiredTickers": ["BUG", "PAVE", "VOO"],
+        "note": "Longbridge EOD values current; dashboard spot-check pending."
+      },
+      "Macro": {
+        "qa": "REVIEW",
+        "asOf": "2026-08-14",
+        "note": "Visible ETF price rows contain stale 8/13 values; report uses Longbridge 8/14 prices and Treasury official yields."
+      },
+      "Maket breath": {
+        "qa": "STALE",
+        "asOf": "2026-08-13",
+        "note": "Latest verified MA breadth row is 8/13; no value was imputed for 8/14."
+      },
+      "Data QA": {
+        "qa": "REVIEW",
+        "asOf": "2026-08-15"
+      }
+    }
+  },
+  "stockbee": {
+    "spreadsheetId": "1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE",
+    "tab": "2026",
+    "qa": "PASS",
+    "asOf": "2026-08-14"
+  },
+  "breadth": [
+    {"date":"2026-08-13","spx20":68.78,"spx50":68.19,"ndx20":68.62,"ndx50":62.74,"iwm20":66.37,"iwm50":62.68},
+    {"date":"2026-08-12","spx20":64.61,"spx50":64.61,"ndx20":68.62,"ndx50":56.86,"iwm20":63.06,"iwm50":61.52},
+    {"date":"2026-08-11","spx20":63.61,"spx50":63.22,"ndx20":64.70,"ndx50":52.94,"iwm20":60.24,"iwm50":60.29},
+    {"date":"2026-08-10","spx20":62.82,"spx50":65.20,"ndx20":65.68,"ndx50":56.86,"iwm20":57.94,"iwm50":60.29},
+    {"date":"2026-08-07","spx20":65.20,"spx50":65.60,"ndx20":70.58,"ndx50":52.94,"iwm20":63.83,"iwm50":62.96}
+  ],
+  "stockbeeRows": [
+    {"date":"2026-08-14","up4":232,"down4":142,"ratio5d":1.55,"ratio10d":2.17,"quarterUp25":1648,"quarterDown25":988,"monthUp25":290,"monthDown25":100,"monthUp50":53,"monthDown50":29,"up34_13":2042,"down34_13":1252,"universe":6532,"t2108":54.26,"sp500":7786.04},
+    {"date":"2026-08-13","up4":345,"down4":167,"ratio5d":1.83,"ratio10d":2.05,"quarterUp25":1630,"quarterDown25":1007,"monthUp25":271,"monthDown25":101,"monthUp50":45,"monthDown50":31,"up34_13":2027,"down34_13":1304,"universe":6532,"t2108":55.02},
+    {"date":"2026-08-12","up4":297,"down4":172,"ratio5d":1.59,"ratio10d":2.08,"quarterUp25":1573,"quarterDown25":1011,"monthUp25":222,"monthDown25":125,"monthUp50":39,"monthDown50":33,"up34_13":2026,"down34_13":1308,"universe":6534,"t2108":52.04},
+    {"date":"2026-08-11","up4":259,"down4":181,"ratio5d":1.51,"ratio10d":1.67,"quarterUp25":1552,"quarterDown25":1040,"monthUp25":226,"monthDown25":131,"monthUp50":42,"monthDown50":36,"up34_13":2013,"down34_13":1331,"universe":6529,"t2108":50.69},
+    {"date":"2026-08-10","up4":310,"down4":266,"ratio5d":2.06,"ratio10d":1.56,"quarterUp25":1488,"quarterDown25":1049,"monthUp25":215,"monthDown25":132,"monthUp50":34,"monthDown50":38,"up34_13":2006,"down34_13":1360,"universe":6528,"t2108":51.06},
+    {"date":"2026-08-07","up4":510,"down4":152,"ratio5d":2.85,"ratio10d":1.64,"quarterUp25":1540,"quarterDown25":1051,"monthUp25":189,"monthDown25":123,"monthUp50":27,"monthDown50":34,"up34_13":2111,"down34_13":1308,"universe":6528,"t2108":53.58}
+  ],
+  "treasury": {
+    "2026-08-07": {"twoYear":4.19,"tenYear":4.65,"twentyYear":5.20,"thirtyYear":5.19},
+    "2026-08-14": {"twoYear":4.17,"tenYear":4.68,"twentyYear":5.25,"thirtyYear":5.25}
+  }
+}

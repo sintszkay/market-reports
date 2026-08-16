@@ -60,6 +60,33 @@ const viewports = [
           const widths = states.map((state) => state.getBoundingClientRect().width);
           return Math.max(...widths) - Math.min(...widths) > 2;
         }).length;
+        const themeMoverLayout = [...document.querySelectorAll("table.theme-mover-table")].map((table) => {
+          const tableWidth = table.getBoundingClientRect().width;
+          const commentWidth = table.querySelector("thead th:last-child")?.getBoundingClientRect().width || 0;
+          const rows = [...table.querySelectorAll("tbody tr")];
+          return {
+            columns:table.querySelectorAll("thead th").length,
+            rows:rows.length,
+            commentRatio:tableWidth ? commentWidth / tableWidth : 0,
+            maxRowHeight:Math.max(0, ...rows.map((row) => row.getBoundingClientRect().height)),
+            scrollable:table.parentElement.scrollWidth > table.parentElement.clientWidth + 1
+          };
+        });
+        const macroFedTable = document.querySelector("table.weekly-macro-fed-table");
+        const macroFedLayout = macroFedTable ? (() => {
+          const tableWidth = macroFedTable.getBoundingClientRect().width;
+          const headers = [...macroFedTable.querySelectorAll("thead th")];
+          const rows = [...macroFedTable.querySelectorAll("tbody tr")];
+          return {
+            columns:headers.length,
+            rows:rows.length,
+            actualRatio:tableWidth ? headers[1].getBoundingClientRect().width / tableWidth : 0,
+            policyRatio:tableWidth ? headers[4].getBoundingClientRect().width / tableWidth : 0,
+            overflowCells:[...macroFedTable.querySelectorAll("th,td")].filter((cell) => cell.scrollWidth > cell.clientWidth + 1).length,
+            maxRowHeight:Math.max(0, ...rows.map((row) => row.getBoundingClientRect().height)),
+            scrollable:macroFedTable.parentElement.scrollWidth > macroFedTable.parentElement.clientWidth + 1
+          };
+        })() : null;
         return {
           bodyTextLength:body.innerText.length,
           sections:document.querySelectorAll("main section").length,
@@ -74,6 +101,8 @@ const viewports = [
           escapedTables,
           scrollableTables:tableContainers.filter((container) => container.scrollWidth > container.clientWidth + 1).length,
           maMisalignment,
+          themeMoverLayout,
+          macroFedLayout,
           sectorRows:document.querySelector('table[data-etf-group="sector"]')?.querySelectorAll("tbody tr").length || 0,
           thematicRows:document.querySelector('table[data-etf-group="thematic"]')?.querySelectorAll("tbody tr").length || 0,
           hasVisibleTitle:Boolean(document.querySelector("h1")?.getBoundingClientRect().height),
@@ -92,6 +121,8 @@ const viewports = [
         tableColumns:metrics.tableMismatches.length === 0,
         tableContainers:metrics.escapedTables === 0,
         maAlignment:metrics.maMisalignment === 0,
+        themeMoverLayout:metrics.themeMoverLayout.length === 2 && metrics.themeMoverLayout.every((layout) => layout.columns === 6 && layout.rows === 5 && layout.commentRatio >= 0.4 && layout.maxRowHeight <= 90 && (viewport.name !== "mobile" || layout.scrollable)),
+        macroFedLayout:Boolean(metrics.macroFedLayout) && metrics.macroFedLayout.columns === 5 && metrics.macroFedLayout.rows === 8 && metrics.macroFedLayout.actualRatio >= 0.2 && metrics.macroFedLayout.policyRatio >= 0.3 && metrics.macroFedLayout.overflowCells === 0 && metrics.macroFedLayout.maxRowHeight <= 90 && (viewport.name !== "mobile" || metrics.macroFedLayout.scrollable),
         universes:metrics.sectorRows === 12 && metrics.thematicRows === 45,
         console:consoleErrors.length === 0
       };

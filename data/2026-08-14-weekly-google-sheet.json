@@ -1,6 +1,6 @@
 {
   "asOf": "2026-08-14",
-  "capturedAt": "2026-08-15T13:54:13+08:00",
+  "capturedAt": "2026-08-16T15:30:10+08:00",
   "marketWatch": {
     "spreadsheetId": "1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE",
     "tabs": {
@@ -25,9 +25,9 @@
         "note": "Visible ETF price rows contain stale 8/13 values; report uses Longbridge 8/14 prices and Treasury official yields."
       },
       "Maket breath": {
-        "qa": "STALE",
-        "asOf": "2026-08-13",
-        "note": "Latest verified MA breadth row is 8/13; no value was imputed for 8/14."
+        "qa": "PASS",
+        "asOf": "2026-08-14",
+        "note": "Latest verified MA breadth row is 8/14; values were refreshed from the user master sheet on 8/16."
       },
       "Data QA": {
         "qa": "REVIEW",
@@ -42,10 +42,10 @@
     "asOf": "2026-08-14"
   },
   "breadth": [
+    {"date":"2026-08-14","spx20":66.20,"spx50":69.38,"ndx20":69.60,"ndx50":64.70,"iwm20":66.32,"iwm50":63.76},
     {"date":"2026-08-13","spx20":68.78,"spx50":68.19,"ndx20":68.62,"ndx50":62.74,"iwm20":66.37,"iwm50":62.68},
     {"date":"2026-08-12","spx20":64.61,"spx50":64.61,"ndx20":68.62,"ndx50":56.86,"iwm20":63.06,"iwm50":61.52},
     {"date":"2026-08-11","spx20":63.61,"spx50":63.22,"ndx20":64.70,"ndx50":52.94,"iwm20":60.24,"iwm50":60.29},
-    {"date":"2026-08-10","spx20":62.82,"spx50":65.20,"ndx20":65.68,"ndx50":56.86,"iwm20":57.94,"iwm50":60.29},
     {"date":"2026-08-07","spx20":65.20,"spx50":65.60,"ndx20":70.58,"ndx50":52.94,"iwm20":63.83,"iwm50":62.96}
   ],
   "stockbeeRows": [

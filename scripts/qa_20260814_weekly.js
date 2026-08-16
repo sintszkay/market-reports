@@ -20,7 +20,7 @@ const assertRsiDescending = (fragment, label) => {
 
 need(/data-report-type="weekly"/, "週報類型缺失");
 need(/價格仍強、廣度降溫/, "主標題未呈現本週核心敘事");
-need(/40<small>\/100<\/small>/, "市場總分 40/100 缺失");
+need(/37<small>\/100<\/small>/, "市場總分 37/100 缺失");
 need(/Intermediate Risk/, "Intermediate Risk 分類缺失");
 need(/0 命中/, "上週對賬命中數缺失");
 need(/0 已觸發/, "上週對賬已觸發數缺失");
@@ -30,7 +30,7 @@ need(/本週五大弱勢股/, "五大弱勢股缺失");
 need(/NVDA 補充/, "NVDA 週變化與均線補充缺失");
 need(/三大指數廣度/, "三大指數廣度綜合分析缺失");
 need(/與 Stockbee 交叉驗證/, "Stockbee 交叉驗證缺失");
-need(/5日惡化 3\/8/, "五日廣度量化分數缺失");
+need(/5日惡化 2\/8/, "五日廣度量化分數缺失");
 need(/技術 0\/12/, "三大指數技術分數缺失");
 need(/VIX 0\/5/, "VIX 五項分數缺失");
 need(/DXY[\s\S]{0,220}99\.74/, "DXY 8/14 延遲收盤缺失");
@@ -38,6 +38,8 @@ need(/2Y／10Y／20Y／30Y 一週 -2／\+3／\+5／\+6bp/, "美債週變化缺�
 need(/7月 CPI/, "本週 CPI 復盤缺失");
 need(/7月 PPI/, "本週 PPI 復盤缺失");
 need(/7月零售銷售/, "本週零售復盤缺失");
+need(/實際／最新/, "宏觀與 Fed 表的實際值表頭缺失");
+need(/預期／門檻/, "宏觀與 Fed 表的預期表頭缺失");
 need(/8\/18 08:30/, "下週進口價格／房屋事件缺失");
 need(/8\/19 14:00/, "下週 FOMC 紀要事件缺失");
 need(/8\/20 08:00/, "下週 Walmart 財報事件缺失");
@@ -64,6 +66,28 @@ for (const ticker of ["BUG", "PAVE"]) if (!new RegExp(`<td>${ticker}<\\/td>`).te
 if (count(/<th\b/g, thematic) !== 7 || !/report-cols-7/.test(thematic)) failures.push("Thematic ETF 必須使用共用七欄排版");
 assertRsiDescending(thematic, "Thematic ETF");
 
+const macroStart = html.indexOf("<h2>宏觀與 Fed 路徑</h2>");
+const macroEnd = html.indexOf("</table>", macroStart);
+const macroFedTable = macroStart >= 0 && macroEnd >= 0 ? html.slice(macroStart, macroEnd + 8) : "";
+if (!/weekly-macro-fed-table/.test(macroFedTable)) failures.push("宏觀與 Fed 表缺少專用排版類別");
+if (rowsIn(macroFedTable) !== 8) failures.push(`宏觀與 Fed 表必須 8 列，目前 ${rowsIn(macroFedTable)}`);
+if (count(/<th\b/g, macroFedTable) !== 5) failures.push("宏觀與 Fed 表必須使用五欄排版");
+
+const thematicGainers = tableAfter("Thematic 週漲幅前 5 點評");
+const thematicLosers = tableAfter("Thematic 週跌幅前 5 點評");
+if (rowsIn(thematicGainers) !== 5) failures.push(`Thematic 週漲幅點評必須 5 列，目前 ${rowsIn(thematicGainers)}`);
+if (rowsIn(thematicLosers) !== 5) failures.push(`Thematic 週跌幅點評必須 5 列，目前 ${rowsIn(thematicLosers)}`);
+if (count(/<th\b/g, thematicGainers) !== 6 || !/theme-mover-table/.test(thematicGainers)) failures.push("Thematic 週漲幅點評必須使用六欄固定排版");
+if (count(/<th\b/g, thematicLosers) !== 6 || !/theme-mover-table/.test(thematicLosers)) failures.push("Thematic 週跌幅點評必須使用六欄固定排版");
+for (const ticker of ["OIH", "XOP", "XAR", "QTUM", "BUG"]) if (!new RegExp(`<td>${ticker}<\\/td>`).test(thematicGainers)) failures.push(`Thematic 週漲幅前五缺少 ${ticker}`);
+for (const ticker of ["KWEB", "FXI", "IBIT", "JETS", "COPX"]) if (!new RegExp(`<td>${ticker}<\\/td>`).test(thematicLosers)) failures.push(`Thematic 週跌幅前五缺少 ${ticker}`);
+const gainerReturns = [...thematicGainers.matchAll(/data-five-day="(-?\d+(?:\.\d+)?)"/g)].map((match) => Number(match[1]));
+const loserReturns = [...thematicLosers.matchAll(/data-five-day="(-?\d+(?:\.\d+)?)"/g)].map((match) => Number(match[1]));
+if (gainerReturns.length !== 5 || gainerReturns.some((value, index) => value <= 0 || (index > 0 && value > gainerReturns[index - 1]))) failures.push("Thematic 週漲幅前五未按 5 日報酬由高至低排序");
+if (loserReturns.length !== 5 || loserReturns.some((value, index) => value >= 0 || (index > 0 && value < loserReturns[index - 1]))) failures.push("Thematic 週跌幅前五未按 5 日報酬由低至高排序");
+need(/油價急升加重燃油成本敏感度/, "JETS 與油價成本連動點評缺失");
+need(/強勢後獲利回吐/, "COPX 趨勢品質點評缺失");
+
 const indexStart = html.indexOf("<h2>美股指數與風格復盤</h2>");
 const indexEnd = html.indexOf("</table>", indexStart);
 const indexTable = html.slice(indexStart, indexEnd + 8);
@@ -80,7 +104,7 @@ if (moverTables.length < 2 || moverTables[0] !== 5 || moverTables[1] !== 5) fail
 
 const scoreCells = [...html.matchAll(/data-score="(\d+)"\s+data-max-score="(\d+)"/g)].map((match) => [Number(match[1]), Number(match[2])]);
 if (scoreCells.length !== 7) failures.push(`市場總分應有 7 個分項，目前 ${scoreCells.length}`);
-if (scoreCells.reduce((sum, row) => sum + row[0], 0) !== 40 || scoreCells.reduce((sum, row) => sum + row[1], 0) !== 100) failures.push("市場分項無法反算為 40/100");
+if (scoreCells.reduce((sum, row) => sum + row[0], 0) !== 37 || scoreCells.reduce((sum, row) => sum + row[1], 0) !== 100) failures.push("市場分項無法反算為 37/100");
 const probabilities = [...html.matchAll(/data-scenario-probability="(\d+)"/g)].map((match) => Number(match[1]));
 if (probabilities.length !== 4 || probabilities.reduce((sum, value) => sum + value, 0) !== 100) failures.push("下週四情境概率必須合計 100%");
 

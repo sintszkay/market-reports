@@ -141,17 +141,40 @@ const moverTable = (title, rows) => `<h3>${title}</h3>${table([
   {label:"股票"},{label:"5日",num:true},{label:"1月",num:true},{label:"20/50/200MA",ma:true},{label:"市場反饋因子"}
 ], rows.map((row) => `<tr>${cell(row.ticker)}${num(pct(row.fiveDayPct))}${num(pct(row.oneMonthPct))}${maCell(row)}${cell(moverNotes[row.ticker] || "財報與預期差推動本週重新定價。")}</tr>`), "ma-table report-data-table report-cols-5")}`;
 
+const themeWeeklyUniverse = themes.filter((row) => row.ticker !== "VOO");
+const themeWeeklyGainers = [...themeWeeklyUniverse].sort((a, b) => b.fiveDayPct - a.fiveDayPct).slice(0, 5);
+const themeWeeklyLosers = [...themeWeeklyUniverse].sort((a, b) => a.fiveDayPct - b.fiveDayPct).slice(0, 5);
+const themeMoverNotes = {
+  OIH: `油服鏈直接反映油價與上游資本開支預期，並與 USO 本週 ${signed(byTicker("USO").fiveDayPct)} 互相確認。三線上方但週線陡升，下週先看能否守住 20MA ${fixed(byTicker("OIH").ma20)}。`,
+  XOP: `油氣勘探與生產同步領漲，說明能源行情不只集中在油服。三線上方、RSI ${fixed(byTicker("XOP").rsi14)}；若油價回落但 XOP 守住 20MA，輪動品質較佳。`,
+  XAR: `航太國防延續一月 ${signed(byTicker("XAR").oneMonthPct)} 的趨勢，距 52 週高僅 ${fixed(Math.abs(byTicker("XAR").distanceFrom52wHighPct))}%。RSI 接近 70，屬結構領先但短線不宜追高。`,
+  QTUM: `量子運算／新科技籃子週月同步走強，顯示高 beta 科技仍有選擇性風險偏好。三線上方；下週以 50MA ${fixed(byTicker("QTUM").ma50)} 作中期強弱線。`,
+  BUG: `資安主題本週 ${signed(byTicker("BUG").fiveDayPct)}、一月 ${signed(byTicker("BUG").oneMonthPct)}，三線上方且距 52 週高不遠。相較廣泛軟體，資安需求可見度較高；觀察能否續創相對強度新高。`,
+  KWEB: `本週主題 ETF 最大跌幅，且一月轉負；已低於 20MA 與 200MA，只剩 50MA ${fixed(byTicker("KWEB").ma50)} 支撐。未收回 20MA 前，中國互聯網仍屬反彈而非趨勢領先。`,
+  FXI: `中國大型股與 KWEB 同步走弱，確認壓力並非單一互聯網子題。仍守 50MA、但低於 20MA／200MA；下週先看 50MA ${fixed(byTicker("FXI").ma50)} 能否守住。`,
+  IBIT: `加密 beta 本週與一月皆負，並是後五名中唯一跌破 20／50／200MA 的標的。RSI ${fixed(byTicker("IBIT").rsi14)} 尚未超賣，價格未收回 50MA ${fixed(byTicker("IBIT").ma50)} 前不視為修復。`,
+  JETS: `油價急升加重燃油成本敏感度，航空 ETF 本週落後；但價格仍略高於三條均線，一月仍正。這比較像成本衝擊測試，下週重點是 20MA ${fixed(byTicker("JETS").ma20)}。`,
+  COPX: `銅礦本週回吐 ${fixed(Math.abs(byTicker("COPX").fiveDayPct))}%，但一月仍升 ${signed(byTicker("COPX").oneMonthPct)} 且三線上方。現階段偏向強勢後獲利回吐，跌破 20MA ${fixed(byTicker("COPX").ma20)} 才是趨勢降級。`
+};
+const themeMoverReviewTable = (title, rows, attrs) => `<div class="theme-mover-review"><h3>${title}</h3>${table([
+  {label:"ETF"},{label:"5日",num:true},{label:"1月",num:true},{label:"20/50/200MA",ma:true},{label:"RSI",num:true},{label:"點評／下週觀察"}
+], rows.map((row) => `<tr data-five-day="${fixed(row.fiveDayPct, 4)}">${cell(row.ticker)}${num(pct(row.fiveDayPct))}${num(pct(row.oneMonthPct))}${maCell(row)}${rsiCell(row.rsi14)}${cell(themeMoverNotes[row.ticker])}</tr>`), "ma-table report-data-table report-cols-6 theme-mover-table", attrs)}</div>`;
+
+if (themeWeeklyGainers.map((row) => row.ticker).join(",") !== "OIH,XOP,XAR,QTUM,BUG" || themeWeeklyLosers.map((row) => row.ticker).join(",") !== "KWEB,FXI,IBIT,JETS,COPX") {
+  throw new Error("Thematic ETF 週漲跌幅前五名與資料快照不一致。");
+}
+
 const currentBreadth = sheet.breadth[0];
 const priorBreadth = sheet.breadth.at(-1);
 const currentStockbee = sheet.stockbeeRows[0];
 const priorStockbee = sheet.stockbeeRows.at(-1);
 const breadthDefinitions = [
-  ["SPX >20MA（8/13）", currentBreadth.spx20, priorBreadth.spx20, "%"],
-  ["SPX >50MA（8/13）", currentBreadth.spx50, priorBreadth.spx50, "%"],
-  ["NDX >20MA（8/13）", currentBreadth.ndx20, priorBreadth.ndx20, "%"],
-  ["NDX >50MA（8/13）", currentBreadth.ndx50, priorBreadth.ndx50, "%"],
-  ["IWM >20MA（8/13）", currentBreadth.iwm20, priorBreadth.iwm20, "%"],
-  ["IWM >50MA（8/13）", currentBreadth.iwm50, priorBreadth.iwm50, "%"],
+  ["SPX >20MA（8/14）", currentBreadth.spx20, priorBreadth.spx20, "%"],
+  ["SPX >50MA（8/14）", currentBreadth.spx50, priorBreadth.spx50, "%"],
+  ["NDX >20MA（8/14）", currentBreadth.ndx20, priorBreadth.ndx20, "%"],
+  ["NDX >50MA（8/14）", currentBreadth.ndx50, priorBreadth.ndx50, "%"],
+  ["IWM >20MA（8/14）", currentBreadth.iwm20, priorBreadth.iwm20, "%"],
+  ["IWM >50MA（8/14）", currentBreadth.iwm50, priorBreadth.iwm50, "%"],
   ["Stockbee 5D ratio（8/14）", currentStockbee.ratio5d, priorStockbee.ratio5d, ""],
   ["Stockbee 10D ratio（8/14）", currentStockbee.ratio10d, priorStockbee.ratio10d, ""],
   ["4%+ 上漲／下跌（8/14）", `${currentStockbee.up4}／${currentStockbee.down4}`, `${priorStockbee.up4}／${priorStockbee.down4}`, "pair"],
@@ -204,7 +227,7 @@ const crossAssetChecks = [
 const crossAssetRisk = crossAssetChecks.filter(Boolean).length;
 const scoreRows = [
   ["四大 ETF 技術", `${fourEtfRawRisk}/16`, "20%", Math.round(fourEtfRawRisk / 16 * 20), 20, "每檔以 5日<0、1月<0、低於20MA、低於50MA各計 1 點；本週只有 DIA 五日為負。"],
-  ["市場廣度", `${breadthScore}/8`, "20%", Math.round(breadthScore / 8 * 20), 20, "六項 MA 廣度以 8/13 對 8/7，Stockbee 5D／10D 以 8/14 對 8/7；惡化計風險。"],
+  ["市場廣度", `${breadthScore}/8`, "20%", Math.round(breadthScore / 8 * 20), 20, "六項 MA 廣度與 Stockbee 5D／10D 均以 8/14 對 8/7；惡化計風險。"],
   ["VIX 波動", `${vixScore}/5`, "10%", Math.round(vixScore / 5 * 10), 10, "VIX>20、VIX 日／週升、VIXY 高於20／50MA，共五項。"],
   ["板塊／主題動能", `${weakRows.length}/${weakUniverse.length}`, "15%", Math.round(weakRows.length / weakUniverse.length * 15), 15, "5日<0、低於20MA、RSI<50 三項中至少兩項成立即列弱勢。"],
   ["50MA ATR 延伸", `${atrExtendedCount}/${atrUniverse.length}`, "10%", Math.round(atrExtendedCount / atrUniverse.length * 10), 10, "固定 18 檔中距 50MA 絕對值達 2 ATR 的標的數。"],
@@ -212,16 +235,16 @@ const scoreRows = [
   ["宏觀／事件風險", "3/3", "10%", 10, 10, "零售與信心轉弱、通膨仍高於目標且油價上升、下週 FOMC 紀要與零售財報均構成事件窗。"]
 ];
 const totalRisk = scoreRows.reduce((sum, row) => sum + row[3], 0);
-if (breadthScore !== 3 || technicalScore !== 0 || vixScore !== 0 || crossAssetRisk !== 3 || totalRisk !== 40) throw new Error(`量化分數異常：breadth=${breadthScore}, technical=${technicalScore}, vix=${vixScore}, cross=${crossAssetRisk}, total=${totalRisk}`);
+if (breadthScore !== 2 || technicalScore !== 0 || vixScore !== 0 || crossAssetRisk !== 3 || totalRisk !== 37) throw new Error(`量化分數異常：breadth=${breadthScore}, technical=${technicalScore}, vix=${vixScore}, cross=${crossAssetRisk}, total=${totalRisk}`);
 const marketScoreTable = table([
   {label:"評分維度"},{label:"原始風險",num:true},{label:"權重",num:true},{label:"風險分",num:true},{label:"量化依據"}
 ], scoreRows.map((row) => `<tr>${cell(row[0])}${num(row[1])}${num(row[2])}<td class="num" data-score="${row[3]}" data-max-score="${row[4]}">${row[3]}/${row[4]}</td>${cell(row[5])}</tr>`), "market-score-table report-data-table report-cols-5");
 
 const previousRules = [
-  ["大盤趨勢失效", "SPY <20MA 750.17，且 SPX >20MA 廣度 <55%。", "SPY 776.34；SPX >20MA 68.78%（8/13）。", "未觸發", "價格與短線廣度都高於失效線。"],
+  ["大盤趨勢失效", "SPY <20MA 750.17，且 SPX >20MA 廣度 <55%。", "SPY 776.34；SPX >20MA 66.20%（8/14）。", "未觸發", "價格與短線廣度都高於失效線。"],
   ["科技修復失效", "QQQ <50MA 714.31，且 SMH <20MA 564.01。", "QQQ 731.07；SMH 587.82。", "未觸發", "科技價格未跌破複合風控。"],
-  ["晶片完整突破", "SMH >50MA 594.94，且 NDX >20MA 廣度 >60%。", "SMH 587.82；NDX 68.62%（8/13）。", "未觸發", "廣度達標，但 SMH 未收回 50MA。"],
-  ["廣度失速", "NDX >20MA <55%，或 Stockbee 5D <1。", "68.62%（8/13）；1.55（8/14）。", "未觸發", "短線廣度降溫，但尚未失速。"],
+  ["晶片完整突破", "SMH >50MA 594.94，且 NDX >20MA 廣度 >60%。", "SMH 587.82；NDX 69.60%（8/14）。", "未觸發", "廣度達標，但 SMH 未收回 50MA。"],
+  ["廣度失速", "NDX >20MA <55%，或 Stockbee 5D <1。", "69.60%（8/14）；1.55（8/14）。", "未觸發", "短線廣度降溫，但尚未失速。"],
   ["波動升級", "VIX >20，或五項波動分數 >=4/5。", "VIX 14.25；0/5。", "未觸發", "波動沒有確認價格分化。"],
   ["美元／長端壓力", "DXY >101.50，且 10Y >4.80%。", `DXY ${fixed(dxyExternal.close)}；10Y ${fixed(treasuryCurrent.tenYear)}%。`, "未觸發", "兩項均未達門檻；USDU 技術代理亦低於 20／50MA。"],
   ["通膨上行", "CPI 年率 >=3.6%，或核心月率 >=0.4%。", "CPI 3.4%；核心月率 0.2%。", "未觸發", "通膨仍高於目標，但沒有突破上週風控線。"],
@@ -294,7 +317,7 @@ const scenarioTable = table([
 
 const linkageRows = [
   ["大盤 ETF", "四大 ETF 仍在 20／50／200MA 上方。", "SPY 守 756.20、IWM 守 296.72。", "SPY <756.20 且 SPX 20MA 廣度 <55%。"],
-  ["市場廣度", "MA 廣度 3/6 改善；Stockbee 5D 降、10D 升。", "5D >2 且 4% 上漲持續多於下跌。", "NDX 20MA <55% 或 Stockbee 5D <1。"],
+  ["市場廣度", "MA 廣度 5/6 改善；Stockbee 5D 降、10D 升。", "5D >2 且 4% 上漲持續多於下跌。", "NDX 20MA <55% 或 Stockbee 5D <1。"],
   ["Sector／Thematic", "能源最強，軟體／資安仍強；中國與加密落後。", "SMH >591.49 且 NDX >20MA >60%。", "QQQ <712.78 且 SMH <564.11。"],
   ["美債／美元", "2Y 小跌、長端上升，曲線熊市陡峭化。", "10Y <4.55%、DXY <99.00。", "10Y >4.80% 且 DXY >101.50。"],
   ["商品", "USO 急升，金銀月線延伸，IBIT 轉弱。", "USO 回吐且 CPER／IWM 同升確認實體需求。", "USO 續升且 10Y 同升，代表再通膨壓力加劇。"],
@@ -305,10 +328,10 @@ const linkageTable = table([
 ], linkageRows.map((row) => `<tr>${cell(row[0])}${cell(row[1])}${cell(row[2])}${cell(row[3])}</tr>`), "scenario-linkage-table report-data-table report-cols-4");
 
 const monitoring = [
-  ["大盤趨勢失效", `SPY <20MA ${fixed(byTicker("SPY").ma20)}，且 SPX >20MA 廣度 <55%`, `${fixed(byTicker("SPY").close)}；${fixed(currentBreadth.spx20)}%（8/13）`, "總風險降低 1/3。"],
+  ["大盤趨勢失效", `SPY <20MA ${fixed(byTicker("SPY").ma20)}，且 SPX >20MA 廣度 <55%`, `${fixed(byTicker("SPY").close)}；${fixed(currentBreadth.spx20)}%（8/14）`, "總風險降低 1/3。"],
   ["科技修復失效", `QQQ <50MA ${fixed(byTicker("QQQ").ma50)}，且 SMH <20MA ${fixed(byTicker("SMH").ma20)}`, `${fixed(byTicker("QQQ").close)}；${fixed(byTicker("SMH").close)}`, "科技與晶片降低 1/3。"],
-  ["晶片完整突破", `SMH >50MA ${fixed(byTicker("SMH").ma50)}，且 NDX >20MA 廣度 >60%`, `${fixed(byTicker("SMH").close)}；${fixed(currentBreadth.ndx20)}%（8/13）`, "晶片回補 1/3。"],
-  ["廣度失速", "NDX >20MA <55%，或 Stockbee 5D <1", `${fixed(currentBreadth.ndx20)}%（8/13）；${fixed(currentStockbee.ratio5d)}（8/14）`, "停止擴大高 beta 新倉。"],
+  ["晶片完整突破", `SMH >50MA ${fixed(byTicker("SMH").ma50)}，且 NDX >20MA 廣度 >60%`, `${fixed(byTicker("SMH").close)}；${fixed(currentBreadth.ndx20)}%（8/14）`, "晶片回補 1/3。"],
+  ["廣度失速", "NDX >20MA <55%，或 Stockbee 5D <1", `${fixed(currentBreadth.ndx20)}%（8/14）；${fixed(currentStockbee.ratio5d)}（8/14）`, "停止擴大高 beta 新倉。"],
   ["波動升級", "VIX >20，或五項波動分數 >=4/5", `${fixed(vix.close)}；${vixScore}/5`, "降低大盤曝險並停止追價。"],
   ["美元／長端壓力", "DXY >101.50，且 10Y >4.80%", `${fixed(dxyExternal.close)}；${fixed(treasuryCurrent.tenYear)}%`, "科技與高 beta 再降低 1/3。"],
   ["能源再通膨", `USO >20MA ${fixed(byTicker("USO").ma20)}，且 10Y >4.75%`, `${fixed(byTicker("USO").close)}；${fixed(treasuryCurrent.tenYear)}%`, "提高通膨風控，不追高成長。"],
@@ -321,7 +344,7 @@ const monitorTable = table([
 
 const sources = `<ul>
   <li>長橋 CLI：8/14 收盤、5日／1月漲跌採 <code>kline history --adjust none</code>；均線、RSI、ATR 與 52 週高採前復權序列。139／139 標的成功。</li>
-  <li><a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit?gid=0#gid=0" target="_blank" rel="noopener">Market Watch Google Sheet</a> 與 <a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit" target="_blank" rel="noopener">Stockbee 2026</a>；MA 廣度截至 8/13，Stockbee 截至 8/14。</li>
+  <li><a href="https://docs.google.com/spreadsheets/d/1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE/edit?gid=0#gid=0" target="_blank" rel="noopener">Market Watch Google Sheet</a> 與 <a href="https://docs.google.com/spreadsheets/d/1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE/edit" target="_blank" rel="noopener">Stockbee 2026</a>；MA 廣度與 Stockbee 均截至 8/14。</li>
   <li><a href="https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?field_tdr_date_value=2026&type=daily_treasury_yield_curve" target="_blank" rel="noopener">美國財政部每日殖利率</a>：8/7 與 8/14；<a href="https://finance.yahoo.com/quote/DX-Y.NYB/" target="_blank" rel="noopener">DXY</a> 為 Yahoo Finance／ICE 8/14 延遲收盤，其餘外匯、債券及商品代理用長橋 8/14 收盤。</li>
   <li><a href="https://www.bls.gov/news.release/cpi.nr0.htm" target="_blank" rel="noopener">BLS CPI</a>、<a href="https://www.bls.gov/news.release/ppi.nr0.htm" target="_blank" rel="noopener">BLS PPI</a>、<a href="https://www.census.gov/retail/sales.html" target="_blank" rel="noopener">Census 零售</a>、<a href="https://www.sca.isr.umich.edu/" target="_blank" rel="noopener">密大消費者調查</a>。</li>
   <li><a href="https://www.federalreserve.gov/newsevents/2026-august.htm" target="_blank" rel="noopener">Fed 8月日曆</a>、<a href="https://www.bls.gov/schedule/2026/home.htm" target="_blank" rel="noopener">BLS 日曆</a>、<a href="https://www.census.gov/construction/soc/schedule.html" target="_blank" rel="noopener">Census 房屋日曆</a>；<a href="https://ir.homedepot.com/events-and-presentations?page=1" target="_blank" rel="noopener">Home Depot IR</a>、<a href="https://corporate.walmart.com/news/events/fy2027-q2-earnings-release" target="_blank" rel="noopener">Walmart IR</a>。</li>
@@ -332,14 +355,14 @@ const report = {
   report_title: "2026-08-14 美股一週總結｜價格仍強、廣度降溫；油價與長端利率抬高風險",
   report_type: "weekly",
   week: "2026-08-10–2026-08-14",
-  source_dates: {longbridge:expectedDate,market_watch_sheet:expectedDate,market_breadth_sheet:"2026-08-13",stockbee_sheet:expectedDate,treasury:expectedDate,dxy:dxyExternal.asOf},
+  source_dates: {longbridge:expectedDate,market_watch_sheet:expectedDate,market_breadth_sheet:expectedDate,stockbee_sheet:expectedDate,treasury:expectedDate,dxy:dxyExternal.asOf},
   qqq_reengage_20ma: fixed(byTicker("QQQ").ma20),
   qqq_breakout_add_1sd: fixed(byTicker("QQQ").ma50),
   report_eyebrow: "2026-08-15｜美股週報｜資料截至 2026-08-14 收盤",
   report_heading: "美股一週總結：價格仍強、廣度降溫；油價與長端利率抬高風險",
-  data_timestamp_note: "收盤與技術值截至 8/14；MA 廣度截至 8/13，Stockbee 截至 8/14。",
+  data_timestamp_note: "收盤、技術值、MA 廣度與 Stockbee 均截至 8/14。",
   report_badges: `<span class="badge amber">風險：Intermediate</span><span class="badge blue">SPY ${signed(byTicker("SPY").fiveDayPct)}</span><span class="badge amber">廣度 ${breadthScore}/8</span><span class="badge green">技術 ${technicalScore}/12</span><span class="badge green">VIX ${vixScore}/5</span>`,
-  summary_cards: `<div class="card"><span>SPY／QQQ／IWM／DIA 5日</span><strong>${pct(byTicker("SPY").fiveDayPct)}／${pct(byTicker("QQQ").fiveDayPct)}／${pct(byTicker("IWM").fiveDayPct)}／${pct(byTicker("DIA").fiveDayPct)}</strong><small>四大 ETF 仍在三條均線上方，但 DIA 週線轉負。</small></div><div class="card"><span>MA 廣度／Stockbee</span><strong>${fixed(currentBreadth.spx20)}%／${fixed(currentBreadth.ndx20)}%／${fixed(currentBreadth.iwm20)}%</strong><small>MA 截至 8/13；5D／10D ratio 為 ${fixed(currentStockbee.ratio5d)}／${fixed(currentStockbee.ratio10d)}。</small></div><div class="card"><span>零售／密大信心</span><strong><span class="dn">-0.6%</span>／<span class="dn">51.0</span></strong><small>消費與信心同時弱於預期，成長風險上升。</small></div><div class="card"><span>2Y／10Y／30Y 週變化</span><strong><span class="up">-2bp</span>／<span class="dn">+3bp</span>／<span class="dn">+6bp</span></strong><small>曲線熊市陡峭化，長端折現率重新升高。</small></div>`,
+  summary_cards: `<div class="card"><span>SPY／QQQ／IWM／DIA 5日</span><strong>${pct(byTicker("SPY").fiveDayPct)}／${pct(byTicker("QQQ").fiveDayPct)}／${pct(byTicker("IWM").fiveDayPct)}／${pct(byTicker("DIA").fiveDayPct)}</strong><small>四大 ETF 仍在三條均線上方，但 DIA 週線轉負。</small></div><div class="card"><span>MA 廣度／Stockbee</span><strong>${fixed(currentBreadth.spx20)}%／${fixed(currentBreadth.ndx20)}%／${fixed(currentBreadth.iwm20)}%</strong><small>均截至 8/14；5D／10D ratio 為 ${fixed(currentStockbee.ratio5d)}／${fixed(currentStockbee.ratio10d)}。</small></div><div class="card"><span>零售／密大信心</span><strong><span class="dn">-0.6%</span>／<span class="dn">51.0</span></strong><small>消費與信心同時弱於預期，成長風險上升。</small></div><div class="card"><span>2Y／10Y／30Y 週變化</span><strong><span class="up">-2bp</span>／<span class="dn">+3bp</span>／<span class="dn">+6bp</span></strong><small>曲線熊市陡峭化，長端折現率重新升高。</small></div>`,
   upgrade_trigger_rule: "滿足 2/3 才加碼：Intermediate Risk 下，價格、廣度與跨資產至少兩項確認才提高風險。",
   upgrade_trigger_1: `SPY／QQQ 守住 20MA ${fixed(byTicker("SPY").ma20)}／${fixed(byTicker("QQQ").ma20)}，且 Stockbee 5D ratio >2。`,
   upgrade_trigger_2: `SMH 收回 50MA ${fixed(byTicker("SMH").ma50)}，且 NDX >20MA 廣度保持 >60%。`,
@@ -348,19 +371,19 @@ const report = {
   downgrade_trigger_1: `SPY <20MA ${fixed(byTicker("SPY").ma20)}，且 SPX >20MA 廣度 <55%。`,
   downgrade_trigger_2: `QQQ <50MA ${fixed(byTicker("QQQ").ma50)}，且 SMH <20MA ${fixed(byTicker("SMH").ma20)}。`,
   downgrade_trigger_3: "10Y >4.80% 且 DXY >101.50，或 VIX 五項波動分數 >=4/5。",
-  core_conclusions: `<ol><li><strong>價格趨勢仍完整，但本週已不是全面上漲。</strong>SPY／QQQ／IWM 五日 ${signed(byTicker("SPY").fiveDayPct)}／${signed(byTicker("QQQ").fiveDayPct)}／${signed(byTicker("IWM").fiveDayPct)}，DIA ${signed(byTicker("DIA").fiveDayPct)}；四大 ETF 仍在 20／50／200MA 上方。</li><li><strong>市場廣度由全面改善轉為分化。</strong>八項量化中 3 項惡化：NDX 20MA、IWM 50MA 與 Stockbee 5D；其餘五項改善。Stockbee 5D 降至 ${fixed(currentStockbee.ratio5d)}，10D 升至 ${fixed(currentStockbee.ratio10d)}，短線降溫但中期未崩。</li><li><strong>領漲因子轉向能源與部分軟體／資安。</strong>XLE／OIH／XOP 五日 ${signed(byTicker("XLE").fiveDayPct)}／${signed(byTicker("OIH").fiveDayPct)}／${signed(byTicker("XOP").fiveDayPct)}；KWEB／FXI／IBIT 為 ${signed(byTicker("KWEB").fiveDayPct)}／${signed(byTicker("FXI").fiveDayPct)}／${signed(byTicker("IBIT").fiveDayPct)}，風險偏好沒有全面擴散。</li><li><strong>宏觀組合轉向輕度停滯性通膨。</strong>CPI／PPI 沒有突破風控線，但零售 -0.6%、信心 51.0；2Y -2bp、10Y +3bp、30Y +6bp，加上 USO 五日 ${signed(byTicker("USO").fiveDayPct)}，長端與成本壓力同步上升。</li><li><strong>市場反饋重點從 Beat 轉向「預期差與毛利兌現」。</strong>CSCO、COHR、AMAT 基本面數字不弱仍遭賣出；SNDK、SMCI 則因長期需求或毛利路徑上修大漲。下週應用 HD／WMT 與 FOMC 紀要確認消費及折現率。</li></ol>`,
+  core_conclusions: `<ol><li><strong>價格趨勢仍完整，但本週已不是全面上漲。</strong>SPY／QQQ／IWM 五日 ${signed(byTicker("SPY").fiveDayPct)}／${signed(byTicker("QQQ").fiveDayPct)}／${signed(byTicker("IWM").fiveDayPct)}，DIA ${signed(byTicker("DIA").fiveDayPct)}；四大 ETF 仍在 20／50／200MA 上方。</li><li><strong>市場廣度整體改善，但短線動能仍分化。</strong>八項量化中 2 項惡化：NDX 20MA 與 Stockbee 5D；其餘六項改善。Stockbee 5D 降至 ${fixed(currentStockbee.ratio5d)}，10D 升至 ${fixed(currentStockbee.ratio10d)}，短線降溫但中期未崩。</li><li><strong>領漲因子轉向能源與部分軟體／資安。</strong>XLE／OIH／XOP 五日 ${signed(byTicker("XLE").fiveDayPct)}／${signed(byTicker("OIH").fiveDayPct)}／${signed(byTicker("XOP").fiveDayPct)}；KWEB／FXI／IBIT 為 ${signed(byTicker("KWEB").fiveDayPct)}／${signed(byTicker("FXI").fiveDayPct)}／${signed(byTicker("IBIT").fiveDayPct)}，風險偏好沒有全面擴散。</li><li><strong>宏觀組合轉向輕度停滯性通膨。</strong>CPI／PPI 沒有突破風控線，但零售 -0.6%、信心 51.0；2Y -2bp、10Y +3bp、30Y +6bp，加上 USO 五日 ${signed(byTicker("USO").fiveDayPct)}，長端與成本壓力同步上升。</li><li><strong>市場反饋重點從 Beat 轉向「預期差與毛利兌現」。</strong>CSCO、COHR、AMAT 基本面數字不弱仍遭賣出；SNDK、SMCI 則因長期需求或毛利路徑上修大漲。下週應用 HD／WMT 與 FOMC 紀要確認消費及折現率。</li></ol>`,
   weekly_positioning: `<h3>市場量化總分</h3><div class="risk-overview"><div class="risk-overview-score"><span>市場風險分數</span><strong>${totalRisk}<small>/100</small></strong><em>Intermediate Risk</em></div><div class="risk-overview-body"><div class="risk-meter"><span style="width:${totalRisk}%"></span></div><p>價格與 VIX 仍穩，但廣度降溫、12/18 檔 ATR 延伸、油價與長端利率同步上升，將總分推至中等風險。</p><small>0–34 Low Risk；35–59 Intermediate Risk；60–100 High Risk。</small></div></div>${marketScoreTable}<div class="callout warn"><strong>分數反算：</strong>${scoreRows.map((row) => row[3]).join(" + ")} = ${totalRisk}。Intermediate Risk 代表核心曝險可留在正常下緣，但新增風險必須等待價格、廣度或跨資產至少兩項確認。</div><div class="action-directive"><span class="ad-label">本週配置</span><ul class="ad-list"><li class="ad-primary">核心曝險維持正常下緣，新增部位優先選相對強勢且未過度延伸標的。</li><li class="ad-watch">XLF、RSP、XLE、SPY 與多個寬基 ETF 已超過 50MA 3 ATR；用回踩或盤整換取入場空間。</li><li class="ad-avoid">USO 與長端殖利率同升時，不把低 VIX 誤讀成全面低風險。</li></ul></div>`,
   previous_week_reconciliation: `<div class="status-pills"><span class="badge green">0 命中</span><span class="badge amber">0 已觸發</span><span class="badge red">0 失誤</span><span class="badge grey">9 未觸發</span></div>${previousTable}<div class="callout warn"><strong>對賬結論：</strong>九條複合規則均未完整觸發，因此沒有可驗證失誤；但能源再通膨與成長失速各有一半條件成立。這兩個近觸發訊號正是本週風險分數由 25 升至 ${totalRisk} 的主因。</div>`,
   indices_style_review: `${table([{label:"ETF"},{label:"最新",num:true},{label:"5日",num:true},{label:"1月",num:true},{label:"20/50/200MA",ma:true},{label:"RSI",num:true},{label:"判斷"}], indexRows, "ma-table report-data-table report-cols-7 index-summary-table")}<p><strong>小結：</strong>依 RSI 由高至低為 SPY、IWM、QQQ、DIA；四檔仍在三條均線上方。IWM 五日領先且最接近 52 週高，DIA 週線轉負，風格由防守轉向小型股與等權，但尚未形成全面風險擴散。</p>`,
   big_winners_losers: `${moverTable("本週五大強勢股", winners)}${moverTable("本週五大弱勢股", losers)}<div class="callout warn"><strong>NVDA 補充：</strong>五日 ${signed(byTicker("NVDA").fiveDayPct)}、一月 ${signed(byTicker("NVDA").oneMonthPct)}，收 ${fixed(byTicker("NVDA").close)}；高於 20MA ${fixed(byTicker("NVDA").ma20)} 與 50MA ${fixed(byTicker("NVDA").ma50)}，距 50MA +${fixed(byTicker("NVDA").distance50Atr)} ATR。趨勢仍在，但延伸不適合追價。</div><p><strong>共同因子：</strong>市場獎勵能把 AI／記憶體需求轉成訂單與毛利上修的公司，懲罰「Beat 已在價格內」或估值缺乏新增兌現的公司。COHR 的基本面強而股價弱，與 SNDK／SMCI 的強勢形成最清楚對照。</p>`,
   sector_momentum_chart: barChart(["OIH","XOP","XLE","BUG","XSW","SMH","IBIT","KWEB"].map((ticker) => ({label:ticker,value:byTicker(ticker).fiveDayPct}))),
-  sector_thematic_weekly: `${etfTable("S&amp;P 500 Sector ETF", sectors, 'data-etf-group="sector" data-expected-rows="12" data-benchmark="SPY" data-sort="rsi-desc"')}${etfTable("Thematic Sector ETF", themes, 'data-etf-group="thematic" data-expected-rows="45" data-etf-universe="thematic-complete" data-source-count="45" data-report-count="45" data-benchmark="VOO" data-benchmark-in-source="true" data-sort="rsi-desc"')}<div class="callout warn"><strong>板塊結論：</strong>Sector 由 XLE ${signed(byTicker("XLE").fiveDayPct)} 明顯領先，XLY／XLB 為主要弱項；Thematic 由 OIH／XOP 領漲，KWEB／FXI／IBIT 落後。55 個非基準板塊／主題中有 ${weakRows.length} 個符合弱勢定義，輪動存在但並非全面惡化。</div>`,
-  market_breadth_weekly: `${table([{label:"指標（最新日）"},{label:"最新",num:true},{label:"8/7",num:true},{label:"週變化",num:true},{label:"判斷"}], breadthRows, "report-data-table report-cols-5")}<div class="status-pills"><span class="badge amber">5日惡化 ${breadthScore}/8</span><span class="badge amber">Stockbee 5D ${fixed(currentStockbee.ratio5d)}</span><span class="badge green">Stockbee 10D ${fixed(currentStockbee.ratio10d)}</span><span class="badge green">T2108 ${fixed(currentStockbee.t2108)}%</span></div><p><strong>三大指數廣度：</strong>MA 廣度截至 8/13。SPX 20／50MA 較 8/7 上升 3.58／2.59pp；NDX 為 -1.96／+9.80pp；IWM 為 +2.54／-0.28pp。六項中四項改善，短線弱點集中在 NDX 20MA，中期弱點集中在 IWM 50MA。</p><p><strong>與 Stockbee 交叉驗證：</strong>Stockbee 截至 8/14。5D ratio 由 2.85 降至 ${fixed(currentStockbee.ratio5d)}，10D 由 1.64 升至 ${fixed(currentStockbee.ratio10d)}；4% 上漲／下跌為 ${currentStockbee.up4}／${currentStockbee.down4}，34/13 為 ${currentStockbee.up34_13}／${currentStockbee.down34_13}。短線動能降溫，中期強股仍多於弱股。</p><div class="callout warn"><strong>綜合結論：</strong>五日趨勢量化分數 ${breadthScore}/8，屬輕度惡化。廣度尚未觸發失速線，但已不支持無條件追高；下週以 NDX >20MA 55% 與 Stockbee 5D 1 作風控。</div>`,
+  sector_thematic_weekly: `${etfTable("S&amp;P 500 Sector ETF", sectors, 'data-etf-group="sector" data-expected-rows="12" data-benchmark="SPY" data-sort="rsi-desc"')}${etfTable("Thematic Sector ETF", themes, 'data-etf-group="thematic" data-expected-rows="45" data-etf-universe="thematic-complete" data-source-count="45" data-report-count="45" data-benchmark="VOO" data-benchmark-in-source="true" data-sort="rsi-desc"')}${themeMoverReviewTable("Thematic 週漲幅前 5 點評", themeWeeklyGainers, 'data-theme-mover="gainers" data-expected-rows="5" data-sort="five-day-desc"')}${themeMoverReviewTable("Thematic 週跌幅前 5 點評", themeWeeklyLosers, 'data-theme-mover="losers" data-expected-rows="5" data-sort="five-day-asc"')}<div class="callout warn"><strong>板塊結論：</strong>Sector 由 XLE ${signed(byTicker("XLE").fiveDayPct)} 明顯領先，XLY／XLB 為主要弱項。Thematic 前五名全數站上三條均線，領漲集中能源、航太國防、量子運算與資安；後五名則包含中國、加密與受油價成本影響的航空，但 COPX／JETS 尚未破壞中期趨勢。55 個非基準板塊／主題中有 ${weakRows.length} 個符合弱勢定義，屬選擇性輪動而非全面 risk-off。</div>`,
+  market_breadth_weekly: `${table([{label:"指標（最新日）"},{label:"最新",num:true},{label:"8/7",num:true},{label:"週變化",num:true},{label:"判斷"}], breadthRows, "report-data-table report-cols-5")}<div class="status-pills"><span class="badge amber">5日惡化 ${breadthScore}/8</span><span class="badge amber">Stockbee 5D ${fixed(currentStockbee.ratio5d)}</span><span class="badge green">Stockbee 10D ${fixed(currentStockbee.ratio10d)}</span><span class="badge green">T2108 ${fixed(currentStockbee.t2108)}%</span></div><p><strong>三大指數廣度：</strong>MA 廣度截至 8/14。SPX 20／50MA 較 8/7 上升 1.00／3.78pp；NDX 為 -0.98／+11.76pp；IWM 為 +2.49／+0.80pp。六項中五項改善，唯一弱點是 NDX 20MA 小幅回落。</p><p><strong>與 Stockbee 交叉驗證：</strong>Stockbee 截至 8/14。5D ratio 由 2.85 降至 ${fixed(currentStockbee.ratio5d)}，10D 由 1.64 升至 ${fixed(currentStockbee.ratio10d)}；4% 上漲／下跌為 ${currentStockbee.up4}／${currentStockbee.down4}，34/13 為 ${currentStockbee.up34_13}／${currentStockbee.down34_13}。短線動能降溫，中期強股仍多於弱股。</p><div class="callout warn"><strong>綜合結論：</strong>五日趨勢量化分數 ${breadthScore}/8，屬輕度惡化。MA 廣度較原版本更強，但 Stockbee 5D 仍未回到 2；下週以 NDX >20MA 55% 與 Stockbee 5D 1 作風控。</div>`,
   atr_weekly: `${table([{label:"ETF"},{label:"價格",num:true},{label:"50MA",num:true},{label:"ATR(14)",num:true},{label:"距50MA ATR",num:true},{label:"判斷"}], atrRows, "report-data-table report-cols-6")}<div class="callout warn"><strong>小結：</strong>${atrExtendedCount}/${atrUniverse.length} 檔距 50MA 絕對值達 2 ATR。XLF、RSP、XLE 與 SPY 正向延伸最高；TLT 為負向延伸。價格趨勢偏多，但追價風險已是總分的重要來源。</div>`,
   fx_commodities_treasury_weekly: `${table([{label:"資產"},{label:"最新",num:true},{label:"5日",num:true},{label:"1月",num:true},{label:"市場含義"}], crossAssets.map((row) => `<tr>${cell(row[0])}${num(row[1])}${num(row[2])}${num(row[3])}${cell(row[4])}</tr>`), "report-data-table report-cols-5")}<div class="callout warn"><strong>長短債比較：</strong>2Y／10Y／20Y／30Y 一週 -2／+3／+5／+6bp，10s2s 由 +46bp 擴至 +51bp。這不是寬鬆式牛市陡峭，而是長端上升的熊市陡峭；TLT 低於 50MA ${fixed(Math.abs(byTicker("TLT").distance50Atr))} ATR，與 USO 上升共同構成跨資產壓力。</div>`,
-  macro_fed_weekly: `${table([{label:"數據／政策"},{label:"Actual",num:true},{label:"Forecast／門檻",num:true},{label:"Previous",num:true},{label:"政策與市場含義"}], macroRows.map((row) => `<tr>${cell(row[0])}${num(row[1])}${num(row[2])}${num(row[3])}${cell(row[4])}</tr>`), "macro-review-table report-data-table report-cols-5")}<p><strong>小結：</strong>CPI／PPI 沒有突破上週風控線，卻也未替 Fed 創造明確寬鬆空間；零售與信心轉弱、油價與長端上升，使政策組合更接近「成長降溫但通膨約束仍在」。8/19 紀要的重點是政策反應函數，不是單一升降息押注。</p>`,
+  macro_fed_weekly: `${table([{label:"數據／政策"},{label:"實際／最新",num:true},{label:"預期／門檻",num:true},{label:"前值",num:true},{label:"政策與市場含義"}], macroRows.map((row) => `<tr>${cell(row[0])}${num(row[1])}${num(row[2])}${num(row[3])}${cell(row[4])}</tr>`), "macro-review-table weekly-macro-fed-table report-data-table report-cols-5")}<p><strong>小結：</strong>CPI／PPI 沒有突破上週風控線，卻也未替 Fed 創造明確寬鬆空間；零售與信心轉弱、油價與長端上升，使政策組合更接近「成長降溫但通膨約束仍在」。8/19 紀要的重點是政策反應函數，不是單一升降息押注。</p>`,
   next_week_plan: `${table([{label:"日期（ET）"},{label:"事件"},{label:"Forecast",num:true},{label:"Previous",num:true},{label:"監控重點"}], eventRows.map((row) => `<tr>${cell(row[0])}${cell(row[1])}${num(row[2])}${num(row[3])}${cell(row[4])}</tr>`), "report-data-table report-cols-5")}<p class="note">8/19 公布的是 7月 FOMC 紀要，不是新的利率決策；下次 FOMC 為 9/15–9/16。</p><h3>四種情境與主觀概率</h3>${scenarioTable}<h3>各模組聯動預測</h3>${linkageTable}<div class="action-directive"><span class="ad-label">執行順序</span><ul class="ad-list"><li class="ad-primary"><strong>先看 8/18：</strong>進口價格、房屋與工業生產決定成本與實體需求組合。</li><li class="ad-watch"><strong>再看 8/19：</strong>用 FOMC 紀要判斷 10Y 4.80% 是否會變成壓力線。</li><li class="ad-watch"><strong>最後看 8/20：</strong>WMT、初領與費城 Fed 共同確認消費弱化是否擴散。</li><li class="ad-invalidate"><strong>風控：</strong>QQQ <${fixed(byTicker("QQQ").ma50)} 且 SMH <${fixed(byTicker("SMH").ma20)}，或 10Y >4.80% 且 DXY >101.50，科技降低 1/3。</li></ul></div>`,
-  cross_validation_summary: `<div class="callout ok"><strong>互相確認：</strong>四大 ETF 全數站上三條均線，技術分數 0/12；VIX 0/5、VIXY 低於 20／50MA，價格趨勢與波動仍支持核心曝險。</div><div class="callout warn"><strong>互相分歧：</strong>廣度 3/8 惡化、SMH 未收回 50MA，中國與加密主題落後；零售與信心轉弱同時 USO、10Y、30Y 上升。內部結構與跨資產已比指數價格更保守。</div><div class="callout warn"><strong>主導結論：</strong>${totalRisk}/100 Intermediate Risk。執行上保留核心、限制追價，只有 Stockbee 5D >2、SMH 收回 50MA 或 10Y 回到 4.55% 下方等確認出現，才提高新增風險。</div>`,
+  cross_validation_summary: `<div class="callout ok"><strong>互相確認：</strong>四大 ETF 全數站上三條均線，技術分數 0/12；VIX 0/5、VIXY 低於 20／50MA，價格趨勢與波動仍支持核心曝險。</div><div class="callout warn"><strong>互相分歧：</strong>廣度 ${breadthScore}/8 惡化、SMH 未收回 50MA，中國與加密主題落後；零售與信心轉弱同時 USO、10Y、30Y 上升。內部結構與跨資產已比指數價格更保守。</div><div class="callout warn"><strong>主導結論：</strong>${totalRisk}/100 Intermediate Risk。執行上保留核心、限制追價，只有 Stockbee 5D >2、SMH 收回 50MA 或 10Y 回到 4.55% 下方等確認出現，才提高新增風險。</div>`,
   next_week_monitoring_checklist: monitorTable,
   sources
 };

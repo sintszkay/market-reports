@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="從 Qullamaggie 逾 900 筆交易研究，學習開盤區間、ADR、風險、分段建倉與再進場。">
+  <title>市場巫師入場教學｜入場不是答案，而是一組旋鈕</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260816-entry-tutorial">
+  <style>
+    :root{--bg:#faf9f5;--card:#fff;--ink:#141413;--muted:#87867f;--line:rgba(20,20,19,.10);--line-strong:rgba(20,20,19,.18);--green:#0f6e56;--green-bg:#e1f5ee;--red:#a32d2d;--red-bg:#fcebeb;--amber:#854f0b;--amber-bg:#faeeda;--blue:#185fa5;--blue-bg:#e6f1fb;--grey-bg:#eeeeea;--soft:#f2f1ec}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei","PingFang TC",Arial,sans-serif;font-size:14px;line-height:1.65}a{color:var(--blue)}strong,b{font-weight:600}.wrap{max-width:1180px;margin:auto;padding:34px 18px 58px}.eyebrow,.kicker{color:var(--muted);font-size:12px}.eyebrow{margin:0 0 6px}h1{max-width:900px;margin:0;font-size:32px;line-height:1.24;font-weight:600;letter-spacing:-.02em}h2{scroll-margin-top:72px;margin:0 0 9px;font-size:21px;line-height:1.35;font-weight:600}h3{margin:20px 0 8px;font-size:15px;line-height:1.4}p{margin:8px 0}.lead{max-width:880px;margin:12px 0;color:#4e4d49;font-size:15px}.muted,.note{color:var(--muted)}.note{font-size:12px}.source-line{margin-top:10px;font-size:12px}.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}.pill{display:inline-flex;align-items:center;min-height:23px;padding:2px 9px;border-radius:999px;font-size:11.5px;font-weight:600}.green{color:var(--green);background:var(--green-bg)}.red{color:var(--red);background:var(--red-bg)}.amber{color:var(--amber);background:var(--amber-bg)}.blue{color:var(--blue);background:var(--blue-bg)}.grey{color:#6f6d66;background:var(--grey-bg)}
+    .hero-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 16px}.card{min-width:0;padding:13px 14px;border-radius:12px;background:var(--soft)}.card span{display:block;color:var(--muted);font-size:12px}.card strong{display:block;margin-top:4px;font-size:20px;line-height:1.3;font-variant-numeric:tabular-nums}.card small{display:block;margin-top:4px;color:var(--muted);font-size:11.5px}.legend{margin:10px 0 16px;padding:8px 12px;border:.5px solid var(--line);border-radius:10px;background:var(--card);color:var(--muted);font-size:12px}.toc{position:sticky;top:8px;z-index:20;display:flex;align-items:center;gap:6px;overflow-x:auto;margin:0 0 22px;padding:7px 8px;border:.5px solid var(--line);border-radius:10px;background:rgba(255,255,255,.96);box-shadow:0 4px 16px rgba(20,20,19,.04);scrollbar-width:thin}.toc-label{flex:0 0 auto;padding:5px 8px;color:var(--muted);font-size:11.5px;font-weight:600}.toc a{flex:0 0 auto;padding:5px 9px;border-radius:999px;color:var(--ink);font-size:12px;text-decoration:none}.toc a:hover,.toc a.active{color:var(--blue);background:var(--blue-bg)}
+    section{margin:0 0 28px}.panel,.table-scroll,.directive,.formula,.checklist{border:.5px solid var(--line);border-radius:12px;background:var(--card)}.panel{padding:16px}.summary{display:grid;grid-template-columns:1.05fr .95fr;gap:12px}.thesis{padding:18px;border-left:4px solid var(--blue);background:var(--card);border-radius:0 12px 12px 0}.thesis .big{font-size:19px;line-height:1.48;font-weight:600}.dial-list{display:grid;gap:8px}.dial{display:grid;grid-template-columns:95px 1fr 105px;align-items:center;gap:10px}.dial-label,.dial-cost{font-size:12px}.dial-cost{color:var(--muted);text-align:right}.track{height:10px;overflow:hidden;border-radius:999px;background:#edebe6}.track b{display:block;height:100%;border-radius:999px;background:var(--blue)}
+    .table-scroll{width:100%;overflow-x:auto;margin:12px 0}table{width:100%;border-collapse:collapse;font-size:12.75px;font-variant-numeric:tabular-nums}th,td{padding:9px 12px;border-bottom:.5px solid var(--line);text-align:left;vertical-align:middle}thead th{color:var(--muted);border-bottom:1px solid var(--line-strong);font-size:11.5px;white-space:nowrap}tbody tr:last-child td{border-bottom:0}.num{text-align:right;white-space:nowrap}.up{color:var(--green)}.dn{color:var(--red)}.focus-row td{background:#f7f4ec}.mini-bar{display:inline-block;width:72px;height:7px;margin-left:7px;overflow:hidden;vertical-align:middle;border-radius:99px;background:#eceae4}.mini-bar b{display:block;height:100%;border-radius:99px;background:var(--blue)}
+    .callouts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0}.callout{padding:14px;border-radius:12px}.callout span{display:block;margin-bottom:5px;font-size:11.5px;font-weight:700}.callout p{margin:0}.callout.green{border:1px solid #b7dfd3}.callout.amber{border:1px solid #ebd2a6}.callout.red{border:1px solid #edc0c0}.formula{margin:12px 0;padding:16px;text-align:center}.formula code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:15px}.steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:12px 0}.step{position:relative;padding:42px 14px 14px;border:.5px solid var(--line);border-radius:12px;background:var(--card)}.step:before{counter-increment:step;content:counter(step);position:absolute;top:12px;left:14px;width:22px;height:22px;border-radius:50%;background:var(--ink);color:white;text-align:center;font-size:12px;line-height:22px}.step strong{display:block;margin-bottom:5px}.step p{margin:0;color:#5e5c57;font-size:12.5px}.directive{padding:16px}.directive-title{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-weight:700}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.clean-list{margin:8px 0;padding-left:19px}.clean-list li{margin:5px 0}.flow{display:grid;grid-template-columns:repeat(5,1fr);align-items:stretch;gap:24px;margin:14px 0}.flow div{position:relative;padding:13px 10px;border-radius:10px;background:var(--soft);text-align:center;font-size:12px}.flow div:not(:last-child):after{content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:17px}.checklist{padding:4px 16px}.check-row{display:grid;grid-template-columns:22px 1fr 120px;gap:10px;align-items:start;padding:11px 0;border-bottom:.5px solid var(--line)}.check-row:last-child{border-bottom:0}.check-row input{margin-top:4px;accent-color:var(--green)}.check-row small{color:var(--muted);text-align:right}.warning{padding:14px 16px;border-left:4px solid var(--amber);background:var(--amber-bg);border-radius:0 12px 12px 0}.footer{padding-top:10px;border-top:.5px solid var(--line);color:var(--muted);font-size:12px}.back{position:fixed;right:18px;bottom:18px;width:38px;height:38px;border:0;border-radius:50%;background:var(--ink);color:white;cursor:pointer;opacity:0;pointer-events:none;transition:.2s}.back.show{opacity:.86;pointer-events:auto}
+    @media(max-width:800px){.wrap{padding:24px 14px 48px}h1{font-size:27px}.hero-grid,.callouts,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.summary,.two-col{grid-template-columns:1fr}.flow{grid-template-columns:1fr;gap:8px}.flow div:not(:last-child):after{content:"↓";right:50%;top:auto;bottom:-17px;transform:translateX(50%)}.dial{grid-template-columns:80px 1fr}.dial-cost{grid-column:2;text-align:left}.check-row{grid-template-columns:22px 1fr}.check-row small{grid-column:2;text-align:left}}
+    @media(max-width:480px){body{font-size:13.5px}.hero-grid,.callouts,.steps{grid-template-columns:1fr}.hero-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.card strong{font-size:18px}.thesis .big{font-size:17px}.table-scroll{border-radius:10px}table{min-width:640px}}
+    @media print{.toc,.back{display:none}.wrap{max-width:none;padding:0}.panel,.table-scroll,.directive,.formula,.checklist{break-inside:avoid}body{background:#fff}}
+  </style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">交易系統教學｜資料研究導讀｜2026-08-16</p>
+    <h1>入場不是答案，而是一組旋鈕：從市場巫師 900+ 筆交易建立自己的 Entry Playbook</h1>
+    <p class="lead">以 James Muninn 對 Kristjan “Qullamaggie” Kullamägi 2019–2022 年多頭交易的研究為骨架，拆解開盤區間、ADR 延伸、停損、部位、訂單與再進場如何互相影響。</p>
+    <div class="badges"><span class="pill blue">ORB 入場</span><span class="pill green">ADR 標準化</span><span class="pill amber">右尾系統</span><span class="pill grey">風險優先</span></div>
+    <p class="source-line muted">原始研究：<a href="https://x.com/Muninn/status/2088292776047751193" target="_blank" rel="noopener">Everything I've Learned About Entries From a Market Wizard ↗</a></p>
+  </header>
+
+  <div class="hero-grid" aria-label="研究摘要">
+    <div class="card"><span>研究樣本</span><strong>900+</strong><small>2019–2022 多頭交易</small></div>
+    <div class="card"><span>1 分鐘 ORB 平均</span><strong class="up">3.61R</strong><small>勝率 24.8%</small></div>
+    <div class="card"><span>30 分鐘 ORB 平均</span><strong>1.54R</strong><small>勝率 36.9%</small></div>
+    <div class="card"><span>危險區</span><strong class="dn">&lt;0.25 ADR</strong><small>91% 最終停損</small></div>
+  </div>
+  <div class="legend">閱讀符號：<b class="up">● 優勢／確認</b>　<b class="dn">● 風險／失效</b>　<b class="amber">● 條件式</b>　R＝初始風險單位　ADR＝平均每日波幅　ORB＝開盤區間突破　EP＝Episodic Pivot</div>
+
+  <nav class="toc" aria-label="教學目錄"><span class="toc-label">快速導覽</span><a href="#thesis">核心命題</a><a href="#orb">ORB 旋鈕</a><a href="#adr">ADR 延伸</a><a href="#risk">風險與股數</a><a href="#execution">執行與再進場</a><a href="#tail">右尾與心理</a><a href="#playbook">Playbook</a><a href="#caveats">研究限制</a></nav>
+
+  <section id="thesis">
+    <p class="kicker">先看結論</p><h2>核心命題：沒有免費的確認</h2>
+    <div class="summary">
+      <div class="thesis"><div class="big">越早入場，越常出錯，但停損更窄、每個真正贏家的 R 更大。越晚入場，勝率更高，但你會用更高價格與更寬停損買入同一隻股票。</div><p class="muted">所以交易者不是尋找「正確分鐘」，而是在心理承受力、執行能力與期望值之間選擇。</p></div>
+      <div class="panel dial-list">
+        <div class="dial"><span class="dial-label">入場速度</span><div class="track"><b style="width:82%"></b></div><span class="dial-cost">快 → 低勝率</span></div>
+        <div class="dial"><span class="dial-label">確認程度</span><div class="track"><b style="width:62%;background:var(--green)"></b></div><span class="dial-cost">高 → 差價格</span></div>
+        <div class="dial"><span class="dial-label">停損寬度</span><div class="track"><b style="width:45%;background:var(--amber)"></b></div><span class="dial-cost">寬 → 小部位</span></div>
+        <div class="dial"><span class="dial-label">心理舒適</span><div class="track"><b style="width:70%;background:#6f6d66"></b></div><span class="dial-cost">高 → 少 R</span></div>
+      </div>
+    </div>
+    <div class="callouts">
+      <div class="callout green"><span>● 可控制</span><p>風險金額、股數、訂單、嘗試次數與是否加碼。</p></div>
+      <div class="callout amber"><span>● 只能選擇</span><p>較早的價格，或較晚的確認；不能同時全部擁有。</p></div>
+      <div class="callout red"><span>● 不可控制</span><p>開盤噪音、滑價、停牌，以及哪一筆會成為右尾。</p></div>
+    </div>
+  </section>
+
+  <section id="orb">
+    <p class="kicker">旋鈕一｜Opening Range</p><h2>ORB：勝率提高，不等於帳戶效率提高</h2>
+    <div class="table-scroll"><table><thead><tr><th>開盤區間</th><th class="num">勝率</th><th class="num">平均 R</th><th class="num">平均漲幅</th><th class="num">停損中位數</th><th>系統性代價</th></tr></thead><tbody>
+      <tr class="focus-row"><td><b>1 分鐘</b></td><td class="num dn">24.8%</td><td class="num up"><b>3.61R</b></td><td class="num">4.7%</td><td class="num">1.2%</td><td>假突破多、執行壓力最高</td></tr>
+      <tr><td>5 分鐘</td><td class="num">32.2%</td><td class="num">2.20R</td><td class="num">5.8%</td><td class="num">2.3%</td><td>平衡速度與確認</td></tr>
+      <tr><td>15 分鐘</td><td class="num">35.1%</td><td class="num">1.74R</td><td class="num">6.7%</td><td class="num">3.1%</td><td>較穩定，但風險單位縮水</td></tr>
+      <tr><td>30 分鐘</td><td class="num up">36.9%</td><td class="num">1.54R</td><td class="num up">7.2%</td><td class="num dn">3.8%</td><td>確認最好，價格與停損最差</td></tr>
+    </tbody></table></div>
+    <div class="two-col">
+      <div class="panel"><h3>直覺以為：損失來自跑掉的股票</h3><p>但較慢區間沒有觸發的 setup，在 1 分鐘進場下整體反而虧損。等待確實過濾掉不少失敗交易。</p><span class="pill green">等待＝過濾器</span></div>
+      <div class="panel"><h3>數據顯示：成本來自仍然成交的股票</h3><p>805 個機會中，1 分鐘累積 2,865R，30 分鐘只有 976R；少掉的 1,889R 主要來自更高買價和更寬停損。</p><span class="pill red">隱性成本＝較差 fill</span></div>
+    </div>
+    <h3>不同 setup，不應用同一時間</h3>
+    <div class="table-scroll"><table><thead><tr><th>Setup</th><th class="num">1 分鐘</th><th class="num">5 分鐘</th><th class="num">15 分鐘</th><th class="num">30 分鐘</th><th>教學判讀</th></tr></thead><tbody><tr><td>普通 Breakout</td><td class="num">24.4%</td><td class="num">31.3%</td><td class="num">34.3%</td><td class="num">35.8%</td><td>可研究較快區間，以保留 R</td></tr><tr class="focus-row"><td><b>Episodic Pivot</b></td><td class="num">29.7%</td><td class="num">41.9%</td><td class="num">44.1%</td><td class="num up"><b>49.0%</b></td><td>跳空價格發現更劇烈，宜給噪音空間</td></tr></tbody></table></div>
+    <div class="directive"><div class="directive-title"><span class="pill blue">決策</span>怎樣選自己的 ORB？</div><ul class="clean-list"><li>不能承受三次錯、一次對：先測 15–30 分鐘。</li><li>能快速執行並接受連續小虧：研究 1–5 分鐘。</li><li>想兼顧兩端：小倉早期試探，區間確認後加碼；全程維持同一個總風險上限。</li></ul></div>
+  </section>
+
+  <section id="adr">
+    <p class="kicker">旋鈕二｜標準化延伸</p><h2>ADR：最大的錯誤可能是買得太早</h2>
+    <p>固定的「漲 4% 不買」無法比較不同波動股票。應把進場位置相對當日低點的距離，除以股票本身的平均每日波幅。</p>
+    <div class="formula"><code>ADR 延伸 ＝（進場價 − 當日低點）÷ ADR</code><p class="note">例：股票 ADR 為 8%，從低點升 4% 才進場，即約 0.5 ADR。</p></div>
+    <div class="table-scroll"><table><thead><tr><th>距離日內低點</th><th class="num">勝率</th><th class="num">平均 R</th><th class="num">平均漲幅</th><th>判讀</th></tr></thead><tbody>
+      <tr class="focus-row"><td><b>&lt;0.25 ADR</b></td><td class="num dn"><b>8.9%</b></td><td class="num dn">-0.47R</td><td class="num dn">-0.9%</td><td>停損仍在噪音內；91% 失敗</td></tr>
+      <tr><td>0.25–0.50</td><td class="num">21.1%</td><td class="num up">+1.66R</td><td class="num">4.1%</td><td>常用區，但高度依賴少數右尾</td></tr>
+      <tr><td>0.50–0.75</td><td class="num">24.8%</td><td class="num up">+0.79R</td><td class="num">3.0%</td><td>接近 Qullamaggie 偏好區間上緣</td></tr>
+      <tr><td>0.75–1.00</td><td class="num up">45.0%</td><td class="num up">+1.36R</td><td class="num">6.2%</td><td>強勢確認，但需控制追價部位</td></tr>
+      <tr><td>&gt;1.00</td><td class="num up">40.7%</td><td class="num up">+2.63R</td><td class="num up">23.0%</td><td>樣本僅 41；不可視為追高通行證</td></tr>
+    </tbody></table></div>
+    <div class="warning"><b>正確解讀：</b>低於 0.25 ADR 是明顯危險區；0.33–0.67 ADR 是較常見操作帶；超過 1 ADR 時不是機械式禁止，而是要求更強催化劑、更清晰失效位和更小部位。</div>
+  </section>
+
+  <section id="risk">
+    <p class="kicker">旋鈕三｜Risk First</p><h2>先決定可以輸多少，再讓圖表決定股數</h2>
+    <div class="steps"><div class="step"><strong>找失效位</strong><p>停損由 setup 結構決定，不由希望承受多少決定。</p></div><div class="step"><strong>量每股風險</strong><p>進場價減停損價，包含預估滑價。</p></div><div class="step"><strong>定帳戶風險</strong><p>按 setup 品質與延伸程度設定 0.1R、0.5R 或 1R。</p></div><div class="step"><strong>反推股數</strong><p>最後才下單，不要固定股數後才發現風險。</p></div></div>
+    <div class="formula"><code>股數 ＝ 可承受損失金額 ÷（進場價 − 停損價）</code><p class="note">帳戶 $100,000；風險 0.5%＝$500；$50 進場、$48 停損 → 500 ÷ 2＝250 股。</p></div>
+    <div class="table-scroll"><table><thead><tr><th>位置／品質</th><th class="num">示例風險</th><th>使用條件</th><th>不要做甚麼</th></tr></thead><tbody><tr><td>標準 setup、標準位置</td><td class="num">0.50%</td><td>流動性、催化與結構完整</td><td>因為興奮臨時放大</td></tr><tr><td>稍延伸／成交不確定</td><td class="num">0.25%</td><td>仍有清晰失效位</td><td>為求緊停損把 stop 放進噪音</td></tr><tr><td>極強但明顯追價</td><td class="num">0.10%</td><td>特殊催化、接受滑價</td><td>用正常部位追垂直 K 線</td></tr><tr class="focus-row"><td>無法定義停損</td><td class="num dn"><b>0%</b></td><td>沒有可量化風險</td><td>用「跌了再算」代替計畫</td></tr></tbody></table></div>
+  </section>
+
+  <section id="execution">
+    <p class="kicker">旋鈕四｜Entry Process</p><h2>入場不是一次點擊；停損也不是最終判決</h2>
+    <div class="flow"><div>小倉試探</div><div>ORB 確認</div><div>加碼但不超風險</div><div>失敗停損</div><div>新 setup 才重試</div></div>
+    <div class="two-col">
+      <div class="panel"><h3>分段建倉</h3><p>約 1/7 至 1/4 的交易不是單次買入；EP 分段建倉的機率約為普通突破兩倍。</p><ul class="clean-list"><li>早期小倉換取價格。</li><li>確認後加碼換取勝率。</li><li>每次加碼後重算總風險。</li></ul></div>
+      <div class="panel"><h3>同日再進場</h3><p>所有進場約 1/8 涉及第二次嘗試；被停損後重新測試高點時，Qullamaggie 接近一半情況會再試。</p><ul class="clean-list"><li>催化與相對強度仍在。</li><li>重新收復關鍵位才算新 setup。</li><li>第二次部位更小、設當日虧損上限。</li></ul></div>
+    </div>
+    <h3>訂單是工具，不是 edge</h3>
+    <div class="table-scroll"><table><thead><tr><th>訂單</th><th>適合</th><th>主要代價</th><th>實務原則</th></tr></thead><tbody><tr><td>市價單</td><td>流動性足、部位小、重視成交</td><td>快速股票可能嚴重滑價</td><td>如果仍不理解差異，從小部位開始</td></tr><tr><td>限價單</td><td>大部位或必須控制最差價格</td><td>突破太快可能完全不成交</td><td>不要為成交一路上移限價</td></tr><tr><td>Buy Stop</td><td>只有突破才買、無法全程盯盤</td><td>跳空穿價及假突破</td><td>把滑價納入每股風險</td></tr><tr><td>Stop Limit</td><td>不接受超過指定價格</td><td>可能觸發但沒有成交</td><td>只在「錯過比壞 fill 更好」時使用</td></tr></tbody></table></div>
+  </section>
+
+  <section id="tail">
+    <p class="kicker">系統本質｜Positive Skew</p><h2>這是一套靠右尾支付大量小虧損的系統</h2>
+    <div class="hero-grid"><div class="card"><span>多數時間</span><strong class="dn">勝率 &lt;40%</strong><small>中位數是完整停損</small></div><div class="card"><span>典型持有</span><strong>1–3 日</strong><small>真正右尾會持續更久</small></div><div class="card"><span>極端連敗</span><strong class="dn">31 筆</strong><small>約 24 個交易日</small></div><div class="card"><span>0.25–0.50 ADR 組</span><strong class="up">Top 5%</strong><small>貢獻約 99% 總 R</small></div></div>
+    <div class="directive"><div class="directive-title"><span class="pill amber">關鍵</span>早期入場的價值，最終取決於能否持有右尾</div><p>若你在連敗後停止執行、贏一點就賣、過早移動至成本價，或重倉押注單一交易，即使完全複製 entry，也不會得到研究中的期望值。</p></div>
+  </section>
+
+  <section id="playbook">
+    <p class="kicker">落地工具</p><h2>每日 Entry Playbook</h2>
+    <div class="checklist">
+      <label class="check-row"><input type="checkbox"><span><b>Setup 已分類</b><br>普通 Breakout 還是 EP？是否有真實催化劑？</span><small>盤前</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>ORB 已預先選定</b><br>不要在開盤噪音中臨時由 30 分鐘改成 1 分鐘。</span><small>盤前</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>ADR 延伸已計算</b><br>低於 0.25 ADR 是否仍在噪音？高於 1 ADR 是否需要降倉？</span><small>入場前</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>失效位置合理</b><br>停損來自結構，而不是為了買更多股而故意收窄。</span><small>入場前</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>股數由風險反推</b><br>加入滑價後，總損失仍不超過計畫。</span><small>下單前</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>加碼後重新計算</b><br>每一批都計入總風險，不以浮盈掩蓋新增風險。</span><small>持倉中</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>再進場必須是新 setup</b><br>重新收復關鍵位、強度仍在，且尚有嘗試預算。</span><small>停損後</small></label>
+      <label class="check-row"><input type="checkbox"><span><b>交易日誌已記錄</b><br>ORB、ADR、stop%、滑價、嘗試次數、MFE／MAE 與最終 R。</span><small>收市後</small></label>
+    </div>
+    <h3>四週最小驗證計畫</h3>
+    <div class="table-scroll"><table><thead><tr><th>週次</th><th>只改一個變數</th><th>記錄</th><th>判斷問題</th></tr></thead><tbody><tr><td>第 1 週</td><td>固定目前 ORB</td><td>實際勝率、stop%、滑價</td><td>我是否能忠實執行基準版？</td></tr><tr><td>第 2 週</td><td>區分 Breakout／EP</td><td>兩組勝率與平均 R</td><td>EP 是否需要更長區間？</td></tr><tr><td>第 3 週</td><td>加入 ADR 分桶</td><td>&lt;0.25、0.25–0.75、&gt;0.75</td><td>我的停損是否落在噪音？</td></tr><tr><td>第 4 週</td><td>加入再進場規則</td><td>首次與二次嘗試分開</td><td>重試增加 edge，還是增加過度交易？</td></tr></tbody></table></div>
+  </section>
+
+  <section id="caveats">
+    <p class="kicker">研究審讀</p><h2>數據很有啟發性，但不是可直接複製的回測</h2>
+    <div class="callouts"><div class="callout amber"><span>● 選擇偏差</span><p>樣本是高手實際交易或關注的股票，不是全市場所有 setup；選股能力已先過濾一次。</p></div><div class="callout amber"><span>● 理想成交</span><p>1 分鐘 ORB 特別受開盤價差、滑價、停牌、部分成交與同時出現多個機會影響。</p></div><div class="callout amber"><span>● 出場依賴</span><p>均值使用特定停損及 10 日均線出場；移動保本或提早止盈都會改寫整張表。</p></div></div>
+    <div class="thesis"><div class="big">不要抄數字；要抄方法。</div><p>把「高手說的規則」改寫成可以驗證的假設，在自己的股票池、佣金、滑價、工作時間與心理條件下重新測試。</p></div>
+  </section>
+
+  <footer class="footer"><p><b>一句話總結：</b>Entry time 本身不是 edge；真正的 edge，是選股、風險、停損、部位、再進場與持有右尾能否互相配合。</p><p>本文為研究教學，不構成投資建議。數據與引述來自 James Muninn 的公開文章，原研究對象為 Kristjan Kullamägi。</p></footer>
+</main>
+<button class="back" aria-label="回到頁首" title="回到頁首">↑</button>
+<script>
+  const back=document.querySelector('.back');
+  const links=[...document.querySelectorAll('.toc a')];
+  const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  addEventListener('scroll',()=>{back.classList.toggle('show',scrollY>500);let current=sections[0];for(const s of sections)if(s.getBoundingClientRect().top<120)current=s;links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id));},{passive:true});
+  back.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
+</script>
+<script src="report-runtime.js?v=20260816-entry-tutorial"></script>
+</body>
+</html>

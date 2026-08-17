@@ -81,6 +81,58 @@ header{padding:7rem 0 4rem;border-bottom:1px solid var(--rule);}
 .cake .lgauge{font-family:"Noto Sans TC",sans-serif;font-size:13.5px;font-weight:500;}
 .cake .axis{font-family:"Noto Sans Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.14em;}
 
+/* ---------- module manufacturing ---------- */
+.process-figure{
+  margin:2.2rem 0 1.5rem;background:var(--paper-2);border:1px solid var(--rule);
+  overflow:hidden;
+}
+.process-figure a{display:block;line-height:0;}
+.process-figure img{display:block;width:100%;height:auto;}
+.process-figure figcaption{
+  padding:.9rem 1.1rem;border-top:1px solid var(--rule);font-size:.78rem;
+  line-height:1.7;color:var(--ink-3);overflow-wrap:anywhere;
+}
+.process-legend{display:flex;flex-wrap:wrap;gap:.55rem 1.1rem;margin:0 0 1.6rem;}
+.process-legend span{font-size:.77rem;color:var(--ink-2);white-space:nowrap;}
+.role-dot{
+  display:inline-block;width:.48rem;height:.48rem;border-radius:50%;margin-right:.38rem;
+  vertical-align:.05em;background:var(--clay);
+}
+.role-dot.support{background:#B49B78;}
+.role-dot.platform{background:#667178;}
+.process-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);}
+.process-step{background:var(--paper-2);padding:1.55rem 1.65rem;min-width:0;}
+.process-step:last-child{grid-column:1/-1;}
+.process-step-head{display:flex;align-items:baseline;gap:.85rem;margin-bottom:.65rem;}
+.process-step-num{
+  flex:0 0 auto;font-family:"Noto Sans Mono",monospace;font-size:.7rem;color:#fff;
+  background:var(--brick);padding:.22rem .48rem;letter-spacing:.08em;
+}
+.process-step p{font-size:.91rem;line-height:1.8;color:var(--ink-2);margin:0 0 .8rem;}
+.process-step p:last-child{margin-bottom:0;}
+.process-output{font-size:.78rem!important;color:var(--ink-3)!important;}
+.makers{border-top:1px solid var(--rule);padding-top:.72rem;}
+.maker-line{font-size:.82rem;line-height:1.75;color:var(--ink-2);margin:.24rem 0;overflow-wrap:anywhere;}
+.maker-line b{font-size:.72rem;color:var(--ink-3);font-weight:400;letter-spacing:.04em;}
+.process-ticker{
+  display:inline-block;font-family:"Noto Sans Mono",monospace;font-size:.72rem;font-weight:500;
+  color:var(--brick);border:1px solid var(--rule-2);padding:.02rem .3rem;margin:0 .12rem;
+  background:var(--paper);
+}
+.process-read{
+  margin-top:1.6rem;padding:1.5rem 1.65rem;background:var(--clay-wash);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;
+}
+.process-read h3{grid-column:1/-1;margin-bottom:-.35rem;}
+.process-read p{font-size:.88rem;line-height:1.75;color:var(--ink-2);margin:0;}
+.process-read p strong{display:block;color:var(--brick);margin-bottom:.25rem;}
+.process-sources{
+  margin:1.2rem 0 0;font-size:.76rem;line-height:1.8;color:var(--ink-3);
+  overflow-wrap:anywhere;
+}
+.process-sources a{white-space:nowrap;}
+.process-section .sec-head>div{min-width:0;}
+
 /* ---------- sections ---------- */
 section{padding:4.5rem 0;border-top:1px solid var(--rule);}
 .sec-head{display:flex;align-items:baseline;gap:1.4rem;margin-bottom:2.4rem;}
@@ -174,6 +226,14 @@ footer .legend span{font-family:"Noto Sans Mono",monospace;font-size:.72rem;lett
   header{padding:4rem 0 2.5rem;}
   .thesis{padding:1.6rem 1.5rem;}
   .co-role{margin-left:0;width:100%;}
+  .process-grid{grid-template-columns:1fr;}
+  .process-step:last-child{grid-column:auto;}
+  .process-read{grid-template-columns:1fr;}
+  .process-read h3{grid-column:auto;}
+}
+@media(max-width:900px){
+  .process-figure a{max-width:100%;overflow-x:auto;}
+  .process-figure img{width:56rem;max-width:none;}
 }
 @media(prefers-reduced-motion:no-preference){
   .layer,.co{animation:fade .5s ease both;}
@@ -267,6 +327,135 @@ footer .legend span{font-family:"Noto Sans Mono",monospace;font-size:.72rem;lett
     </svg>
   </div>
 </div>
+
+<section class="process-section" aria-labelledby="module-process-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">製程圖解</span>
+      <div>
+        <h2 id="module-process-title">一顆 800G／1.6T 光模組怎麼做出來？</h2>
+        <p class="layer-sub" style="margin-top:.6rem;">從晶體、光晶片、電子 IC,一路做到可插進交換機的 OSFP／QSFP-DD。圖中 1–7 對應下方工序與公司。</p>
+      </div>
+    </div>
+
+    <p style="max-width:48rem;color:var(--ink-2);">
+      以下以 AI 資料中心常見的可插拔模組為主。真正的 BOM 會分成兩條路:<strong>EML 路線</strong>讓雷射本身負責調變;<strong>矽光路線</strong>則把 CW 雷射的光送進矽光調變器。兩條路會共用後段封裝、光學對準、模組組裝與測試,因此這是一張產業分工圖,不是某一家公司的單一生產線。
+    </p>
+
+    <figure class="process-figure">
+      <a href="assets/optical-module-manufacturing-readable.png" target="_blank" rel="noopener noreferrer" aria-label="開啟原尺寸光模組七步製程與公司角色放大圖">
+        <img src="assets/optical-module-manufacturing-readable.png" width="1600" height="1640" loading="lazy" decoding="async" alt="光模組七步製程與公司角色放大圖:上排以箭頭連接基板外延、光晶片、矽光與電子晶片及貼片鍵合,再轉入下排的光學對準、模組總裝與測試認證;大型標籤標示各工序的材料商、設備商、製造商、設計商與系統驗證公司。">
+      </a>
+      <figcaption>為提高可讀性改成兩行放大版:上排 1–4,沿轉彎箭頭進入下排 5–7。三色標籤區分製造、材料／設備與設計／認證角色;底部虛線回路表示測試結果回饋到光晶片與 IC 製程。點圖可查看原尺寸。</figcaption>
+    </figure>
+
+    <div class="process-legend" aria-label="公司角色圖例">
+      <span><i class="role-dot"></i>直接製造／代工</span>
+      <span><i class="role-dot support"></i>設備、材料或量測供應</span>
+      <span><i class="role-dot platform"></i>設計、平台或系統驗證</span>
+    </div>
+
+    <div class="process-grid">
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">01</span><h3>基板與外延:先把「會發光的地基」長出來</h3></div>
+        <p>InP 晶體先切片、研磨與拋光成基板,再用 MBE／MOCVD 疊出雷射或光偵測器需要的外延層。這一步決定後面能切出多少顆光晶片。</p>
+        <div class="makers">
+          <div class="maker-line"><b>材料　</b><span class="process-ticker">AXTI</span>生長晶體並製造 InP／GaAs／Ge 裸基板;它不設計或製造光晶片。</div>
+          <div class="maker-line"><b>外延　</b><span class="process-ticker">IQE.L</span>向客戶供應 InP epiwafer;<span class="process-ticker">AAOI</span>則以 MBE／MOCVD 把部分外延留在自家雷射線。</div>
+          <div class="maker-line"><b>設備　</b><span class="process-ticker">VECO</span>供應 InP 外延用 MOCVD 設備,不是晶片代工廠。</div>
+          <div class="maker-line"><b>邊界　</b><span class="process-ticker">COHR</span><span class="process-ticker">LITE</span>有 InP 器件晶圓廠,但「器件晶圓製造」不等於從原料生長裸襯底。</div>
+        </div>
+        <p class="process-output">產出:拋光 InP 基板與 epi wafer。</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">02</span><h3>光晶片:把晶圓刻成雷射與光偵測器</h3></div>
+        <p>外延晶圓經微影、蝕刻、薄膜沉積與金屬化,形成 EML／CW laser／photodiode;完成晶圓量測後再切成裸片。EML 路線在這裡已把「發光＋調變」做進同一顆元件。</p>
+        <div class="makers">
+          <div class="maker-line"><b>直接製造　</b><span class="process-ticker">COHR</span><span class="process-ticker">LITE</span><span class="process-ticker">AAOI</span>均有自有雷射／光電元件能力;其中 AAOI 官方披露雷射晶片在德州廠製造。</div>
+          <div class="maker-line"><b>元件供應　</b><span class="process-ticker">MTSI</span>供應 photodiode、既有 laser 與類比前端;<span class="process-ticker">AVGO</span>也供應部分 CW laser／VCSEL／EML 光源。這不代表兩者都是完整模組廠。</div>
+        </div>
+        <p class="process-output">產出:已篩選的 laser die、photodiode die。</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">03</span><h3>矽光與電子 IC:做「交通指揮」與訊號修復</h3></div>
+        <p>矽光路線要先製造 PIC,再搭配 DSP、TIA、laser driver 與控制 IC。DSP 把交換機送來的高速電訊號重整、編碼與校正;TIA 把接收端極小的光電流放大。</p>
+        <div class="makers">
+          <div class="maker-line"><b>矽光代工　</b><span class="process-ticker">TSEM</span><span class="process-ticker">GFS</span><span class="process-ticker">TSM</span><span class="process-ticker">UMC</span>提供 SiPh 製程／晶圓製造。</div>
+          <div class="maker-line"><b>Optical DSP　</b><span class="process-ticker">MRVL</span><span class="process-ticker">CRDO</span><span class="process-ticker">AVGO</span>設計 DSP／相關光電平台,晶圓通常由代工廠製造。</div>
+          <div class="maker-line"><b>TIA／driver　</b><span class="process-ticker">MTSI</span><span class="process-ticker">SMTC</span>強項是接收與驅動類比前端,不應一概標成 DSP 廠;<span class="process-ticker">FORM</span>提供 SiPh 晶圓／裸片光電探針與量測。</div>
+        </div>
+        <p class="process-output">產出:PIC、DSP／TIA／driver 等 known-good die。</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">04</span><h3>貼片與鍵合:把不同材料的晶片放到同一塊板上</h3></div>
+        <p>晶圓切割後,把 laser、PIC／EML、photodiode、DSP 等裸片貼到陶瓷基板或 PCB,再用 wire bond、flip-chip 或熱壓鍵合接通電氣路徑。良率會在這裡開始變成毛利。</p>
+        <div class="makers">
+          <div class="maker-line"><b>OSAT／代工　</b><span class="process-ticker">AMKR</span>做光子與先進封裝;<span class="process-ticker">FN</span>提供 die attach、wire bond、flip-chip 與 PCBA;<span class="process-ticker">CLS</span>偏 PCBA、機電組裝與系統整合。</div>
+          <div class="maker-line"><b>設備　</b><span class="process-ticker">KLIC</span>供應 wire bonding／TCB 設備,尤其對 SiPh／CPO 封裝重要;它不替品牌商生產模組。</div>
+        </div>
+        <p class="process-output">產出:已完成電氣互連、尚未完成光路耦合的 subassembly。</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">05</span><h3>光學對準:把雷射、鏡片與光纖對到亞微米</h3></div>
+        <p>加入透鏡、隔離器、光柵耦合器與 fiber array,逐軸調整位置並固化。偏一點就會增加 insertion loss;傳統 active alignment 精準但慢,被動對準與 optical interposer 的價值就在縮短這一步。</p>
+        <div class="makers">
+          <div class="maker-line"><b>直接製造　</b><span class="process-ticker">FN</span>具 active／passive alignment 與 laser packaging;<span class="process-ticker">COHR</span><span class="process-ticker">LITE</span><span class="process-ticker">AAOI</span>在自有模組線完成光學子組件。</div>
+          <div class="maker-line"><b>平台／零件　</b><span class="process-ticker">POET</span>以 Optical Interposer 推被動 pick-and-place;<span class="process-ticker">MKSI</span>供應精密光學、運動控制與量測零件。</div>
+        </div>
+        <p class="process-output">產出:TOSA／ROSA 或完整 optical engine。</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">06</span><h3>模組總裝:塞進 OSFP／QSFP-DD 並寫入韌體</h3></div>
+        <p>光引擎與 PCBA 裝進金屬外殼,接上光纖介面、散熱件與控制器,再寫入韌體、序號和 CMIS 參數。品牌廠決定設計與料表,自製或交給精密光電代工廠量產。</p>
+        <div class="makers">
+          <div class="maker-line"><b>垂直整合模組廠　</b><span class="process-ticker">LITE</span><span class="process-ticker">COHR</span><span class="process-ticker">AAOI</span>從自有光元件延伸到完整 transceiver。</div>
+          <div class="maker-line"><b>契約製造　</b><span class="process-ticker">FN</span>可從光學子組件／PCBA 做到 final assembly &amp; test;<span class="process-ticker">CLS</span>屬 EMS／JDM 與系統製造角色。</div>
+          <div class="maker-line"><b>周邊連接　</b><span class="process-ticker">GLW</span><span class="process-ticker">APH</span>提供光纖、纜線與連接器,不是核心光模組總裝廠。</div>
+        </div>
+        <p class="process-output">產出:外觀完成、可上電但尚未出貨的 pluggable transceiver。</p>
+      </article>
+
+      <article class="process-step">
+        <div class="process-step-head"><span class="process-step-num">07</span><h3>測試與認證:先淘汰早夭品,再證明能插進系統</h3></div>
+        <p>測試其實貫穿全程:晶圓／裸片先篩選,成品再做 burn-in、眼圖、BER、光功率、溫循與校準,最後才是交換機／NIC 的互通認證。<strong>FORM、AEHR 主要在晶圓或裸片端,不是 OSFP 成品終測代工廠。</strong></p>
+        <div class="makers">
+          <div class="maker-line"><b>前段測試設備　</b><span class="process-ticker">FORM</span>做 SiPh 晶圓／裸片光電量測;<span class="process-ticker">AEHR</span>做 wafer-level 或 singulated-die test &amp; burn-in。</div>
+          <div class="maker-line"><b>成品終測　</b><span class="process-ticker">FN</span><span class="process-ticker">LITE</span><span class="process-ticker">COHR</span><span class="process-ticker">AAOI</span>對自己製造的模組做校準、可靠度與出貨測試。</div>
+          <div class="maker-line"><b>系統認證　</b><span class="process-ticker">CSCO</span><span class="process-ticker">ANET</span><span class="process-ticker">NVDA</span>負責平台相容與端到端驗證;它們是規格／系統端,不是上述模組代工廠。<span class="process-ticker">AVGO</span>在 CPO 路線另兼具 switch ASIC、SiPh 光引擎與封裝整合平台角色。</div>
+        </div>
+        <p class="process-output">產出:有序號、可追溯、通過平台認證並可出貨的光模組。</p>
+      </article>
+    </div>
+
+    <div class="process-read">
+      <h3>投資人要怎麼讀這張製程圖</h3>
+      <p><strong>瓶頸不等於最大產值</strong><span class="process-ticker">AXTI</span>只在第一步,卻能卡住後面六步;材料短缺時,議價權會由下游倒流到上游。</p>
+      <p><strong>垂直整合要看跨了幾步</strong><span class="process-ticker">COHR</span><span class="process-ticker">LITE</span><span class="process-ticker">AAOI</span>能把雷射、封裝與模組之間的排程鎖在一起;<span class="process-ticker">FN</span>則是 4–7 的製造服務平台。</p>
+      <p><strong>設備商不能當成出貨商</strong><span class="process-ticker">VECO</span><span class="process-ticker">KLIC</span><span class="process-ticker">FORM</span><span class="process-ticker">AEHR</span>賣的是擴產與良率工具;營收驅動是資本開支／裝機,不是模組 ASP。</p>
+    </div>
+
+    <p class="process-sources">
+      角色邊界核對（T1 官方）:
+      <a href="https://investors.axt.com/Investors/Overview/" target="_blank" rel="noopener noreferrer">AXT 基板</a> ·
+      <a href="https://www.iqep.com/media/press-releases/2026/iqe-and-tower-semiconductor-announce-multi-year-inp-epiwafer-supply-agreement/" target="_blank" rel="noopener noreferrer">IQE 外延片</a> ·
+      <a href="https://ir.veeco.com/news-and-events/news-details/2025/Veeco-Receives-Multiple-Lumina-Systems-Order-from-Leading-Optical-Communications-Laser-Manufacturer/default.aspx" target="_blank" rel="noopener noreferrer">Veeco MOCVD</a> ·
+      <a href="https://www.coherent.com/news/press-releases/worlds-first-6-inch-inp-scalable-wafer-fabs-paving-the-way-for-the-next-generation-of-lasers-for-ai-transceivers-and-6g-wireless-networks" target="_blank" rel="noopener noreferrer">Coherent InP 晶圓</a> ·
+      <a href="https://newsroom.ao-inc.com/blog/building-the-future-of-ai-infrastructurewhy-aoi-is-expanding-in-sugar-land-tx/" target="_blank" rel="noopener noreferrer">AOI 垂直整合</a> ·
+      <a href="https://towersemi.com/2023/03/02/03022023/" target="_blank" rel="noopener noreferrer">Tower PH18</a> ·
+      <a href="https://investors.gf.com/news-releases/news-release-details/globalfoundries-announces-next-generation-silicon-photonics" target="_blank" rel="noopener noreferrer">GF Fotonix</a> ·
+      <a href="https://www.marvell.com/products/pam-dsp.html" target="_blank" rel="noopener noreferrer">Marvell DSP</a> ·
+      <a href="https://fabrinet.com/services/process-development" target="_blank" rel="noopener noreferrer">Fabrinet 製程</a> ·
+      <a href="https://www.formfactor.com/product/probe-systems/autonomous-assistants/autonomous-silicon-photonics/" target="_blank" rel="noopener noreferrer">FormFactor 晶圓量測</a> ·
+      <a href="https://www.aehr.com/2026/03/aehr-receives-follow-on-order-for-fully-automated-wafer-level-burn-in-systems-powering-ai-optical-i-o-and-data-center-interconnects/" target="_blank" rel="noopener noreferrer">Aehr burn-in</a> ·
+      <a href="https://www.lumentum.com/en/products/16t-2dr4-tro-osfp-transceiver-module" target="_blank" rel="noopener noreferrer">Lumentum 1.6T 模組</a>。
+    </p>
+  </div>
+</section>
 
 <section>
   <div class="wrap">

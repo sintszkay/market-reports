@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="James Muninn 對 Qullamaggie 829 筆突破交易出場規則研究的繁體中文學習筆記。">
+  <title>市場巫師出場教學｜沒有免費的 Exit</title>
+  <link rel="stylesheet" href="report-shared.css?v=20260820-exit-playbook">
+  <style>
+    :root {
+      --bg: #faf9f5;
+      --paper: #ffffff;
+      --ink: #141413;
+      --muted: #87867f;
+      --line: rgba(20, 20, 19, .10);
+      --line-strong: rgba(20, 20, 19, .18);
+      --blue: #185fa5;
+      --blue-soft: #e9f2fb;
+      --green: #2c7a58;
+      --green-soft: #e8f4ed;
+      --red: #b44a3c;
+      --red-soft: #faece9;
+      --amber: #9a6a18;
+      --amber-soft: #fbf1da;
+      --violet: #7259a8;
+      --violet-soft: #f0ebfa;
+      --shadow: 0 4px 16px rgba(20, 20, 19, .04);
+      --radius: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    button, input { font: inherit; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 34px 18px 58px; }
+
+    header { border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+    .eyebrow { margin: 0 0 8px; color: var(--muted); font-size: 12px; letter-spacing: .05em; }
+    h1 { max-width: 980px; margin: 0; font-size: clamp(28px, 4vw, 42px); line-height: 1.18; font-weight: 650; letter-spacing: -.025em; }
+    .dek { max-width: 880px; margin: 13px 0 0; color: #4f4e49; font-size: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; background: rgba(255,255,255,.72); color: #53524d; font-size: 12px; }
+    .source { margin: 13px 0 0; color: var(--muted); font-size: 12px; }
+
+    .hero-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 20px 0 16px; }
+    .metric { min-height: 116px; padding: 15px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+    .metric .label { color: var(--muted); font-size: 12px; }
+    .metric strong { display: block; margin-top: 5px; font-size: 23px; line-height: 1.25; font-weight: 650; }
+    .metric small { display: block; margin-top: 5px; color: #66655f; }
+
+    .legend, .toc, .report-toc {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.96);
+    }
+    .legend { margin: 10px 0 16px; padding: 8px 12px; color: var(--muted); font-size: 12px; }
+    .dot { display: inline-block; width: 8px; height: 8px; margin-right: 4px; border-radius: 999px; vertical-align: 1px; }
+    .dot.green { background: var(--green); }
+    .dot.red { background: var(--red); }
+    .dot.amber { background: var(--amber); }
+    .toc { display: flex; align-items: center; flex-wrap: wrap; gap: 5px; margin: 0 0 9px; padding: 7px 8px; box-shadow: var(--shadow); }
+    .toc b { padding: 5px 8px; font-size: 12px; }
+    .toc a { border-radius: 7px; padding: 5px 8px; color: #4d4c47; font-size: 12px; }
+    .toc a:hover { background: var(--blue-soft); color: var(--blue); text-decoration: none; }
+    .report-toc { margin: 0 0 20px; padding: 7px 8px; }
+    .report-toc summary { cursor: pointer; padding: 5px 8px; font-weight: 600; }
+    .report-toc ol { columns: 2; column-gap: 30px; margin: 5px 0 8px; padding: 0 32px; }
+    .report-toc li { break-inside: avoid; margin: 4px 0; }
+
+    section { margin: 0 0 32px; scroll-margin-top: 12px; }
+    .kicker { margin: 0 0 3px; color: var(--muted); font-size: 12px; letter-spacing: .05em; }
+    h2 { margin: 0 0 14px; font-size: 24px; line-height: 1.3; font-weight: 650; letter-spacing: -.01em; }
+    h3 { margin: 18px 0 8px; font-size: 16px; line-height: 1.4; }
+    p { margin: 0 0 12px; }
+    .lead {
+      margin: 0 0 14px;
+      border-left: 4px solid var(--ink);
+      padding: 12px 16px;
+      background: var(--paper);
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 10px; }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .card { border: 1px solid var(--line); border-radius: var(--radius); padding: 15px 16px; background: var(--paper); }
+    .card h3 { margin-top: 0; }
+    .card p:last-child, .card ul:last-child { margin-bottom: 0; }
+    .card.green { border-top: 3px solid var(--green); }
+    .card.red { border-top: 3px solid var(--red); }
+    .card.blue { border-top: 3px solid var(--blue); }
+    .card.violet { border-top: 3px solid var(--violet); }
+    .big-number { display: block; margin: 3px 0 2px; font-size: 25px; line-height: 1.2; font-weight: 650; }
+    .small { color: var(--muted); font-size: 12px; }
+
+    .tradeoff { position: relative; overflow: hidden; }
+    .tradeoff::after { content: ""; position: absolute; width: 96px; height: 96px; right: -34px; top: -36px; border-radius: 999px; opacity: .55; }
+    .tradeoff.gain::after { background: var(--blue-soft); }
+    .tradeoff.calm::after { background: var(--green-soft); }
+    .tradeoff.hit::after { background: var(--violet-soft); }
+
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+    table { width: 100%; border-collapse: collapse; font-size: 12.75px; }
+    th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { color: #575650; background: #f3f1eb; font-weight: 650; white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+    tbody tr:hover { background: #fbfaf7; }
+    .good { color: var(--green); font-weight: 650; }
+    .bad { color: var(--red); font-weight: 650; }
+    .neutral { color: var(--blue); font-weight: 650; }
+
+    .callout { margin: 12px 0; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; background: var(--paper); }
+    .callout.green { border-color: rgba(44,122,88,.25); background: var(--green-soft); }
+    .callout.red { border-color: rgba(180,74,60,.25); background: var(--red-soft); }
+    .callout.amber { border-color: rgba(154,106,24,.25); background: var(--amber-soft); }
+    .callout.blue { border-color: rgba(24,95,165,.20); background: var(--blue-soft); }
+    .callout strong { display: inline-block; margin-bottom: 3px; }
+
+    .bar-chart { padding: 15px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+    .bar-row { display: grid; grid-template-columns: 110px 1fr 60px; align-items: center; gap: 10px; margin: 9px 0; }
+    .track { height: 9px; border-radius: 999px; background: #eceae3; overflow: hidden; }
+    .fill { height: 100%; border-radius: inherit; background: var(--blue); }
+    .fill.green { background: var(--green); }
+    .fill.red { background: var(--red); }
+    .fill.violet { background: var(--violet); }
+    .bar-value { text-align: right; font-variant-numeric: tabular-nums; font-weight: 650; }
+
+    .timeline { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 12px 0; }
+    .step { position: relative; min-height: 90px; border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; background: var(--paper); }
+    .step::after { content: "→"; position: absolute; top: 30px; right: -9px; color: var(--muted); z-index: 2; }
+    .step:last-child::after { display: none; }
+    .step b { display: block; margin-bottom: 3px; }
+    .step span { color: var(--muted); font-size: 12px; }
+
+    .decision { display: grid; grid-template-columns: 160px 1fr 1fr 1fr; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--paper); }
+    .decision > div { padding: 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .decision > div:nth-child(4n) { border-right: 0; }
+    .decision > div:nth-last-child(-n+4) { border-bottom: 0; }
+    .decision .head { background: #f3f1eb; font-weight: 650; }
+
+    .checklist { display: grid; gap: 8px; }
+    .check-item { display: grid; grid-template-columns: 22px 1fr auto; gap: 10px; align-items: start; border: 1px solid var(--line); border-radius: var(--radius); padding: 11px 12px; background: var(--paper); }
+    .check-item input { width: 17px; height: 17px; margin-top: 3px; accent-color: var(--green); }
+    .check-item b { display: block; }
+    .check-item span { color: var(--muted); font-size: 12px; }
+    .phase { border-radius: 999px; padding: 2px 7px; background: #f0eee7; color: #66645d !important; white-space: nowrap; }
+    .check-actions { display: flex; gap: 8px; margin: 10px 0 0; }
+    .btn { cursor: pointer; border: 1px solid var(--line-strong); border-radius: 8px; padding: 6px 10px; background: var(--paper); color: var(--ink); }
+    .btn:hover { border-color: var(--blue); color: var(--blue); }
+
+    .formula { margin: 12px 0; border-radius: var(--radius); padding: 13px 16px; background: #eeece5; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; }
+    .note-list { margin: 8px 0 0; padding-left: 20px; }
+    .note-list li { margin: 5px 0; }
+    .footnotes { color: var(--muted); font-size: 12px; }
+    footer { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 13px; color: var(--muted); font-size: 12px; }
+    .backtop { position: fixed; right: 18px; bottom: 18px; width: 38px; height: 38px; cursor: pointer; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.92); color: var(--ink); box-shadow: var(--shadow); }
+    .backtop:hover { border-color: var(--blue); color: var(--blue); }
+
+    @media (max-width: 850px) {
+      .hero-grid, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid-3 { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .step::after { content: "↓"; top: auto; right: auto; left: 24px; bottom: -15px; }
+      .decision { grid-template-columns: 120px 1fr; }
+      .decision > div { border-right: 0; }
+      .decision > div:nth-child(odd) { background: #f3f1eb; font-weight: 650; }
+      .decision > div:nth-last-child(-n+4) { border-bottom: 1px solid var(--line); }
+      .decision > div:last-child { border-bottom: 0; }
+    }
+    @media (max-width: 620px) {
+      .wrap { padding: 24px 14px 50px; }
+      .hero-grid, .grid-2, .grid-4 { grid-template-columns: 1fr; }
+      .report-toc ol { columns: 1; }
+      .bar-row { grid-template-columns: 88px 1fr 52px; }
+      .check-item { grid-template-columns: 22px 1fr; }
+      .phase { grid-column: 2; justify-self: start; }
+    }
+    @media print {
+      body { background: #fff; }
+      .wrap { max-width: none; padding: 0; }
+      .toc, .report-toc, .backtop, .check-actions { display: none; }
+      .card, .metric, .table-wrap, .callout, .bar-chart, .check-item { break-inside: avoid; }
+      section { break-inside: auto; }
+      a { color: inherit; }
+    }
+  </style>
+</head>
+<body>
+<main class="wrap" id="top">
+  <header>
+    <p class="eyebrow">交易系統教學｜資料研究導讀｜2026-08-20</p>
+    <h1>出場不是答案，而是一組代價：從市場巫師 829 筆交易建立自己的 Exit Playbook</h1>
+    <p class="dek">以 James Muninn 對 Kristjan “Qullamaggie” Kullamägi 實盤突破交易的研究為骨架，拆解分批止盈、保本停損、10／20 日均線與市場環境如何交換收益、回撤與勝率。</p>
+    <div class="tags" aria-label="主題標籤">
+      <span class="tag">分批止盈</span><span class="tag">保本停損</span><span class="tag">右尾系統</span><span class="tag">10／20 日 SMA</span><span class="tag">風險優先</span>
+    </div>
+    <p class="source">原始研究：<a href="https://x.com/Muninn/status/2084274299444072897" target="_blank" rel="noreferrer">Everything I've Learned About Taking Profits ↗</a>　作者發布：2026-08-03</p>
+  </header>
+
+  <div class="hero-grid" aria-label="研究摘要">
+    <div class="metric"><span class="label">主比較樣本</span><strong>829 筆</strong><small>Qullamaggie 實際記錄的突破交易</small></div>
+    <div class="metric"><span class="label">第 3 日賣一半</span><strong>回撤 −36%</strong><small>相對於全倉以 10 日線追蹤</small></div>
+    <div class="metric"><span class="label">綠色交易比例</span><strong>+11 pct</strong><small>由不足 1/4 升至超過 1/3</small></div>
+    <div class="metric"><span class="label">交換代價</span><strong>平均交易 −25%</strong><small>平滑體驗，犧牲右尾收益</small></div>
+  </div>
+
+  <div class="legend"><span class="dot green"></span>優勢／保護　 <span class="dot red"></span>代價／失效　 <span class="dot amber"></span>條件式結論　 R＝初始風險單位　SMA＝簡單移動平均線　pct＝百分點</div>
+
+  <nav class="toc" aria-label="教學目錄">
+    <b>快速導覽</b>
+    <a href="#thesis">核心命題</a><a href="#distribution">典型 vs 右尾</a><a href="#partials">分批止盈</a><a href="#breakeven">保本停損</a><a href="#trail">均線追蹤</a><a href="#psychology">心理成本</a><a href="#playbook">Playbook</a><a href="#caveats">研究限制</a>
+  </nav>
+
+  <details class="report-toc">
+    <summary>完整章節</summary>
+    <ol>
+      <li><a href="#thesis">沒有免費的出場</a></li>
+      <li><a href="#distribution">中位數描述體感，平均數支付帳戶</a></li>
+      <li><a href="#partials">三分之二的分批止盈沒有改變結果</a></li>
+      <li><a href="#breakeven">先賣一部分，再移至成本</a></li>
+      <li><a href="#trail">10 日或 20 日：按股票速度選</a></li>
+      <li><a href="#regime">市況變差，改部位與選股</a></li>
+      <li><a href="#psychology">數字無法替你支付心理成本</a></li>
+      <li><a href="#playbook">每日 Exit Playbook</a></li>
+      <li><a href="#validation">四週最小驗證計畫</a></li>
+      <li><a href="#caveats">研究限制與正確用法</a></li>
+    </ol>
+  </details>
+
+  <section id="thesis">
+    <p class="kicker">先看結論</p>
+    <h2>核心命題：沒有免費的出場</h2>
+    <div class="lead">任何出場規則都在購買某種體驗。你可以用平均收益換取較淺回撤與較高勝率，也可以承受更深回吐，保留少數足以支付整年的超級贏家。</div>
+    <div class="grid-3">
+      <article class="card tradeoff gain blue"><span class="small">優化一｜帳戶成長</span><span class="big-number">保留右尾</span><p>全倉追蹤能完整參與少數巨型行情，但會帶來較多回吐、較長停滯與較低綠色交易比例。</p></article>
+      <article class="card tradeoff calm green"><span class="small">優化二｜回撤體驗</span><span class="big-number">提早變現</span><p>強勢時先賣一部分，通常令資金曲線更平滑，也較容易在震盪市持續執行。</p></article>
+      <article class="card tradeoff hit violet"><span class="small">優化三｜命中感</span><span class="big-number">提高勝率</span><p>較早鎖利令更多交易最後為正，但並不代表每筆期望值或長期複利更高。</p></article>
+    </div>
+    <div class="callout amber"><strong>研究真正回答的不是「哪條規則最好」。</strong><br>它回答的是：你正用甚麼，換取甚麼；而你是否有能力長期支付那個代價。</div>
+  </section>
+
+  <section id="distribution">
+    <p class="kicker">分布先於規則｜Median vs Mean</p>
+    <h2>中位數描述體感；平均數支付帳戶</h2>
+    <p>作者逐日追蹤 224 筆突破贏家。典型贏家很快完成大部分漲幅，但平均贏家因少數巨型行情而持續上升。兩者同時成立，正是止盈爭論永遠沒有單一答案的原因。</p>
+    <div class="grid-2">
+      <div class="bar-chart">
+        <h3>中位數贏家的路徑</h3>
+        <div class="bar-row"><span>第 1 日</span><div class="track"><div class="fill" style="width:17.6%"></div></div><span class="bar-value">+2.4%</span></div>
+        <div class="bar-row"><span>第 3 日</span><div class="track"><div class="fill" style="width:57.4%"></div></div><span class="bar-value">+7.8%</span></div>
+        <div class="bar-row"><span>第 5 日</span><div class="track"><div class="fill green" style="width:91.2%"></div></div><span class="bar-value">+12.4%</span></div>
+        <div class="bar-row"><span>第 9 日高峰</span><div class="track"><div class="fill green" style="width:100%"></div></div><span class="bar-value">+13.6%</span></div>
+        <div class="bar-row"><span>第 20 日</span><div class="track"><div class="fill" style="width:83.8%"></div></div><span class="bar-value">+11.4%</span></div>
+        <p class="small">第 5 日已取得典型贏家最終峰值的 91%；第 3 日只有 57%。</p>
+      </div>
+      <div class="bar-chart">
+        <h3>平均贏家的路徑</h3>
+        <div class="bar-row"><span>第 3 日</span><div class="track"><div class="fill violet" style="width:49.5%"></div></div><span class="bar-value">+13.8%</span></div>
+        <div class="bar-row"><span>第 5 日</span><div class="track"><div class="fill violet" style="width:72.8%"></div></div><span class="bar-value">+20.3%</span></div>
+        <div class="bar-row"><span>第 20 日</span><div class="track"><div class="fill violet" style="width:100%"></div></div><span class="bar-value">+27.9%</span></div>
+        <div class="callout blue"><strong>平均線仍在上升。</strong><br>不是每筆交易都慢慢上升，而是少數超級贏家把整體平均拉高。</div>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:10px">
+      <div class="card"><span class="small">多數贏家</span><span class="big-number">一半未越 +12%</span><p>典型行情不大，提早止盈通常看起來很合理。</p></div>
+      <div class="card"><span class="small">極少數右尾</span><span class="big-number">13 筆越過 +100%</span><p>文章另一段的合資格贏家樣本為 223 筆；這 13 筆把平均數推高。</p></div>
+      <div class="card"><span class="small">識別難題</span><span class="big-number">第 1 日無法分辨</span><p>超級贏家初期並沒有可靠外觀標記，所以規則必須在入場前決定。</p></div>
+    </div>
+  </section>
+
+  <section id="partials">
+    <p class="kicker">旋鈕一｜Sell Into Strength</p>
+    <h2>三分之二的分批止盈沒有改變結果</h2>
+    <p>比較「第 3 日收市賣一半、餘下以 10 日線追蹤」與「全倉以 10 日線追蹤」：534／829 筆交易結果完全相同，中位差異正好為零。真正的差距集中在極少數右尾。</p>
+    <div class="grid-4">
+      <div class="card green"><span class="small">最大回撤</span><span class="big-number good">−36%</span><p>較平滑，較容易堅持。</p></div>
+      <div class="card green"><span class="small">綠色交易比例</span><span class="big-number good">+11 pct</span><p>不足 1/4 升至超過 1/3。</p></div>
+      <div class="card red"><span class="small">平均每筆收益</span><span class="big-number bad">約 −25%</span><p>鎖利的帳單由右尾支付。</p></div>
+      <div class="card blue"><span class="small">規則差異來源</span><span class="big-number neutral">Top 10</span><p>十筆交易承擔全部差距，甚至更多。</p></div>
+    </div>
+    <div class="callout red"><strong>刪除最大贏家後，排名反轉。</strong><br>樣本由 829 減至 746 時，全倉追蹤轉為虧損，而分批止盈仍有利潤。這不是證明分批止盈「較好」，而是證明兩種規則依賴不同的收益分布。</div>
+
+    <h3>把問題移到更上游：你的入場能否產生怪物級贏家？</h3>
+    <div class="decision" role="table" aria-label="分批止盈決策表">
+      <div class="head">如果你的系統…</div><div class="head">較合理方向</div><div class="head">你買到</div><div class="head">你付出</div>
+      <div>很少抓到右尾</div><div>強勢時分批止盈</div><div>較平滑曲線、較高勝率</div><div>少量機會成本</div>
+      <div>靠少數巨型贏家</div><div>保留較大核心倉</div><div>最大化尾部參與</div><div>更深回吐、較長停滯</div>
+      <div>尚未有可靠樣本</div><div>採簡單基準規則</div><div>可執行、可記錄的起點</div><div>暫不追求理論最優</div>
+    </div>
+
+    <h3>「他說的規則」與「他實際做的事」</h3>
+    <div class="grid-2">
+      <div class="card blue"><h3>教學版</h3><p>突破上升 3–5 日後賣出 1/3 至 1/2，之後把停損移至成本；餘倉以 10 或 20 日線追蹤。初學者以 10 日線為簡化版本。</p></div>
+      <div class="card violet"><h3>實盤版</h3><p>Qullamaggie 會按股票速度連續小量減倉：快股每再升約 10–15% 賣一段；慢股可按 3–5% 間距細賣。若股票一天急升約 15%，他也可能第 1 日即止盈；後端亦未必一次清倉。</p></div>
+    </div>
+    <div class="callout amber"><strong>解讀：</strong>3–5 日不是自然定律，而是把「強勢時分批賣」壓縮成新手能重複執行的日曆規則。成熟交易者可按速度調整，但每個自由度都必須有紀錄支持。</div>
+  </section>
+
+  <section id="breakeven">
+    <p class="kicker">旋鈕二｜Breakeven</p>
+    <h2>保本停損的關鍵不是價位，而是順序</h2>
+    <div class="lead">安全順序是：先賣一部分、落袋一段利潤，再把餘下倉位移至成本。把仍是全倉的持倉過早移至成本，會同時把未來贏家變成零收益。</div>
+    <div class="timeline" aria-label="保本停損正確順序">
+      <div class="step"><b>突破有效</b><span>原始停損仍按結構</span></div>
+      <div class="step"><b>持有至窗口</b><span>避免第 2–3 日過早收緊</span></div>
+      <div class="step"><b>先賣一部分</b><span>第 3–5 日／強勢段</span></div>
+      <div class="step"><b>再移至成本</b><span>已變現利潤提供保護</span></div>
+      <div class="step"><b>餘倉按均線</b><span>只看收市跌破</span></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>全倉移至成本</th><th>受影響交易</th><th>少虧的 R</th><th>被截斷贏家的 R</th><th>淨效果</th><th>綠色交易比例</th></tr></thead>
+        <tbody>
+          <tr><td>永不提前移動</td><td>—</td><td>—</td><td>—</td><td>10 日線基準 x38.6</td><td class="good">23.7%</td></tr>
+          <tr><td>第 3 日</td><td>229 筆</td><td class="good">+161R</td><td class="bad">−230R</td><td class="bad">−69R；x34.2</td><td>17.2%</td></tr>
+          <tr><td>第 2 日</td><td>410 筆</td><td class="good">+308R</td><td class="bad">−391R</td><td class="bad">−83R；x36.9</td><td>13.7%</td></tr>
+          <tr><td>第 5 日</td><td>文章未列</td><td>—</td><td>—</td><td class="good">首個轉正版本：+10R；x40.4</td><td>未列</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="footnotes">第 3 日的 229 筆中：176 筆原本接近完整虧損，提早退出令平均虧損由 −0.97R 縮至 −0.65R；但另 53 筆原本會成為贏家，回踩入場價後被洗成零收益。20 日線版本也呈相同方向：基準 x31.0，第 2 日移保本為 x28.1，第 3 日為 x26.0。</p>
+    <div class="callout green"><strong>教學版規則：</strong>不要把「不想再輸」偽裝成系統訊號。若要移保本，至少等到第一部分已出售；主樣本中第 5 日才首次消除全倉提前保本的損害。</div>
+  </section>
+
+  <section id="trail">
+    <p class="kicker">旋鈕三｜Trailing Average</p>
+    <h2>10 日或 20 日：按股票速度選，不按願望選</h2>
+    <div class="grid-2">
+      <article class="card blue"><h3>10 日 SMA</h3><p><strong>適合：</strong>快速股、日均波幅約 5–6% 或以上、初學者。</p><p><strong>買到：</strong>較快退出、較淺回吐、規則簡單。</p><p><strong>付出：</strong>較容易在正常回踩中離場，少吃一段右尾。</p></article>
+      <article class="card violet"><h3>20 日 SMA</h3><p><strong>適合：</strong>較慢、較大型的股票。</p><p><strong>買到：</strong>更長持有時間；紙面收益較高。</p><p><strong>付出：</strong>更深回吐；額外收益高度集中於少數交易。</p></article>
+    </div>
+    <div class="formula">出場觸發 ＝ 第一個「收市價」低於指定 SMA；不是盤中第一次跌穿</div>
+    <div class="grid-3">
+      <div class="card"><span class="small">停損最窄的 1/3</span><span class="big-number">第 3 日止盈成本≈0</span><p>原始風險小，先賣部分較便宜。</p></div>
+      <div class="card"><span class="small">停損最寬的 1/3</span><span class="big-number">放棄約 1/3 利潤</span><p>同一止盈規則的機會成本明顯上升。</p></div>
+      <div class="card"><span class="small">實務含義</span><span class="big-number">先看 stop width</span><p>分批止盈不是獨立旋鈕；它與最初停損寬度聯動。</p></div>
+    </div>
+  </section>
+
+  <section id="regime">
+    <p class="kicker">市場環境｜Regime</p>
+    <h2>市況變差，改部位與選股，不要臨時改出場規則</h2>
+    <p>原文測試顯示：好市時第 3 日賣一半會犧牲約四分之一平均收益；震盪市的成本接近零。但「壞市第 3 日賣一半、好市第 5 日賣三分之一」相對於「永遠第 5 日賣三分之一」沒有額外優勢。</p>
+    <div class="grid-3">
+      <div class="card green"><h3>可以改</h3><p>總風險、單筆部位、同時持倉數、setup 篩選強度。</p></div>
+      <div class="card red"><h3>避免即場改</h3><p>因為最近兩筆回吐，就把既定追蹤線、止盈日或保本日提前。</p></div>
+      <div class="card blue"><h3>為甚麼</h3><p>若入場 edge 依賴右尾，臨時收緊規則最容易剛好剪掉支付整年的交易。</p></div>
+    </div>
+    <div class="callout amber"><strong>很多爭論其實影響不到多數交易。</strong><br>比較「第 3 日賣一半」與「漲至 2 倍日均波幅時賣一半」，五分之三突破在任一規則觸發前已先停損。</div>
+  </section>
+
+  <section id="psychology">
+    <p class="kicker">系統本質｜Behavioural Cost</p>
+    <h2>數字無法替你支付心理成本</h2>
+    <p>未實現利潤回吐，心理上不等同於從未賺到。全倉追蹤的每一點額外期望值，都要求交易者觀看浮盈縮水而不破壞規則；紙面較優、但第三次回撤就放棄的系統，實際上不如較保守但能執行的系統。</p>
+    <div class="grid-2">
+      <div class="card red">
+        <h3>WKHS：事後看見的刀口</h3>
+        <p>Qullamaggie 於 3.59 買入，因事件與短暫下跌把停損收緊，約 8.50（+137%）離場。若按原本「首次收市跌破 10 日線」規則，約可持有至 15；30 個交易日內股價一度到 22.90（+538%）。</p>
+        <p class="small">這是一個事後案例，不是每次放寬停損都會得到更高價格。</p>
+      </div>
+      <div class="card green">
+        <h3>正確心理目標</h3>
+        <ul class="note-list">
+          <li>不要訓練自己「不再有感覺」；要讓預先承諾的規則帶你穿過感覺。</li>
+          <li>若浮盈回吐令你必然破壞規則，主動賣一部分是合理的行為設計。</li>
+          <li>接受錯賣：你無法在交易內部辨認哪一筆正是超級贏家。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="playbook">
+    <p class="kicker">落地工具</p>
+    <h2>每日 Exit Playbook</h2>
+    <div class="callout blue"><strong>初學者基準版：</strong>第 5 日賣一半 → 把餘倉停損移至成本 → 等第一個收市跌破 10 日 SMA。這是可執行、可驗證的起點，不是普遍最優答案。</div>
+    <div class="checklist" id="exit-checklist">
+      <label class="check-item"><input type="checkbox" data-key="objective"><span><b>已選定唯一優先目標</b>我要最大化平均收益，還是換取較高勝率與較淺回撤？</span><span class="phase">入場前</span></label>
+      <label class="check-item"><input type="checkbox" data-key="partial"><span><b>分批規則已量化</b>第幾日、賣多少、按日曆還是強勢幅度？不使用「感覺差不多」。</span><span class="phase">入場前</span></label>
+      <label class="check-item"><input type="checkbox" data-key="stop"><span><b>保本順序已寫清</b>先賣部分，才把餘倉移至成本；全倉不在第 2–3 日提前收緊。</span><span class="phase">入場前</span></label>
+      <label class="check-item"><input type="checkbox" data-key="trail"><span><b>追蹤均線已配對</b>快速股用 10 日；較慢大型股才考慮 20 日；只以收市確認。</span><span class="phase">入場前</span></label>
+      <label class="check-item"><input type="checkbox" data-key="monster"><span><b>核心倉仍能參與右尾</b>若系統依賴怪物級贏家，分批後仍保留足夠倉位。</span><span class="phase">持倉中</span></label>
+      <label class="check-item"><input type="checkbox" data-key="regime"><span><b>市況差只改風險</b>縮小部位、減少 setup；不因恐懼臨時改出場。</span><span class="phase">持倉中</span></label>
+      <label class="check-item"><input type="checkbox" data-key="journal"><span><b>日誌記錄完整</b>記錄 MFE、MAE、部分賣出日、保本日、SMA、最終 R 與規則違反。</span><span class="phase">收市後</span></label>
+      <label class="check-item"><input type="checkbox" data-key="review"><span><b>只用同類交易比較</b>按 setup、停損寬度、股票速度與市場環境分組。</span><span class="phase">週末</span></label>
+    </div>
+    <div class="check-actions"><button class="btn" id="reset-checks" type="button">清除勾選</button><button class="btn" type="button" onclick="window.print()">列印／另存 PDF</button></div>
+
+    <h3>一頁決策表</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>你的優先目標</th><th>部分止盈</th><th>保本停損</th><th>餘倉追蹤</th><th>主要代價</th></tr></thead>
+        <tbody>
+          <tr><td>最大化長期右尾</td><td>不賣或只賣小部分</td><td>不提前；按原始結構</td><td>10／20 日 SMA 收市</td><td>深回吐、低勝率、長停滯</td></tr>
+          <tr><td>一致性與現金流</td><td>第 3–5 日／強勢時賣較多</td><td>部分出售後才移</td><td>10 日 SMA 收市</td><td>平均每筆收益下降</td></tr>
+          <tr><td>初學者生存</td><td>第 5 日賣一半</td><td>出售後移至成本</td><td>10 日 SMA 收市</td><td>不是理論最優，但簡單可守</td></tr>
+          <tr><td>慢速大型股</td><td>可用較小、較慢分批</td><td>出售後移至成本</td><td>20 日 SMA 收市</td><td>更深回吐、持有更久</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="validation">
+    <p class="kicker">個人化｜Minimum Viable Test</p>
+    <h2>四週最小驗證計畫</h2>
+    <p>先用歷史回放、模擬盤或極小風險記錄；每週只改一個變數，避免把不同 setup 與市場環境混成一個平均數。</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>週次</th><th>固定／測試</th><th>必記欄位</th><th>要回答的問題</th></tr></thead>
+        <tbody>
+          <tr><td>第 1 週</td><td>固定現有出場規則，建立基準</td><td>MFE、MAE、最終 R、規則違反</td><td>我能否忠實執行？實際回吐有多深？</td></tr>
+          <tr><td>第 2 週</td><td>比較第 3 日與第 5 日部分止盈</td><td>部分賣出時收益、之後 MFE</td><td>較早止盈省了多少回撤，又賣掉多少右尾？</td></tr>
+          <tr><td>第 3 週</td><td>比較「先賣後保本」與過早保本</td><td>scratch 數、後來成為贏家的數量</td><td>我的保本停損是在救虧損，還是在殺贏家？</td></tr>
+          <tr><td>第 4 週</td><td>按股票速度分 10／20 日線</td><td>ADR、持有日、峰值回吐、最終 R</td><td>哪類股票值得用較慢追蹤？</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="caveats">
+    <p class="kicker">研究審讀</p>
+    <h2>數據很有啟發性，但不是可直接複製的回測</h2>
+    <div class="grid-2">
+      <div class="card"><h3><span class="dot red"></span>選擇偏差</h3><p>樣本是高手實際交易／記錄的突破股，不是全市場所有訊號。選股、觀察清單與執行能力已先過濾一次。</p></div>
+      <div class="card"><h3><span class="dot red"></span>右尾不穩定</h3><p>十筆交易可改變規則排名；平均數對個別巨型贏家極敏感。單次樣本結果未必能穩定外推。</p></div>
+      <div class="card"><h3><span class="dot amber"></span>樣本數會變</h3><p>文中依測試出現 829、820、224、223／906 等不同 n。可能源於資料完整性與測試資格，但原文未逐項交代排除流程。</p></div>
+      <div class="card"><h3><span class="dot amber"></span>缺少不確定區間</h3><p>文章提供點估計，未提供信賴區間、交易成本敏感度或跨時段驗證；小差距應視為探索性結果。</p></div>
+      <div class="card"><h3><span class="dot red"></span>組合層風險未完整呈現</h3><p>同時持倉、相關性、流動性、滑價、停牌與稅費，會改變由單筆交易拼出的資金曲線。</p></div>
+      <div class="card"><h3><span class="dot green"></span>正確用法</h3><p>不要抄最漂亮的數字；要抄研究方法。把規則改寫成可驗證假設，再以自己的股票池、執行成本與心理承受力重測。</p></div>
+    </div>
+    <div class="callout blue"><strong>一句話總結：</strong>Exit rule 本身不是 edge；真正的 edge，是入場能否產生右尾、部位能否活過回撤，以及你能否在不臨時改規則的前提下持有它。</div>
+  </section>
+
+  <section aria-labelledby="glossary-title">
+    <p class="kicker">快速複習</p>
+    <h2 id="glossary-title">名詞卡</h2>
+    <div class="grid-4">
+      <div class="card"><b>R</b><p>每筆交易的初始風險單位；把不同價格與部位轉為可比較回報。</p></div>
+      <div class="card"><b>MFE</b><p>持倉期間最大有利變動，用來衡量「最高曾賺多少」。</p></div>
+      <div class="card"><b>MAE</b><p>持倉期間最大不利變動，用來判斷正常噪音與停損位置。</p></div>
+      <div class="card"><b>右尾</b><p>少數極大贏家構成的收益尾部；往往支付大量小虧損。</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>資料與數字均整理自 James Muninn 的公開研究文章；研究對象為 Kristjan Kullamägi。本文為學習筆記與方法論導讀，不構成投資建議。</p>
+    <p>版式參考：<a href="https://sintszkay.github.io/market-reports/reports/2026-08-16-market-wizard-entry-tutorial-special.html" target="_blank" rel="noreferrer">市場巫師入場教學｜入場不是答案，而是一組旋鈕 ↗</a></p>
+  </footer>
+</main>
+
+<button class="backtop" type="button" aria-label="回到頁首" title="回到頁首" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+  (() => {
+    const storeKey = 'exit-playbook-checks-v1';
+    const boxes = [...document.querySelectorAll('#exit-checklist input[type="checkbox"]')];
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(storeKey) || '{}'); } catch (_) {}
+    boxes.forEach(box => {
+      box.checked = Boolean(saved[box.dataset.key]);
+      box.addEventListener('change', () => {
+        const state = Object.fromEntries(boxes.map(item => [item.dataset.key, item.checked]));
+        localStorage.setItem(storeKey, JSON.stringify(state));
+      });
+    });
+    document.getElementById('reset-checks').addEventListener('click', () => {
+      boxes.forEach(box => { box.checked = false; });
+      localStorage.removeItem(storeKey);
+    });
+  })();
+</script>
+<script src="report-runtime.js?v=20260820-exit-playbook"></script>
+</body>
+</html>

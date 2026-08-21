@@ -1,0 +1,12 @@
+{
+  "asOf": "2026-08-20",
+  "session": "premarket",
+  "source": "Longbridge CLI",
+  "quotes": {
+    "BABA": {"ticker":"BABA","price":122.88,"previousClose":128.90,"changePct":-4.6703,"volume":1741267,"timestamp":"2026-08-20T13:29:59Z"},
+    "DE": {"ticker":"DE","price":591.17,"previousClose":580.63,"changePct":1.8150,"volume":26989,"timestamp":"2026-08-20T13:29:59Z"},
+    "NDSN": {"ticker":"NDSN","price":314.99,"previousClose":309.92,"changePct":1.6359,"volume":6227,"timestamp":"2026-08-20T13:29:59Z"},
+    "ROST": {"ticker":"ROST","price":230.23,"previousClose":234.69,"changePct":-1.9004,"volume":2806,"timestamp":"2026-08-20T13:29:59Z"},
+    "NTES": {"ticker":"NTES","price":120.26,"previousClose":127.25,"changePct":-5.4931,"volume":78251,"timestamp":"2026-08-20T13:29:59Z"}
+  }
+}

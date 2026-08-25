@@ -437,6 +437,29 @@ body.flat-report{
 .flat-report .fx-trend-table-8 th:nth-child(6),
 .flat-report .fx-trend-table-8 th:nth-child(7){width:8.5%}
 .flat-report .fx-trend-table-8 th:nth-child(8){width:34%}
+.flat-report .fx-trend-ma-table{min-width:1120px;table-layout:fixed}
+.flat-report .fx-trend-ma-table th:nth-child(1){width:12%}
+.flat-report .fx-trend-ma-table th:nth-child(2){width:8%}
+.flat-report .fx-trend-ma-table th:nth-child(3),
+.flat-report .fx-trend-ma-table th:nth-child(4),
+.flat-report .fx-trend-ma-table th:nth-child(5){width:7%}
+.flat-report .fx-trend-ma-table th:nth-child(6),
+.flat-report .fx-trend-ma-table th:nth-child(7),
+.flat-report .fx-trend-ma-table th:nth-child(8){width:8%}
+.flat-report .fx-trend-ma-table th:nth-child(6),
+.flat-report .fx-trend-ma-table th:nth-child(7),
+.flat-report .fx-trend-ma-table th:nth-child(8),
+.flat-report .fx-trend-ma-table td:nth-child(6),
+.flat-report .fx-trend-ma-table td:nth-child(7),
+.flat-report .fx-trend-ma-table td:nth-child(8){text-align:center}
+.flat-report .fx-trend-ma-table th:nth-child(9){width:7%}
+.flat-report .fx-trend-ma-table th:nth-child(10){width:28%}
+.flat-report .fx-trend-ma-table th:first-child,
+.flat-report .fx-trend-ma-table td:first-child{
+  white-space:nowrap;
+  overflow-wrap:normal;
+  word-break:keep-all;
+}
 .flat-report .bond-curve-table{min-width:760px;table-layout:fixed}
 .flat-report .bond-curve-table th:nth-child(1){width:22%}
 .flat-report .bond-curve-table th:nth-child(2),

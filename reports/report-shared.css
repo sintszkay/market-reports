@@ -1015,6 +1015,7 @@ body.flat-report{
   }
 }
 @media(max-width:760px){
+  .report-toc{position:static;top:auto}
   .flat-report .wrap{padding:22px 12px 44px}
   .flat-report h1{font-size:25px}
   .flat-report .grid,.flat-report .checks,.flat-report .regime-triggers{grid-template-columns:1fr}

@@ -1,0 +1,221 @@
+{
+  "asOf": "2026-08-28",
+  "capturedAt": "2026-08-29T08:56:07.270Z",
+  "marketWatch": {
+    "spreadsheetId": "1zXbIfknybtivC5hgkqthyhqwK9OjYCKVadvJTPZrHqE",
+    "tabs": {
+      "Sector Dashboard": {
+        "qa": "PASS",
+        "asOf": "2026-08-28",
+        "rowsCurrent": 18,
+        "rowsExpected": 18
+      },
+      "Thematic Sectors": {
+        "qa": "PASS",
+        "asOf": "2026-08-28",
+        "rowsCurrent": 45,
+        "rowsExpected": 45,
+        "requiredTickers": [
+          "BUG",
+          "PAVE",
+          "VOO"
+        ]
+      },
+      "Macro": {
+        "qa": "PASS",
+        "asOf": "2026-08-28",
+        "note": "Longbridge EOD 8/28；FRED H.15 visible through 8/27；週報收益率使用 U.S. Treasury 8/28 官方值。"
+      },
+      "Maket breath": {
+        "qa": "PASS",
+        "asOf": "2026-08-28"
+      }
+    }
+  },
+  "stockbee": {
+    "spreadsheetId": "1O6OhS7ciA8zwfycBfGPbP2fWJnR0pn2UUvFZVDP9jpE",
+    "tab": "2026",
+    "qa": "PASS",
+    "asOf": "2026-08-28"
+  },
+  "breadth": [
+    {
+      "date": "2026-08-28",
+      "spx20": 42.34,
+      "spx50": 52.88,
+      "ndx20": 46.07,
+      "ndx50": 49.01,
+      "iwm20": 37.78,
+      "iwm50": 49.4
+    },
+    {
+      "date": "2026-08-27",
+      "spx20": 44.33,
+      "spx50": 53.87,
+      "ndx20": 49.01,
+      "ndx50": 48.03,
+      "iwm20": 43.57,
+      "iwm50": 52.51
+    },
+    {
+      "date": "2026-08-26",
+      "spx20": 52.28,
+      "spx50": 58.64,
+      "ndx20": 51.96,
+      "ndx50": 50,
+      "iwm20": 44.27,
+      "iwm50": 53.51
+    },
+    {
+      "date": "2026-08-25",
+      "spx20": 50.89,
+      "spx50": 58.25,
+      "ndx20": 50,
+      "ndx50": 50.98,
+      "iwm20": 47.94,
+      "iwm50": 55.49
+    },
+    {
+      "date": "2026-08-24",
+      "spx20": 53.18,
+      "spx50": 59.36,
+      "ndx20": 51.96,
+      "ndx50": 50.98,
+      "iwm20": 46.4,
+      "iwm50": 54
+    },
+    {
+      "date": "2026-08-21",
+      "spx20": 49.4,
+      "spx50": 57.76,
+      "ndx20": 50.98,
+      "ndx50": 52.94,
+      "iwm20": 49.12,
+      "iwm50": 56.21
+    }
+  ],
+  "stockbeeRows": [
+    {
+      "date": "2026-08-28",
+      "up4": 84,
+      "down4": 382,
+      "ratio5d": 0.98,
+      "ratio10d": 1.09,
+      "quarterUp25": 1379,
+      "quarterDown25": 1105,
+      "monthUp25": 256,
+      "monthDown25": 90,
+      "monthUp50": 56,
+      "monthDown50": 21,
+      "up34_13": 1687,
+      "down34_13": 1469,
+      "universe": 6541,
+      "t2108": 41.91,
+      "sp500": 7711.23
+    },
+    {
+      "date": "2026-08-27",
+      "up4": 298,
+      "down4": 145,
+      "ratio5d": 1.76,
+      "ratio10d": 1.3,
+      "quarterUp25": 1496,
+      "quarterDown25": 1050,
+      "monthUp25": 305,
+      "monthDown25": 84,
+      "monthUp50": 53,
+      "monthDown50": 22,
+      "up34_13": 1812,
+      "down34_13": 1337,
+      "universe": 6539,
+      "t2108": 45.17,
+      "sp500": 7728.65
+    },
+    {
+      "date": "2026-08-26",
+      "up4": 155,
+      "down4": 138,
+      "ratio5d": 1.31,
+      "ratio10d": 1.31,
+      "quarterUp25": 1460,
+      "quarterDown25": 1057,
+      "monthUp25": 344,
+      "monthDown25": 81,
+      "monthUp50": 73,
+      "monthDown50": 19,
+      "up34_13": 1772,
+      "down34_13": 1352,
+      "universe": 6539,
+      "t2108": 45.14,
+      "sp500": 7676.31
+    },
+    {
+      "date": "2026-08-25",
+      "up4": 293,
+      "down4": 93,
+      "ratio5d": 1.69,
+      "ratio10d": 1.36,
+      "quarterUp25": 1496,
+      "quarterDown25": 1044,
+      "monthUp25": 317,
+      "monthDown25": 92,
+      "monthUp50": 68,
+      "monthDown50": 25,
+      "up34_13": 1834,
+      "down34_13": 1342,
+      "universe": 6537,
+      "t2108": 45.77,
+      "sp500": 7676.62
+    },
+    {
+      "date": "2026-08-24",
+      "up4": 142,
+      "down4": 238,
+      "ratio5d": 1.21,
+      "ratio10d": 1.28,
+      "quarterUp25": 1446,
+      "quarterDown25": 1088,
+      "monthUp25": 295,
+      "monthDown25": 98,
+      "monthUp50": 56,
+      "monthDown50": 21,
+      "up34_13": 1797,
+      "down34_13": 1438,
+      "universe": 6537,
+      "t2108": 45.93,
+      "sp500": 7652.86
+    },
+    {
+      "date": "2026-08-21",
+      "up4": 332,
+      "down4": 79,
+      "ratio5d": 1.18,
+      "ratio10d": 1.35,
+      "quarterUp25": 1502,
+      "quarterDown25": 1041,
+      "monthUp25": 358,
+      "monthDown25": 94,
+      "monthUp50": 65,
+      "monthDown50": 27,
+      "up34_13": 1883,
+      "down34_13": 1345,
+      "universe": 6536,
+      "t2108": 45.72,
+      "sp500": 7674.37
+    }
+  ],
+  "treasury": {
+    "2026-08-21": {
+      "twoYear": 4.24,
+      "tenYear": 4.74,
+      "twentyYear": 5.25,
+      "thirtyYear": 5.27
+    },
+    "2026-08-28": {
+      "twoYear": 4.34,
+      "tenYear": 4.73,
+      "twentyYear": 5.21,
+      "thirtyYear": 5.22
+    }
+  }
+}

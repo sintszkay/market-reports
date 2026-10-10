@@ -1058,3 +1058,63 @@ body.flat-report{
   .flat-report .macro-policy-overview>div:last-child{border-bottom:0}
   .bar-row{grid-template-columns:88px 54px minmax(140px,1fr)}
 }
+
+/* Opt-in publication QA repair for the October 1, 2 and 5 snapshots only.
+   Date strings, MA groups and runtime RSI badges must fit inside their cells. */
+.flat-report.release-width-fix .policy-table.report-cols-6{min-width:1100px;table-layout:fixed}
+.flat-report.release-width-fix .policy-table.report-cols-6 th:nth-child(1){width:20%}
+.flat-report.release-width-fix .policy-table.report-cols-6 th:nth-child(2),
+.flat-report.release-width-fix .policy-table.report-cols-6 th:nth-child(3),
+.flat-report.release-width-fix .policy-table.report-cols-6 th:nth-child(4){width:7%}
+.flat-report.release-width-fix .policy-table.report-cols-6 th:nth-child(5){width:19%}
+.flat-report.release-width-fix .policy-table.report-cols-6 th:nth-child(6){width:40%}
+.flat-report.release-width-fix .weekend-macro-table{min-width:1100px;table-layout:fixed}
+.flat-report.release-width-fix .weekend-macro-table th:nth-child(1){width:23%}
+.flat-report.release-width-fix .weekend-macro-table th:nth-child(2){width:32%}
+.flat-report.release-width-fix .weekend-macro-table th:nth-child(3){width:28%}
+.flat-report.release-width-fix .weekend-macro-table th:nth-child(4){width:17%}
+.flat-report.release-width-fix .macro-week-table{min-width:1250px;table-layout:fixed}
+.flat-report.release-width-fix .macro-week-table th:nth-child(1),
+.flat-report.release-width-fix .macro-week-table th:nth-child(2){width:19%}
+.flat-report.release-width-fix .macro-week-table th:nth-child(3),
+.flat-report.release-width-fix .macro-week-table th:nth-child(4),
+.flat-report.release-width-fix .macro-week-table th:nth-child(5){width:10%}
+.flat-report.release-width-fix .macro-week-table th:nth-child(6){width:32%}
+.flat-report.release-width-fix .breadth-table{min-width:1000px;table-layout:fixed}
+.flat-report.release-width-fix .breadth-table th:nth-child(1){width:22%}
+.flat-report.release-width-fix .breadth-table th:nth-child(2){width:14%}
+.flat-report.release-width-fix .breadth-table th:nth-child(3),
+.flat-report.release-width-fix .breadth-table th:nth-child(4){width:20%}
+.flat-report.release-width-fix .breadth-table th:nth-child(5){width:24%}
+.flat-report.release-width-fix .fx-asset-table-8{min-width:1180px;table-layout:fixed}
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(1){width:8%}
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(2){width:9%}
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(3){width:7%}
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(4),
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(5),
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(6){width:8%}
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(7){width:18%}
+.flat-report.release-width-fix .fx-asset-table-8 th:nth-child(8){width:34%}
+.flat-report.release-width-fix .macro-actual-table{min-width:1080px;table-layout:fixed}
+.flat-report.release-width-fix .macro-actual-table th:nth-child(1){width:20%}
+.flat-report.release-width-fix .macro-actual-table th:nth-child(2),
+.flat-report.release-width-fix .macro-actual-table th:nth-child(3){width:14%}
+.flat-report.release-width-fix .macro-actual-table th:nth-child(4){width:25%}
+.flat-report.release-width-fix .macro-actual-table th:nth-child(5){width:27%}
+.flat-report.release-weekly-width-fix .weekly-etf-table{min-width:1050px;table-layout:fixed}
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(1){width:8%}
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(2),
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(3),
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(4){width:12%}
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(5){width:22%}
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(6){width:10%}
+.flat-report.release-weekly-width-fix .weekly-etf-table th:nth-child(7){width:24%}
+.flat-report.release-weekly-width-fix .recon-table th:nth-child(4){width:12%}
+.flat-report.release-weekly-width-fix .recon-table th:nth-child(5){width:20%}
+.flat-report.release-weekly-width-fix .weekly-macro-table{min-width:1220px;table-layout:fixed}
+.flat-report.release-weekly-width-fix .weekly-macro-table th:nth-child(1){width:7%}
+.flat-report.release-weekly-width-fix .weekly-macro-table th:nth-child(2){width:21%}
+.flat-report.release-weekly-width-fix .weekly-macro-table th:nth-child(3),
+.flat-report.release-weekly-width-fix .weekly-macro-table th:nth-child(4){width:14%}
+.flat-report.release-weekly-width-fix .weekly-macro-table th:nth-child(5){width:20%}
+.flat-report.release-weekly-width-fix .weekly-macro-table th:nth-child(6){width:24%}

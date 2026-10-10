@@ -252,8 +252,8 @@ function validateWeeklySpyBenchmark(html, errors) {
   if (!sectorSection) return;
 
   const tableSpecs = [
-    ["S&P 500 Sector ETF", "SPY", /<h3\b[^>]*>\s*S&amp;P 500 Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
-    ["Thematic Sector ETF", "VOO", /<h3\b[^>]*>\s*Thematic Sector ETF\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
+    ["S&P 500 Sector ETF", "SPY", /<h3\b[^>]*>\s*S&amp;P 500 Sector ETF(?:\s*｜[^<]*)?\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
+    ["Thematic Sector ETF", "SPY", /<h3\b[^>]*>\s*Thematic Sector ETF(?:\s*｜[^<]*)?\s*<\/h3>[\s\S]*?<table\b[\s\S]*?<\/table>/i],
   ];
   const expectedHeaders = ["ETF", "5日", "1月", "距52週高", "20/50/200MA", "RSI", "判斷"];
   for (const [label, benchmark, pattern] of tableSpecs) {
@@ -317,6 +317,22 @@ function validateWeeklyVixScore(html, errors) {
       return match ? match[1] : null;
     };
     const close = Number(valueOf("data-vix-close"));
+    // Current five-factor contract uses VIX itself: level, 5D, 1M, 20MA, 50MA.
+    // Keep legacy embedded daily/VIXY inputs only for older report snapshots.
+    if (valueOf("data-vix-one-month") !== null) {
+      const fiveDay = Number(valueOf("data-vix-five-day"));
+      const oneMonth = Number(valueOf("data-vix-one-month"));
+      const above20 = valueOf("data-vix-above20");
+      const above50 = valueOf("data-vix-above50");
+      const raw = getCells(scoreRowMatch[0], "td")[1]?.text.match(/(\d+)\s*\/\s*5/);
+      if (![close, fiveDay, oneMonth].every(Number.isFinite) || !raw || ![above20, above50].every(x => /^(true|false)$/.test(x || ""))) {
+        errors.push("Weekly VIX five-factor scoring contains incomplete embedded inputs.");
+        return;
+      }
+      const expected = Number(close > 20) + Number(fiveDay > 0) + Number(oneMonth > 0) + Number(above20 === "true") + Number(above50 === "true");
+      if (Number(raw[1]) !== expected) errors.push(`Weekly VIX score mismatch: expected ${expected}/5, found ${raw[1]}/5.`);
+      return;
+    }
     const daily = Number(valueOf("data-vix-daily"));
     const fiveDay = Number(valueOf("data-vix-five-day"));
     const vixyAbove20 = valueOf("data-vixy-above20") === "true";
